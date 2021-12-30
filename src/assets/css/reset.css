@@ -2,35 +2,35 @@
 @font-face {
     font-family: 'ari-Thin';
     src: local(※);
-    src: url('./images/ari-Thin.otf') format('opentype');
+    src: url('../font/ari-Thin.otf') format('opentype');
     font-weight: 300;
     font-style: normal;
 }
 @font-face {
     font-family: 'ari-Light';
     src: local(※);
-    src: url('./images/ari-Light.otf') format('opentype');
+    src: url('../font/ari-Light.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'ari-Medium';
     src: local(※);
-    src: url('./images/ari-Medium.otf') format('opentype');
+    src: url('../font/ari-Medium.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
 }
 @font-face {
     font-family: 'ari-SemiBold';
     src: local(※);
-    src: url('./images/ari-SemiBold.otf') format('opentype');
+    src: url('../font/ari-SemiBold.otf') format('opentype');
     font-weight: 600;
     font-style: normal;
 }
 @font-face {
     font-family: 'ari-Bold';
     src: local(※);
-    src: url('./images/ari-Bold.otf') format('opentype');
+    src: url('../font/ari-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
 }
