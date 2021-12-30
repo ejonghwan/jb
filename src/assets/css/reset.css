@@ -37,6 +37,7 @@
 
 
 /* Type Selector Reset */
+* {box-sizing: border-box;;}
 body {
 	-webkit-text-size-adjust: 100%;
 	font-weight: 400;
@@ -96,6 +97,7 @@ a:active {text-decoration:none;}
 .hljs {
     font-size: 14px;
     font-family: 'consola' !important;
+	padding: 20px !important;
     /* background: #323232;; */
 }
 
