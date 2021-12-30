@@ -89,16 +89,16 @@ img, fieldset {
 hr {
 	display: none;
 }
-a, a:link {text-decoration:none; color:#555;}
+a, a:link {text-decoration:none; color:rgb(185, 185, 185);}
 a:visited {text-decoration:none;}
-a:hover, a:focus {text-decoration:underline; color: #222;}
+a:hover, a:focus {text-decoration:underline; color: rgb(233, 233, 233);}
 a:active {text-decoration:none;}
 
 .hljs {
     font-size: 14px;
     font-family: 'consola' !important;
 	padding: 20px !important;
-    /* background: #323232;; */
+    background: #161b22;;
 }
 
 .hljs-comment {font-style: normal;}
