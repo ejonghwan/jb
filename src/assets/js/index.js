@@ -33,7 +33,7 @@ const ui = (function(){
     // console.log(minute)
     function cash() {
         for(let i = 0; i < links.length; i++) {
-            console.log(links[i].getAttribute('href') + `?ver${minute}`)
+            links[i].setAttribute('href', links[i].getAttribute('href') + `?ver${minute}`) 
         }
         console.log(links)
     }
