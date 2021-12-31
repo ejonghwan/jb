@@ -28,6 +28,7 @@ const ui = (function(){
 
 
     const links = document.querySelectorAll('link')
+    const scripts = document.querySelectorAll('script')
     const getDate = new Date()
     const minute = getDate.getMinutes()
     // console.log(minute)
@@ -35,7 +36,10 @@ const ui = (function(){
         for(let i = 0; i < links.length; i++) {
             links[i].setAttribute('href', links[i].getAttribute('href') + `?ver${minute}`) 
         }
-        console.log(links)
+        for(let i = 0; i < scripts.length; i++) {
+            scripts[i].setAttribute('src', scripts[i].getAttribute('src') + `?ver${minute}`) 
+        }
+        // console.log(links)
     }
     cash();
 
