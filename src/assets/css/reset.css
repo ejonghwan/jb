@@ -94,11 +94,3 @@ a:visited {text-decoration:none;}
 a:hover, a:focus {text-decoration:underline; color: rgb(233, 233, 233);}
 a:active {text-decoration:none;}
 
-.hljs {
-    font-size: 14px;
-    font-family: 'consola' !important;
-	padding: 20px !important;
-    background: #161b22;;
-}
-
-.hljs-comment {font-style: normal;}

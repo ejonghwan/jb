@@ -3,15 +3,17 @@
 /* @import url('./reset.css'); */
 /* @import 'reset.css'; */
 
+
+
+/* global */
 body { background: #0d1117; color: #e3e3e3; font-size: 14px; line-height: 1.5rem;}
 .wrap {display: flex; flex-direction: column; width: 100%; height: 100%;}
 .wrap header { flex: 0 0 auto; background: #161b22; padding: 20px;;}
 .wrap main { flex: 1 1 auto; padding: 80px 0;}
 .wrap footer { flex: 0 0 auto; background: #161b22; padding: 20px;;}
 
-
 .global_wrap { width: 960PX; margin: 0 auto;}
-
+h2 {font-size: 25px; margin-bottom: 20px;;}
 
 
 
@@ -25,6 +27,34 @@ ul.line > li {position: relative;}
 ul.line > li:first-child {padding-left: 0;}
 ul.line > li::before {content: ''; width: 1px; height: 10px; background: #363636; display: block; position: absolute; left: 0px; top: 0; bottom:0; margin: auto 0;}
 ul.line > li:first-child::before {content: none;}
+
+
+/* contents */
+section.conts + section.conts {margin-top: 40px;}
+.conts .item_wrap + .conts .item_wrap {margin-top: 15px;}
+.conts .item {padding-left: 13px;  position: relative; display: flex; ; align-items: center;}
+.conts .item::before {content: '-'; display: inline-block; position: absolute; left: 0; }
+.conts .item > dt > button {flex: 0 0 auto; padding: 7px 15px; background: #161b22; border-radius: 10px; font-size: 15px; font-weight: bold; color: #e3e3e3;}
+.conts .item > dt > button.active {background: #e3e3e3; color: #161b22;}
+.conts .item > dd {flex: 1 1 auto; width: 100%; padding-left: 20px;}
+.conts .code_wrap {margin-left: 15px; display: none;;}
+.conts .code_wrap.active {display: block;}
+
+
+.hljs {
+    font-size: 14px;
+    font-family: 'consola' !important;
+	padding: 20px !important;
+    background: #161b22;
+    border-radius: 10px;
+}
+.hljs-comment {font-style: normal;}
+
+
+
+
+
+
 
 @media (max-width: 960px) {
     .global_wrap { width: 100%; margin: 0 auto; padding: 0 20px;}
