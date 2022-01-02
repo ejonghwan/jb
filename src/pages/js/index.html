@@ -1,69 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
-    <!-- <link rel="stylesheet" href="/src/assets/css/reset.css"> -->
-    <!-- <link rel="stylesheet" href="/jongdbook/src/assets/css/reset.css"> -->
-    <!-- <link rel="stylesheet" href="https://ejonghwan.github.io/jongdbook/src/assets/css/reset.css"> -->
-    <!-- <link rel="stylesheet" href="https://ejonghwan.github.io/jongdbook/src/assets/css/style.css"> -->
-    <link rel="stylesheet" href="../../assets/css/reset.css?v1"> 
-    <link rel="stylesheet" href="../../assets/css/style.css?v1"> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <!-- <script async src="../../assets/js/index.js?v1"></script> -->
-    <script async type="module">
-        import '../../index.js'
-        // import '../../../dist/main.js'
-    </script>
-    <title>Document</title>
-</head>
-<body>
-    
-    
-    <div class="wrap">
-        <header>
-            <nav class="global_wrap">
-                <ul  class="line">
-                    <li>
-                        <h1><a href="../../../index.html">Jongdbook</a></h1>
-                    </li>
-                    <li>
-                        <a href="../html/index.html">HTML</a>
-                    </li>
-                    <li>
-                        <a href="../html/accessibility.html">Accessibility</a>
-                    </li>
-                    <li>
-                        <a href="../html/standards.html">Standards</a>
-                    </li>
-                    <li>
-                        <a href="../css/index.html">CSS</a>
-                    </li>
-                    <li>
-                        <a href="../js/index.html" class="on">JS</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <div class="global_wrap">
-                
-                <!-- Object -->
-                <section class="conts">
-                    <h2>Object</h2>
-                    
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>Object.assign()</button></dt>
-                            <dd>
-                               첫번째 인자에 두번째 인자를 복사해서 넣어줌
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+<!doctype html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script><title>Document</title><script defer="defer" src="../../../main.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap"><ul class="line"><li><h1><a href="../../../index.html">Jongdbook</a></h1></li><li><a href="../html/index.html">HTML</a></li><li><a href="../html/accessibility.html">Accessibility</a></li><li><a href="../html/standards.html">Standards</a></li><li><a href="../css/index.html">CSS</a></li><li><a href="../js/index.html" class="on">JS</a></li></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Object</h2><div class="item_wrap"><dl class="item"><dt><button>Object.assign()</button></dt><dd>첫번째 인자에 두번째 인자를 복사해서 넣어줌</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 const target = { a: 1, b: 2 };
 const source = { b: 4, c: 5 };
@@ -76,71 +11,19 @@ console.log(target);
 console.log(returnedTarget);
 // expected output: Object { a: 1, b: 4, c: 5 }
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>Object.create()</button></dt>
-                            <dd>
-                                주어진 프로토타입(prototype)의 객체와 속성들을 갖고 있는 새 객체를 생성합니다.
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Object.create()</button></dt><dd>주어진 프로토타입(prototype)의 객체와 속성들을 갖고 있는 새 객체를 생성합니다.</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 //준비
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>Object.defineProperty()</button></dt>
-                            <dd>
-                                주어진 기술자(descriptor)에 의해 기술된(described) 이름붙은 속성을 객체에 추가합니다.
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Object.defineProperty()</button></dt><dd>주어진 기술자(descriptor)에 의해 기술된(described) 이름붙은 속성을 객체에 추가합니다.</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 //준비
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>Object.defineProperties()</button></dt>
-                            <dd>
-                                주어진 기술자들에 맞는 이름붙은 속성들을 객체에 추가합니다.
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Object.defineProperties()</button></dt><dd>주어진 기술자들에 맞는 이름붙은 속성들을 객체에 추가합니다.</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 //준비
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    
-                </section>  
-              
-              <section class="conts">
-                <h2>Array</h2>
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button>Object.assign()</button></dt>
-                        <dd>
-                            메서드는 출처 객체들의 모든 열거 가능한 자체 속성을 복사해 대상 객체에 붙여넣습니다. 그 후 대상 객체를 반환합니다.
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                        </pre></div></div></section><section class="conts"><h2>Array</h2><div class="item_wrap"><dl class="item"><dt><button>Object.assign()</button></dt><dd>메서드는 출처 객체들의 모든 열거 가능한 자체 속성을 복사해 대상 객체에 붙여넣습니다. 그 후 대상 객체를 반환합니다.</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 const target = { a: 1, b: 2 };
 const source = { b: 4, c: 5 };
@@ -153,37 +36,10 @@ console.log(target);
 console.log(returnedTarget);
 // expected output: Object { a: 1, b: 4, c: 5 }
                         </code>
-                    </pre>
-                    </div>
-                </div>
-            </section>  
-
-            
-
-
-        
-
-            </div>
-        </main>
-        <footer>
-            <div class="global_wrap">
-                footer
-            </div>
-        </footer>
-    </div>
-
-
-    <script>
-
-        window.onload = function() {
+                    </pre></div></div></section></div></main><footer><div class="global_wrap">footer</div></footer></div><script>window.onload = function() {
    
 
             // ui.tab()
             // console.log(ui.tab())
 
-        }
-       
-    </script>
-
-</body>
-</html>
+        }</script></body></html>
