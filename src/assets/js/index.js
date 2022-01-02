@@ -1,7 +1,7 @@
 
 
 
-const ui = (function(){
+export const ui = (function(){
 
 
     const eles = document.querySelectorAll('.item')
@@ -51,6 +51,7 @@ const ui = (function(){
 
     return {
         tab,
+        cash,
     }
 
 

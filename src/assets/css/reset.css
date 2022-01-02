@@ -1,5 +1,5 @@
 /* 아리따 돋음 */
-@font-face {
+/* @font-face {
     font-family: 'ari-Thin';
     src: local(※);
     src: url('../font/ari-Thin.otf') format('opentype');
@@ -33,7 +33,7 @@
     src: url('../font/ari-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
-}
+} */
 
 
 /* Type Selector Reset */
@@ -41,7 +41,8 @@
 body {
 	-webkit-text-size-adjust: 100%;
 	font-weight: 400;
-	font-family: 'ari-Medium', 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+	font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+	/* 'ari-Medium' */
 	font-size: 1em;
 	line-height: 1.25;
 	color: #555;
