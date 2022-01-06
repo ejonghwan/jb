@@ -11,7 +11,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: '[name].js', //id chunkhash name
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('./dist'),
     clean: {
       keep: /\.git/,
     },
@@ -19,9 +19,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/,
+      },
+      {
         test: /\.css$/,
         // use: ['style-loader', 'css-loader']
-        use: [ { loader: MiniCssExtractPlugin.loader },"css-loader" ]
+        use: [ { loader: MiniCssExtractPlugin.loader }, "css-loader" ]
       },
       {
         test: /\.png|jpg|svg|gif$/,

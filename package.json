@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --progress",
     "build": "webpack --progress",
-    "deploy": "webpack --progress && gh-pages -d dist"
+    "deploy": "webpack --progress && gh-pages -d dist",
+    "pages": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,10 @@
   },
   "homepage": "https://github.com/ejonghwan/jongdbook",
   "devDependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
