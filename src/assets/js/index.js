@@ -1,4 +1,4 @@
-
+import SideBar from '../../components/Sidebar.js'
 
 
 export const ui = (function(){
@@ -45,6 +45,7 @@ export const ui = (function(){
 
     
 
+    console.log('asdasd', SideBar.render())
 
    
 
