@@ -44,8 +44,8 @@ export const ui = (function(){
     cash();
 
     
-
-    console.log('asdasd', SideBar.render())
+    SideBar.render()
+    // console.log('asdasd', SideBar.render())
 
    
 

@@ -5,7 +5,8 @@
 
 
 /* global */
-body { background: #0d1117; color: #e3e3e3; font-size: 14px; line-height: 1.5rem;}
+
+body { background: #0d1117; color: #e3e3e3; font-size: 14px; line-height: 1.5rem; -webkit-touch-callout: none; -webkit-text-size-adjust: none;}
 .wrap {display: flex; flex-direction: column; width: 100%; height: 100%;}
 .wrap header { flex: 0 0 auto; background: #161b22; }
 .wrap main { flex: 1 1 auto; padding: 120px 0 80px;}
@@ -19,7 +20,7 @@ em {}
 
 /* header */
 header {position: fixed; width: 100%; z-index: 100;}
-header nav > ul {display: flex;  padding: 20px;}
+header nav > ul {display: flex;  padding: 20px 0;}
 header nav > ul > li {padding: 0 22px; font-size: 15px; display: flex; align-items: center;}
 header nav > ul > li a.on {color: #58a6ff;}
 
@@ -35,28 +36,37 @@ ul.line > li:first-child::before {content: none;}
 section.conts {position: relative;}
 section.conts + section.conts {margin-top: 50px;}
 
-.item_wrap + .item_wrap {margin-top: 5px;}
+.item_wrap + .item_wrap {margin-top: 3px;}
 .conts .item {/*padding-left: 13px;*/  position: relative; display: flex; ;}
 /* .conts .item::before {content: ''; width: 7px; height: 1px; background: rgb(46, 46, 46); display: inline-block; position: absolute; left: 0; top:2px;  transition: all .5s;} */
 /* .item_wrap.on .item::before { width: 7px; height: 1px;  background: #fff;} */
-.conts .item > dt > button {flex: 0 0 auto; padding: 1px 7px 4px;background: #050608; border-radius: 4px; font-size: 14px;  color: #fff; font-family: 'consola' !important;}
-.conts .item > dt > button > span {color: #999;}
-.conts .item > dt > button.active {background: #01911b; color: #fff;} /* 01911b */
-.conts .item > dd {flex: 1 1 auto; width: 100%; padding-left: 10px; color: #999; font-size: 14px;  }
+.conts .item > dt {flex: 0 0 auto;}
+.conts .item > dt > button {flex: 0 0 auto; /*padding: 2px 7px; background: #050608; border-radius: 4px;*/ font-size: 14px;  color: #fff; font-family: 'consola' !important;}
+.conts .item > dt > button > span {color: #666;}
+.conts .item > dt > button > span.seg {font-size:11px}
+.conts .item > dt > button.active {/*background: #fff; border-radius: 4px; padding: 0px 3px; */ color: #57a6ff; padding-left: 10px;  position: relative;;} /* 01911b */
+.conts .item > dt > button::before {content: '-'; display: inline-block; position: absolute; transform: translateX(0px); transition: all .3s; opacity: 0; color: #666;}
+.conts .item > dt > button.active::before { transform: translateX(-10px); opacity: 1;}
+.conts .item > dt > button:hover {border-bottom: 1px solid #999;;}
+.conts .item > dd {flex: 1 1 auto; width: 100%; padding-left: 10px; color: #999; font-size: 13px;  }
 .conts .code_wrap {/*margin-left: 15px;*/ opacity: 0; height: 0; transition: opacity .1s; }
 .item_wrap pre, 
 .item_wrap code {height: 0;overflow-y: hidden;}
 .item_wrap.on pre, 
-.item_wrap.on code {height: 100%; margin-top: -5px;}
+.item_wrap.on code {height: 100%; margin-top: -5px; margin-bottom: -15px;;}
 .conts .code_wrap.active {opacity: 1; height: 100%; }
+
+.depth_2 + .depth_2 {margin-top:15px;} 
+.depth_2 > strong {font-size: 11px; color: #999; display: inline-block; margin-left: -15px; }
 
 
 
 
 /* aside */
-aside {position: absolute; top: 0%; left: 760px; z-index: 200; }
+aside {position: absolute; top: 0%; left: 780px; z-index: 200; }
 aside ul li button{color: #fff;}
-
+aside .aside_btn {position: relative;}
+aside .aside_btn::before {content: '*'; position: absolute; left: -9px; top: 0px; color: #999;}
 
 
 
@@ -92,19 +102,20 @@ aside ul li button{color: #fff;}
     header .global_wrap,
     footer .global_wrap {padding: 0;}
 
-    header nav > ul {padding: 15px; overflow-x: scroll;}
+    header nav > ul {padding: 15px 20px; overflow-x: scroll;}
     header nav > ul > li {padding: 0 15px; font-size: 14px;}
 
-    .conts .item {display: block; margin-top: 15px;}
-    .conts .item > dd {padding-left: 2px; margin-top: 3px; line-height: 1.5;}
+    .conts .item {display: block; margin-top: 5px;}
+    .conts .item > dd {padding-left: 0px; margin-top: 0px; line-height: 1.5;}
 
     .wrap main {padding: 80px 0 40px; }
 
 
     .hljs {border-radius: 0;}
-    .conts .code_wrap.active {margin: -20px -20px -25px;}
+    .conts .code_wrap.active {margin: -10px -20px -25px;}
 
 
-    aside {display: none;}
+    /* aside {display: none;} */
+    /* aside {right: 0; top: 0;} */
     
 }
