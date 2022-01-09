@@ -9,13 +9,14 @@
 body { background: #0d1117; color: #e3e3e3; font-size: 14px; line-height: 1.5rem; -webkit-touch-callout: none; -webkit-text-size-adjust: none;}
 .wrap {display: flex; flex-direction: column; width: 100%; height: 100%;}
 .wrap header { flex: 0 0 auto; background: #161b22; }
-.wrap main { flex: 1 1 auto; padding: 120px 0 80px;}
+.wrap main { flex: 1 1 auto; padding: 90px 0 80px;}
 .wrap footer { flex: 0 0 auto; background: #161b22; padding: 20px;;}
 
 .global_wrap { width: 760PX; margin: 0 auto;}
 h2 {font-size: 18px; margin-bottom: 15px; color: #58a6ff;     font-family: 'consola' !important;}
 h1 {font-size: 15px;}
 em {}
+.seg {font-size:11px; color: #666;}
 
 
 /* header */
@@ -40,11 +41,10 @@ section.conts + section.conts {margin-top: 50px;}
 .conts .item {/*padding-left: 13px;*/  position: relative; display: flex; ;}
 /* .conts .item::before {content: ''; width: 7px; height: 1px; background: rgb(46, 46, 46); display: inline-block; position: absolute; left: 0; top:2px;  transition: all .5s;} */
 /* .item_wrap.on .item::before { width: 7px; height: 1px;  background: #fff;} */
-.conts .item > dt {flex: 0 0 auto;}
-.conts .item > dt > button {flex: 0 0 auto; /*padding: 2px 7px; background: #050608; border-radius: 4px;*/ font-size: 14px;  color: #fff; font-family: 'consola' !important;}
+.conts .item > dt {flex: 1 0 auto; width: 270px;}
+.conts .item > dt > button {flex: 0 0 auto; word-break: break-all; /*padding: 2px 7px; background: #050608; border-radius: 4px;*/ font-size: 14px;  color: #fff; font-family: 'consola' !important;  transition: padding .3s;}
 .conts .item > dt > button > span {color: #666;}
-.conts .item > dt > button > span.seg {font-size:11px}
-.conts .item > dt > button.active {/*background: #fff; border-radius: 4px; padding: 0px 3px; */ color: #57a6ff; padding-left: 10px;  position: relative;;} /* 01911b */
+.conts .item > dt > button.active {/*background: #fff; border-radius: 4px; padding: 0px 3px; */ color: #57a6ff; padding-left: 10px;  position: relative;} /* 01911b */
 .conts .item > dt > button::before {content: '-'; display: inline-block; position: absolute; transform: translateX(0px); transition: all .3s; opacity: 0; color: #666;}
 .conts .item > dt > button.active::before { transform: translateX(-10px); opacity: 1;}
 .conts .item > dt > button:hover {border-bottom: 1px solid #999;;}
@@ -53,17 +53,19 @@ section.conts + section.conts {margin-top: 50px;}
 .item_wrap pre, 
 .item_wrap code {height: 0;overflow-y: hidden;}
 .item_wrap.on pre, 
-.item_wrap.on code {height: 100%; margin-top: -5px; margin-bottom: -15px;;}
+.item_wrap.on code {height: 100%;;}
+.item_wrap.on code { margin-top: -5px;  margin-bottom: -10px;}
 .conts .code_wrap.active {opacity: 1; height: 100%; }
+.conts > .seg {margin-left: -15px; color: #344e6c;}
 
 .depth_2 + .depth_2 {margin-top:15px;} 
-.depth_2 > strong {font-size: 11px; color: #999; display: inline-block; margin-left: -15px; }
+.depth_2 > strong {font-size: 11px; color: #344e6c; display: inline-block; margin-left: -15px; }
 
 
 
 
 /* aside */
-aside {position: absolute; top: 0%; left: 780px; z-index: 200; }
+aside {position: absolute; top: 0%; left: 780px; z-index: 50; }
 aside ul li button{color: #fff;}
 aside .aside_btn {position: relative;}
 aside .aside_btn::before {content: '*'; position: absolute; left: -9px; top: 0px; color: #999;}
@@ -106,16 +108,19 @@ aside .aside_btn::before {content: '*'; position: absolute; left: -9px; top: 0px
     header nav > ul > li {padding: 0 15px; font-size: 14px;}
 
     .conts .item {display: block; margin-top: 5px;}
-    .conts .item > dd {padding-left: 0px; margin-top: 0px; line-height: 1.5;}
-
+    .conts .item > dd {padding-left: 0px; margin-top: 0px; line-height: 1.5; position: relative; padding-left:15px;}
+    .conts .item > dd::before {content: 'ㄴ'; font-family: 'Noto Sans'; display: inline-block; position: absolute; top: -2px; left:0px; color: #666; font-size: 12px;;}
+    .conts .item > dt > button:hover {border: none;}
     .wrap main {padding: 80px 0 40px; }
 
 
     .hljs {border-radius: 0;}
     .conts .code_wrap.active {margin: -10px -20px -25px;}
 
-
+    
     /* aside {display: none;} */
-    /* aside {right: 0; top: 0;} */
+    aside {  right: 0px; left: auto; background: black; padding: 15px;-webkit-backdrop-filter: blur(50px);
+        backdrop-filter: blur(50px);
+      ;}
     
 }

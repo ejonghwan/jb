@@ -9,13 +9,13 @@
 # 표준 내장 객체
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects
 
-# Object
+# Object - 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-# Array
+# Array -
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-# Function 
+# Function -  
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function
 
 
@@ -28,6 +28,29 @@ https://developer.mozilla.org/ko/docs/Web/API
 https://developer.mozilla.org/ko/docs/Web/API/Window
 
 
-# event
+# event - 
 https://developer.mozilla.org/ko/docs/Web/Events
 
+
+# element 
+https://developer.mozilla.org/en-US/docs/Web/API/Element
+
+# node 
+https://developer.mozilla.org/en-US/docs/Web/API/Node
+
+# xhr 이건 보류
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/load_event 
+
+
+
+
+
+# document 
+https://developer.mozilla.org/en-US/docs/Web/API/Document
+
+# eventTarget ? 
+https://developer.mozilla.org/en-US/docs/Web/API/EventTarget
+
+
+# css 
+https://developer.mozilla.org/ko/docs/Web/CSS/Reference
