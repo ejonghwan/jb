@@ -18,6 +18,11 @@ const SideBar = {
             asideTag.style.transform = `translateY(${window.pageYOffset}px)`
         })
 
+        window.addEventListener('load', function() {
+            // let asideTop = asideTag.getBoundingClientRect().top
+            asideTag.style.transform = `translateY(${window.pageYOffset}px)`
+        })
+
        
         console.log(asideTag)
         // render
@@ -52,7 +57,7 @@ const SideBar = {
                     //         behavior:'smooth',
                     //     }
                     // );
-                    window.scrollBy(0, this.ele[i].getBoundingClientRect().top - 94)
+                    window.scrollBy(0, this.ele[i].getBoundingClientRect().top - 74)
                 }
                 // console.log(this.textContent)
             }.bind(this))

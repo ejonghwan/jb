@@ -6,7 +6,7 @@
 
 
 
-# 표준 내장 객체
+# 표준 내장 객체 -
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects
 
 # Object - 
@@ -28,14 +28,15 @@ https://developer.mozilla.org/ko/docs/Web/API
 https://developer.mozilla.org/ko/docs/Web/API/Window
 
 
+
 # event - 
 https://developer.mozilla.org/ko/docs/Web/Events
 
 
-# element 
+# element -
 https://developer.mozilla.org/en-US/docs/Web/API/Element
 
-# node 
+# node -
 https://developer.mozilla.org/en-US/docs/Web/API/Node
 
 # xhr 이건 보류
@@ -51,6 +52,11 @@ https://developer.mozilla.org/en-US/docs/Web/API/Document
 # eventTarget ? 
 https://developer.mozilla.org/en-US/docs/Web/API/EventTarget
 
+
+
+
+# html
+https://developer.mozilla.org/ko/docs/Web/HTML/Element
 
 # css 
 https://developer.mozilla.org/ko/docs/Web/CSS/Reference

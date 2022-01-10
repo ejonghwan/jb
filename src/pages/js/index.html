@@ -42,16 +42,1270 @@
         <main>
             <div class="global_wrap">
                 
+                <!-- <section class="conts">
+                    <strong>HTMLCollection NodeList</strong>
+                    공통 - DOM API가 여러개의 결과값을 반환하기 위한 돔 컬렉션 객체 <br />
+                    유사배열 객체면서 이터러블 <br />
+                    배열로 변환 후 사용이 권장됨 <br />
+                    
+                    HTMLCollection -><br />
+                    getElementsByTagName,<br />
+                    getElementsByClassName,<br />
+                    "Live 객체",<br />
+                    prototype 보면 배열 메서드 상속받지 않음.. forEach도 없음<br />
+                    
+                    <br /><br />
 
-              
+                    querySelectorAll -> <br />
+                    대부분 Non-live 객체(childNodes 프로퍼티는 live 객체)<br />
+                    prototype에 보면 forEach 있음..<br />
+                    <br /><br />
+                    
+                    중요!! 화면엔 출력해주는데 nodelist에는 안넣어줌..다시 찾아서 선언하기 전까진..
+                    HTMLCollection은 알아서 넣어줌..
+
+                </section> -->
+
+                <!-- Document -->
+                <section class="conts">
+                    <h2>Document</h2>
+
+                    <div class="depth_2">
+                        <strong>속성</strong>
+                   
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>document</span>.body</button></dt>
+                            <dd>
+                                현재 문서의 body 또는 frameset 노드를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.head <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서의 <head> 요소를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.characterSet <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서에서 사용하는 캐릭터셋을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.compatMode <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 렌더링 모드가 Quirks와 Strict 중 어떤 것인지 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.contentType <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서의 MIME 헤더로부터 Content-Type을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.doctype <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서의 문서 형식 정의(Document Type Definition, DTD)를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.documentURI <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 위치를 문자열로 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.embeds <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서에 포함된 <embed> 요소 목록을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.fonts</button></dt>
+                            <dd>
+                                현재 문서의 FontFaceSet 인터페이스를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.forms <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서의 form 요소 목록을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.hidden <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서의 숨김 여부를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.images <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서의 이미지 목록을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.implementation <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서와 연관된 DOM 구현을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.lastStyleSheetSet <span class="seg">read</span></button></dt>
+                            <dd>
+                                마지막에 활성화된 스타일 시트 세트의 이름을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.links <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 모든 하이퍼링크 목록을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.plugins <span class="seg">read</span></button></dt>
+                            <dd>
+                                사용 가능한 플러그인의 목록을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.preferredStyleSheetSet <span class="seg">read</span></button></dt>
+                            <dd>
+                                페이지 작성자가 지정한 선호 스타일 시트 세트를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.scripts <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 모든 script 요소를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.scrollingElement <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서를 스크롤 하는 Element에 대한 참조를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.selectedStyleSheetSet <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 사용 중인 스타일 시트 세트를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.styleSheetSets <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서에서 사용 가능한 스타일 시트 세트의 목록을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.timeline <span class="seg">read</span></button></dt>
+                            <dd>
+                                페이지 로드 시 자동으로 생성하는 DocumentTimeline 의 인스턴스를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.visibilityState <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 표시 상태를 나타내는 문자열을 반환합니다. 가능한 값은 visible, hidden, prerender, unloaded입니다.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.cookie <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 쿠키 리스트를 세미콜론으로 분리해 반환하거나, 하나의 쿠키를 설정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.defaultView <span class="seg">read</span></button></dt>
+                            <dd>
+                                Window 객체의 참조를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.designMode <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서 전체의 수정 가능 여부를 설정/반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.dir <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 쓰기 방향(rtl/ltr)을 설정/반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.domain <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서의 도메인을 설정/반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.lastModified <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서가 마지막으로 수정된 날짜를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.location <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 문서의 URI를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.<span class="seg">read</span>yState <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 불러오기 상태를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.referrer <span class="seg">read</span></button></dt>
+                            <dd>
+                                현재 페이지로 연결한 페이지의 URI를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.title <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 제목을 설정하거나 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Document</span>.URL <span class="seg">read</span></button></dt>
+                            <dd>
+                                문서의 위치를 문자열로 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+
+                    <div class="depth_2">
+                        <strong>메서드</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.adoptNode()</button></dt>
+                                <dd>
+                                    외부 문서로부터 노드를 가져옵니다.
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createAttribute()</button></dt>
+                                <dd>
+                                    새로운 Attr 객체를 생성하고 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createCDATASection()</button></dt>
+                                <dd>
+                                    새로운 CDATA 노드를 생성하고 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createComment()</button></dt>
+                                <dd>
+                                    새로운 주석 노드를 생성하고 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createDocumentFragment()</button></dt>
+                                <dd>
+                                    새로운 문서 조각을 생성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createElement()</button></dt>
+                                <dd>
+                                    주어진 태그명을 사용해 새로운 요소를 생성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createElementNS()</button></dt>
+                                <dd>
+                                    주어진 태그명과 네임스페이스 URI를 갖는 새로운 요소를 생성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createNodeIterator()</button></dt>
+                                <dd>
+                                    NodeIterator 객체를 생성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createProcessingInstruction()</button></dt>
+                                <dd>
+                                    새로운 ProcessingInstruction (en-US) 객체를 생성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createRange()</button></dt>
+                                <dd>
+                                    Range 객체를 생성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.createTextNode()</button></dt>
+                                <dd>
+                                    텍스트 노드를 생성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.getElementsByClassName()</button></dt>
+                                <dd>
+                                    주어진 클래스 이름을 갖는 요소의 목록을 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.getElementsByTagName()</button></dt>
+                                <dd>
+                                    주어진 태그명을 갖는 요소의 목록을 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.getElementsByTagNameNS()</button></dt>
+                                <dd>
+                                    주어진 태그명과 네임스페이스를 갖는 요소의 목록을 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Document</span>.requestStorageAccess()</button></dt>
+                                <dd>
+                                    퍼스트파티first-party 저장소로의 접근이 가능한 경우 이행하고 불가능한 경우 거부하는 Promise를 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.getElementById()</button></dt>
+                                <dd>
+                                    주어진 ID를 가진 요소의 참조를 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.querySelector()</button></dt>
+                                <dd>
+                                    asd
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.querySelectorAll()</button></dt>
+                                <dd>
+                                    asd
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.close()</button></dt>
+                                <dd>
+                                    <span>document</span>.open()으로 열린 문서를 닫음
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.getElementsByName()</button></dt>
+                                <dd>
+                                    주어진 이름을 갖는 요소의 목록을 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.hasFocus()</button></dt>
+                                <dd>
+                                    포커스가 지정한 문서 내 어느 곳이든 위치한 경우 true를 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item --> 
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.open()</button></dt>
+                                <dd>
+                                    작성을 위한 문서 스트림을 엽니다
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.write()</button></dt>
+                                <dd>
+                                    문서에 텍스트를 작성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.writeln()</button></dt>
+                                <dd>
+                                    문서에 텍스트 한 줄을 작성
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+
+                    </div>
+                     
+
+                </section>
+                <!-- //Document -->
 
                 <!-- Element -->
                 <section class="conts">
                     <h2>Element</h2>
+
+                    <!-- 속성 -->
+                    <div class="depth_2">
+                        <strong>속성</strong>
+                    
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.assignedSlot <span class="seg">read</span></button></dt>
+                            <dd>
+                                삽입된 노드를 HTMLSlotElement나타내는 반환<slot>
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.attributes <span class="seg">read</span></button></dt>
+                            <dd>
+                                NamedNodeMap해당 HTML 요소의 할당된 속성을 포함 하는 개체를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.childElementCount <span class="seg">read</span></button></dt>
+                            <dd>
+                                이 요소의 자식 요소 수를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.children <span class="seg">read</span></button></dt>
+                            <dd>
+                                요소의 자식 요소를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.classList <span class="seg">read</span></button></dt>
+                            <dd>
+                                DOMTokenList클래스 속성 목록을 포함하는 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.className</button></dt>
+                            <dd>
+                                요소의 클래스 이름
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.clientHeight <span class="seg">read</span></button></dt>
+                            <dd>
+                                요소의 내부 높이를 나타내는 값을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.clientLeft <span class="seg">read</span></button></dt>
+                            <dd>
+                                요소의 왼쪽 테두리 너비를 나타내는 값을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.clientTop <span class="seg">read</span></button></dt>
+                            <dd>
+                                요소의 위쪽 테두리 너비를 나타내는 값을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.clientWidth <span class="seg">read</span></button></dt>
+                            <dd>
+                                요소의 내부 너비를 나타내는 값을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.id</button></dt>
+                            <dd>
+                                DOMString요소의 ID 
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.innerHTML</button></dt>
+                            <dd>
+                                DOMString요소의 내용의 마크 업
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.lastElementChild <span class="seg">read</span></button></dt>
+                            <dd>
+                                이 요소의 마지막 자식 요소를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                  
+                 
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.nextElementSibling <span class="seg">read</span></button></dt>
                             <dd>
                                 asd
                         </dd>
@@ -68,9 +1322,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.outerHTML</button></dt>
                             <dd>
-                                asd
+                                찾는 요소부터 모든 마크업
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -85,9 +1339,27 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.part</button></dt>
                             <dd>
-                                asd
+                                part로 반환되는 요소(즉, 속성을 사용하여 설정)의 부품 식별자 를 나타냅니다 DOMTokenList.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.previousElementSibling <span class="seg">read</span></button></dt>
+                            <dd>
+                                Element즉시 트리에서 제공 한 이전의 요소, 또는 null어떤 형제 요소가없는 경우.
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -102,9 +1374,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.scrollHeight <span class="seg">read</span></button></dt>
                             <dd>
-                                asd
+                                요소의 스크롤 뷰 높이를 나타내는 값을 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -119,9 +1391,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.scrollLeft</button></dt>
                             <dd>
-                                asd
+                                요소의 오프셋 (offset) 왼쪽 스크롤을 대표하는이.
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -136,9 +1408,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.scrollTop</button></dt>
                             <dd>
-                                asd
+                                문서의 위쪽의 화소 수를 나타내는 수직으로 스크롤된다.
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -153,9 +1425,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.scrollWidth <span class="seg">read</span></button></dt>
                             <dd>
-                                asd
+                                요소의 스크롤 보기 너비를 나타내는 값을 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -170,9 +1442,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.shadowRoot <span class="seg">read</span></button></dt>
                             <dd>
-                                asd
+                                요소가 호스팅하는 열린 섀도우 루트를 반환하거나 열린 섀도우 루트가 없으면 null을 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -187,9 +1459,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.setHTML</button></dt>
                             <dd>
-                                asd
+                                HTML 문자열을 구문 분석 및 삭제 하고 DOM에 요소의 하위 트리로 삽입
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -204,9 +1476,67 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.tagName</button></dt>
+                            <dd>
+                                String주어진 요소에 대한 태그 이름을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+                    <!-- 속성 -->
+
+                    <!-- 이벤트 핸들러 -->
+                    <div class="depth_2">
+                        <strong>이벤트 핸들러 (Element부모 Node및 자신의 부모 로부터 메서드를 상속 EventTarget)</strong>
+                        
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.onfullscreenchange</button></dt>
+                            <dd>
+                                ㅁㄴㅇ
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+fullscreenchange요소가 전체 화면 모드를 시작하거나 종료할 때 전송되는 이벤트에 대한 이벤트 핸들러입니다 . 이것은 성공적인 예상 전환을 관찰하는 데 사용할 수 있지만 앱이 백그라운드에서 실행 중일 때와 같이 예기치 않은 변경을 관찰하는 데에도 사용할 수 있습니다.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.onfullscreenerror</button></dt>
                             <dd>
                                 asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+fullscreenerror전체 화면 모드로 변경을 시도하는 동안 오류가 발생하면 전송되는 이벤트에 대한 이벤트 핸들러입니다 .
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>EventTarget</span>.addEventListener()</button></dt>
+                            <dd>
+                                요소의 특정 이벤트 유형에 이벤트 처리기를 등록
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -221,9 +1551,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.after()</button></dt>
                             <dd>
-                                asd
+                                ElementElement의 바로 뒤에 의 부모 의 자식 목록 에 Node또는 DOMString개체 집합을 삽입
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -238,9 +1568,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.attachShadow()</button></dt>
                             <dd>
-                                asd
+                                지정된 요소에 그림자 DOM 트리를 연결하고 해당 요소에 대한 참조를 반환합니다 
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -255,9 +1585,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.animate() </button></dt>
                             <dd>
-                                asd
+                                요소에서 애니메이션을 만들고 실행하는 바로 가기 방법. 생성된 애니메이션 개체 인스턴스를 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -272,9 +1602,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.append()</button></dt>
                             <dd>
-                                asd
+                                요소의 마지막 자식 뒤에 Node개체 또는 DOMString개체 집합을 삽입
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -289,9 +1619,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.before()</button></dt>
                             <dd>
-                                asd
+                                ElementElement의 바로 앞에 있는 의 부모 의 자식 목록 에 Node또는 DOMString개체 집합을 삽입
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -306,9 +1636,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.closest()</button></dt>
                             <dd>
-                                asd
+                                Element매개변수에 지정된 선택자와 일치하는 현재 요소(또는 현재 요소 자체)의 가장 가까운 조상을 반환합니다 .
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -323,9 +1653,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.computedStyleMap()</button></dt>
                             <dd>
-                                asd
+                                StylePropertyMap<span class="seg">Read</span>Only의 대안인 CSS 선언 블록의 읽기 전용 표현을 제공 하는 인터페이스를 반환합니다 CSSStyleDeclaration.
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -340,9 +1670,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>EventTarget</span>.dispatchEvent()</button></dt>
                             <dd>
-                                asd
+                                이벤트를 DOM의 이 노드로 전달하고 이벤트를 취소한 처리기가 없는지 여부를 나타내는 부울 값을 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -357,9 +1687,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.getAnimations()</button></dt>
                             <dd>
-                                asd
+                                요소에서 현재 활성화된 애니메이션 개체의 배열을 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -374,9 +1704,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.getAttribute()</button></dt>
                             <dd>
-                                asd
+                                현재 노드에서 명명된 속성의 값을 검색하고 문자열로 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -391,9 +1721,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.getAttributeNames()</button></dt>
                             <dd>
-                                asd
+                                현재 요소에서 속성 이름의 배열을 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -408,9 +1738,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.getAttributeNode()</button></dt>
                             <dd>
-                                asd
+                                현재 노드에서 명명된 속성의 노드 표현을 검색하고 Attr.
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -425,9 +1755,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
+                            <dt><button><span>Element</span>.getAttributeNodeNS()</button></dt>
                             <dd>
-                                asd
+                                현재 노드에서 지정된 이름과 네임스페이스를 가진 속성의 노드 표현을 검색하고 Attr.
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -439,6 +1769,642 @@ asd
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.getAttributeNS()</button></dt>
+                            <dd>
+                                현재 노드에서 지정된 네임스페이스와 이름을 가진 속성 값을 검색하고 이를 문자열로 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 크기와 뷰포트에 상대적인 위치를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.getClientRects()</button></dt>
+                            <dd>
+                                클라이언트의 각 텍스트 줄에 대한 경계 사각형을 나타내는 사각형 컬렉션을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.getElementsByClassName()</button></dt>
+                            <dd>
+                                HTMLCollection매개변수에 제공된 클래스 목록을 소유한 현재 요소의 모든 하위 항목을 포함 하는 라이브 를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.getElementsByTagName()</button></dt>
+                            <dd>
+                                HTMLCollection현재 요소에서 특정 태그 이름의 모든 하위 요소를 포함 하는 라이브 를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.getElementsByTagNameNS()</button></dt>
+                            <dd>
+                                HTMLCollection현재 요소에서 특정 태그 이름과 네임스페이스의 모든 하위 요소를 포함 하는 라이브 를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.hasAttribute()</button></dt>
+                            <dd>
+                                요소에 지정된 속성이 있는지 여부를 나타내는 부울 값을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.hasAttributeNS()</button></dt>
+                            <dd>
+                                요소가 지정된 네임스페이스에 지정된 속성을 가지고 있는지 여부를 나타내는 부울 값을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.hasAttributes()</button></dt>
+                            <dd>
+                                요소에 하나 이상의 HTML 속성이 있는지 여부를 나타내는 부울 값을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.hasPointerCapture()</button></dt>
+                            <dd>
+                                호출된 요소에 지정된 포인터 ID로 식별되는 포인터에 대한 포인터 캡처가 있는지 여부를 나타냅니다.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.insertAdjacentElement()</button></dt>
+                            <dd>
+                                호출된 요소를 기준으로 지정된 위치에 지정된 요소 노드를 삽입
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.insertAdjacentHTML()</button></dt>
+                            <dd>
+                                텍스트를 HTML 또는 XML로 구문 분석하고 결과 노드를 주어진 위치의 트리에 삽입
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.insertAdjacentText()</button></dt>
+                            <dd>
+                                호출된 요소를 기준으로 지정된 위치에 지정된 텍스트 노드를 삽입
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.matches()</button></dt>
+                            <dd>
+                                요소가 지정된 선택기 문자열에 의해 선택되는지 여부를 나타내는 부울 값을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.prepend()</button></dt>
+                            <dd>
+                                요소의 첫 번째 자식 앞에 Node개체 또는 DOMString개체 집합을 삽입
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.querySelector()</button></dt>
+                            <dd>
+                                Node요소를 기준으로 지정된 선택기 문자열과 일치 하는 첫 번째 항목 을 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item --><!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.querySelectorAll()</button></dt>
+                            <dd>
+                                NodeList요소를 기준으로 지정된 선택기 문자열과 일치하는 노드를 반환
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.releasePointerCapture()</button></dt>
+                            <dd>
+                                특정 에 대해 이전에 설정된 포인터 캡처를 해제(중지)합니다 pointer event.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.remove()</button></dt>
+                            <dd>
+                                부모의 자식 목록에서 요소를 제거
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.removeAttribute()</button></dt>
+                            <dd>
+                                현재 노드에서 명명된 속성을 제거
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.removeAttributeNode()</button></dt>
+                            <dd>
+                                현재 노드에서 명명된 속성의 노드 표현을 제거
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.removeAttributeNS()</button></dt>
+                            <dd>
+                                현재 노드에서 지정된 이름과 네임스페이스를 가진 특성을 제거
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>EventTarget</span>.removeEventListener()</button></dt>
+                            <dd>
+                                요소에서 이벤트 리스너를 제거
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.replaceChildren()</button></dt>
+                            <dd>
+                                element의 기존 자식을 Node지정된 새 자식 집합으로 바꿉니다 .
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.replaceWith()</button></dt>
+                            <dd>
+                                부모의 자식 목록에 있는 요소를 Node또는 DOMString개체 집합으로 바꿉니다 .
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.requestFullscreen()</button></dt>
+                            <dd>
+                                요소를 전체 화면으로 만들도록 브라우저에 비동기적으로 요청
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.requestPointerLock()</button></dt>
+                            <dd>
+                                주어진 요소에서 포인터를 잠그도록 비동기적으로 요청할 수 있습니다.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.scroll()</button></dt>
+                            <dd>
+                                주어진 요소 내부의 특정 좌표 세트로 스크롤합니다.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.scrollBy()</button></dt>
+                            <dd>
+                                주어진 양만큼 요소를 스크롤합니다.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.scrollTo()</button></dt>
+                            <dd>
+                                주어진 요소 내부의 특정 좌표 세트로 스크롤합니다.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.setAttribute()</button></dt>
+                            <dd>
+                                현재 노드의 명명된 속성 값을 설정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.setAttributeNode()</button></dt>
+                            <dd>
+                                현재 노드에서 명명된 속성의 노드 표현을 설정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.setAttributeNodeNS()</button></dt>
+                            <dd>
+                                현재 노드에서 지정된 이름과 네임스페이스를 가진 특성의 노드 표현을 설정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.setAttributeNS()</button></dt>
+                            <dd>
+                                현재 노드에서 지정된 이름과 네임스페이스를 가진 속성 값을 설정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.setPointerCapture()</button></dt>
+                            <dd>
+                                특정 요소를 미래 포인터 이벤트 의 캡처 대상으로 지정 합니다 .
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Element</span>.toggleAttribute()</button></dt>
+                            <dd>
+                                부울 속성을 토글하여 지정된 요소에서 존재하는 경우 제거하고 존재하지 않는 경우 추가
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+                    <!-- //이벤트 핸들러 -->
+
+                       <!-- ARIA에 포함된 속성 -->
+                    <div class="depth_2">
+                    <strong>ARIA에 포함된 속성 - 아리아 속성은 나중에 정리</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Element</span>.ariaAtomic</button></dt>
+                                <dd>
+                                    아리아 속성은 나중에 정리
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    <!-- //ARIA에 포함된 속성 -->
                 </section>
                 <!-- //Element -->
 
@@ -446,30 +2412,440 @@ asd
                  <!-- Node -->
                  <section class="conts">
                     <h2>Node</h2>
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>Array</span>.from()</button></dt>
-                            <dd>
-                                asd
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
-asd
-                            </code>
-                        </pre>
+                    <div class="depth_2">
+                        <strong>속성</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.baseURI <span class="seg">read</span></button></dt>
+                                <dd>
+                                    DOMString기본 URL을 나타내는 반환 기본 URL의 개념은 한 언어에서 다른 언어로 변경됩니다. HTML에서는 프로토콜, 도메인 이름 및 디렉토리 구조에 해당하며 마지막까지 모두 '/'.
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
                         </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.childNodes <span class="seg">read</span></button></dt>
+                                <dd>
+                                    자식 노드를 NodeList 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.firstChild <span class="seg">read</span></button></dt>
+                                <dd>
+                                    첫번째 노드를 반환.
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.nodeName <span class="seg">read</span></button></dt>
+                                <dd>
+                                    노드 이름을 문자열로 반환. 대문자
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.nodeType <span class="seg">read</span></button></dt>
+                                <dd>
+                                    노드 유형 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+ELEMENT_NODE	1
+ATTRIBUTE_NODE 	2 x
+TEXT_NODE	3
+CDATA_SECTION_NODE 	4 x
+ENTITY_REFERENCE_NODE 	5 x
+ENTITY_NODE 	6 x
+PROCESSING_INSTRUCTION_NODE	7
+COMMENT_NODE	8
+DOCUMENT_NODE	9
+DOCUMENT_TYPE_NODE	10
+DOCUMENT_FRAGMENT_NODE	11
+NOTATION_NODE 	12 x
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.nodeValue</button></dt>
+                                <dd>
+                                    이건 뭐하는거지 --;; 일단 널나오고 대입해도 대입이안됨
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.ownerDocument <span class="seg">read</span></button></dt>
+                                <dd>
+                                    Document이 노드가 속한 노드를 반환합니다 . 연결된 문서가 없으면 를 반환합니다 null.
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.parentNode <span class="seg">read</span></button></dt>
+                                <dd>
+                                    Node이 노드의 부모를 반환 합니다. 이 노드가 트리의 맨 위에 있거나 트리에 참여하지 않는 경우와 같이 이러한 노드가 없으면 이 속성은 를 반환합니다 null.
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.parentElement <span class="seg">read</span></button></dt>
+                                <dd>
+                                    Element이 노드의 부모를 반환 합니다. 노드에 부모가 없거나 해당 부모가 가 아닌 경우 Element이 속성은 를 반환합니다 null.
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.previousSibling <span class="seg">read</span></button></dt>
+                                <dd>
+                                    반환 Node트리에서 이전 노드를 나타내는, 또는 null노드가 존재하지 않을 경우
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.textContent <span class="seg">read</span></button></dt>
+                                <dd>
+                                    DOMString요소와 모든 자손의 텍스트 내용을 나타내는이.
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
                     </div>
-                    <!-- //item -->
+
+                    <div class="depth_2">
+                        <strong>메서드</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.appendChild()</button></dt>
+                                <dd>
+                                    Node이 요소의 마지막 자식 노드로 삽입
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.cloneNode()</button></dt>
+                                <dd>
+                                    Node및 선택적으로 모든 내용을 복제합니다 . 기본적으로 노드의 내용을 복제
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.compareDocumentPosition()</button></dt>
+                                <dd>
+                                    ???
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.contains()</button></dt>
+                                <dd>
+                                    ???
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.hasChildNodes()</button></dt>
+                                <dd>
+                                    Boolean요소에 자식 노드가 있는지 여부를 나타내는 값을 반환
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.insertBefore()</button></dt>
+                                <dd>
+                                    Node매개변수에 지정된 첫 번째 항목 을 이 요소의 두 번째 자식 바로 앞에 삽입
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.isDefaultNamespace()</button></dt>
+                                <dd>
+                                    ???
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.isEqualNode()</button></dt>
+                                <dd>
+                                    ???
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.lookupPrefix()</button></dt>
+                                <dd>
+                                    ???
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.lookupNamespaceURI()</button></dt>
+                                <dd>
+                                    ???
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.normalize()</button></dt>
+                                <dd>
+                                    이 요소 아래의 모든 텍스트 노드를 정리합니다(인접한 항목 병합, 비어 있는 항목 제거).
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.removeChild()</button></dt>
+                                <dd>
+                                    현재 노드의 자식이어야 하는 현재 요소에서 자식 노드를 제거
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.replaceChild()</button></dt>
+                                <dd>
+                                    Node현재 자식 의 자식 하나를 매개변수에 지정된 두 번째 자식 으로 바꿉니다 .
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+    asd
+                                </code>
+                            </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    
                 </section>
                 <!-- Node -->
 
                   
                  <!-- 자주쓰는 내장객체 -->
                  <section class="conts">
-                    <h2>implicit_object</h2><span class="seg">자주쓰는 내장객체</span>
+                    <h2>Implicit_object</h2><span class="seg">자주쓰는 내장객체</span>
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
@@ -4632,6 +7008,40 @@ asd
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>focusin</button></dt>
+                            <dd>
+                                요소가 포커스를 얻으려고 할 때 발생
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>focusout</button></dt>
+                            <dd>
+                                요소가 초점을 잃을 때 발생
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                 </div>
                 <!-- //포커스 이벤트 -->
 
@@ -5281,6 +7691,23 @@ asd
                             <dt><button>click</button></dt>
                             <dd>
                                 포인팅 장치 버튼(모든 버튼; 주 버튼만 해당될 예정)이 엘리먼트에서 눌렸다가 놓였을 때.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>auxclick</button></dt>
+                            <dd>
+                                요소에서 기본이 아닌 포인팅 장치 버튼(예: 왼쪽 버튼 이외의 마우스 버튼)을 눌렀다가 놓으면 시작됩니다. onauxclick숙소 를 통해서도 이용 가능 합니다.
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -6307,7 +8734,7 @@ asd
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
-                            <dt><button>readystatechange </button></dt>
+                            <dt><button><span class="seg">read</span>ystatechange </button></dt>
                             <dd>
                                 값 변경 이벤트
                         </dd>
@@ -6508,6 +8935,108 @@ asd
                         </div>
                     </div>
                     <!-- //item -->
+                         <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>cancel</button></dt>
+                            <dd>
+                               asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+A의 화재는 <dialog>사용자가 현재 열려있는 대화를 기각 할 것을 브라우저에 지시 할 때. 예를 들어, 브라우저는 사용자가 Esc키를 누르거나 브라우저 UI의 일부인 "대화 상자 닫기" 버튼을 클릭 할 때 이 이벤트를 실행할 수 있습니다 . oncancel숙소 를 통해서도 이용 가능 합니다.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                         <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>webkitmouseforcechanged</button></dt>
+                            <dd>
+                                트랙패드 터치스크린에서 압력의 양이 변경될 때마다 실행
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                         <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>webkitmouseforcedown</button></dt>
+                            <dd>
+                                "강제 클릭"으로 간주될 만큼 충분한 압력이 가해지는 즉시 mousedown 이벤트가 발생한 후 발생
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                         <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>webkitmouseforcewillbegin</button></dt>
+                            <dd>
+                                mousedown이벤트 전에 발사 됩니다.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                         <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>webkitmouseforceup</button></dt>
+                            <dd>
+                                애프터 발사 webkitmouseforcedown즉시 압력이 "강제 클릭"을 종료 충분히 감소 된 바와 같이 이벤트입니다.
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                         <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>securitypolicyviolation</button></dt>
+                            <dd>
+                               asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                         
                 </div>
                 <!-- //그 외 이벤트 -->
@@ -6515,8 +9044,1183 @@ asd
                 <!-- //Events -->
 
 
+                <!-- Window -->
+                <section class="conts">
+                    <h2>Window</h2>
+                    <div class="depth_2">
+
+                        <strong>속성</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    현재 창이 닫혔는지 나타냅니다.
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.console <span class="seg">read</span></button></dt>
+                                <dd>
+                                    브라우저 디버깅 콘솔에 접근할 수 있는 콘솔 객체를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.customElements<span class="seg">read</span></button></dt>
+                                <dd>
+                                    새로운 사용자 지정 요소를 등록하거나, 이전에 등록한 요소에 대한 정보를 얻을 수 있는 CustomElementRegistry 객체를 반환합니다.
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.crypto <span class="seg">read</span></button></dt>
+                                <dd>
+                                    브라우저 암호화 객체를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.devicePixelRatio <span class="seg">read</span></button></dt>
+                                <dd>
+                                    현재 화면에서의 물리적 픽셀과 CSS 픽셀의 비율을 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.document <span class="seg">read</span></button></dt>
+                                <dd>
+                                    창이 포함하는 문서로의 참조를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.frames <span class="seg">read</span></button></dt>
+                                <dd>
+                                    현재 창의 하위 프레임을 배열로 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.fullScreen </button></dt>
+                                <dd>
+                                    현재 창을 전체 화면으로 보여주고 있는지 나타
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.history <span class="seg">read</span></button></dt>
+                                <dd>
+                                    기록 개체에 대한 참조를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.innerHeight <span class="seg">read</span></button></dt>
+                                <dd>
+                                    렌더링된 경우 가로 스크롤 막대를 포함하여 브라우저 창의 콘텐츠 영역 높이를 가져옵니다.
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.innerWidth <span class="seg">read</span></button></dt>
+                                <dd>
+                                    렌더링된 경우 세로 스크롤 막대를 포함하여 브라우저 창의 콘텐츠 영역 너비를 가져옵니다.
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.length <span class="seg">read</span></button></dt>
+                                <dd>
+                                    창의 프레임 수를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.location </button></dt>
+                                <dd>
+                                    창 개체의 위치 또는 현재 URL을 가져오거나 설정
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.locationbar </button></dt>
+                                <dd>
+                                    창에서 가시성을 토글할 수 있는 위치 표시줄 개체를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.localStorage <span class="seg">read</span></button></dt>
+                                <dd>
+                                    데이터를 생성한 원본에서만 액세스할 수 있는 데이터를 저장하는 데 사용되는 로컬 저장소 개체에 대한 참조를 반환합니다.
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.menubar <span class="seg">read</span></button></dt>
+                                <dd>
+                                    창에서 가시성을 토글할 수 있는 메뉴 모음 개체를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.name </button></dt>
+                                <dd>
+                                    창의 이름을 가져오거나 설정
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.navigator <span class="seg">read</span></button></dt>
+                                <dd>
+                                    네비게이터 개체에 대한 참조를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.opener </button></dt>
+                                <dd>
+                                    현재 창을 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.outerHeight <span class="seg">read</span></button></dt>
+                                <dd>
+                                    브라우저 창을 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.outerWidth <span class="seg">read</span></button></dt>
+                                <dd>
+                                    브라우저 창을 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.pageXOffset <span class="seg">read</span></button></dt>
+                                <dd>
+                                    에 대한 별칭입니다 window.scrollX.
+
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.pageYOffset <span class="seg">read</span></button></dt>
+                                <dd>
+                                    에 대한 별칭 window.scrollY
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.parent <span class="seg">read</span></button></dt>
+                                <dd>
+                                    현재 창이나 서브프레임의 부모에 대한 참조를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.performance <span class="seg">read</span></button></dt>
+                                <dd>
+                                     및 특성 Performance을 포함 하는 개체를 반환하며 , 각각은 성능 관련 데이터를 제공하는 개체 입니다. 추가 정보 및 예는 탐색 타이밍 사용을 참조하십시오 .timing navigation
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.personalbar <span class="seg">read</span></button></dt>
+                                <dd>
+                                    창에서 가시성을 토글할 수 있는 Personalbar 개체를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.screen <span class="seg">read</span></button></dt>
+                                <dd>
+                                    창과 연결된 화면 개체에 대한 참조를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.screenX <span class="seg">read</span></button></dt>
+                                <dd>
+                                    Window.screenLeft  두 속성 모두 사용자 브라우저 뷰포트의 왼쪽 경계에서 화면 왼쪽까지의 수평 거리를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.screenY <span class="seg">read</span></button></dt>
+                                <dd>
+                                    Window.screenTop 두 속성 모두 사용자 브라우저 뷰포트의 위쪽 테두리에서 화면 위쪽까지의 수직 거리를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.scrollX <span class="seg">read</span></button></dt>
+                                <dd>
+                                    문서가 이미 수평으로 스크롤된 픽셀 수를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.scrollY <span class="seg">read</span></button></dt>
+                                <dd>
+                                    문서가 이미 세로로 스크롤된 픽셀 수를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.self <span class="seg">read</span></button></dt>
+                                <dd>
+                                    창 개체 자체에 대한 개체 참조를 반환
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.sessionStorage </button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.speechSynthesis <span class="seg">read</span></button></dt>
+                                <dd>
+                                    Web Speech API 음성 합성 기능 을 사용하기 위한 진입점인 SpeechSynthesis  개체를 반환 합니다.
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Window.status </button></dt>
+                                <dd>
+                                    브라우저 하단의 상태 표시줄에 있는 텍스트를 가져오거나 설정
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+
+                        <!-- 여기까지 함 다른 곳에서 구현된 속성 -->
+
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item --> <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                                </dd>
+                                </dl>
+                                <div class="code_wrap">
+                                <pre>
+                                    <code class="javascript">
+asd
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+
+                        
+                    
+                    </div>
+
+                    <div class="depth_2">
+                        <strong>메서드</strong>
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>window.closed <span class="seg">read</span></button></dt>
+                                <dd>
+                                    asd
+                            </dd>
+                            </dl>
+                            <div class="code_wrap">
+                            <pre>
+                                <code class="javascript">
+asd
+                                </code>
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+                   
+                </section>
+                <!-- //Window -->
 
 
+                <!-- Web_API -->
+                <section class="conts">
+                    <h2>Web_API</h2>
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>FormData</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+FormData 인터페이스는 form 필드와 그 값을 나타내는 일련의 key/value 쌍을 쉽게 생성할 수 있는 방법을 제공합니다. 또한 XMLHttpRequest.send() (en-US) 메서드를 사용하여 쉽게 전송할 수 있습니다. 인코딩 타입이 "multipart/form-data"로 설정된 경우, form에서 사용하는 것과 동일한 포맷을 사용해야 합니다.
+
+간단한 GET 전송을 사용하는 경우에는 form 이 수행하는 방식으로 쿼리 매개 변수를 생성할 수 있습니다. 이 경우 URLSearchParams 생성자에 직접 전달할 수 있습니다.
+
+FormData 를 구현하는 객체는 entries() 대신 for...of 구조를 직접 사용할 수 있습니다. for (var p of myFormData) 는 for (var p of myFormData.entries()) 와 같습니다.
+
+생성자
+FormData()
+새로운 FormData 객체를 생성합니다.
+메소드
+FormData.append()
+FormData 객체안에 이미 키가 존재하면 그 키에 새로운 값을 추가하고, 키가 없으면 추가합니다.
+FormData.delete()
+FormData 객체로부터 키/밸류 쌍을 삭제합니다.
+FormData.entries()
+이 객체에 담긴 모든 키/밸류 쌍을 순회할 수 있는 iterator를 반환합니다.
+FormData.get()
+FormData 객체 내의 값들 중 주어진 키와 연관된 첫번째 값을 반환합니다.
+FormData.getAll()
+FormData 객체 내의 값들 중 주어진 키와 연관된 모든 값이 담긴 배열을 반환합니다.
+FormData.has()
+FormData 객체에 특정 키가 포함되어 있는지 여부를 나타내는 boolean 을 반환합니다.
+FormData.keys()
+이 객체에 담긴 모든 키/벨류 쌍들의 모든 키들을 순회 할 수 있는 iterator를 반환합니다.
+FormData.set()
+FormData 객체 내에 있는 기존 키에 새 값을 설정하거나, 존재하지 않을 경우 키/밸류 쌍을 추가합니다.
+FormData.values()
+이 객체에 포함된 모든 밸류를 통과하는 iterator를 반환합니다.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>History API</button></dt>
+                            <dd>
+                                back(), forward(), go()
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>IndexedDB</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Intersection Observer API</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Canvas API</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Fetch API</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Performance API </button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Storage</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+??? 이거 window.localStorage 로 되는데 ...?? 얘는 웹 에이피아이라 좀 다른듯 ...
+속성
+Storage.length Read only
+Storage 객체에 저장된 데이터 항목의 수를 반환합니다.
+메서드
+Storage.key()
+주어진 숫자 n에 대하여 저장소의 n번째 항목 키를 반환합니다.
+Storage.getItem() (en-US)
+주어진 키에 연결된 값을 반환합니다.
+Storage.setItem() (en-US)
+키가 저장소에 존재하는 경우 값을 재설정합니다. 존재하지 않으면 키와 값을 저장소에 추가합니다.
+Storage.removeItem()
+주어진 키를 저장소에서 제거합니다.
+Storage.clear() (en-US)
+저장소의 모든 키를 저장소에서 제거합니다.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>XMLHttpRequest</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>setTimeout()</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>setInterval()</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Location</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+Location 인터페이스는 아무 속성도 상속하지 않지만, URLUtils의 속성을 구현합니다.
+
+Location.href (en-US)
+온전한 URL을 값으로 하는 DOMString입니다. 바뀔 경우 연결된 문서도 새로운 페이지로 이동합니다. 연결된 문서와 다른 오리진에서도 설정할 수 있습니다.
+Location.protocol (en-US)
+URL의 프로토콜 부분을 값으로 하는 DOMString으로, 마지막의 ':'도 포함합니다.
+Location.host (en-US)
+URL의 호스트 부분을 값으로 하는 DOMString으로, 호스트명, ':', 포트 번호를 포함합니다.
+Location.hostname (en-US)
+URL의 도메인 부분을 값으로 하는 DOMString입니다.
+Location.port (en-US)
+URL의 포트 번호를 값으로 하는 DOMString입니다.
+Location.pathname (en-US)
+'/' 문자 뒤 URL의 경로를 값으로 하는 DOMString입니다.
+Location.search (en-US)
+'?' 문자 뒤 URL의 쿼리스트링을 값으로 하는 DOMString입니다. 모던 브라우저에서는 URLSearchParams.get() (en-US)과 URL.searchParams를 사용해서 인자를 쉽게 추출할 수 있습니다.
+Location.hash (en-US)
+'#' 문자 뒤 URL의 프래그먼트 식별자를 값으로 하는 DOMString입니다.
+Location.username (en-US)
+도메인 이름 이전에 명시된 사용자명을 값으로 하는 DOMString입니다.
+Location.password (en-US)
+도메인 이름 이전에 명시된 비밀번호를 값으로 하는 DOMString입니다.
+Location.origin (en-US) Read only
+지정한 장소 오리진의 표준 형태를 값으로 하는 DOMString입니다.
+메서드
+Location 인터페이스는 아무 메서드도 상속하지 않지만, URLUtils의 메서드를 구현합니다.
+
+Location.assign() (en-US)
+주어진 URL의 리소스를 불러옵니다.
+Location.reload()
+현재 URL의 리소스를 다시 불러옵니다. 선택적으로 매개변수에 true를 제공해 브라우저 캐시를 무시하고 서버에서 새로 불러올 수 있습니다,
+Location.replace() (en-US)
+Replaces the current resource with the one at the provided URL. The difference from the assign() method is that after using replace() the current page will not be saved in session History, meaning the user won't be able to use the back button to navigate to it.
+Location.toString() (en-US)
+Returns a DOMString containing the whole URL. It is a synonym for URLUtils.href, though it can't be used to modify the value.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>FileList</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+FileReader
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>WebSocket</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Screen</button></dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+속성
+Screen.availTop (ko-미국)
+영구 또는 반영구 사용자 인터페이스 기능에 할당되지 않은 첫 번째 픽셀의 y 좌표를 지정합니다.
+Screen.availLeft (ko-미국)
+화면 왼쪽에서 사용 가능한 첫 번째 픽셀을 반환합니다.
+Screen.availHeight (ko-미국)
+Windows의 작업 표시줄과 같이 운영 체제에서 표시하는 영구적 또는 반영구적 사용자 인터페이스 기능을 뺀 화면 높이를 픽셀 단위로 지정합니다.
+Screen.availWidth (ko-미국)
+창에서 사용할 수 있는 가로 공간의 양을 픽셀 단위로 반환합니다.
+Screen.colorDepth (ko-미국)
+화면의 색 농도를 반환합니다.
+Screen.height (ko-미국)
+화면의 높이를 픽셀 단위로 반환합니다.
+Screen.left (ko-미국)
+메인 화면의 왼쪽에서 현재 화면의 왼쪽까지의 거리를 픽셀 단위로 반환합니다.
+Screen.orientation
+화면의 현재 방향을 반환합니다.
+Screen.pixelDepth (ko-미국)
+화면의 비트 깊이를 가져옵니다.
+Screen.top (ko-미국)
+현재 화면의 위쪽에서 픽셀 단위의 거리를 반환합니다.
+Screen.width (ko-미국)
+화면의 너비를 반환합니다.
+Screen.mozEnabled (ko-미국)
+부울. false로 설정하면 장치의 화면이 꺼집니다.
+Screen.mozBrightness (ko-미국)
+장치 화면의 밝기를 제어합니다. 0과 1.0 사이의 배가 예상됩니다.
+이벤트 핸들러
+Screen.onorientationchange
+orientationchange이벤트에 대한 핸들러입니다 .
+행동 양식
+Screen.lockOrientation
+화면 방향 잠금(전체 화면 또는 설치된 앱에서만 작동)
+Screen.unlockOrientation
+화면 방향 잠금 해제(전체 화면 또는 설치된 앱에서만 작동)
+메소드 상속 EventTarget
+
+EventTarget.addEventListener()
+에 특정 이벤트 유형의 이벤트 핸들러를 등록합니다 EventTarget.
+
+EventTarget.removeEventListener()
+에서 이벤트 리스너를 제거합니다 EventTarget.
+
+EventTarget.dispatchEvent()
+이것 으로 이벤트 를 전달 합니다 EventTarget.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                       <!-- item -->
+                       <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>CookieStore</button></dt>
+                            <dd>
+                                document.cookie랑 차이 얘는 비동기로 프로미스 리턴함
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                      
+
+                </section>
+                <!-- Web_API -->
+
+
+
+
+                
+
+
+                <br /><br /><br /><br /><br /><br /><br />
                 <!-- bocsa -->
                 <section class="conts">
                     <h2>Function</h2>

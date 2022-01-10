@@ -56,19 +56,19 @@ section.conts + section.conts {margin-top: 50px;}
 .item_wrap.on code {height: 100%;;}
 .item_wrap.on code { margin-top: -5px;  margin-bottom: -10px;}
 .conts .code_wrap.active {opacity: 1; height: 100%; }
-.conts > .seg {margin-left: -15px; color: #344e6c;}
+.conts > .seg {margin-left: -15px; color: #406189;}
 
 .depth_2 + .depth_2 {margin-top:15px;} 
-.depth_2 > strong {font-size: 11px; color: #344e6c; display: inline-block; margin-left: -15px; }
+.depth_2 > strong {font-size: 11px; color: #557191; display: inline-block; margin-left: -15px; }
 
 
 
 
 /* aside */
-aside {position: absolute; top: 0%; left: 780px; z-index: 50; }
+aside {position: absolute; top: 0%; left: 800px; z-index: 50; }
 aside ul li button{color: #fff;}
 aside .aside_btn {position: relative;}
-aside .aside_btn::before {content: '*'; position: absolute; left: -9px; top: 0px; color: #999;}
+aside .aside_btn::before {content: '-'; position: absolute; left: -9px; top: 0px; color: rgb(77, 77, 77);}
 
 
 
