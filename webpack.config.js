@@ -179,5 +179,9 @@ module.exports = {
     hot: true,
   },
 
+
+  // 웹팩 5 기본 모듈 지원 
+  // https://namespaceit.com/blog/how-fix-breaking-change-webpack-5-used-to-include-polyfills-for-nodejs-core-modules-by-default-error
+
   
 }

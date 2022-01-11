@@ -56,7 +56,7 @@ export const ui = (function(){
         // }
         // console.log(links)
     }
-    cache();
+    // cache();
 
 
     // console.log('asdasd', SideBar.render())
