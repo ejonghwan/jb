@@ -1,4 +1,5 @@
 import { ui } from './assets/js/index.js'
+
 import './assets/css/reset.css'
 import './assets/css/style.css'
 import './assets/images/aa.jpg'
@@ -13,6 +14,8 @@ import './assets/font/AritaSans-Thin.otf'
 
 
 const Index = () => {
+   
+
     console.log(ui)
     return ui
 }

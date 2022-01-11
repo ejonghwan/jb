@@ -10,7 +10,7 @@ module.exports = {
   mode: 'production', //production  devalopment  none
   entry: './src/index.js',
   output: {
-    filename: '[name].js', //id chunkhash name
+    filename: '[name].[chunkhash].js', //id chunkhash name
     path: path.resolve('./dist'),
     clean: {
       keep: /\.git/,
@@ -103,6 +103,38 @@ module.exports = {
     new HtmlWebpackPlugin({ 
         template:'./src/pages/js/index.html',
         filename:'./src/pages/js/index.html',
+        minify: process.env.NODE_ENV === 'production' ? {
+          collapseWhitespace: true, 
+          removeComments: true, 
+        } : false,
+      }),
+      new HtmlWebpackPlugin({ 
+        template:'./src/pages/js/index.html',
+        filename:'./src/pages/js/index.html',
+        minify: process.env.NODE_ENV === 'production' ? {
+          collapseWhitespace: true, 
+          removeComments: true, 
+        } : false,
+      }),
+      new HtmlWebpackPlugin({ 
+        template:'./src/pages/node/index.html',
+        filename:'./src/pages/node/index.html',
+        minify: process.env.NODE_ENV === 'production' ? {
+          collapseWhitespace: true, 
+          removeComments: true, 
+        } : false,
+      }),
+      new HtmlWebpackPlugin({ 
+        template:'./src/pages/mongodb/index.html',
+        filename:'./src/pages/mongodb/index.html',
+        minify: process.env.NODE_ENV === 'production' ? {
+          collapseWhitespace: true, 
+          removeComments: true, 
+        } : false,
+      }),
+      new HtmlWebpackPlugin({ 
+        template:'./src/pages/tool/index.html',
+        filename:'./src/pages/tool/index.html',
         minify: process.env.NODE_ENV === 'production' ? {
           collapseWhitespace: true, 
           removeComments: true, 

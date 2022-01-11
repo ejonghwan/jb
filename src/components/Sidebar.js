@@ -10,33 +10,36 @@ const SideBar = {
         // scroll
         const asideCreate = document.createElement('aside');
         const mainTag = document.querySelector('main section.conts')
-        mainTag.appendChild(asideCreate)
+        if(mainTag) { mainTag.appendChild(asideCreate) }
         const asideTag = document.querySelector('aside')
         
-        window.addEventListener('scroll', function() {
-            // let asideTop = asideTag.getBoundingClientRect().top
-            asideTag.style.transform = `translateY(${window.pageYOffset}px)`
-        })
+        if(asideTag) {
+            window.addEventListener('scroll', function() {
+                // let asideTop = asideTag.getBoundingClientRect().top
+                asideTag.style.transform = `translateY(${window.pageYOffset}px)`
+            })
 
-        window.addEventListener('load', function() {
-            // let asideTop = asideTag.getBoundingClientRect().top
-            asideTag.style.transform = `translateY(${window.pageYOffset}px)`
-        })
+            window.addEventListener('load', function() {
+                // let asideTop = asideTag.getBoundingClientRect().top
+                asideTag.style.transform = `translateY(${window.pageYOffset}px)`
+            })
 
        
-        console.log(asideTag)
-        // render
-        asideTag.innerHTML = `
-            <ul>    
-                ${[...this.ele].map(item => {
-                    return `
-                        <li>
-                            <button class="aside_btn">${item.textContent}</button>
-                        </li>
-                    `
-                }).join(' ')}   
-            </ul>
-        `
+            console.log(asideTag)
+            // render
+            asideTag.innerHTML = `
+                <ul>    
+                    ${[...this.ele].map(item => {
+                        return `
+                            <li>
+                                <button class="aside_btn">${item.textContent}</button>
+                            </li>
+                        `
+                    }).join(' ')}   
+                </ul>
+            `
+        }
+        
 
 
         // click

@@ -1,12 +1,27 @@
 import SideBar from '../../components/Sidebar.js'
+import Nav from '../../components/Nav.js'
+import Footer from '../../components/Footer.js'
 
 
 export const ui = (function(){
 
 
-    const eles = document.querySelectorAll('.item')
+    const mainNav = new Nav('.global_wrap.main > .line', './src/pages')
+    const subNav = new Nav('.global_wrap.sub > .line', '..')
+    const footer = new Footer('footer .global_wrap')
+
+    console.log(subNav)
+
+    mainNav.render();
+    subNav.render();
+    SideBar.render();
+    footer.render();
+    
+
+    
 
     function tab() {
+        const eles = document.querySelectorAll('.item')
         for(let i = 0; i < eles.length; i++) {
             eles[i].querySelector('dt > button').addEventListener('click', function(e) {
                 if(!this.classList.contains('active')) {
@@ -32,19 +47,18 @@ export const ui = (function(){
     const getDate = new Date()
     const minute = getDate.getMinutes()
     // console.log(minute)
-    function cash() {
+    function cache() {
         for(let i = 0; i < links.length; i++) {
             links[i].setAttribute('href', links[i].getAttribute('href') + `?ver${minute}`) 
         }
-        for(let i = 0; i < scripts.length; i++) {
-            scripts[i].setAttribute('src', scripts[i].getAttribute('src') + `?ver${minute}`) 
-        }
+        // for(let i = 0; i < scripts.length; i++) {
+        //     scripts[i].setAttribute('src', scripts[i].getAttribute('src') + `?ver${minute}`) 
+        // }
         // console.log(links)
     }
-    cash();
+    cache();
 
-    
-    SideBar.render()
+
     // console.log('asdasd', SideBar.render())
 
    
@@ -52,7 +66,7 @@ export const ui = (function(){
 
     return {
         tab,
-        cash,
+        cache,
     }
 
 
