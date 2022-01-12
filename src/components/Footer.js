@@ -2,11 +2,9 @@ class Footer {
     constructor(className) {
         this.ele = document.querySelector(className)
         this.data = [
-            { info: 'jonghwan handbook' },
-            { info: 'hohohoho' },
-            { info: 'hahahah' },
-            { info: 'asdadasd' },
-            { info: '13213123' },
+            { info: 'jonghwan Handbook' },
+            { info: 'mdn docs https://developer.mozilla.org/' },
+            { info: 'font Aritaum' },
         ]
     }
 

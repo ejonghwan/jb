@@ -20,31 +20,361 @@
             <div class="global_wrap">
                 
 
-                                    
-                    <div>
-                       tool
-                    </div>
-
-
-                <!-- HTML코드를 강조하여 보여줄때.. --> 
-                <pre>
-                    <code class="html">
                        
-                          
-                            ul
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
-                                <li>6</li>
-                            /ul
-                        
+                <!-- git -->
+                <section class="conts">
+                    <h2>git</h2>
+
+                    <div class="depth_2">
+                        <strong>로컬 저장소에 저장하고 원격 저장소에 올리기</strong>
+                   
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git add <span>[filename | .]</span></button></dt>
+                            <dd>
+                                파일 스테이징에 올리기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git commit -m <span>['message']</span></button></dt>
+                            <dd>
+                                깃에 커밋
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git remote add <span>[origin]</span> <span>[http~]</span></button></dt>
+                            <dd>
+                                저장소 등록
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git push <span>[origin]</span> <span>[master]</span></button></dt>
+                            <dd>
+                                저장소에 푸시
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                </div>
+                <div class="depth_2">
+                    <strong>저장소</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git remote rm <span>[name]</span> </button></dt>
+                            <dd>
+                                저장소 삭제
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git remote rename <span>[originName]</span> <span>[newName]</span></dt>
+                            <dd>
+                                저장소 이름변경
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+                    <div class="depth_2">
+                        <strong>파일 가져오기/합치기</strong>
+                        <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git clone <span>[http~ .]</span></dt>
+                            <dd>
+                                원격저장소 파일 가져오기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+.은 현재 경로
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git pull <span>[origin]</span> <span>[master]</span> </dt>
+                            <dd>
+                                패치 후 합치기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+--rebase    한줄로 병합 옵션
+* git pull  or  git pull --rebase 
+이력을 전부 관리할 것인가 or 불필요한 이력은 필요없으므로 깔끔하게 이력을 관리할 것인가
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git merge <span>[origin]</span>/<span>[branch-name]</span> </dt>
+                            <dd>
+                                병합 (가져오고 싶은 쪽에서)
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+// 충돌:
+1. newBranch 라는 이름의 브랜치를 하나 만듬
+2. 마스터에 존재하는 a.js를 newBranch의 a.js 를 수정하고 푸시함
+3. 근데 마스터에서도 a.js의 같은줄을 수정함 ..
+4. 그리고 마스터에서 newBranch를 머지하면 충돌이 남(선택하면됨)
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+                    <div class="depth_2">
+                        <strong>브랜치</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git branch <span>[name]</span> </dt>
+                            <dd>
+                                브랜치 생성
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git checkout <span>[name]</span></dt>
+                            <dd>
+                                브랜치 이동
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+                    <div class="depth_2">
+                        <strong>그 외 내용</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>팁 및 주의사항</dt>
+                            <dd>
+                                asd
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+5. 오픈소스에 기여하기 위해서는.. 컬래버래이터에게 요청을 해야할까 ? 
+- 저장소를 포크해서 수정/추가 한 다음 주인에게 요청하면 됨
+
+6. 협업 작업 방식 (브랜치, 포크)
+- 브랜치: 하나의 원본저장소에서 분기를 나눠 작업. 너무 많은 작업자가 생기면 브랜치 관리 힘듦
+- 포크: 여러 원격 저장소를 나눔. 원본저장소의 이력을 계속 추적하려면 "주소를 추가" 해줘야함
+
+7. 포크 
+- fork -> clone -> 추적할 원격저장소 추가 git remote add $name $http~
+
+
+8. 풀리퀘스트 (4번에서 포크로 가져온 원본 저장소에 내꺼 반영해달라고 요청하는거)
+- 협업할 땐 직접 머지하는것보다 풀리퀘스트로 머지를 요청하는게 좋음(pr 리뷰)
+- 방법
+1. 깃헙으로 이동 
+2. Contribute -> pull request 버튼클릭 -> 정보확인 후 create pull request 버튼 클릭 -> 변경점 등 메시지 스크린샷 등을 적어서 보냄 
+* 받는쪽에서도 files changed로 변경내용 확인 후 메시지 보내주고 merge pull request 버튼으로 머지 할 수 있음
+
+
+
+# 협업 권한추가. 컬래버래이터
+github -> setting -> manage access -> add people button click
+
+
+
+# 주의사항
+1. 커밋은 의미있는 변동사항을 묶어서 만들어야함
+- 예를 들어 버튼 버그를 고쳤다면 버튼 버그만 수정 후 묶어서 커밋을 해야 돌아갈 때 편함
+
+2. 브랜치는 기능별로 쪼개는게 좋음
+
+
+
+# 팁
+1. 커밋을 한번 했을 때 조금 더 추가할 때... cli에서는 찾아봐야됨
+- ammend (마지막 커밋수정..이건 조심해야됨. 혼자쓰는 브랜치에서 해야됨)
+
+2. 작업하던 브랜치에서 커밋을 안올리고 다른 브랜치로 이동해야될 때 작업파일 킵해두는 법
+- stash 
+- 다시 돌아올때 팝해주면 됨...cli에서는 찾아봐야됨
+
+3. 커밋 되돌릴떄 
+- git reset: 커밋 취소하기
+- git revert: 커밋 내용 되돌리기
+- git commit –amend: 커밋 덮어쓰기
+
+4. 버전 되돌릴때
+- reset - 히스토리를 아예 초기화
+1. 소프트 
+2. 믹스드(리셋하긴하는데 그 후에 저장된건 로컬에 저장하고) 
+3. 하드(모두 날리고) (절대 같이 쓰는 곳에선 강제 push 하면 안됨)
+
+- revert - 이력을 남기면서 새로운 커밋을 남김
+    ex) revert 잘못된 커밋 (소스 되살려짐)
+        잘못된 커밋 (소스삭제)
+
+
+5. cherry-pick : 커밋하나만 떼서 지금 브랜치에 붙임
+ex) 릴리즈만 하는 a라는 브랜치에 버그발생
+    버그를 수정하는 소스를 마스터에 커밋한 상태에서 a라는 브랜치에 하나의 커밋만 a라는 브랜치에 커밋해야하는 상황 
+                            
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+
+                </div>
+              </section>
+              <!-- //git -->
+
+              <!-- Webpack -->
+              <section class="conts">
+                <h2>Webpack</h2>
+
+                <div class="depth_2">
+                    <strong>Webpack 명령어</strong>
+               
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>document</span>.body</button></dt>
+                        <dd>
+                            현재 문서의 body 또는 frameset 노드를 반환
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+            </div>
+          </section>
+
+
+          <!-- Lottie -->
+          <section class="conts">
+            <h2>Lottie</h2>
+
+            <div class="depth_2">
+                <strong>Lottie 사용방법</strong>
+           
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>document</span>.body</button></dt>
+                    <dd>
+                        현재 문서의 body 또는 frameset 노드를 반환
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+asd
                     </code>
-                </pre> 
-                <!-- css코드를 강조하여 보여줄때.. --> 
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+        </div>
+      </section>
+      <!-- //Lottie -->
+
               
-                    ????
 
 
             </div>

@@ -25,7 +25,7 @@ const SideBar = {
             })
 
        
-            console.log(asideTag)
+            // console.log(asideTag)
             // render
             asideTag.innerHTML = `
                 <ul>    

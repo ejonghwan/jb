@@ -10,7 +10,7 @@ export const ui = (function(){
     const subNav = new Nav('.global_wrap.sub > .line', '..')
     const footer = new Footer('footer .global_wrap')
 
-    console.log(subNav)
+    // console.log(subNav)
 
     mainNav.render();
     subNav.render();
