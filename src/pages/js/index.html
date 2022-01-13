@@ -3170,12 +3170,14 @@ asd
                         <dl class="item">
                             <dt><button><span>Object</span>.assign()</dt>
                             <dd>
-                               첫번째 인자에 두번째 인자를 복사해서 넣어줌
+                               객체복사. 깊은 복사할 때 씀
                             </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+//첫번째 인자에 두번째 인자를 복사해서 넣어줌
+
 const target = { a: 1, b: 2 };
 const source = { b: 4, c: 5 };
 
@@ -3195,13 +3197,28 @@ console.log(returnedTarget);
                         <dl class="item">
                             <dt><button><span>Object</span>.create()</button></dt>
                             <dd>
-                                주어진 프로토타입(prototype)의 객체와 속성들을 갖고 있는 새 객체를 생성합니다.
+                               새 객체 생성 (확장할 때)
                             </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-//준비
+// 생성자를 확장할 때 쓴다
+function Parson(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+Parson.prototype.nameFn = function() {
+    console.log(this.name)
+}
+
+// 생성자와 기능을 확장해서 다른곳에서 쓰고 싶을 때 
+
+const extends = Object.create(Parson.prototype) 
+
+// 을 해주게되면 extends에는 Parson의 nameFn과 constructor가 들어가있다...
+// extends.nameFn()을 쓸 수 있게된다
                             </code>
                         </pre>
                         </div>

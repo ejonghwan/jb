@@ -86,9 +86,9 @@ aside .aside_btn::before {content: '-'; position: absolute; left: -9px; top: 0px
 
 
 /* footer */
-footer .line {display: flex;}
-footer .line > li {color: #6b6c76;}
-footer .line > li + li {margin-left: 5px;}
+footer .line {display: flex; flex-wrap: wrap;}
+footer .line > li {color: #6b6c76; }
+/* footer .line > li + li {margin-left: 5px;} */
 
 
 
@@ -124,5 +124,7 @@ footer .line > li + li {margin-left: 5px;}
     aside {  right: 0px; left: auto; background: black; padding: 15px;-webkit-backdrop-filter: blur(50px);
         backdrop-filter: blur(50px);
       ;}
+
+      footer .line > li {color: #6b6c76; padding: 0 10px; margin: 0;}
     
 }
