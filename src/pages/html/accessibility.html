@@ -30,14 +30,347 @@
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
                             <dd>
-                                현재 문서의 body 또는 frameset 노드를 반환
-                        </dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
-                            <code class="javascript">
+                            <code class="markdown">
+# 장식 목적 이미지 대체 텍스트 제공 금지
+&lt;img alt="장식"&gt; (x)
+&lt;img alt&gt; (o)
+
+
+# 이미 설명이 있는 것에 대체텍스트 제공 금지
+- 같은 정보가 두번 읽혀서 오히려 불편함
+- 약도, 설명이 있는 리스트 등
+- 화면낭독기는 앵커태그를 만나면 하나의 텍스트로 읽어줌 
+&lt;a&gt;
+&nbsp;  &lt;img alt&gt;
+&nbsp;  이미지 설명과 버튼이름
+&lt;/a&gt;
+
+# IR기법으로 대체텍스트 제공할 때 주의
+position: absolute (o)
+opacity: 0 (o)
+display: none (x)
+visibility: hidden (x)
+width|height: 0 (x)
+font-size: 0 (x)
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>2. </span>스킵메뉴 </button></dt>
+                            <dd>
+                                반복 컨텐츠를 건너띄게 해야함. (메뉴, 리스트) 등 스킵메뉴를 제공했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 반복 컨텐츠를 건너띄게 해야함 (메뉴, 리스트)
+- 모바일과 평소엔 숨겨뒀다가 포커스했을 때 나오게끔..or 포커스했을 때만 눌리게
+@media (max-width: 960px) { .skipToMain { display: none; } }
+@media (min-width: 961px) {
+    .skipToMain {
+        display: block;
+        height: 1px;
+        margin-bottom: -1px;
+        overflow: hidden;
+        text-align: center;
+        line-height: 48px;
+    }
+    .skipToMain:focus {
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+                                
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>3. </span>표</button></dt>
+                            <dd>
+                                표에 필수로 들어가는 요소들을 잘 구성했는가?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 표의 구성
+- 반드시 캡션 스코프 속성 넣어주기.. 콜은 열(|)을 로우(-) 는 행을 설명함 
+table
+    caption
+    thead
+        tr 
+        th scope="col"
+    tbody
+        tr
+        th scope="row"
+                                
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>4. </span>레이블</button></dt>
+                            <dd>
+                                인풋 요소에 올바른 레이블 제공했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 레이블 반드시 제공 
+&lt;input id="xxx"&gt;
+&lt;label for="xxx"&gt;아이디&lt;/label&gt;
+or
+&lt;input aria-label="아이디"&gt; - 화면에 출력x w3c에서 별로 추천하진않음
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>5. </span>캡션</button></dt>
+                            <dd>
+                                음성/동영상 컨텐츠에 자막/대본/수화를 제공했는가 ? 
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# vtt 확장자로 자막 제공
+- 미디어가 문자를 더 잘 설명하기위한, 혹은 대체하기 위한 설명이면 예외. 
+<video poster="vv.png" controls>
+    <source src="xx.mp4" srclang="en" type="video/mp4"> 
+    <track src="xx.vtt" kind="captions" srclang="en" label="English"> 
+</video>
+
+# 영상 바로 밑에 설명글 작성
+
+# 영상에 수화 제공
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>6. </span>제목 제공</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dd>
+                                적절한 대체 텍스트 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
 asd
                             </code>
                         </pre>
