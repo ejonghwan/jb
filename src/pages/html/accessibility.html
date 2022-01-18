@@ -25,7 +25,7 @@
                     <h2>Prosecutor</h2>
 
                     <div class="depth_2">
-                        <strong>Express</strong>
+                        <strong>자가 진단~</strong>
                    
                     <!-- item -->
                     <div class="item_wrap">
@@ -59,6 +59,9 @@ display: none (x)
 visibility: hidden (x)
 width|height: 0 (x)
 font-size: 0 (x)
+
+
+# 적절한 링크텍스트 ?
                             </code>
                         </pre>
                         </div>
@@ -159,10 +162,10 @@ or
                             <code class="markdown">
 # vtt 확장자로 자막 제공
 - 미디어가 문자를 더 잘 설명하기위한, 혹은 대체하기 위한 설명이면 예외. 
-<video poster="vv.png" controls>
-    <source src="xx.mp4" srclang="en" type="video/mp4"> 
-    <track src="xx.vtt" kind="captions" srclang="en" label="English"> 
-</video>
+&lt;video poster="vv.png" controls&gt;
+    &lt;source src="xx.mp4" srclang="en" type="video/mp4"&gt; 
+    &lt;track src="xx.vtt" kind="captions" srclang="en" label="English"&gt; 
+&lt;/video&gt;
 
 # 영상 바로 밑에 설명글 작성
 
@@ -177,8 +180,211 @@ or
                     <div class="item_wrap">
                         <dl class="item">
                             <dt><button><span>6. </span>제목 제공</button></dt>
+                            <dd> 
+                                페이지, 프레임, 콘텐츠 블록에는 적절한 제목을 제공했는가?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# title (SEO/접근성에서도 가장 중요한 부분)
+1. xx 홈페이지에 오신 것을 환영합니다! (x)
+2. 특수문자 금지
+3. 다른 페이지와 중복없는 고유한 제목 (o)
+
+# 헤딩 콘텐츠를 적절하게 활용해서 문서를 완성
+- 검색엔진은 잘 수집하기 좋은 정돈된 문서를 좋아한다
+- 화면 낭독기는 헤딩콘텐츠만 따로 음성으로 전달 받아서 원하는 콘텐츠로 이동도 가능하기에 잘 활용해야 된다 
+- 사실상 페이지의 목차라서 중요!!
+
+# iframe 사용시 아리아 제공
+&lt;iframe src="x.html" aria-label="xxxx"&gt;
+
+
+# 콘텐츠간의 구분
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>7. </span>정지기능</button></dt>
                             <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
+                                자동으로 변경되는 콘텐츠의 정지기능을 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 정지기능 (슬라이드, 탭 등)
+- 콘텐츠에 시간 제한이 설정되어 있다면 최소한 다음 중 하나를 만족해야 한다
+1. 끄기
+2. 조절
+3. 연장
+
+- 자동으로 변경되는 콘텐츠는 움직임을 제어할 수 있어야 한다
+1. 슬라이드 기능에서 정지버튼을 넣거나 조작 시 멈추는 기능은 반드시 제공해야함
+
+
+# 미디어 컨텐츠의 자동재생 금지
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>8. </span>키보드</button></dt>
+                            <dd>
+                                모든 콘텐츠를 키보드로 제어할 수 있게 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+- 콘텐츠의 모든 기능은 개인적인 타이핑 속도에 구애받지 않고 키보드 인터페이스를 이용하여 조작이 가능해야 한다
+- 모든 기능은 키보드만으로 가능하게끔.
+
+# 장치 독립적 이벤트 핸들러 사용 권장
+- 마우스와 키보드 둘다 적용됨
+onblur
+onchange
+onclick - 마우스 클릭 / 초점상태에서 엔터도 적용됨
+onfocus
+oninput
+onselect
+
+- 안되는거
+ondblclick
+onkeydown
+onkeypress
+onkeyup
+onmousedown
+onmouseenter
+onmouseleave
+onmousemove
+onmouseout
+onmouseonver
+onmouseup
+touchstart
+touchend
+touchmove
+touchcancel
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>9. </span>초점 이동</button></dt>
+                            <dd>
+                                키보드 이동이 논리적이며 시각적으로 구분 되는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+- 키보드 인터페이스를 이용하여 페이지 구성 요소로 포커스 이동이 가능하다면 포커스는 키보드 인터페이스 만으로 구성 요소로부터 떠날 수 있어야 한다. 키보드 조작 가능한 모든 사용자 인터페이스는 키보드 포커스 표시가 보이는 방식으로 제공 
+
+- 키보드에 의한 이동은 논리적이어야하며 시각적으로 구분이 반드시 필요함(상지장애인분들)
+
+ex) 로그인창 초점이동
+아이디 -> 비밀번호 -> 로그인 (o)
+아이디 -> 로그인 -> 비밀번호 (x)
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>10. </span>명도대비</button></dt>
+                            <dd>
+                               콘텐츠들의 명도대비를 기준에 맞게 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+
+# 명도대비 
+- 문자와 문자 이미지의 시각적인 표현은 최소한 4.5:1의 명암 대비를 부여해야한다 (문자 사이즈 고려, 장식x, 로고x)
+- 텍스트 콘텐츠와 배경 간의 명도 대비는 4.5대 1 이상이어야 한다
+
+Accessible Color Generator 프로그램 사용하기
+https://learnui.design/tools/accessible-color-generator.html
+
+
+# 색에 무관한 콘텐츠 인식 ?
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>11. </span>기본언어표시</button></dt>
+                            <dd>
+                                주로 사용 언어를 명시했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+- 모든 웹 페이지의 기본 휴먼 랭귀지는 기계적으로 판단할 수 있어야 한다.
+- 주로 사용하는 언어는 명시해야 한다
+
+&lt;html lang=""&gt; 
+- 구글에서는 검색엔진이 신뢰하지않음
+- 화면 낭독기가 어떤 언어로 읽어야하는지 판단
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>12. </span>오류 정정</button></dt>
+                            <dd>
+                                오류가 났을 때 알림이나 정정방법을 제공 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+- 만약 입력 오류가 자동으로 감지되면 오류 항목을 식별하고 사용자에게 문자로 알려야한다. 
+- 의견을 제공해야한다
+
+# 예)
+인풋창에 잘못입력 되었을 때 나타나는 오류메시지
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>13. </span>마크업 오류 방지</button></dt>
+                            <dd>
+                               ㅁㄴㅇ
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -193,179 +399,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
+                            <dt><button><span>14. </span>사용자 요구에 따른 실행</button></dt>
                             <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>1. </span>대체 텍스트</button></dt>
-                            <dd>
-                                적절한 대체 텍스트 제공 했는가 ?
+                               ㅁㄴㅇ
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -386,19 +422,108 @@ asd
                     <h2>WAI-ARIA</h2>
 
                     <div class="depth_2">
-                        <strong>Express</strong>
+                        <strong>HTML의 부족한 접근성을 보완</strong>
                    
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
+                            <dt><button><span># </span>팁/주의점</button></dt>
                             <dd>
-                                현재 문서의 body 또는 frameset 노드를 반환
+                                아리아 사용전 보기
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 의미                                  
+1. 아리아는 HTML로는 부족한 것들을 해결하기 위해 나옴 
+2. 80%는 HTML 만 의미있게 잘 사용해도 해결 
+
+
+# 주의점
+1. 이미 HTML에 존재하는 요소를 role을 통해 넣는 것은 절대 금지 
+(x)
+&lt;a href="" role="button"&gt;&lt;/a&gt;
+&lt;a href="" role="link"&gt;&lt;/a&gt;
+
+(o) button 과 link는 아래 같이 쓰면 되기 때문에 role을 쓸 필요가 없다
+&lt;button type="button"&gt;&lt;/button&gt; (기본 type이 submit)
+&lt;a href=""&gt;&lt;/a&gt;
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>역할 </span>roles</button></dt>
+                            <dd>
+                                요소의 역할을 부여
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 종류
+- 중요
+&lt;element role="tablist"&gt;  탭 전체를 그룹핑
+&lt;element role="tab"&gt;  탭 하나하나를 칭함
+&lt;element role="tabpanel"&gt; 컨텐츠 하나하나를 칭함
+&lt;element role="tooltip"&gt;
+&lt;element role="status"&gt;
+&lt;element role="alert"&gt;
+
+- 대체가능
+&lt;element role="alertdialog"&gt; -> dialog 
+&lt;element role="dialog"&gt; -> dialog 
+&lt;element role="navigation"&gt; -> nav 
+&lt;element role="complementary"&gt; -> aside 
+&lt;element role="none"&gt; -> div
+
+
+# tablist / tab / tabpanel 
+- 탭스타일이 아닌 현재 페이지 내용에 색인을 제공하는 구조
+- 사이트 탐색 도구에 해당하는 요소는
+nav > h2 + ul 
+aside > h2 + ul 
+구조로 마크업
+
+
+# tooltip
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>상태 </span>states</button></dt>
+                            <dd>
+                                요소의 상태를 지정
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>속성 </span>properties</button></dt>
+                            <dd>
+                                요소의 속성을 지정
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
-                            <code class="javascript">
+                            <code class="markdown">
 asd
                             </code>
                         </pre>
