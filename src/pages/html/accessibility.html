@@ -474,6 +474,8 @@ asd
 &lt;element role="tooltip"&gt;
 &lt;element role="status"&gt;
 &lt;element role="alert"&gt;
+&lt;element role="menu"&gt; 
+&lt;element role="menuitem"&gt;
 
 - 대체가능
 &lt;element role="alertdialog"&gt; -> dialog 
@@ -592,6 +594,25 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
 예) 긴급하거나 위험한 경고 (이종환님이 10만원 송금 실패)
 &lt;p role="alert"&gt;우편번호 입력 오류&lt;/p&gt;
 &lt;p role="alert"&gt;로그인 후 이용가능&lt;/p&gt;
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>role=</span>"menu"</button></dt>
+                            <dd>
+                                메뉴
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+https://nuli.navercorp.com/community/article/1132961
+https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html
+https://codepen.io/pen/
                             </code>
                         </pre>
                         </div>
@@ -737,7 +758,7 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
 3. dialog: dialog(role) 팝업이 연결됨. dialog(role)는 상호작용 요소(버튼 등)가 포함된 현재 문서의 하위창
 
 
-예) 탭인덱스 -1은 키보드로 움직이려고..
+예1) 탭. (탭인덱스 -1은 키보드로 움직이려고..)
 &lt;button id="menubutton" aria-haspopup="true" aria-controls="menu2"&gt;
     WAI-ARIA Quick Links
 &lt;/button&gt;
@@ -758,6 +779,13 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
 &nbsp;    &lt;/a&gt;
 &nbsp;    &lt;/li&gt;
 &lt;/ul&gt;
+
+예2) 로그인 팝업
+&lt;a href="#login-dialog" aria-haspopup="dialog"&gt;로그인&lt;/a&gt;
+&lt;section id="login-dialog" role="dialog" aria-labelledby="login-heading" aria-modal="true" hidden&gt;
+&nbsp;    &lt;h2 id="login-heading"&gt;로그인&lt;/h2&gt;
+&nbsp;    ....
+&lt;/section&gt;
                             </code>
                         </pre>
                         </div>
@@ -774,7 +802,38 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
-ㅁㄴㅇ
+# 설명
+- 제어 대상의 확장 또는 축소 상태
+- aria-controls 속성을 이용하여 제어 대상을 명시
+- role="tooltip | alert | alertdialog | dialog"와 같이 동적으로 표시 상태를 토글하는 요소에 사용
+- 대부분 a, button 요소에 적용
+
+1. true: 요소 또는 제어 대상 확장 상태
+2. false: 요소 또는 제어 대상 축소 상태
+3. undefined: 초기값
+
+https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
+
+예 1) 탭메뉴
+탭이 활성화된 버튼에 true 나머지 false 
+
+예 2) 아코디언
+&lt;dt&gt;
+&nbsp;    &lt;button type="button" aria-controls="abc" aria-expanded="false"&gt;아코디언&lt;/button&gt;
+&lt;/dt&gt;
+&lt;dd id="abc" hidden&gt;
+&nbsp;    &lt;p&gt;버튼 클릭 시 컨텐츠 활성화되면 aria-expanded는 true. 나머지는 false&lt;/p&gt;
+&lt;/dd&gt;
+
+예 3) 팝업
+&lt;a id="pop" href="#popular" aria-haspopup="menu" aria-expanded="false"&gt;팝업버튼&lt;/a&gt;
+&lt;ul id="popular" role="menu" aria-labelledby="pop" hidden&gt;
+&nbsp;    &lt;li role="none"&gt;
+&nbsp;        &lt;a href="" role="menuitem"&gt;메뉴1&lt;/a&gt;
+&nbsp;    &lt;/li&gt;
+&nbsp;    ...
+&lt;/ul&gt;
+
                             </code>
                         </pre>
                         </div>
@@ -791,7 +850,25 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
-ㅁㄴㅇ
+# 설명
+- 접근성 API(보조기기) 차단 상태
+
+1. true: 차단(화면 표시와 무관하게 보조기기 차단)
+2. false: 허용(화면에 표시한 경우 보조기기 사용)
+3. undefined: 초기값
+
+예) 모달창.. aria-hidden="true"과 aria-modal="true"를 이용
+&lt;body&gt;
+&nbsp;    &lt;div aria-hidden="true"&gt;
+&nbsp;        보조기기가 무시하는 영역
+&nbsp;    &lt;/div&gt;
+
+&nbsp;    딤드 처리 후 모달창 띄움. 이렇게 되면 보조기기는 모달창만 읽음 
+&nbsp;    &lt;div role="alertdialog" aria-modal="true" aria-labelledby="title" aria-describedby="desc"&gt;
+&nbsp;        &lt;h2 id="title"&gt;tt&lt;/h2&gt;
+&nbsp;        &lt;p id="desc"&gt;dd&lt;/p&gt;
+&nbsp;    &lt;/div&gt;
+&lt;/body&gt;
                             </code>
                         </pre>
                         </div>
@@ -808,6 +885,21 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
+# 설명
+- 주로 input 요소에 선언
+- 사용자가 입력한 값이 올바르지 않으면 선언
+- aria-errormessage 속성과 함께 사용하여 오류 설명을 제공할 수 있다
+
+1. false: 초기값. 오류없음
+2. true: 오류있음
+3. grammar: 문법오류
+4. spelling: 철자 오류
+
+예)
+&lt;label for="email"&gt;이멜&lt;/label&gt;
+&lt;input type="email" id="email" required value="형식이 잘못된 텍스트" aria-invalid="true" aria-errormessage="err_msg"&gt;
+&lt;p id="err_msg" role="alert" aria-live="assertive"&gt;이메일 형식이 올바르지 않아&lt;/p&gt;
+
 
                             </code>
                         </pre>
@@ -825,7 +917,7 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>역할 </span>roles</button></dt>
+                            <dt><button><span>속성 종류</span></button></dt>
                             <dd>
                                 종류
                             </dd>
@@ -833,6 +925,15 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
+# 종류
+&lt;element aria-controls=" id reference list "&gt;
+&lt;element aria-live=" polite | assertive | off(default) "&gt;
+&lt;element aria-labelledby=" id reference list "&gt;
+&lt;element aria-label=" string "&gt;
+&lt;element aria-describedby=" id reference list "&gt;
+&lt;element aria-errormessage=" id reference "&gt;
+&lt;element aria-modal=" true | false(default) "&gt;
+
 
                             </code>
                         </pre>
@@ -846,7 +947,7 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>역할 </span>roles</button></dt>
+                            <dt><button><span>역할 종류</span>roles</button></dt>
                             <dd>
                                 종류
                             </dd>
