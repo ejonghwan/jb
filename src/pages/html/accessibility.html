@@ -19,6 +19,29 @@
         <main>
             <div class="global_wrap">
                 
+                <!-- ref -->
+                <section class="conts">
+                    <h2>Reference</h2>
+                    <p>
+                        <a href="https://github.com/lezhin/accessibility/blob/master/aria/README.md#nav" target="_blank" title="html standards page">https://github.com</a>
+                        <span class="seg">정찬명님 1</span>
+                    </p>
+                    
+                    <p>
+                        <a href="https://tech.lezhin.com/2018/04/20/wai-aria" target="_blank" title="check">https://tech.lezhin.com/</a>
+                        <span class="seg">정찬명님 2</span>
+                       
+                    </p>
+                    <p>
+                        <a href="https://nuli.navercorp.com/community/article/1132671" target="_blank" title="check">https://nuli.navercorp.com</a>
+                        <span class="seg">널리</span>
+                    </p>
+                    <p>
+                        <a href="https://aoa.gitbook.io/skymimo/wai-aria/landmark-role" target="_blank" title="check">https://aoa.gitbook.io/skymimo</a>
+                        <span class="seg">AOA 항공사 사용사례</span>
+                    </p>
+                </section>
+                <!-- //ref -->
 
                 <!-- Prosecutor -->
                 <section class="conts">
@@ -446,6 +469,8 @@ asd
 (o) button 과 link는 아래 같이 쓰면 되기 때문에 role을 쓸 필요가 없다
 &lt;button type="button"&gt;&lt;/button&gt; (기본 type이 submit)
 &lt;a href=""&gt;&lt;/a&gt;
+
+2. 보조기기가 콘텐츠를 중복으로 알리지않게 주의
                             </code>
                         </pre>
                         </div>
@@ -477,12 +502,15 @@ asd
 &lt;element role="menu"&gt; 
 &lt;element role="menuitem"&gt;
 
+
 - 대체가능
-&lt;element role="alertdialog"&gt; -> dialog 
+&lt;element role="alertdialog"&gt; -> dialog *근데 dialog 태그는 탭인덱스 쓸 수 없다는데 ....?
 &lt;element role="dialog"&gt; -> dialog 
 &lt;element role="navigation"&gt; -> nav 
 &lt;element role="complementary"&gt; -> aside 
 &lt;element role="none"&gt; -> div
+&lt;element role="region"&gt; -> section 등 랜드마크 콘텐츠(만약 div를 섹션처럼 랜드마크콘텐츠로 만들려면 이 롤 지정)
+
 
 * aria-live="prolite" ? 보조기기는 지금 읽고 있는걸 중단하지않고 기다렸다가 끝나면 읽어줌
 * aria-live="assertive" ? 음성 낭독을 중지하고 이 메시지부터 바로 알려줌
@@ -910,7 +938,7 @@ https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
                     <!-- //states -->
 
 
-                    <!-- pro -->
+                    <!-- properties -->
                     <div class="depth_2">
                         <strong>properties</strong>
 
@@ -939,22 +967,246 @@ https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
                         </pre>
                         </div>
                     </div>
-                    </div>
-
-
-
-
-                    <!-- item -->
-                    <div class="item_wrap">
+                     <!-- item -->
+                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>역할 종류</span>roles</button></dt>
+                            <dt><button><span>aria-</span>controls=</button></dt>
                             <dd>
-                                종류
+                                id reference list
                             </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
+# 설명
+- 뭘 제어하는지 아이디 적어줌
+- 주로 a, button에 사용
+- 현재 요소가 제어하고 싶은 대상을 연결
+- 주로 role="tab", aria-haspopup, aria-expanded 속성과 함께 button이 뭘 제어하는지 명시
+
+
+# 예시
+예 1) 햄버거버튼 aria-expanded 속성과 함께 사용
+&lt;button type="button" id="mon-anchor" aria-controls="mon" aria-expanded="false"&gt;xxx&lt;/button&gt;
+&lt;div id="mon"&gt;제어대상&lt;/div&gt;
+
+예 2) 팝업
+&lt;button type="button" id="mon-anchor" aria-controls="mon" aria-haspopup="dialog"&gt;xxx&lt;/button&gt;
+
+예 3) 탭
+&lt;button type="button" id="mon_anchor" aria-controls="mon" role="tab" aria-selected="true"&gt;월&lt;/button&gt;
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>aria-</span>live=</button></dt>
+                            <dd>
+                                polite | assertive | off(default)
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 설명
+- 보조기기를 음성을 끊고 알려주냐. 안끊고 알려주냐.  
+- 갱신영역에 polite, assertive 값을 사용하면 갱신 순간 보조기기가 유저에게 내용전달
+
+1. polite : 중요도가 낮아서 진행중인 음성을 끊지않고 뒤늦게 전달 
+2. assertive : 중요도가 높아서 진행중인 음성을 끊고 전달
+
+
+# 예시
+예 1) 팝업이 중요하다면 이렇게 써도 되지만 추천되진않음.  
+&lt;div role="dialog" aria-live="assertive"&gt;
+&nbsp;    &lt;p&gt;로그인 후 이용 할 수 있습니다 &lt;/p&gt;
+&lt;/div&gt;
+
+예 2)중요한 팝업은 그냥 role="alert" 쓰면됨... aria-live="assertive" 자동 추가됨
+&lt;div role="alert" &gt;
+&nbsp;    &lt;p&gt;로그인 후 이용 할 수 있습니다 &lt;/p&gt;
+&lt;/div&gt;
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>aria-</span>labelledby=</button></dt>
+                            <dd>
+                                id reference list
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 설명
+- 간결한 설명 참조할 때 id로 연결 
+- 주로 h1~, a, button에 사용 
+- aria-label과 같이 선언하면 aria-labelledby가 우선순위가 높음
+
+둘다 용도 목적이 비슷하지만
+* aria-label : 설명하려는 내용을 직접 입력 (화면에 텍스트는 없어서 아래꺼 추천)
+* aria-labelledby : 설명하려는 내용 참조 (w3c에서 이 속성을 추천)
+
+
+# 예시
+예 1) 섹션에 왔을 때 이 섹션이 뭐하는 섹션이다를 알려줌. 리더기에서는 "섹션 영역 h2안에 텍스트" 이라고 읽어줌  
+&lt;section aria-labelledby="hh"&gt;
+&nbsp;    &lt;h2 id="hh"&gt;text&lt;/h2&gt;
+&nbsp;    ...
+&lt;/section&gt;
+
+예 2) a링크에 연결된 콘탠츠에 초점이 갔을 때 a버튼 안에 텍스트를 음성으로 읽어줌
+&lt;a href="#test" id="oyes"&gt;오예스란?&lt;/a&gt;
+&lt;div id="test" aria-labelledby="oyes" hidden&gt;
+&nbsp;    &lt;p&gt;오예스란 오예스야&lt;/p&gt;
+&lt;/div&gt;
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>aria-</span>label=</button></dt>
+                            <dd>
+                                string
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 설명
+- 간결한 설명을 직접 제공
+- 가능한 aria-labelledby 속성을 권장 
+- 설명할 다른 참조 요소가 없는 경우 사용
+
+
+# 예시
+&lt;form&gt;
+&nbsp;    &lt;input type="serch" aria-label="오예스 검색"&gt;
+&nbsp;    &lt;button&gt;검색&lt;/button&gt;
+&lt;/form&gt;
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>aria-</span>describedby=</button></dt>
+                            <dd>
+                                id reference list
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 설명
+- 자세한 설명 참조할 때 
+- 레이블이나 레이블드바이에서 끝나는게 좋지만 더 상세설명이 필요할 때 
+- 주로 툴팁, a링크, 폼콘트롤(input, textarea, select, button), 롤="알럿", 롤="알럿 대회상자" 요소에 사용하면 적절
+
+# 예시
+예 1) 버튼 요소에 상세한 설명제공
+* 버튼 영역에 초점이 가면 연결된 참조(p 요소)를 읽어줌
+&lt;button aria-describedby="tip_del"&gt;del&lt;/button&gt;
+&lt;p id="tip_del" role="tooltip" hidden&gt;게시물 삭제 후 복원할 수 없음&lt;/p&gt;
+
+예 2) 알럿 대화상자 요소에 상세한 설명 제공
+&lt;div role="alertdialog" aria-modal="true" aria-labelledby="title" aria-describedby="desc"&gt;
+&nbsp;    &lt;h2 id="title"&gt;제목 참조&lt;/h2&gt;
+&nbsp;    &lt;p id="desc"&gt;설명글 참조&lt;/p&gt;
+&lt;/div&gt;
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>aria-</span>errormessage=</button></dt>
+                            <dd>
+                                id reference
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 설명
+- 오류메시지 참조할 때... 주로 input에 오류가 났을 때 오류메시지를 참조하려고 넣음
+- aria-invalid="true" 속성을 활성화하면 보조기기는 errormessage속성이 참조하는 내용을 메시지로 전달  
+- 오류 메시지는 "오류 원인, 해결방법" 을 포함해야함
+
+
+# 예시
+&lt;label for="email"&gt;이멜&lt;/label&gt;
+&lt;input type="email" id="email" required value="형식이 잘못된 텍스트" aria-invalid="true" aria-errormessage="err_msg"&gt;
+&lt;p id="err_msg" role="alert" aria-live="assertive"&gt;이메일 형식이 올바르지 않아&lt;/p&gt;
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>aria-</span>modal=</button></dt>
+                            <dd>
+                                id reference list
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 설명
+- 요소가 모달인지 여부를 보조기기에 전달
+- 주로 role="alertdialog", role="dialog" 요소와 함께 사용 
+
+1. true: 모달임
+2. false: 초기값
+
+* 사용할 수 없는 요소에 aria-hidden="true" 속성을 선언ㅇ해서 보조기기가 무시하도록 설정. 
+* 포인팅 기능도 차단하도록 처리
+* 초점이 모달안에서만 돌게끔 작업
+
+
+# 예시 
+예 1) 얼럿 대화상자
+&lt;div role="alertdialog" aria-modal="true" aria-labelledby="title" aria-describedby="desc"&gt;
+&nbsp;    &lt;h2 id="title"&gt;제목 참조&lt;/h2&gt;
+&nbsp;    &lt;p id="desc"&gt;설명글 참조&lt;/p&gt;
+&lt;/div&gt;
+
+예 2) 대화상자
+&lt;section role="dialog" aria-modal="true" aria-labelledby="title"&gt;
+&nbsp;    &lt;h2 id="title"&gt;로그인&lt;/h2&gt;
+&nbsp;    &lt;form&gt;
+&nbsp;        ....
+&nbsp;    &lt;/form&gt;
+&lt;/section&gt;
+
+
+* role="dialog" 는 폼입력같은... 
+* role="alertdialog" 는 내용안내 후 확인 취소버튼
+
+? 레진에서는 메인팝업(코인주는 이벤트) 아래처럼 코딩함...왜지 ??
+&lt;dialog role="alertdialog"&gt;...&lt;/dialog&gt;
 
                             </code>
                         </pre>
@@ -962,10 +1214,8 @@ https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
                     </div>
                     <!-- //item -->
 
-
-
-
-
+                    </div>
+                    <!-- //properties -->
 
 
 
