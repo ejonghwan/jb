@@ -407,7 +407,7 @@ https://learnui.design/tools/accessible-color-generator.html
                         <dl class="item">
                             <dt><button><span>13. </span>마크업 오류 방지</button></dt>
                             <dd>
-                               ㅁㄴㅇ
+                               작성한 마크업이 올바른가 ?
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -424,7 +424,7 @@ asd
                         <dl class="item">
                             <dt><button><span>14. </span>사용자 요구에 따른 실행</button></dt>
                             <dd>
-                               ㅁㄴㅇ
+                               사용자가 정보를 요구했을 때 맞는 상호작용인가?
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -461,7 +461,7 @@ asd
 
 
 # 주의점
-1. 이미 HTML에 존재하는 요소를 role을 통해 넣는 것은 절대 금지 
+1. 이미 HTML에 존재하는 요소를 role을 통해 넣는 것은 금지 
 (x)
 &lt;a href="" role="button"&gt;&lt;/a&gt;
 &lt;a href="" role="link"&gt;&lt;/a&gt;
@@ -483,9 +483,9 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>역할 종류</span></button></dt>
+                            <dt><button>역할 <span> 종류 보기</span></button></dt>
                             <dd>
-                                종류
+                                -
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -493,14 +493,14 @@ asd
                             <code class="markdown">
 # 종류
 - 중요
-&lt;element role="tablist"&gt;  탭 전체를 그룹핑
-&lt;element role="tab"&gt;  탭 하나하나를 칭함
-&lt;element role="tabpanel"&gt; 컨텐츠 하나하나를 칭함
-&lt;element role="tooltip"&gt;
-&lt;element role="status"&gt;
-&lt;element role="alert"&gt;
-&lt;element role="menu"&gt; 
-&lt;element role="menuitem"&gt;
+&lt;element role="tablist"&gt;  - 탭 전체를 그룹핑
+&lt;element role="tab"&gt;  - 탭 하나하나를 칭함
+&lt;element role="tabpanel"&gt; - 컨텐츠 하나하나를 칭함
+&lt;element role="tooltip"&gt; - 툴팁상자
+&lt;element role="status"&gt; - 성공 결과 메시지
+&lt;element role="alert"&gt; - 긴급한 내용
+&lt;element role="menu"&gt; - 메뉴화. 
+&lt;element role="menuitem"&gt; - 메뉴화 하위 메뉴
 
 
 - 대체가능
@@ -537,6 +537,21 @@ asd
 nav > h2 + ul 
 aside > h2 + ul 
 구조로 마크업
+
+
+# 예제
+- 널리
+<a href="https://nuli.navercorp.com/community/article/1132879" target="_blank">https://nuli.navercorp.com/community/article/1132879</a>
+
+- 가로 탭 
+<a href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/tabs/tabs-1/tabs.html" target="_blank">https://www.w3.org/TR/wai-aria-practices-1.1/examples/tabs/tabs-1/tabs.html</a>
+
+- 세로 탭
+<a href="http://www.khsruru.com/nuli/vertical_tab_nav.html" target="_blank">http://www.khsruru.com/nuli/vertical_tab_nav.html</a>
+
+모두 키보드 방향키로 컨트롤 가능
+
+
                             </code>
                         </pre>
                         </div>
@@ -560,6 +575,8 @@ aside > h2 + ul
 - ESC 또는 마우스를 빼면 사라져야 한다
 - 여는 a/button에 aria-describedby="id reference list" 속성으로 연결 (2개 이상 가능)
 
+
+# 예시
 예) 연결시 초점이 a에 들어가면 자동으로 툴팁을 낭독기/보조기기에 전달하게됨 
 - 인풋 툴팁 예시
 &lt;label for="tel"&gt;전화번호&lt;/label&gt;
@@ -568,7 +585,7 @@ aside > h2 + ul
 
 - 버튼 툴팁 예시
 &lt;button aria-describedby="TIP-DEL"&gt;게시물 삭제&lt;/button&gt;
-&lt;p id="TIP-DEL" hidden&gt;게시물 삭제 후 복원할 수 없음&lt;/p&gt;
+&lt;p id="TIP-DEL" role="tooltip" hidden&gt;게시물 삭제 후 복원할 수 없음&lt;/p&gt;
                             </code>
                         </pre>
                         </div>
@@ -590,6 +607,8 @@ aside > h2 + ul
 - 이 요소를 갱신할 때 초점을 받지 않아야 한다
 - 이 역할을 선언하면 자동으로 aria-live="prolite", aria-atomic="true" 속성이 할당됨 
 
+
+# 예시
 예) 결과메시지 같은..(이종환님이 10만원 송금 성공)
 &lt;p role="status"&gt;회원가입 양식 전송완료&lt;/p&gt;
 &lt;p role="status"&gt;10개의 검색 결과&lt;/p&gt;
@@ -619,6 +638,8 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
 - 요소를 갱신할 때 초점 받으면 안됨
 - aria-live="assertive", aria-atomic="true" 자동 할당
 
+
+# 예시
 예) 긴급하거나 위험한 경고 (이종환님이 10만원 송금 실패)
 &lt;p role="alert"&gt;우편번호 입력 오류&lt;/p&gt;
 &lt;p role="alert"&gt;로그인 후 이용가능&lt;/p&gt;
@@ -641,6 +662,110 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
 https://nuli.navercorp.com/community/article/1132961
 https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html
 https://codepen.io/pen/
+
+
+# 예시
+&lt;div class="menu_button"&gt;
+&nbsp;    &lt;button id="menubutton" aria-haspopup="true" aria-controls="menu2"&gt;
+&nbsp;      WAI-ARIA Quick Links
+&nbsp;    &lt;/button&gt;
+
+&nbsp;    &lt;ul id="menu2" role="menu" aria-labelledby="menubutton" tabindex="-1" style="display: none; position: absolute; top: 33.7812px; left: 0px;"&gt;
+&nbsp;      &lt;li role="none"&gt;
+&nbsp;        &lt;a role="menuitem" href="" tabindex="-1"&gt;
+&nbsp;          1
+&nbsp;        &lt;/a&gt;
+&nbsp;      &lt;/li&gt;
+&nbsp;      &lt;li role="none"&gt;
+&nbsp;        &lt;a role="menuitem" href="" tabindex="-1"&gt;
+&nbsp;          1
+&nbsp;        &lt;/a&gt;
+&nbsp;      &lt;/li&gt;
+&nbsp;    &lt;/ul&gt;
+&lt;/div&gt;
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>role=</span>"region"</button></dt>
+                            <dd>
+                                랜드마크 화
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 설명
+- section 등 랜드마크 콘텐츠(만약 div를 섹션처럼 랜드마크콘텐츠로 만들려면 이 롤 지정)
+- 아코디언같은 곳에서도 씀
+https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html
+
+# 예시
+&lt;div id="accordionGroup"&gt;
+&nbsp;    &lt;h3&gt;
+&nbsp;      &lt;button aria-expanded="true" aria-controls="sect1" id="accordion1id" aria-disabled="true"&gt;
+&nbsp;        &lt;span&gt;Personal Information&lt;/span&gt;
+&nbsp;      &lt;/button&gt;
+&nbsp;    &lt;/h3&gt;
+&nbsp;    &lt;div id="sect1" role="region" aria-labelledby="accordion1id" class="Accordion-panel"&gt;
+&nbsp;      &lt;div&gt;
+&nbsp;        &lt;fieldset&gt;
+&nbsp;          &lt;p&gt;
+&nbsp;            &lt;label for="cufc1"&gt;Name&lt;span aria-hidden="true"&gt;*&lt;/span&gt;:&lt;/label&gt;
+&nbsp;            &lt;input type="text" value="" name="Name" id="cufc1" class="required" aria-required="true"&gt;
+&nbsp;          &lt;/p&gt;
+&nbsp;          &lt;p&gt;
+&nbsp;            &lt;label for="cufc2"&gt;Email&lt;span aria-hidden="true"&gt;*&lt;/span&gt;:&lt;/label&gt;
+&nbsp;            &lt;input type="text" value="" name="Email" id="cufc2" aria-required="true"&gt;
+&nbsp;          &lt;/p&gt;
+&nbsp;        &lt;/fieldset&gt;
+&nbsp;      &lt;/div&gt;
+&nbsp;    &lt;/div&gt;
+&nbsp;    &lt;h3&gt;
+&nbsp;      &lt;button aria-expanded="false" aria-controls="sect2" id="accordion2id"&gt;
+&nbsp;        &lt;span&gt;Billing Address&lt;/span&gt;
+&nbsp;      &lt;/button&gt;
+&nbsp;    &lt;/h3&gt;
+&nbsp;    &lt;div id="sect2" role="region" aria-labelledby="accordion2id" class="Accordion-panel" hidden=""&gt;
+&nbsp;      &lt;div&gt;
+&nbsp;        &lt;fieldset&gt;
+&nbsp;          &lt;p&gt;
+&nbsp;            &lt;label for="b-add1"&gt;Address 1:&lt;/label&gt;
+&nbsp;            &lt;input type="text" name="b-add1" id="b-add1"&gt;
+&nbsp;          &lt;/p&gt;
+&nbsp;          &lt;p&gt;
+&nbsp;            &lt;label for="b-add2"&gt;Address 2:&lt;/label&gt;
+&nbsp;            &lt;input type="text" name="b-add2" id="b-add2"&gt;
+&nbsp;          &lt;/p&gt;
+&nbsp;        &lt;/fieldset&gt;
+&nbsp;      &lt;/div&gt;
+&nbsp;    &lt;/div&gt;
+&nbsp;    &lt;h3&gt;
+&nbsp;      &lt;button aria-expanded="false" aria-controls="sect3" id="accordion3id"&gt;
+&nbsp;        &lt;span&gt;Shipping Address&lt;/span&gt;
+&nbsp;      &lt;/button&gt;
+&nbsp;    &lt;/h3&gt;
+&nbsp;    &lt;div id="sect3" role="region" aria-labelledby="accordion3id" class="Accordion-panel" hidden=""&gt;
+&nbsp;      &lt;div&gt;
+&nbsp;        &lt;fieldset&gt;
+&nbsp;          &lt;p&gt;
+&nbsp;            &lt;label for="m-add1"&gt;Address 1:&lt;/label&gt;
+&nbsp;            &lt;input type="text" name="m-add1" id="m-add1"&gt;
+&nbsp;          &lt;/p&gt;
+&nbsp;          &lt;p&gt;
+&nbsp;            &lt;label for="m-add2"&gt;Address 2:&lt;/label&gt;
+&nbsp;            &lt;input type="text" name="m-add2" id="m-add2"&gt;
+&nbsp;          &lt;/p&gt;
+&nbsp;        &lt;/fieldset&gt;
+&nbsp;      &lt;/div&gt;
+&nbsp;    &lt;/div&gt;
+&lt;/div&gt;
+
                             </code>
                         </pre>
                         </div>
@@ -655,9 +780,9 @@ https://codepen.io/pen/
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>상태 종류</span></button></dt>
+                            <dt><button>상태 <span> 종류 보기</span></button></dt>
                             <dd>
-                                종류
+                                - 
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -667,12 +792,12 @@ https://codepen.io/pen/
 - HTML 요소로 불가능한 상태를 부여 
 
 # 종류
-&lt;element aria-current=" page | step | location | date | time | true | false(defalut) "&gt;
-&lt;element aria-selected=" false | true | undefined(default) "&gt;
-&lt;element aria-haspopup=" true | menu | dialog | listbox | tree | grid | false(default) "&gt;
-&lt;element aria-expanded=" true | false | undefined(default) "&gt;
-&lt;element aria-hidden=" true | false | undefined(default) "&gt;
-&lt;element aria-invalid=" true | false(default) | grammar | spelling "&gt;
+&lt;element aria-current=" page | step | location | date | time | true | false(defalut) "&gt;  - a컨텐츠가 현재 페이지다(로케이션) 
+&lt;element aria-selected=" false | true | undefined(default) "&gt;  - 다중선택가능한 곳에 선택된 상태
+&lt;element aria-haspopup=" true | menu | dialog | listbox | tree | grid | false(default) "&gt;  - a가 팝업을 가지고 있다!
+&lt;element aria-expanded=" true | false | undefined(default) "&gt;  - a가 가지고 있는 콘탠츠가 펼쳐져있다!  
+&lt;element aria-hidden=" true | false | undefined(default) "&gt;  - 보조기기 숨기고 싶을 때
+&lt;element aria-invalid=" true | false(default) | grammar | spelling "&gt;  - 검증 시
                             </code>
                         </pre>
                         </div>
@@ -689,7 +814,8 @@ https://codepen.io/pen/
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
-# aria-current   <span class="seg">page | step | location | date | time | true | false(defalut)</span>
+# 설명
+- aria-current   <span class="seg">page | step | location | date | time | true | false(defalut)</span>
 - 현재 맥락과 일치하는 항목. <span class="seg">버튼이나 a에 많이 사용</span>
 1. page: 현재 페이지와 일치하는 시각적으로 강조한 링크
 2. step: 현재 '단계'와 일치하는 시각적으로 강조한 링크
@@ -699,6 +825,8 @@ https://codepen.io/pen/
 6. true: 항목이 세트 내 현재 맥락과 일치함
 7. false: 항목이 세트 내 현재 맥락과 일치하지 않음 
 
+
+# 예시
 예 1)
 - 센스리더 테스트 <span class="seg">#이 붙은 문자열이어야 현재 페이지 링크라고 읽음</span>
 "오예스 링크" 라고 읽어줌
@@ -746,7 +874,9 @@ https://codepen.io/pen/
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
-# aria-selected   <span class="seg">false | true | undefined(default)</span>
+
+# 설명
+- aria-selected   <span class="seg">false | true | undefined(default)</span>
 - 단일 또는 다중 선택이 가능한(role = gridcell, option, row, tab) 요소에 선택 상태를 명시함 
 - role="tab"에 많이 사용
 - 키보드 초점이 받을 수 있는 요소에 적용 (a, button)
@@ -756,6 +886,8 @@ https://codepen.io/pen/
 3. false: 선택하지않음
 4. tip: css할때 속성선택자로 넣으면 개꿀
 
+
+# 예시
 예) 
 &lt;div role="tablist"&gt;
 &nbsp;    &lt;a id="a" role="tab" aria-selected="true"&gt;a&lt;/a&gt;
@@ -777,7 +909,8 @@ https://codepen.io/pen/
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
-# aria-haspopup   <span class="seg">true | menu | dialog | listbox | tree | grid | false(default)</span>
+# 설명
+- aria-haspopup   <span class="seg">true | menu | dialog | listbox | tree | grid | false(default)</span>
 - 대부분 a, button 요소에 적용하며 눌렀을 때 팝업이나 서브메뉴가 뜬다면 그런것들을 가지고 있다는 정보를 전달해주는 용도
 - 팝업 유형은 menu, listbox, tree, grid, dialog로만 써야함 (대부분 menu와 dialog를 씀 )
 
@@ -786,6 +919,7 @@ https://codepen.io/pen/
 3. dialog: dialog(role) 팝업이 연결됨. dialog(role)는 상호작용 요소(버튼 등)가 포함된 현재 문서의 하위창
 
 
+# 예시
 예1) 탭. (탭인덱스 -1은 키보드로 움직이려고..)
 &lt;button id="menubutton" aria-haspopup="true" aria-controls="menu2"&gt;
     WAI-ARIA Quick Links
@@ -842,6 +976,8 @@ https://codepen.io/pen/
 
 https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
 
+
+# 예시
 예 1) 탭메뉴
 탭이 활성화된 버튼에 true 나머지 false 
 
@@ -885,6 +1021,8 @@ https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
 2. false: 허용(화면에 표시한 경우 보조기기 사용)
 3. undefined: 초기값
 
+
+# 예시
 예) 모달창.. aria-hidden="true"과 aria-modal="true"를 이용
 &lt;body&gt;
 &nbsp;    &lt;div aria-hidden="true"&gt;
@@ -923,6 +1061,8 @@ https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
 3. grammar: 문법오류
 4. spelling: 철자 오류
 
+
+# 예시
 예)
 &lt;label for="email"&gt;이멜&lt;/label&gt;
 &lt;input type="email" id="email" required value="형식이 잘못된 텍스트" aria-invalid="true" aria-errormessage="err_msg"&gt;
@@ -945,22 +1085,22 @@ https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>속성 종류</span></button></dt>
+                            <dt><button>속성 <span> 종류 보기</span></button></dt>
                             <dd>
-                                종류
+                                -
                             </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
 # 종류
-&lt;element aria-controls=" id reference list "&gt;
-&lt;element aria-live=" polite | assertive | off(default) "&gt;
-&lt;element aria-labelledby=" id reference list "&gt;
-&lt;element aria-label=" string "&gt;
-&lt;element aria-describedby=" id reference list "&gt;
-&lt;element aria-errormessage=" id reference "&gt;
-&lt;element aria-modal=" true | false(default) "&gt;
+&lt;element aria-controls=" id reference list "&gt;  - a가 무엇을 컨트롤 하고 있는지 ID로 연결
+&lt;element aria-live=" polite | assertive | off(default) "&gt;  - 이 요소가 갱신하면 중단하고 읽어야하는지 기다렸다 읽어야하는지 
+&lt;element aria-labelledby=" id reference list "&gt;  - 이 요소가 어디문구를 참조 하는지 ID로 연결
+&lt;element aria-label=" string "&gt;  - 이 요소가 값 문구를 참조
+&lt;element aria-describedby=" id reference list "&gt;  - 이 요소가 어디 요소를 참조하는지 ID로 연결
+&lt;element aria-errormessage=" id reference "&gt;  - 이 요소가 어디 에러메시지랑 연결되어있는지 ID로 연결
+&lt;element aria-modal=" true | false(default) "&gt;  - 이 요소가 모달인지 아닌지
 
 
                             </code>

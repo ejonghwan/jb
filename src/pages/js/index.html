@@ -63,6 +63,500 @@
 
                 </section> -->
 
+                <!-- 찐으로 많이 쓰는 메서드 -->
+                <section class="conts">
+                    <h2>찐으로 자주쓰는</h2>
+                    <div class="depth_2">
+                        <strong>스크롤 위치</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.scrollY</button></dt>
+                            <dd>
+                                현재 스크롤 Y 위치값
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+- 익스 지원안함
+- pageYoffset 같은 기능
+window.addEventListener('scroll', () => {
+    console.log(window.scrollY)
+})
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.pageYoffset</button></dt>
+                            <dd>
+                                현재 스크롤 Y 위치값
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+- 익스 지원함
+- scrollY 같은 기능
+window.addEventListener('scroll', () => {
+    console.log(window.pageYoffset)
+})
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window.</span>.scrollX</button></dt>
+                            <dd>
+                                현재 스크롤 X 위치값
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+- 익스 지원안함
+- pageXoffset 같은 기능
+window.addEventListener('scroll', () => {
+    console.log(window.scrollX)
+})
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.pageXoffset</button></dt>
+                            <dd>
+                                현재 스크롤 X 위치값
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+- 익스 지원함
+- scrollX 같은 기능
+window.addEventListener('scroll', () => {
+    console.log(window.pageXoffset)
+})
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.scrollTo()</button></dt>
+                            <dd>
+                                해당 스크롤값으로 이동
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+해당 스크롤값으로 이동
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.scrollby()</button></dt>
+                            <dd>
+해당 스크롤값으로 이동
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+해당 스크롤값으로 이동
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        </div>
+                        <div class="depth_2">
+                            <strong>윈도우 창 사이즈</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.innerWidth</button></dt>
+                            <dd>
+                                윈도우 창 안쪽 사이즈
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.innerHeight</button></dt>
+                            <dd>
+                                윈도우 창 안쪽 사이즈
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.outerWidth</button></dt>
+                            <dd>
+                                윈도우 창 외곽사이즈
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>window</span>.outerHeight</button></dt>
+                            <dd>
+                                윈도우 창 외곽사이즈
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                        </div>
+                        <!-- //item -->
+                        
+                    </div>
+
+
+                    <div class="depth_2">
+                        <strong>element 관련</strong>
+
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+element.getBoundingClientRect().프로퍼티 
+
+width: 760  상자 너비 
+height: 183  상자 높이
+x, left: 178.5  화면 좌측 0에서 상자 왼쪽 
+right: 938.5  화면 좌측 0에서 상자 오른쪽 끝까지
+y, top: 107  화면 위쪽 0에서 상자 위까지 
+bottom: 290  화면 위쪽 0에서 상자 아래까지 
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.offsetWidth</button></dt>
+                            <dd>
+                                보더+패딩 너비
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+주의 마진 제외임
+만약 엘리먼트가 box-sizing: border-box가 있는 경우 계산이 어려워짐...
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.offsetHeight</button></dt>
+                            <dd>
+                                보더+패딩 높이
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+주의 마진 제외임
+만약 엘리먼트가 box-sizing: border-box가 있는 경우 계산이 어려워짐...
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.clientWidth</button></dt>
+                            <dd>
+                                패딩만 포함한 너비
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.clientHeight()</button></dt>
+                            <dd>
+                                패딩만 포함한 높이
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+//여기 하다가 끝남
+getComputedStyle(document.querySelector('.depth_2')).width
+ele.style.height 이건 대입만 
+https://it-eldorado.tistory.com/140
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dd>
+                                요소의 위치정보, 사이즈정보
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+
+
+
+
+
+                </section>
+                <!-- 찐으로 많이 쓰는 메서드 -->
+
                 <!-- Document -->
                 <section class="conts">
                     <h2>Document</h2>
@@ -8748,7 +9242,7 @@ asd
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span class="seg">read</span>ystatechange </button></dt>
+                            <dt><button>readystatechange </button></dt>
                             <dd>
                                 값 변경 이벤트
                         </dd>
