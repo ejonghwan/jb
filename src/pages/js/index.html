@@ -438,7 +438,7 @@ element.innerHTML = '정보'
                         <dl class="item">
                             <dt><button><span>element</span>.insertAdjacentHTML()</button></dt>
                             <dd>
-                                요소에게 추가
+                                요소에게 html 추가
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -453,6 +453,14 @@ afterbegin, 요소의 안쪽 시작
 beforeend, 요소의 안쪽 끝
 afterend 요소의 이후
 
+&lt;!-- beforebegin --&gt;
+&lt;p&gt;
+&lt;!-- afterbegin --&gt;
+foo
+&lt;!-- beforeend --&gt;
+&lt;/p&gt;
+&lt;!-- afterend --&gt;
+
 * beforebegin 및 afterend 위치는 노드가 DOM 트리에 있고 부모 요소가있는 경우에만 작동합니다.
 * insertAdjacentHTML() 을 사용하여 페이지에 HTML을 삽입 할 때 이스케이프되지 않은 사용자 입력을 사용하지 않도록주의하세요.
 
@@ -466,15 +474,23 @@ afterend 요소의 이후
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dt><button><span>element</span>.insertAdjacentElement()</button></dt>
                             <dd>
-                                요소의 위치정보, 사이즈정보
+                                요소에게 element 추가
                             </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+targetElement.insertAdjacentElement(position, element);
 
+&lt;!-- beforebegin --&gt;
+&lt;p&gt;
+    &lt;!-- afterbegin --&gt;
+    foo
+    &lt;!-- beforeend --&gt;
+  &lt;/p&gt;
+  &lt;!-- afterend --&gt;
                             </code>
                         </pre>
                         </div>
@@ -483,15 +499,23 @@ afterend 요소의 이후
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dt><button><span>element</span>.insertAdjacentText()</button></dt>
                             <dd>
-                                요소의 위치정보, 사이즈정보
+                                텍스트 추가
                             </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+element.insertAdjacentText(where, data);
 
+&lt;!-- beforebegin --&gt;
+&lt;p&gt;
+    &lt;!-- afterbegin --&gt;
+    foo
+    &lt;!-- beforeend --&gt;
+  &lt;/p&gt;
+  &lt;!-- afterend --&gt;
                             </code>
                         </pre>
                         </div>
@@ -500,7 +524,7 @@ afterend 요소의 이후
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>element</span>.getBoundingClientRect()</button></dt>
+                            <dt><button><span>element</span>.insertAdjacentText()</button></dt>
                             <dd>
                                 요소의 위치정보, 사이즈정보
                             </dd>
