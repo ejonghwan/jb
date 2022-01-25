@@ -20,6 +20,120 @@
             <div class="global_wrap">
                 
 
+                
+
+
+                <!-- category 1 -->
+                <section class="conts">
+                    <h2>Performance</h2>
+
+                    <div class="depth_2">
+                        <strong>css optimization</strong>
+                   
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>불필요한 CSS 제거</button></dt>
+                            <dd>
+                                불필요한 CSS를 제거 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+#remove unused css
+- Remove unused CSS 구글 라이트하우스는 2KB 이상 미사용 CSS가 포함된 파일을 검출해서 오류로 체크함. coverage 탭에 상세확인가능
+* 폰트는 사용하지않는 CSS로 구분하는 오류가있음
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>렌더차단 리소스 제거</button></dt>
+                            <dd>
+                                렌더차단 리소스를 제거 했는가 ?
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# render blocking
+- CSS는 기본적으로 렌더차단 리소스라고 부르는데 웹 브라우저가 CSS파일을 만나면 다운로드하고 CSS를 해석하는 동안 렌더를 잠깐 멈춤
+(이건 CSSOM 그릴 때 말하는건가 ..? 확인필요)
+- 라이트하우스에서 Eliminate render-blocking resources 탭
+
+
+# 해결방법 
+1. 스크립트는 돔파싱 후 가져오기 ..해더에 디퍼,어싱크없는 스크립트들 
+2. media 속성이 없는 link rel="stylesheet" 태그
+
+
+
+# JS 해결방법 
+## no async no defer 
+1. html 파싱하다 js 만나면 멈춤
+2. js 다운로드 후 해석, 실행 
+3. 다시 html 파싱 시작 
+
+## async : 병렬 다운로드, 즉시실행 
+1. html 파싱하다 js 만나면 파싱하면서 다운로드 같이진행
+2. js 다운로드 끝나면 html 파싱 멈추고 js 실행
+3. 다시 남은 html 파싱 
+
+## defer : 병렬 다운로드, 지연실행 
+1. html 파싱하다 js를 만나도 파싱하면서 다운로드하고 
+2. html 파싱이 끝나면 js를 해석, 실행
+
+
+결론: defer를 안넣을거면 무적권 아래다 넣는게 좋음...왜냐면 다운로드할때 html 파싱을 멈추기때문. 혹은 아래다 넣고 async 넣거나... 
+
+1. 필수 스크립트는 html에 &lt;script&gt; 형식으로 작성
+2. 기타 스크립트는 &lt;scrip&gt; 종료 태그 직전에 선언 
+3. 마지막에 파싱해도 문제 없으면 defer 속성 
+4. 가능한 빠른 시점에 실행 필요하면 async 속성
+
+
+# CSS 해결방법
+rel="stylesheet" : media 속성이 없거나 
+rel="stylesheet" : media="all" all 이거나 
+
+위처럼 하면 렌더 차단 리로스임....모든 상황에서 차단되기 떄문에  
+
+
+## 방법 1
+* 아래처럼 특정조건에서만 해석하도록 해야됨 
+media="print"
+media="screen"
+media="orientation:portrait" 
+
+* 분기별로 각자에 맞는 파일 다운로드하게 만듦
+&lt;link rel="stylesheet" href="" media="(max-width: 639px)"&gt; 
+&lt;link rel="stylesheet" href="" media="(min-width: 640px) and (max-width: 960px)"&gt; 
+&lt;link rel="stylesheet" href="" media="(min-width: 961px)"&gt; 
+
+
+## 방법 2
+1. 필수 스타일을 head 안에 style로 작성
+2. 지연 스타일은 &lt;link rel="preload"&gt; 속성으로 병렬 로딩 후 지연 적용
+예시) &lt;style>/*필수 스타일은 여기*/&lt;/style&gt;
+&lt;link rel="preload" href="" as="style" onload="this.onload=null; this.rel='stylesheet'" /&gt; //로드후 렐바꿈. 지연로딩
+- this.onload=null 할당이유? 
+  rel속성을 변경할 때 일부 브라우저가 다시 onload를 실행하는 것을 방어 함
+ 
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                </div>
+              </section>
+              <!-- //category 1 -->
+
+
+
                 <!-- category 1 -->
                 <section class="conts">
                     <h2>category 1</h2>
