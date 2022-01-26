@@ -129,6 +129,197 @@ media="orientation:portrait"
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>LCP</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# LCP <span class="seg">(Largest Contentful Paint).. 큰덩어리 콘텐츠 그리기</span>
+- 구글의 핵심 성능 지표에 포함되는 한 가지 항목
+- 모든 성능에 관련된 지식으로 개선해야 높아짐
+
+
+# 목표
+- LCP를 2.5초 이내로 단축시키는게 목표 
+
+
+# 맨 처음 생기는 덩어리.. 
+- 라이트 하우스에 콘텐츠가 포함된 최대 페인트 요소 탭
+- 주로 이미지가 가장 큰 컨텐츠일 가능성이 높음(히어로이미지) 
+* 맨 처음뜨는 이미지가 무겁기 때문은 아니고 
+  이미지를 브라우저가 그리기전에 생기는 
+  모든 성능이슈가 LCP 문제를 해결하는 열쇠임 
+
+
+성능개선 사례 
+before - https://t.ly/tyMg 
+after - https://t.ly/a7uy
+
+
+# 해결방법 
+## 1. 라이브러리 의존 줄이기
+- jquery, lodash, mormalize, reset.css...등 내가 사용하지않는 기능을 포함하고 있기에 렌더차단 리소스로 작용할 확률이 높음
+- jquery가 FCP(first content paint)를 엄청나게 지연시킴 
+- https://youmightnotneed.com/ (바닐라로 작업된 내용물들 좀 있음)
+
+
+## 2. 사용하지않는 css 제거
+
+
+## 3. preconnect / preload
+- css를 그냥 링크하면 css 읽을 때 렌더링 멈춤
+(x)
+&lt;link rel="stylesheet" href="*.css"&gt; 
+
+(o)
+&lt;link rel="preconnect" href="https://fonts.gataic.com"&gt; 
+- href에 연결된 주소를 미리 연결하는 기능..미리 연결해서 준비해뒀다 필요한 내용을 다운로드함 
+- 도메인을 알지만 자원의 최종 경로를 모르는 경우 서버와의 연결을 미리 설정 
+- DNS, TCP, TLS 왕복에 필요한 시간을 단축 
+- 서드파티 자원 연결에 적합..구글웹폰트 등
+
+&lt;link rel="preload" as="style" href="*.css" onload="this.onload=null; this.rel='stylesheet'"&gt;
+- css파일은 다운로드하면서 웹페이지 렌더링을 차단하지않음. 동시에 진행..그리고 로드 후 지연적용함
+- img js 등 다양한 파일들을 병행 로드할 수 있음  as는 필수. as="script" as="image"
+
+
+## 4. 히어로 이미지 preload... LCP중 img를 미리 다운로드받아둠
+&lt;head&gt;
+&nbsp;    &lt;link rel="preload" as="image" media="(max-width:640px)" href="small.avif"&gt;
+&nbsp;    &lt;link rel="preload" as="image" media="(min-width:641px)" href="large.avif"&gt;
+&lt;/head&gt;
+
+
+## 5. feature detection 
+- image type 이나 viewport width를 감지해서 성능을 개선
+&lt;picture&gt;
+&nbsp;    &lt;source srcset="small.avif" type="image/avif" media="(max-width:640px)"&gt;
+&nbsp;    &lt;source srcset="large.avif" type="image/avif"&gt;
+&nbsp;    &lt;source srcset="small.webp" type="image/webp" media="(max-width:640px)"&gt;
+&nbsp;    &lt;source srcset="large.webp" type="image/webp"&gt;
+&nbsp;    &lt;img src="small.jpg" alt&gt;
+&lt;/picture&gt;
+
+
+## 6. image loading / decoding
+- 이미지 지연로딩
+
+&lt;img src="x.jpg" alt&gt; (x)
+&lt;img src="x.jpg" alt loading="lazy" decoding="async"&gt; (o)
+
+loading="lazy" - 뷰포트안에 없으면 로딩하지않음.. 스크롤하면 그때 로딩 
+decoding="async" - decoding: 암호화했던 이미지를 복호화함. async값을 주면 화면에 다른 요소를 렌더링하는걸 중단하지않고 다른 요소를 먼저 표시 후 이미지를 뒤늦게 화면에 표시...(다른콘텐츠 표시 속도 빨라짐)
+
+* img 요소에만 사용..picture, source에는 사용하지않음
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>FID</button></dt>
+                            <dd>
+                                first input delay === total blocking time
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# FID <span class="seg">first input delay === total blocking time</span>
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>CLS</button></dt>
+                            <dd>
+                                사용자 경험을 측정하는 대표적인 지표
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# CLS <span class="seg">(cumulative layout shift)</span>
+- 사용자 경험을 측정하는 대표적인 지표
+- 구글의 검색결과에 반영됨
+
+
+# 사례
+- 뒤늦게 돔이 추가되거나 배치가 변경되면서 사용자가 다른 버튼을 누르는 사례
+- FOIT(font of invisible text) : 텍스트가 보이지 않다가 갑자기 화면에 나타남 
+- FOUT(font of unstyled text) : 스타일없다가 갑자기 웹폰트 스타일로 바뀌는 사례
+- 치수를 알 수 없는 이미지 로딩
+- 동적으로 추가된 돔
+- 웹폰트 swap 페인팅
+
+
+# 목표
+라이트하우스 Cumulative Layout Shift 0~1 중 0.1 이내로 단축
+* 개발자도구 퍼포먼스 > Experience > summary 탭에서도 확인가능
+
+
+
+# 해결방법 
+## 1. 자리표시자 활용
+- 동적으로 표현되는 컨텐츠에는 들어올 자리를 미리 잡아놓음
+.class { min-height: 100px; background: silver; }
+
+
+- 애니메이션은 transform 속성으로 사용
+
+
+
+- 이미지/영상 요소에 비율 힌트 제공.. 이미지에 width height 넣어줘야함
+
+이미지 
+&lt;img src="" alt="" width="800" height="800"&gt; (o)
++
+max-width: 100%;
+height: auto;
+
+* 웹브라우저는 이미지의 width, height로 비율을 계산하기떄문에 css로 하더라도 넣어주는게 좋음. 비록 로딩 후 해당 사이즈로 보이지않더라도 ..
+
+
+영상
+.utube {position: relative; padding-top: 56.25%}
+.utube__iframe { position: absolute; width: 100%; height: 100%; top:0 }
+*패딩탑을 %로 설정하는 것은 부모의 너비값을 기준으로 패딩 비율이 결정됨
+
+
+
+## 2. 웹 폰트 대체 글꼴
+- 줄간격이나 자간 장평 이런것들이 달라지면서 흔들리는 것을 방지
+
+- 내가 지금  쓰는 웹폰트랑 비슷한 글꼴을 찾아서 시스템폰트에 적용해야함....
+font-family: 'Noto sans KR', sans-serif; (x)
+font-family: 'Noto sans KR', Verdana (비슷한글꼴), sans-serif; (o)
+
+
+
+예제 페이지
+before - https://t.ly/w1kp 
+after - https://t.ly/itb9
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                 </div>
               </section>
               <!-- //category 1 -->
