@@ -10759,7 +10759,91 @@ asd
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+
+정리개잘됨
+https://heropy.blog/2019/10/27/intersection-observer/
+
+https://www.youtube.com/watch?v=2IbRtjez6ag&t=311s
+https://www.youtube.com/watch?v=hVcriryAVbg
+
+옵저버 패턴
+https://www.youtube.com/watch?v=1dwx3REUo34
+
+<!-- <style>
+    ul, ol {list-style: none;;}
+    .card_box {display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;}
+    .card_box li {background: #fff; border: 1px solid #ddd; padding: .5rem; transform: translateX(100px); opacity: 0; transition: 150ms; }
+    .card_box li.show  {transform: translateX(0px); opacity: 1;}
+</style>
+
+<ul class="card_box">
+    <li class="show">first card</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">asdasd1</li>
+    <li class="">last card </li>
+</ul>
+
+
+
+<script>
+
+    const lis = document.querySelectorAll('li')
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(item => {
+            item.target.classList.toggle("show", item.isIntersecting)
+            console.log('item: ', item)
+            // if(item.isIntersecting) observer.unobserve(item.target) // 이미 생성된건 유지
+        })
+        // console.log(entries)
+    }, {
+        // threshold: 1, // 임계값 0 ~ 1
+        rootMargin: '-100px', // 엘리먼트가 사라져있는 위치
+        // root: ,
+        // threshold: 1,
+    })
+
+    // observer.observe(lis[0]) //등록
+    lis.forEach((item, idx) => {
+        console.log(idx)
+        observer.observe(item)
+    })
+
+</script> -->
                             </code>
                         </pre>
                         </div>
