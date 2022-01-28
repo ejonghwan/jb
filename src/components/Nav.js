@@ -72,7 +72,7 @@ class Nav {
                 `
             })
 
-            // ㅇ어케해야될까  asd
+            // ㅇ어케해야될까  asdasdasd
             // const lis = this.className.querySelectorAll(`li`)            
             // for(let i = 0; i < lis.length; i++) {
             //     lis[i].addEventListener('click', e => {
