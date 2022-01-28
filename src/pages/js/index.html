@@ -1701,12 +1701,31 @@ asd
                             <dt><button><span>Element</span>.classList <span class="seg">read</span></button></dt>
                             <dd>
                                 DOMTokenList클래스 속성 목록을 포함하는 반환
-                        </dd>
+                            </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+//element.classList
+element.classList는 요소가 가지고 있는 클래스들을 DOMTokenList(이터러블)로 반환함
+0: class 
+1: class1
+2: class2
+length: 3 
+value: "class class1 class2"
+
+//element.classList.add('string')
+요소에 class 추가
+
+//element.classList.remove('string')
+요소에 class 삭제
+
+//element.classList.toggle('string', boolean)
+첫번째 인자에 추가할 문자열 
+두번째 인자에 true면 추가 false면 삭제 (옵션)
+
+* 옵션을 주지 않으면 그냥 첫번째 인자를 추가, 삭제함
+
                             </code>
                         </pre>
                         </div>
