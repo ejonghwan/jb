@@ -39,29 +39,115 @@
         <main>
             <div class="global_wrap">
                 
-                <!-- <section class="conts">
-                    <strong>HTMLCollection NodeList</strong>
-                    공통 - DOM API가 여러개의 결과값을 반환하기 위한 돔 컬렉션 객체 <br />
-                    유사배열 객체면서 이터러블 <br />
-                    배열로 변환 후 사용이 권장됨 <br />
-                    
-                    HTMLCollection -><br />
-                    getElementsByTagName,<br />
-                    getElementsByClassName,<br />
-                    "Live 객체",<br />
-                    prototype 보면 배열 메서드 상속받지 않음.. forEach도 없음<br />
-                    
-                    <br /><br />
+                <section class="conts">
+<!-- item -->
+<div class="item_wrap">
+    <dl class="item">
+        <dt><button><span>default</span></button></dt>
+        <dd>
+            nodes, element, nodeList, HTML Collection, DOMTokenList
+        </dd>
+    </dl>
+    <div class="code_wrap">
+<pre>
+    <code class="markdown">
+기본 개념 
 
-                    querySelectorAll -> <br />
-                    대부분 Non-live 객체(childNodes 프로퍼티는 live 객체)<br />
-                    prototype에 보면 forEach 있음..<br />
-                    <br /><br />
-                    
-                    중요!! 화면엔 출력해주는데 nodelist에는 안넣어줌..다시 찾아서 선언하기 전까진..
-                    HTMLCollection은 알아서 넣어줌..
+# nodes: 
+DOM API상에 존재하는 모든 것들. 그것들을 모두 포괄하는 이름이 node이다.
 
-                </section> -->
+# NodeList: 
+general lists of nodes
+
+# element: 
+one specific type of node. 예를 들어  div, body, window 같은 특정한 타입.
+모든 element는 HTMLElement의 자식이다. 따라서, HTMLElement의 property를 똑같이 가지고 있다. 동시에, element의 성격에 따라서 자신만의 property를 가지고 있다.
+
+# HTML Collection: 
+오직 element만을 담을 수 있다.
+<span class="seg">
+    * DOM API (Document Object Model 문서 개체 모델 Application Programming Interface)
+
+    NodeList나 HTMLCollection이나 둘 다 읽기 전용의 유사 배열 객체이다. 
+    length 속성이 있고 숫자 인덱싱을 할 수 있다. 
+    특징 중 가장 놀라운 점은 변화하는 문서의 어떤 특정 순간이 아닌 실시간 상태가 반영된다는 것이다. 
+    따라서 그 안에 담긴 요소 리스트는 문서가 변하면 달라질 수 있다. 
+</span>
+
+# DOMTokenList 
+
+.length 읽기 전용
+integer개체에 저장된 개체의 수를 나타냅니다 .
+
+.value
+목록의 값은 DOMString.
+
+.item()
+인덱스별로 목록의 항목을 반환합니다( undefined숫자가 목록의 길이보다 크거나 같은 경우 반환).
+
+.contains()
+true목록에 주어진 토큰 이 있으면 반환 하고 그렇지 않으면 반환 false합니다.
+
+.add()
+주어진 토큰 을 목록에 추가합니다.
+
+.remove()
+목록에서 지정된 토큰 을 제거합니다 .
+
+.replace()
+기존 토큰 을 새 토큰으로 바꿉니다 .
+
+.supports()
+true주어진 토큰 이 연결된 속성의 지원되는 토큰에 있으면 반환 합니다.
+
+.toggle()
+목록에서 주어진 토큰 을 제거 하고 를 반환합니다 false. 토큰 이 존재하지 않으면 추가되고 함수는 을 반환 합니다 true.
+
+.entries()
+iterator이 객체에 포함된 모든 키/값 쌍을 살펴볼 수 있도록 하는 반환 값입니다.
+
+.forEach()
+DOMTokenList요소 당 한 번씩 제공된 기능을 실행합니다 .
+
+.keys()
+iterator이 객체에 포함된 키/값 쌍의 모든 키를 살펴볼 수 있도록 하는 반환 값을 반환합니다.
+
+.values()
+iterator이 객체에 포함된 키/값 쌍의 모든 값을 살펴볼 수 있도록 하는 반환 값입니다.
+
+
+--------- live / non-live 
+
+# HTMLCollection NodeList
+공통 - DOM API가 여러개의 결과값을 반환하기 위한 돔 컬렉션 객체 
+유사배열 객체면서 이터러블 
+배열로 변환 후 사용이 권장됨 
+
+- HTMLCollection ->
+getElementsByTagName,
+getElementsByClassName,
+"Live 객체",
+prototype 보면 배열 메서드 상속받지 않음.. forEach도 없음
+
+- querySelectorAll -> 
+대부분 Non-live 객체(childNodes 프로퍼티는 live 객체)
+prototype에 보면 forEach 있음..
+
+
+# 중요!! 
+화면엔 출력해주는데 nodelist에는 안넣어줌..다시 찾아서 선언하기 전까진..
+HTMLCollection은 알아서 넣어줌..
+
+
+<span class="seg">https://humahumahuma.tistory.com/123, mdn</span>
+</code>
+</pre>
+</div>
+</div>
+<!-- //item -->
+
+
+                </section>
 
                 <!-- 찐으로 많이 쓰는 메서드 -->
                 <section class="conts">
@@ -2004,14 +2090,14 @@ asd
                 <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
-                        <dt><button><span>Element</span>.classList <span class="seg">read</span></button></dt>
+                        <dt id="classList"><button><span>Element</span>.classList <span class="seg">read</span></button></dt>
                         <dd>
                             클래스 DOMTokenList로 반환
                         </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
-                        <code class="javascript">
+                        <code class="markdown">
 //element.classList
 element.classList는 요소가 가지고 있는 클래스들을 DOMTokenList(이터러블)로 반환함
 0: class 
@@ -2031,6 +2117,53 @@ value: "class class1 class2"
 두번째 인자에 true면 추가 false면 삭제 (옵션)
 
 * 옵션을 주지 않으면 그냥 첫번째 인자를 추가, 삭제함
+
+
+
+
+############ DOMTokenList
+
+속성
+# .length 읽기 전용
+integer개체에 저장된 개체의 수를 나타냅니다 .
+
+# .value
+목록의 값은 DOMString.
+
+
+메서드
+# .item()
+인덱스별로 목록의 항목을 반환합니다( undefined숫자가 목록의 길이보다 크거나 같은 경우 반환).
+
+# .contains()
+true목록에 주어진 토큰 이 있으면 반환 하고 그렇지 않으면 반환 false합니다.
+
+# .add()
+주어진 토큰 을 목록에 추가합니다.
+
+# .remove()
+목록에서 지정된 토큰 을 제거합니다 .
+
+# .replace()
+기존 토큰 을 새 토큰으로 바꿉니다 .
+
+# .supports()
+true주어진 토큰 이 연결된 속성의 지원되는 토큰에 있으면 반환 합니다.
+
+# .toggle()
+목록에서 주어진 토큰 을 제거 하고 를 반환합니다 false. 토큰 이 존재하지 않으면 추가되고 함수는 을 반환 합니다 true.
+
+# .entries()
+iterator이 객체에 포함된 모든 키/값 쌍을 살펴볼 수 있도록 하는 반환 값입니다.
+
+# .forEach()
+DOMTokenList요소 당 한 번씩 제공된 기능을 실행합니다 .
+
+# .keys()
+iterator이 객체에 포함된 키/값 쌍의 모든 키를 살펴볼 수 있도록 하는 반환 값을 반환합니다.
+
+# .values()
+iterator이 객체에 포함된 키/값 쌍의 모든 값을 살펴볼 수 있도록 하는 반환 값입니다.
 
                         </code>
                     </pre>
@@ -4351,13 +4484,22 @@ class 이전 문법에서는 prototype을 확장하기 위해 사용했던 듯 �
                         <dl class="item">
                             <dt><button><span>Object</span>.defineProperty()</button></dt>
                             <dd>
-                                aa
+                                객체에 불변, 열거불가능으로 추가하고 반환
                             </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-//준비
+// 구문
+Object.defineProperty(obj, prop, descriptor)
+
+var obj = {}
+Object.defineProperty(obj, 'prop', { value: 30, writable: false})
+obj.prop = 70
+obj.prop
+{prop: 30} // 불변
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
                             </code>
                         </pre>
                         </div>
@@ -4367,13 +4509,25 @@ class 이전 문법에서는 prototype을 확장하기 위해 사용했던 듯 �
                         <dl class="item">
                             <dt><button><span>Object</span>.defineProperties()</button></dt>
                             <dd>
-                               aa
+                               .defineProperty와 동일하지만 여러개 넣고 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-//준비
+const object1 = {};
+
+Object.defineProperties(object1, {
+    property1: {
+    value: 42,
+    writable: true
+    },
+    property2: {}
+});
+
+console.log(object1.property1);
+// expected output: 42
+                                
                             </code>
                         </pre>
                         </div>
@@ -4397,6 +4551,17 @@ var obj = {
 for(var i = 0; i &lt; Object.entries(obj).length; i++) {
     console.log(Object.entries(obj)[i])
 }
+// 2차원 배열에 키, 값 으로 반환
+// (2) [Array(2), Array(2)]
+// 0: (2) ['a', 1]
+// 1: (2) ['b', 2]
+
+for in 은 프로토타입 체인도 열거함.. (prop은 키, obj는 객체)
+for(var prop in obj) {
+    console.log(prop, obj[prop])
+}
+// a 1
+// b 2
                             </code>
                         </pre>
                         </div>
@@ -4519,13 +4684,19 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object</span>.is()</button></dt>
                             <dd>
-                               aa
+                               두 값 비교
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-//준비
+// === 이랑 비슷한데 조금 다름
+Object.is(value1, value2);
+
+- Object.is()는 두 값이 같은 값인지 결정합니다. 다음 중 하나를 만족하면 두 값은 같습니다
+- 이는 == (en-US) 연산자에 따른 같음과 같지 않습니다. == (en-US) 연산자는 같음을 테스트하기 전에 양 쪽(이 같은 형이 아니라면)에 다양한 강제(coercion)를 적용하지만("" == false가 true가 되는 그런 행동을 초래), Object.is는 어느 값도 강제하지 않습니다.
+
+- 이는 === (en-US) 연산자에 따른 같음과도 같지 않습니다. === (en-US) 연산자(와 == (en-US) 연산자 역시)는 숫자값 -0과 +0을 같게 Number.NaN은 NaN과 같지 않게 여깁니다.
                             </code>
                         </pre>
                         </div>
@@ -4587,13 +4758,21 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object</span>.keys()</button></dt>
                             <dd>
-                               aa
+                               object에서 key만 배열로 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-//준비
+const object1 = {
+    a: 'somestring',
+    b: 42,
+    c: false
+    };
+    
+console.log(Object.keys(object1));
+// expected output: Array ["a", "b", "c"]
+                                  
                             </code>
                         </pre>
                         </div>
@@ -4672,13 +4851,46 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object.prototype</span>.hasOwnProperty()</button></dt>
                             <dd>
-                               aa
+                               객체에 특정 프로퍼티가 있는지 확인 후 불리언값 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-//준비
+// 구문
+obj.hasOwnProperty(prop)
+
+const object1 = {};
+object1.property1 = 42;
+
+console.log(object1.hasOwnProperty('property1'));
+// expected output: true
+
+console.log(object1.hasOwnProptery('toString'));
+// expected output: false
+
+console.log(object1.hasOwnProperty('hasOwnProperty'));
+// expected output: false
+
+
+var obj = {
+    a: 1,
+    b: 2
+}
+obj.hasOwnProperty('a') //true
+obj.hasOwnProperty('c') //false
+
+
+
+주의해야할 점
+1. hasOwnProperty 는 프로퍼티의 존재 유무를 판단하는 것이지, 프로퍼티의 값을 확인하는 것이 아니기 때문에 프로퍼티 값이 undefined나 null이어도 true를 반환한다.
+
+2. Javascript 는 프로퍼티 명칭으로서 hasOwnProperty를 보호하지 않는다.
+즉, hasOwnProperty 라는 명칭의 property를 가지는 객체가 존재하면, 올바른 결과를 얻기 힘들지도 모른다.
+올바른 결과를 얻기 위해선 외부 `hasOwnProperty를 사용해야한다.
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty
                             </code>
                         </pre>
                         </div>
@@ -4740,13 +4952,38 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object.prototype</span>.toString()</button></dt>
                             <dd>
-                               aa
+                               타입체크
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-//준비
+function Dog(name) {
+    this.name = name;
+    }
+    
+    const dog1 = new Dog('Gabby');
+    
+    Dog.prototype.toString = function dogToString() {
+    return `${this.name}`;
+    };
+    
+    console.log(dog1.toString());
+    // expected output: "Gabby"
+                                  
+Object.prototype.toString.call(''); // [object String]
+Object.prototype.toString.call(1); // [object Number]
+Object.prototype.toString.call(true); // [object Boolean]
+Object.prototype.toString.call(Symbol('symbol')); // [object Symbol]
+Object.prototype.toString.call(BigInt(1e10)); // [object BigInt]
+Object.prototype.toString.call([]); // [object Array]
+Object.prototype.toString.call({}); // [object Object]
+Object.prototype.toString.call(null); // [object Null]
+Object.prototype.toString.call(undefined); // [object Undefined]
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/toString
+
+https://medium.com/%EC%98%A4%EB%8A%98%EC%9D%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%97%90%EC%84%9C-object-object-%EA%B0%80-%EB%8C%80%EC%B2%B4-%EB%AD%98%EA%B9%8C-fe55b754e709
                             </code>
                         </pre>
                         </div>
@@ -4774,11 +5011,535 @@ const obj = {
               
                 <!-- Array -->
                 <section class="conts">
-                <h2>Array</h2><span class="seg">자주쓰는 내장객체</span>
+                <h2>Array</h2>
+                <!-- <span class="seg">자주쓰는 method</span> -->
+
+                <div class="depth_2">
+                    <strong>배열 추가, 삭제</strong>
+                
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.unshift()</button></dt>
+                        <dd>
+                            앞에 추가 (기존배열)
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+var arr = [1,2,3]
+arr.unshift(0)
+
+console.log(arr)
+// [0, 1, 2, 3]
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
                  <!-- item -->
                  <div class="item_wrap">
                     <dl class="item">
+                        <dt><button><span>Array.prototype</span>.push()</button></dt>
+                        <dd>
+                            뒤에 추가 (기존배열)
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+var arr = [1,2,3]
+arr.push(4)
+
+console.log(arr)
+// [1, 2, 3, 4]
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.shift()</button></dt>
+                        <dd>
+                            첫번째 삭제 후 리턴 (기존배열)
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+var arr = [1,2,3]
+arr.shift()
+
+return 1
+
+console.log(arr)
+// [2, 3]
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.pop()</button></dt>
+                        <dd>
+                            끝에꺼 삭제 후 리턴 (기존배열)
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+var arr = [1, 2, 3]
+arr.pop()
+
+return 3 
+
+console.log(arr) 
+// [1, 2]
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.concat()</button></dt>
+                        <dd>
+                           이어붙이기 (새 배열) 
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+var arr = [1,2,3]
+var arr2 = arr.concat(...[4,5,6])
+
+console.log(arr) //[1, 2, 3]
+console.log(arr2) //[1, 2, 3, 4, 5, 6]
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.slice()</button></dt>
+                        <dd>
+                            일부를 뽑아냄 (새 배열)
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+arr.slice(첫번째 인덱스부터, 두번째 인덱스까지)
+
+var arr = [1,2,3,4,5]
+var arr2 = arr.slice(0,3)
+
+console.log(arr) //[1, 2, 3, 4, 5]
+console.log(arr2) //[1, 2, 3]
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.splice()</button></dt>
+                        <dd>
+                            특정 위치에 삭제 후 추가 (기존배열)
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+사용법
+array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+
+
+var arr = ['a', 'b', 'c', 'd']
+
+ex1)
+arr.splice(1, 2, 'hoho') // return ['b', 'c']
+console.log(arr) // ['a', 'hoho', 'd']
+
+
+ex2)
+var arr2 = arr.splice(1, 2)
+console.log(arr) //['a', 'd']
+console.log(arr2) //['b', 'c']
+
+
+ex3) 
+하나도 제거하지 않고, 2번 인덱스에 "drum" 추가
+.splice(2, 0, 'drum');
+
+
+ex4) 
+하나도 제거하지 않고, 2번 인덱스에 "drum"과 "guitar" 추가
+.splice(2, 0, 'drum', 'guitar');
+
+
+ex5) 
+3번 인덱스에서 한 개 요소 제거
+.splice(3, 1);
+
+
+ex6) 
+2번 인덱스에서 한 개 요소 제거하고 "trumpet" 추가
+.splice(2, 1, 'trumpet');
+
+
+
+ex7) 
+0번 인덱스에서 두 개 요소 제거하고 "parrot", "anemone", "blue" 추가
+.splice(0, 2, 'parrot', 'anemone', 'blue');
+
+
+
+ex8) 
+2번 인덱스에서 두 개 요소 제거
+.splice(myFish.length - 3, 2);
+
+
+
+ex9) 
+-2번 인덱스에서 한 개 요소 제거
+.splice(-2, 1);
+
+
+
+ex9) 
+2번 인덱스를 포함해서 이후의 모든 요소 제거
+.splice(2);
+
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.flat()</button></dt>
+                        <dd>
+                            중첩배열 평탄화, 빈공간 제거 (새 배열)
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+사용법...ie x
+const newArr = arr.flat([depth])
+//중첩 배열 구조를 평탄화할 때 사용할 깊이 값. 기본값은 1입니다.
+
+const arr1 = [1, 2, [3, 4]];
+arr1.flat();
+// [1, 2, 3, 4]
+
+const arr2 = [1, 2, [3, 4, [5, 6]]];
+arr2.flat();
+// [1, 2, 3, 4, [5, 6]]
+
+const arr3 = [1, 2, [3, 4, [5, 6]]];
+arr3.flat(2);
+// [1, 2, 3, 4, 5, 6]
+
+const arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+arr4.flat(Infinity);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+
+const arr5 = [1, 2, , 4, 5];
+arr5.flat();
+// [1, 2, 4, 5]
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.fill()</button></dt>
+                        <dd>
+                            특정위치에 특정값 채우기 (기존배열)
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+사용법 .. ie x
+arr.fill(value[, start[, end]])
+
+var arr = [1,2,3,4,5]
+arr.fill('a', 1, 2)
+// [1, 'a', 3, 4, 5]
+
+
+
+
+[1, 2, 3].fill(4);               // [4, 4, 4]
+[1, 2, 3].fill(4, 1);            // [1, 4, 4]
+[1, 2, 3].fill(4, 1, 2);         // [1, 4, 3]
+[1, 2, 3].fill(4, 1, 1);         // [1, 2, 3]
+[1, 2, 3].fill(4, 3, 3);         // [1, 2, 3]
+[1, 2, 3].fill(4, -3, -2);       // [4, 2, 3]
+[1, 2, 3].fill(4, NaN, NaN);     // [1, 2, 3]
+[1, 2, 3].fill(4, 3, 5);         // [1, 2, 3]
+Array(3).fill(4);                // [4, 4, 4]
+[].fill.call({ length: 3 }, 4);  // {0: 4, 1: 4, 2: 4, length: 3}
+
+// Objects by reference.
+var arr = Array(3).fill({}); // [{}, {}, {}]
+arr[0].hi = "hi"; // [{ hi: "hi" }, { hi: "hi" }, { hi: "hi" }]
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
                         <dt><button><span>Array</span>.from()</button></dt>
+                        <dd>
+                            유사 배열 또는 반복 가능한 객체로부터 새로운 Array 인스턴스를 생성
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+사용법.. ie x
+Array.from(arrayLike[, mapFn[, thisArg]])
+
+
+console.log(Array.from('foo'));
+// expected output: Array ["f", "o", "o"]
+
+console.log(Array.from([1, 2, 3], x => x + x));
+// expected output: Array [2, 4, 6]
+
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.join()</button></dt>
+                        <dd>
+                            배열 요소들 문자열 합체 리턴 (새 문자열)
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+사용법
+arr.join([separator])
+
+var arr = [1,2,3,4,5]
+arr.join() 
+//'1,2,3,4,5'
+
+
+var arr2 = [1,2,3,[4,5]]
+arr2.join()
+//'1,2,3,4,5'
+
+
+var a = ['바람', '비', '불'];
+var myVar1 = a.join();      // myVar1에 '바람,비,불'을 대입
+var myVar2 = a.join(', ');  // myVar2에 '바람, 비, 불'을 대입
+var myVar3 = a.join(' + '); // myVar3에 '바람 + 비 + 불'을 대입
+var myVar4 = a.join('');    // myVar4에 '바람비불'을 대입
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+            </div>
+
+
+            <div class="depth_2">
+                <strong>배열 검사, 정렬, 선택</strong>
+                
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array</span>.isArray()</button></dt>
+                        <dd>
+                            배열인지 아닌지
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+true / false
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.length</button></dt>
+                        <dd>
+                            배열의 길이 0~
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+arr.length //4
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.sort()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.reverse()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.find()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.findIndex()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+            </div>
+
+
+            <div class="depth_2">
+                <strong>배열 탐색</strong>
+                  <!-- item -->
+                  <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.map()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.filter()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.reduce()</button></dt>
                         <dd>
                             asd
                     </dd>
@@ -4795,7 +5556,178 @@ asd
                   <!-- item -->
                   <div class="item_wrap">
                     <dl class="item">
-                        <dt><button><span>Array</span>.isArray()</button></dt>
+                        <dt><button><span>Array.prototype</span>.reduceRight()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.forEach()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.some()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.entries()</button></dt>
+                        <dd>
+                            순서로 배열 리턴해줌 (새 배열)
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+사용법 .. ie x 
+arr.entries()
+
+
+
+var arr = ['a', 'b', 'c', 'd']
+var result = arr.entries() //Array Iterator {}
+
+result.next().value //[0, 'a']
+result.next().value //[0, 'b']
+result.next().value //[0, 'c']
+result.next().value //[0, 'd']
+
+// 그 다음은 언디파인드
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+            </div>
+            
+
+                 
+                  
+                 
+                
+                 
+                 
+            
+                 
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.copyWithin()</button></dt>
+                        <dd>
+                           asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                 
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.every()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                
+                 
+                 
+                 
+                 
+                
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.includes()</button></dt>
+                        <dd>
+                           
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.indexOf()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+               
+                 
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.keys()</button></dt>
                         <dd>
                             asd
                     </dd>
@@ -4812,7 +5744,33 @@ asd
                  <!-- item -->
                  <div class="item_wrap">
                     <dl class="item">
-                        <dt><button><span>Array</span>.of()</button></dt>
+                        <dt><button><span>Array.prototype</span>.lastIndexOf()</button></dt>
+                        <dd>
+                          
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+               
+                
+                
+                  
+                  
+                  
+                  
+                  
+                  
+                  <!-- item -->
+                  <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.toLocaleString()</button></dt>
                         <dd>
                             asd
                     </dd>
@@ -4821,6 +5779,86 @@ asd
                     <pre>
                         <code class="javascript">
 asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                  <!-- item -->
+                  <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.toString()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                  
+                  <!-- item -->
+                  <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.values()</button></dt>
+                        <dd>
+                            asd
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+asd
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                
+
+               
+
+                
+                <div class="depth_2">
+                    <strong>실험적이거나 잘 안쓰는거</strong>
+    
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array</span>.of()</button></dt>
+                        <dd>
+                            배열의 원소 하나를 만들어줌
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+사용법 ..ie x
+Array.of(element0[, element1[, ...[, elementN]]])
+
+Array.of()와 Array 생성자의 차이는 정수형 인자의 처리 방법에 있습니다. 
+Array.of(7)은 하나의 요소 7을 가진 배열을 생성하지만 Array(7)은 length 속성이 7인 빈 배열을 생성합니다.
+
+
+Array.of(7);       // [7]
+Array.of(1, 2, 3); // [1, 2, 3]
+
+Array(7);          // [ , , , , , , ]
+Array(1, 2, 3);    // [1, 2, 3]
+
+
+
+
+....걍 일케하면 될듯
+
+var arr = []
+arr.push(3) //[3]
+
                         </code>
                     </pre>
                     </div>
@@ -4843,25 +5881,8 @@ asd
                     </div>
                 </div>
                 <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.length</button></dt>
-                        <dd>
-                            준비
-                        </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-//준비
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
+                <!-- item -->
+                <div class="item_wrap">
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>[@@iterator]()</button></dt>
                         <dd>
@@ -4899,7 +5920,7 @@ aa
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.at()</button></dt>
                         <dd>
-                            aa
+                            아직 실험적
                     </dd>
                     </dl>
                     <div class="code_wrap">
@@ -4911,165 +5932,12 @@ aa
                     </div>
                 </div>
                 <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.concat()</button></dt>
-                        <dd>
-                           aa
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-aa
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.copyWithin()</button></dt>
-                        <dd>
-                           asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.entries()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.every()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.fill()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.filter()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.find()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.findIndex()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.flat()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
+                <!-- item -->
+                <div class="item_wrap">
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.flatMap()</button></dt>
                         <dd>
-                            asd
+                            아직 실험적
                     </dd>
                     </dl>
                     <div class="code_wrap">
@@ -5081,350 +5949,7 @@ asd
                     </div>
                 </div>
                 <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.forEach()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.includes()</button></dt>
-                        <dd>
-                           
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.indexOf()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-               
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.join()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.keys()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.lastIndexOf()</button></dt>
-                        <dd>
-                          
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.map()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.pop()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.push()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.reduce()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.reduceRight()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.reverse()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.shift()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.some()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.sort()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.splice()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.toLocaleString()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.toString()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.unshift()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                  <!-- item -->
-                  <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.values()</button></dt>
-                        <dd>
-                            asd
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-               
+            </div>
                 </section>  
                 <!-- //Array -->
 

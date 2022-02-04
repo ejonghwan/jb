@@ -54,7 +54,7 @@ section.conts + section.conts {margin-top: 50px;}
 .conts .item > dt > button::before {content: '-'; display: inline-block; position: absolute; transform: translateX(0px); transition: all .3s; opacity: 0; color: #666;}
 .conts .item > dt > button.active::before { transform: translateX(-10px); opacity: 1;}
 .conts .item > dt > button:hover {border-bottom: 1px solid #999;;}
-.conts .item > dd {flex: 1 1 auto; width: 100%; padding-left: 10px; color: #999; font-size: 13px;  }
+.conts .item > dd {flex: 1 1 auto; width: 100%; padding-left: 10px; color: #999; font-size: 12px;  }
 .conts .code_wrap {/*margin-left: 15px;*/ opacity: 0; height: 0; transition: opacity .1s; }
 .item_wrap pre, 
 .item_wrap code {height: 0;overflow-y: hidden;}
@@ -127,8 +127,8 @@ footer .line > li {color: #6b6c76; }
     header nav > ul > li {padding: 0 15px; font-size: 14px;}
 
     .conts .item {display: block; margin-top: 5px;}
-    .conts .item > dd {padding-left: 0px; margin-top: 0px; line-height: 1.5; position: relative; padding-left:15px;}
-    .conts .item > dd::before {content: 'ㄴ'; font-family: 'Noto Sans'; display: inline-block; position: absolute; top: -2px; left:0px; color: #666; font-size: 12px;;}
+    .conts .item > dd {padding-left: 0px; margin-top: -2px; line-height: 1.5; position: relative; padding-left:7px; color: #666; }
+    .conts .item > dd::before {content: '-'; font-family: 'Noto Sans'; display: inline-block; position: absolute; top: 2px; left:0px; color: #666; font-size: 12px;;}
     .conts .item > dt > button:hover {border: none;}
     .wrap main {padding: 80px 0 40px; }
 
