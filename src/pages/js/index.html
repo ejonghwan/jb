@@ -5510,12 +5510,54 @@ asd
                         <code class="javascript">
 사용법
 arr.indexOf(searchElement[, fromIndex])
+searchElement: 찾고싶은 값
+fromIndex: 해당 인덱스부터 검색..
+
+없으면 -1 반환
+
 
 
 var arr = [1,2,3,4,5]
 arr.indexOf('c') 
 
 //2
+
+
+요소의 모든 항목 찾기
+var result = []
+var arr = ['a', 'b', 'b', 'c', 'a', 'd', 'a', 'e']
+var idx = arr.indexOf('a')
+
+for(var i = 0; i &lt; arr.length; i++) {
+    if(idx === -1) break
+    result.push(idx)
+    idx = arr.indexOf('a', idx + i)
+}
+
+console.log(result) //[0, 0, 4, 6]
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Array.prototype</span>.lastIndexOf()</button></dt>
+                        <dd>
+                            역순으로 해당 값 인덱스 찾기
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+arr.lastIndexOf(searchElement[, fromIndex])
+
+Array.indexOf 와 같지만 "검색순서"가 반대임 
+
+옵션인 fromIndex은 원래 순서... 같은 기능
                         </code>
                     </pre>
                     </div>
@@ -5750,23 +5792,7 @@ asd
                     </div>
                 </div>
                 <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Array.prototype</span>.lastIndexOf()</button></dt>
-                        <dd>
-                          
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-asd
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
+                 
                
                 
                 
