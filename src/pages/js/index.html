@@ -5392,7 +5392,7 @@ var myVar4 = a.join('');    // myVar4에 '바람비불'을 대입
 
 
             <div class="depth_2">
-                <strong>배열 검사, 정렬, 선택</strong>
+                <strong>배열 검사</strong>
                 
                 <!-- item -->
                 <div class="item_wrap">
@@ -5428,18 +5428,80 @@ arr.length //4
                     </div>
                 </div>
                 <!-- //item -->
+                </div>
+                <div class="depth_2">
+                    <strong>배열 정렬</strong>
                 <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.sort()</button></dt>
                         <dd>
-                            asd
+                            정렬 (기존배열)
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
-asd
+
+사용법
+arr.sort([compareFunction])
+compareFunction: 정렬할 내용을 리턴하는 콜백함수 
+(생략하면 배열은 각 요소의 문자열 변환에 따라 각 문자의 유니 코드 코드 포인트 값에 따라 정렬됩니다.)
+
+
+var arr = [1,2,3,4,5,6]
+
+## 정순 정렬: 
+arr.sort((a, b) => {
+    return a - b
+})
+
+## 역순 정렬:
+arr.sort((a, b) => {
+    return b - a
+})
+
+
+mdn ex)
+var items = [
+  { name: 'Edward', value: 21 },
+  { name: 'Sharpe', value: 37 },
+  { name: 'And', value: 45 },
+  { name: 'The', value: -12 },
+  { name: 'Magnetic', value: 13 },
+  { name: 'Zeros', value: 37 }
+];
+
+// value 기준으로 정렬
+items.sort(function (a, b) {
+  if (a.value &lt; b.value) {
+    return 1;
+  }
+  if (a.value &gt; b.value) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+
+// name 기준으로 정렬
+items.sort(function(a, b) {
+  var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  if (nameA &gt; nameB) {
+    return -1;
+  }
+  if (nameA &lt; nameB) {
+    return 1;
+  }
+
+  // 이름이 같을 경우
+  return 0;
+});
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
                         </code>
                     </pre>
                     </div>
@@ -5450,31 +5512,74 @@ asd
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.reverse()</button></dt>
                         <dd>
-                            asd
+                            순서뒤집기
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
-asd
+사용법
+a.reverse()
+
+var arr = [1,2,3,4,5]
+arr.reverse()
+//[5, 4, 3, 2, 1]
                         </code>
                     </pre>
                     </div>
                 </div>
                 <!-- //item -->
+                </div>
+                <div class="depth_2">
+                    <strong>배열 선택</strong>
 
                 <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.find()</button></dt>
                         <dd>
-                            asd
+                            배열중 하나 찾아서 리턴
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
-asd
+사용법.. ie x T.T 
+arr.find(callback[, thisArg])
+
+
+var inventory = [
+    {name: 'apples', quantity: 2},
+    {name: 'bananas', quantity: 0},
+    {name: 'cherries', quantity: 5}
+];
+
+function findCherries(fruit) {
+    return fruit.name === 'cherries';
+}
+
+console.log(inventory.find(findCherries)); // { name: 'cherries', quantity: 5 }
+
+
+
+ex2) 배열에서 소수찾기
+function isPrime(element, index, array) {
+    var start = 2;
+    while (start &lt;= Math.sqrt(element)) {
+      if (element % start++ &lt; 1) {
+        return false;
+      }
+    }
+    return element > 1;
+  }
+  
+  console.log([4, 6, 8, 12].find(isPrime)); // undefined, not found
+  console.log([4, 5, 8, 12].find(isPrime)); // 5 
+
+
+
+
+
                         </code>
                     </pre>
                     </div>
@@ -5485,13 +5590,36 @@ asd
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.findIndex()</button></dt>
                         <dd>
-                            asd
+                            배열에서 해당요소 인덱스 리턴
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
-asd
+
+사용법.. ie x
+arr.findIndex(callback(element[, index[, array]])[, thisArg])
+<span class="seg">
+callback: 3개의 인수를 취하여 배열의 각 값에 대해 실행할 함수입니다.
+element: 배열에서 처리중인 현재 요소입니다.
+index: 배열에서 처리중인 현재 요소의 인덱스입니다.
+array: findIndex 함수가 호출된 배열입니다.
+
+thisArg
+선택 사항. 콜백을 실행할 때 this로 사용할 객체입니다.
+</span>
+
+
+var arr = [1,2,3,4,5]
+
+ex1 ) 
+arr.findIndex(ele => ele > 3) 
+//3
+
+
+ex2 )
+arr.findIndex(ele => console.log(ele === 3))
+//flase false true false false
                         </code>
                     </pre>
                     </div>
@@ -5591,13 +5719,35 @@ asd
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.map()</button></dt>
                         <dd>
-                            asd
+                            배열을 순회, 커스텀해서 리턴 (새 배열)
                         </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
-asd
+사용법
+arr.map(callback(currentValue[, index[, array]])[, thisArg])
+<span class="seg">
+callback: 새로운 배열 요소를 생성하는 함수. 다음 세 가지 인수를 가집니다.
+currentValue: 처리할 현재 요소.
+index Optional: 처리할 현재 요소의 인덱스.
+array Optional: map()을 호출한 배열.
+thisArg Optional: callback을 실행할 때 this로 사용되는 값.
+</span>
+
+
+ex1)
+var arr = [{key:1, value:10}, {key:2, value:20}, {key:3, value: 30}];
+arr.map(item => {
+    var narr = {}
+    narr[item.key] = item.value
+    return narr 
+})
+
+
+ex2)
+var arr = [1,2,34] 
+arr.map(item => item * 2) //[2, 4, 68]
                         </code>
                     </pre>
                     </div>
@@ -5608,13 +5758,77 @@ asd
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.filter()</button></dt>
                         <dd>
-                            asd
+                            배열을 순회 조건을 필터링하여 리턴 (새 배열)
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
-asd
+사용법
+arr.map(callback(currentValue[, index[, array]])[, thisArg])
+<span class="seg">
+callback: 각 요소를 시험할 함수. true를 반환하면 요소를 유지하고, false를 반환하면 버립니다. 다음 세 가지 매개변수를 받습니다.
+element: 처리할 현재 요소.
+index Optional: 처리할 현재 요소의 인덱스.
+array Optional: filter를 호출한 배열.
+thisArg Optional: callback을 실행할 때 this로 사용하는 값.
+</span>
+
+
+ex1) 10보다 작은수 걸러내기 
+var arr = [10, 40, 32, 123, 5, 2]
+
+arr.filter(item => item > 10) 
+//[40, 32, 123] 
+
+
+ex2) JSON에서 무효값 걸러내기 ...검증
+var arr = [
+  { id: 15 },
+  { id: -1 },
+  { id: 0 },
+  { id: 3 },
+  { id: 12.2 },
+  { },
+  { id: null },
+  { id: NaN },
+  { id: 'undefined' }
+];
+
+var invalidEntries = 0;
+
+function isNumber(obj) {
+  return obj !== undefined && typeof(obj) === 'number' && !isNaN(obj);
+}
+
+function filterByID(item) {
+  if (isNumber(item.id) && item.id !== 0) {
+    return true;
+  }
+  invalidEntries++;
+  return false;
+}
+
+var arrByID = arr.filter(filterByID);
+
+console.log('Filtered Array\n', arrByID);
+// Filtered Array
+// [{ id: 15 }, { id: -1 }, { id: 3 }, { id: 12.2 }]
+
+console.log('Number of Invalid Entries = ', invalidEntries);
+// Number of Invalid Entries = 5
+
+
+
+ex3) 배열 값 검색하기
+var arr = ['apple', 'banana', 'grapes', 'mango', 'orange']
+
+var fil = (query, array) => {
+    return array.filter(el => el.toLowerCase().indexOf(query.toLowerCase()) &gt; -1)
+}
+
+fil('ap') //['apple', 'grapes']
+
                         </code>
                     </pre>
                     </div>
@@ -5625,7 +5839,7 @@ asd
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.reduce()</button></dt>
                         <dd>
-                            asd
+                            배열의 각 요소에 reduce함수를 실행하고 하나의 값을 반환
                     </dd>
                     </dl>
                     <div class="code_wrap">
@@ -5694,7 +5908,7 @@ asd
                     <dl class="item">
                         <dt><button><span>Array.prototype</span>.entries()</button></dt>
                         <dd>
-                            순서로 배열 리턴해줌 (새 배열)
+                            순서로 배열 리턴해줌 (새 배열..제네레이터 문법이랑 비슷) 
                     </dd>
                     </dl>
                     <div class="code_wrap">
