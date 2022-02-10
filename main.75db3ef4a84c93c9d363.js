@@ -1,7 +1,7 @@
 /*!
  * 
  *         Build Data: 2022. 2. 10.
- *         GIT Commit Ver: 49b2b95
+ *         GIT Commit Ver: 504ed41
  *
  *         User Name : ejonghwan
  *
@@ -121,7 +121,7 @@ class Nav {
     this.root = root;
     this.menu = [{
       id: 0,
-      href: `/`,
+      href: `https://ejonghwan.github.io/jb/`,
       menuName: 'Jongdbook',
       state: false
     }, {
