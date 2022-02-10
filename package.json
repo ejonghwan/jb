@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ejonghwan/jongdbook.git"
+    "url": "git+https://github.com/ejonghwan/jb.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ejonghwan/jongdbook/issues"
+    "url": "https://github.com/ejonghwan/jb/issues"
   },
-  "homepage": "https://github.com/ejonghwan/jongdbook",
+  "homepage": "https://ejonghwan.github.io/",
   "devDependencies": {
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
