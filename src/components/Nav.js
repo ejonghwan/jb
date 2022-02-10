@@ -7,7 +7,7 @@ class Nav {
         this.menu = [
             {
                 id: 0,
-                href: `/`, 
+                href: `https://ejonghwan.github.io/jb/`, 
                 menuName: 'Jongdbook' ,
                 state: false,
             },
