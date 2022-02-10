@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+   
+    <title>Document</title>
+<script defer src="../../../main.b69f26fc1b79bec91957.js"></script><link href="../../../main.css" rel="stylesheet"></head>
+<body>
+
+    <div class="wrap">
+        <header>
+            <nav class="global_wrap sub">
+                <ul class="line"></ul>
+            </nav>
+        </header>
+        <main>
+            <div class="global_wrap">
+                
+
+                       
+                <!-- git -->
+                <section class="conts">
+                    <h2>GIT</h2>
+
+                    <div class="depth_2">
+                        <strong>로컬 저장소에 저장하고 원격 저장소에 올리기</strong>
+                   
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git add <span>[filename | .]</span></button></dt>
+                            <dd>
+                                파일 스테이징에 올리기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git commit -m <span>['message']</span></button></dt>
+                            <dd>
+                                깃에 커밋
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git remote add <span>[origin]</span> <span>[http~]</span></button></dt>
+                            <dd>
+                                저장소 등록
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git push <span>[origin]</span> <span>[master]</span></button></dt>
+                            <dd>
+                                저장소에 푸시
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                </div>
+                <div class="depth_2">
+                    <strong>저장소</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git remote rm <span>[name]</span> </button></dt>
+                            <dd>
+                                저장소 삭제
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git remote rename <span>[originName]</span> <span>[newName]</span></button></dt>
+                            <dd>
+                                저장소 이름변경
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+                    <div class="depth_2">
+                        <strong>파일 가져오기/합치기</strong>
+                        <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git clone <span>[http~ .]</span></dt>
+                            <dd>
+                                원격저장소 파일 가져오기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+.은 현재 경로
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git pull <span>[origin]</span> <span>[master]</span> </button></dt>
+                            <dd>
+                                패치 후 합치기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+--rebase    한줄로 병합 옵션
+* git pull  or  git pull --rebase 
+이력을 전부 관리할 것인가 or 불필요한 이력은 필요없으므로 깔끔하게 이력을 관리할 것인가
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git merge <span>[origin]</span>/<span>[branch-name]</span> </button></dt>
+                            <dd>
+                                병합 (가져오고 싶은 쪽에서)
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+// 충돌:
+1. newBranch 라는 이름의 브랜치를 하나 만듬
+2. 마스터에 존재하는 a.js를 newBranch의 a.js 를 수정하고 푸시함
+3. 근데 마스터에서도 a.js의 같은줄을 수정함 ..
+4. 그리고 마스터에서 newBranch를 머지하면 충돌이 남(선택하면됨)
+
+git merge [브랜치명]
+git merge [브랜치명] --edit // 병합 후 바로 vi 편집기가 나오면서 커밋 메시지 수정 가능
+git merge [브랜치명] --no-edit // 커밋 메시지 수정없이 바로 병합
+git merge --abort //merge 취소하기
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+                    <div class="depth_2">
+                        <strong>브랜치</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git branch <span>[name]</span> </button></dt>
+                            <dd>
+                                브랜치 생성
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+git checkout [브랜치명]
+git checkout -b [브랜치명]  # 브랜치만들고 바로 이동
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git checkout <span>[name]</span></button></dt>
+                            <dd>
+                                브랜치 이동
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git branch -d <span>[브랜치명]</span></button></dt>
+                            <dd>
+                                브랜치 삭제
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    </div>
+
+                    <div class="depth_2">
+                        <strong>그 외 명령어</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git config --global user.name <span>"[사용자명]"</span> </button></dt>
+                            <dd>
+                                로컬저장소에 유저 이름 지정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+--global 이 컴퓨터의 모든 프로젝트 적용 
+--global 없애면 해당 프로젝트에만 적용
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git config --global user.email <span>"[이메일명]"</span></button></dt>
+                            <dd>
+                                로컬저장소에 사용자이메일명 지정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+--global 이 컴퓨터의 모든 프로젝트 적용 
+--global 없애면 해당 프로젝트에만 적용
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git log <span></span></button></dt>
+                            <dd>
+                                커밋 내역 확인
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+git log --pretty=oneline   한줄로 표기하기
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git show <span>[커밋 id]</span></button></dt>
+                            <dd>
+                                특정 커밋 내역 확인
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git diff <span>[이전커밋 id] [이후커밋 id]</span></button></dt>
+                            <dd>
+                                최근 버전과 작업 폴더의 수정 파일 사이의 차이를 출력
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git reset HEAD <span>^ | ~n</span></button></dt>
+                            <dd>
+                                가장 최근 커밋을 취소
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+git reset HEAD^ # 현재 HEAD의 이전 커밋으로 되돌리기
+git reset HEAD~n # 현재로 부터 n 번째 이전 커밋으로 되돌리기
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git reset <span>[커밋 해시]</span></button></dt>
+                            <dd>
+                                지정한 커밋 해시로 이동하고 커밋을 취소
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+git reset --soft [커밋ID]  # head 만 바뀜
+git reset --mixed [커밋ID] # staging 도 그 때로 바뀜
+git reset --hard [커밋ID] # working디렉토리/staging 모두 그 때로 바꿈 
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git revert <span>[커밋 해시]</span></button></dt>
+                            <dd>
+                                지정한 커밋 해시의 변경 이력을 취소
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git commit --amend <span></span></button></dt>
+                            <dd>
+                                커밋 수정하는 법
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+파일 수정 후
+git add .
+git commit --amend   (최신 커밋 수정)
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>git status <span></span></button></dt>
+                            <dd>
+                                상태를 확인
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     
+                    </div>
+
+                    <div class="depth_2">
+                        <strong>상세 내용</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>팁 및 주의사항</dt>
+                            <dd>
+                                <a href="https://github.com/ejonghwan/git/blob/master/git.md" target="_blank">https://github.com/ejonghwan/git/blob/master/git.md</a>
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+
+                </div>
+              </section>
+              <!-- //git -->
+
+
+            <!-- Linux? -->
+            <section class="conts">
+                <h2>Linux</h2>
+                <span class="seg">모든 명령어는 명령어 뒤에 --help 옵션을 주면 자세한 내용나옴</span>
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>cd <span>[디렉토리]</span> </dt>
+                        <dd>
+                            파일 이동
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+cd .. 이전 디렉토리
+cd /home/info/hoho  디렉토리 지정
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>pwd <span>[디렉토리]</span> </dt>
+                        <dd>
+                            디렉토리 정보 출력
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+pwd /home/info/hoho 
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>ls <span>[option] </span> </dt>
+                        <dd>
+                            디렉토리 목록 확인
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+ls -l
+ls -a
+ls -al
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>cp <span>[option] [복사할파일명] [복사파일명] </span> </dt>
+                        <dd>
+                            파일 복사
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+$ ls
+testdir/  testfile
+
+
+$ cp testfile1 testfile_cp
+$ ls
+testdir/  testfile  testfile_cp
+
+
+$ cp -r testdir testdir_cp
+$ ls
+testdir/  testdir_cp/  testfile  testfile_cp
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>mv <span>[option] </span> </dt>
+                        <dd>
+                            파일 혹은 디렉토리 이동
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+실제로 원하는 위치로 이동할때도 사용하지만, 이름을 변경하는 용도로도 사용한다.
+cp와는 달리 디렉토리를 이동할때도 별다른 옵션이 필요 없다.
+
+$ ls
+testdir/  testfile
+
+
+$ mv testfile testfile_mv
+$ ls
+testdir/  testfile_mv
+
+
+$ mv testfile_mv testdir/
+$ ls
+testdir/
+
+
+$ ls testdir/
+testfile
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>ls <span>[option] </span> </dt>
+                        <dd>
+                            디렉토리 목록 확인
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+ls -l
+ls -a
+ls -al
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>mrdir <span>[option] [이름]</span> </dt>
+                        <dd>
+                            새로운 파일 생성
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+mkdir -m 옵션 : 디렉토리의 접근 권한을 설정한다.
+mkdir -p 옵션 : 여러 덱스의 하위 디렉토리를 생성시에 사용한다.
+mkdir -v 옵션 : 디렉토리 생성시 메세지를 출력한다.
+mkdir -z 옵션 : SELinux 보안 컨텍스트 설정을 한다. [직접 확인 필요]
+mkdir --help 옵션 : 도움말을 출력한다.
+mkdir --version : mkdir 정보를 출력한다
+
+$ ls
+testfile
+
+
+$ mkdir testdir
+$ ls
+testdir/  testfile
+
+
+$ mkdir -p a/b/c/d/e/
+$ ls -R a/
+a/:
+b/
+
+a/b:
+c/
+
+a/b/c:
+d/
+
+a/b/c/d:
+e/
+
+a/b/c/d/e:
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>rm <span>[option] [이름]</span> </dt>
+                        <dd>
+                            파일이나 디렉토리를 삭제
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+디렉토리를 삭제할때는 r 옵션을 주어야 한다.
+-f 옵션을 주면 사용자에게 삭제 여부를 묻지 않고 바로 삭제한다.
+디렉토리를 삭제할 때에는 하위 디렉토리까지 모두 삭제되므로 유의하자.
+
+$ ls
+testdir/  testfile1  testfile2
+
+
+$ rm -f testfile1
+$ ls
+testdir/  testfile2
+
+
+$ rm -rf testdir/
+$ ls
+testfile2
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>touch <span>[option] [이름]</span> </dt>
+                        <dd>
+                            파일이나 디렉토리의 최근 업데이트 일자를 현재 시간으로 변경
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+$ ls -l
+total 0
+-rw-r--r-- 1 itholic 197121 0 11월  6 22:08 testfile1
+
+
+$ touch testfile1
+$ ls -l
+total 0
+-rw-r--r-- 1 itholic 197121 0 11월  6 22:43 testfile1
+
+
+$ touch testfile2
+$ ls -l
+total 0
+-rw-r--r-- 1 itholic 197121 0 11월  6 22:43 testfile1
+-rw-r--r-- 1 itholic 197121 0 11월  6 22:44 testfile2
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>cat <span>[option] [이름]</span> </dt>
+                        <dd>
+                            파일 출력, 합치기, 덧붙이기
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+단순히 파일의 내용을 출력할 수도 있고,
+파일 여러개를 합쳐서 하나의 파일로 만들 수도 있다.
+그리고 기존 한 파일의 내용을 다른 파일에 덧붙일수도 있다.
+새로운 파일을 만들때에도 사용된다.
+file1, file2, file3 파일에는 각각 간단하게 숫자 1, 2, 3 이 적혀있다.
+
+$ ls
+file1  file2  file3
+
+
+$ cat file1
+1
+
+
+$ cat file2
+2
+
+
+$ cat file3
+3
+
+
+$ cat file1 file2 > file1_2
+$ ls
+file1  file1_2  file2  file3
+
+
+$ cat file1_2
+1
+2
+
+
+$ cat file1 >> file2
+$ cat file2
+2
+1
+
+
+$ cat > file4
+hello
+world
+(작성이 끝나면 ctrl +d 로 파일 저장)
+
+
+$ cat file4
+hello
+world
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>head <span>[option]</span> </dt>
+                        <dd>
+                            파일의 앞부분을 보고싶은 줄 수만큼 출력
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+$ cat testfile
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+
+$ head -3 testfile
+1
+2
+3
+
+
+$ head testfile
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>find <span>[검색경로]</span> -name <span>[이름]</span></dt>
+                        <dd>
+                            특정 파일이나 디렉토리를 검색
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+사용법이 앞의 명령어들에비해 살짝 복잡하므로, 기본 사용법을 언급하자면 다음과 같다.
+파일명은 직접 풀 네임을 입력해도 되지만, 다음 예제처럼 특정 조건을 적용해 검색할수도 있다.
+나같은 경우 주로 특정 확장자명을 찾기 위해 사용한다.
+
+
+$ ls
+dir1/  dir3/  file1  file3  picture1.jpg  picture3.jpg
+dir2/  dir4/  file2  file4  picture2.jpg  picture4.jpg
+
+
+$ find ./ -name 'file1'
+./file1
+
+
+$ find ./ -name "*.jpg"
+./picture1.jpg
+./picture2.jpg
+./picture3.jpg
+./picture4.jpg
+
+
+확장자가 .jpg인 파일을 찾았다.
+하지만 여기서 그치지 않고, 확장자가 .jpg인 파일만 찾아서 바로 삭제할수도 있다.
+exec 옵션을 사용해 다음과 같이 처리하면 된다.
+
+$ find ./ -name "*.jpg" -exec rm {} \;
+$ ls
+dir1/  dir2/  dir3/  dir4/  file1  file2  file3  file4
+
+
+그리고 다음과 같이 -type 옵션을 주면, 디렉토리나 파일만 지정해서 검색할수도 있다.
+
+$ find ./ -type d
+./
+./dir1
+./dir2
+./dir3
+./dir4
+
+
+$ find ./ -type f
+./file1
+./file2
+./file3
+./file4
+
+
+특정 조건에 해당하는 파일들의 내용을 전부 찾아서 바꾸는 것이다.
+예를들어 10만개의 파일이 있는데,
+그 중에 확장자가 .txt인 파일만 찾아내고
+txt 파일 안에 있는 ‘hi’ 라는 문자열을 ‘hello’로 바꾸려면 다음과 같이 하면 된다.
+
+find ./ -name "*.txt" -exec sed -i 's/hi/hello/g' {} \;
+
+
+* 다음 sed 명령어는 testfile1.txt 이라는 파일의 모든 ‘hi’ 라는 문자열을 ‘hello’로 바꾸는 역할을 한다.
+sed -i 's/hi/hello/g' testfile1.txt
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                
+            </section>
+            <!-- Linux? -->
+
+
+              <!-- Webpack -->
+              <section class="conts">
+                <h2>Webpack</h2>
+
+                <div class="depth_2">
+                    <!-- <strong>Webpack 명령어</strong> -->
+               
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button>사용법 <span>정리</span></button></dt>
+                        <dd>
+                            webpack, babel, eslint
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="markdown">
+# gitgub 
+<a href="https://github.com/ejonghwan/webpack_jh" target="_blank">https://github.com/ejonghwan/webpack_jh</a>
+
+# webpack
+<a href="https://github.com/ejonghwan/webpack_jh/blob/master/z_webpack.md" target="_blank">https://github.com/ejonghwan/webpack_jh/blob/master/z_webpack.md</a>
+
+# eslint
+<a href="https://github.com/ejonghwan/webpack_jh/blob/master/z_eslint.md" target="_blank">https://github.com/ejonghwan/webpack_jh/blob/master/z_eslint.md</a>
+
+# babel
+<a href="https://github.com/ejonghwan/webpack_jh/blob/master/z_babel.md" target="_blank">https://github.com/ejonghwan/webpack_jh/blob/master/z_babel.md</a>
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+            </div>
+          </section>
+
+
+          <!-- Lottie -->
+          <section class="conts">
+            <h2>Lottie</h2>
+
+            <div class="depth_2">
+                <!-- <strong>Lottie 사용방법</strong> -->
+           
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button>bodymovin <span>사용법</span></button></dt>
+                    <dd>
+                        -
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="markdown">
+# 침고
+공식홈페이지(Lottie) - <a href="https://airbnb.design/lottie/" target="_blank">https://airbnb.design/lottie/</a>
+공식메뉴얼 - <a href="http://airbnb.io/lottie/#/README" target="_blank">http://airbnb.io/lottie/#/README</a>
+사용자모음 - <a href="https://lottiefiles.com/" target="_blank">https://lottiefiles.com/</a>
+github - <a href="https://www.npmjs.com/package/bodymovin" target="_blank">https://www.npmjs.com/package/bodymovin</a>
+
+
+# 필요파일 
+bodymovin
+data.json 
+
+
+# 바디무빈 적용 
+- npm install bodymovin 
+- bower install bodymovin
+- cdn <a href="https://cdnjs.com/libraries/bodymovin" target="_blank">https://cdnjs.com/libraries/bodymovin</a>
+
+
+&lt;script&gt;
+    var animation = bodymovin.loadAnimation({
+        container: document.getElementById("bm"),
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "logo_ny.json"
+    });
+&lt;/script&gt;
+
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+        </div>
+      </section>
+      <!-- //Lottie -->
+
+              
+
+
+            </div>
+        </main>
+        <footer>
+            <div class="global_wrap">
+                <ul class="info">
+                    asdasdsa
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
