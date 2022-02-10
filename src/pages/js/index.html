@@ -4218,13 +4218,30 @@ asd
                         <dl class="item">
                             <dt><button>parseFloat()</button></dt>
                             <dd>
-                                asd
+                                문자열로 변환한 후 부동소수점 실수로 파싱
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+사용법
+parseFloat(string)
+
+<span class="seg">
+    파싱할 값입니다. 문자열이 아닐 경우 ToString 추상 연산을 사용해 문자열로 변환합니다. 문자열의 선행 공백은 무시합니다.
+</span>
+
+
+parseFloat(3.14);
+parseFloat('3.14');
+parseFloat('  3.14  ');
+parseFloat('314e-2');
+parseFloat('0.0314E+2');
+parseFloat('3.14와 숫자가 아닌 문자들');
+parseFloat({ toString: function() { return "3.14" } });
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/parseFloat
                             </code>
                         </pre>
                         </div>
