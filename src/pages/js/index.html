@@ -4159,9 +4159,9 @@ ul.replaceWith(...lis)
                 <!-- Node -->
 
                   
-                 <!-- 자주쓰는 내장객체 -->
+                 <!-- 글로벌 객체들 -->
                  <section class="conts">
-                    <h2>Implicit_object</h2><span class="seg">자주쓰는 내장객체</span>
+                    <h2>Global_Objects</h2><span class="seg">글로벌 객체들</span>
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
@@ -4252,13 +4252,89 @@ https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/pa
                         <dl class="item">
                             <dt><button>parseInt()</button></dt>
                             <dd>
-                                asdasdasdasd
+                                문자열 파싱 후 특정진수의 정수 반환
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+사용법
+parseInt(string)
+parseInt(string, radix)
+
+<span class="seg">
+string: 파싱할 값입니다. 문자열이 아닐 경우 ToString 추상 연산을 사용해 문자열로 변환합니다. 문자열의 선행 공백은 무시합니다.
+
+radix Optional: string의 진수를 나타내는 2부터 36까지의 정수입니다. 주의하세요. 기본 값이 10이 아닙니다! Number 자료형이 아닌 경우 Number로 변환합니다.
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/parseInt#%EC%84%A4%EB%AA%85
+</span>
+
+parseInt('0xF', 16)
+parseInt('F', 16)
+parseInt('17', 8)
+parseInt(021, 8)
+parseInt('015', 10)    // parseInt('015', 8)이었다면 13을 반환
+parseInt(15.99, 10)
+parseInt('15,123', 10)
+parseInt('FXX123', 16)
+parseInt('1111', 2)
+parseInt('15 * 3', 10)
+parseInt('15e2', 10)
+parseInt('15px', 10)
+parseInt('12', 13)
+
+
+
+
+
+function roughScale(x, base) {
+    const parsed = parseInt(x, base);
+    if (isNaN(parsed)) { return 0; }
+    return parsed * 100;
+}
+    
+console.log(roughScale(' 0xF', 16));
+// expected output: 1500
+
+console.log(roughScale('321', 2));
+// expected output: 0
+
+
+더 엄격한 파싱
+function filterInt(value) {
+    if (/^[-+]?(\d+|Infinity)$/.test(value)) {
+      return Number(value)
+    } else {
+      return NaN
+    }
+  }
+  
+  console.log(filterInt('421'))                // 421
+  console.log(filterInt('-421'))               // -421
+  console.log(filterInt('+421'))               // 421
+  console.log(filterInt('Infinity'))           // Infinity
+  console.log(filterInt('421e+0'))             // NaN
+  console.log(filterInt('421hop'))             // NaN
+  console.log(filterInt('hop1.61803398875'))   // NaN
+  console.log(filterInt('1.61803398875'))      // NaN
+
+
+
+
+<span class="seg">
+진수란? 진법으로 나타내어진 수를 의미한다
+n진법이란? 0부터 n개의 숫자를 사용해서 수를 표현하는 방법이다. 즉,0~ (n-1) 까지 표현한다.
+n진법으로 나타낸 수가 n진수이다.
+
+
+2진법이란, 0~1까지의 2개의 숫자를 사용해서 수를 표현한다.
+8진법이란, 0~7 까지의 8개의 숫자를 사용해서 수를 표현한다.
+16진법이란, 0~9 까지의 10개의 숫자를 사용하고 남는 자리는 A~F 까지 6개의 문자를 사용해서 수를 표현한다.
+
+진수 설명 블로그 
+https://itbeginner2020.tistory.com/17
+</span>
+
                             </code>
                         </pre>
                         </div>
@@ -4269,13 +4345,30 @@ asd
                         <dl class="item">
                             <dt><button>encodeURI()</button></dt>
                             <dd>
-                                asd
+                                URI 특수문자 변경 (포함하지않는 문자열 체크)
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+URI의 특정한 문자를 UTF-8로 인코딩해 하나, 둘, 셋, 혹은 네 개의 연속된 이스케이프 문자로 나타냅니다. (두 개의 대리 문자로 이루어진 문자만 이스케이프 문자 네 개로 변환됩니다.)
+
+사용법 
+encodeURI(URI)
+<span class="seg">
+URI: 완전한 URI.
+</span>
+
+중요! 아래문자열은 포함하지 않음
+A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #
+
+
+encodeURI() : "&", "+", "=" 인코딩 포함하지 않음
+encodeURIComponent() : 위 세개 포함
+
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
                             </code>
                         </pre>
                         </div>
@@ -4286,13 +4379,32 @@ asd
                         <dl class="item">
                             <dt><button>encodeURIComponent()</button></dt>
                             <dd>
-                                asd
+                                URI 특수문자 변경 (포함하지않는 문자열 체크)
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+URI의 특정한 문자를 UTF-8로 인코딩해 하나, 둘, 셋, 혹은 네 개의 연속된 이스케이프 문자로 나타냅니다. (두 개의 대리 문자로 이루어진 문자만 이스케이프 문자 네 개로 변환됩니다.)
+
+
+
+사용법 
+encodeURIComponent(URI)
+<span class="seg">
+URI: 완전한 URI.
+</span>
+
+
+중요! 아래문자열은 포함하지 않음
+A-Z a-z 0-9 - _ . ! ~ * ' ( )
+
+encodeURI() : "&", "+", "=" 인코딩 포함하지 않음
+encodeURIComponent() : 위 세개 포함
+
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent
                             </code>
                         </pre>
                         </div>
@@ -4303,13 +4415,37 @@ asd
                         <dl class="item">
                             <dt><button>decodeURI()</button></dt>
                             <dd>
-                                asd
+                                인코딩된 URI 해석
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+encodeURI 나 비슷한 방법으로 생성된 Uniform Resource Identifier(URI) 컴포넌트를 해독합니다.
+
+
+
+사용법 
+decodeURI(encodedURI)
+<span class="seg">
+    encodedURI: 완전하고 암호화된 인터넷식별자(URI)
+</span>
+
+
+const uri = 'https://mozilla.org/?x=шеллы';
+const encoded = encodeURI(uri);
+console.log(encoded);
+// expected output: "https://mozilla.org/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B"
+
+try {
+console.log(decodeURI(encoded));
+// expected output: "https://mozilla.org/?x=шеллы"
+} catch (e) { // catches a malformed URI
+console.error(e);
+}
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/decodeURI
                             </code>
                         </pre>
                         </div>
@@ -4320,13 +4456,37 @@ asd
                         <dl class="item">
                             <dt><button>decodeURIComponent()</button></dt>
                             <dd>
-                                asd
+                                인코딩된 URI 해석
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+encodeURIComponent 나 비슷한 방법으로 생성된 Uniform Resource Identifier(URI) 컴포넌트를 해독합니다.
+
+
+
+사용법 
+decodeURI(encodedURI)
+<span class="seg">
+    encodedURI: 완전하고 암호화된 인터넷식별자(URI)
+</span>
+
+
+const uri = 'https://mozilla.org/?x=шеллы';
+const encoded = encodeURI(uri);
+console.log(encoded);
+// expected output: "https://mozilla.org/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B"
+
+try {
+console.log(decodeURI(encoded));
+// expected output: "https://mozilla.org/?x=шеллы"
+} catch (e) { // catches a malformed URI
+console.error(e);
+}
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent
                             </code>
                         </pre>
                         </div>
@@ -4338,13 +4498,24 @@ asd
                         <dl class="item">
                             <dt><button>arguments</button></dt>
                             <dd>
-                                asd
+                                함수 인자값, 지역변수
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+function func1(a, b, c) {
+    console.log(arguments[0]);
+    // expected output: 1
+    
+    console.log(arguments[1]);
+    // expected output: 2
+    
+    console.log(arguments[2]);
+    // expected output: 3
+}
+
+func1(1, 2, 3);
                             </code>
                         </pre>
                         </div>
@@ -4355,7 +4526,7 @@ asd
                         <dl class="item">
                             <dt><button>Error</button></dt>
                             <dd>
-                                asd
+                                에러
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4372,7 +4543,7 @@ asd
                         <dl class="item">
                             <dt><button>Generator</button></dt>
                             <dd>
-                                asd
+                                제네레이터 문법
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4389,7 +4560,7 @@ asd
                         <dl class="item">
                             <dt><button>JSON</button></dt>
                             <dd>
-                                asd
+                                데이터 문서 형식
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4406,7 +4577,7 @@ asd
                         <dl class="item">
                             <dt><button>Promise</button></dt>
                             <dd>
-                                asd
+                                약속
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4432,7 +4603,7 @@ Promise.prototype.then()
                         <dl class="item">
                             <dt><button>Boolean</button></dt>
                             <dd>
-                                asd
+                                트루시
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4449,13 +4620,22 @@ asd
                         <dl class="item">
                             <dt><button>Symbol</button></dt>
                             <dd>
-                                asd
+                                원시형 데이터 타입중 하나
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+Symbol() 함수는 심볼(symbol) 형식의 값을 반환하는데, 이 심볼은 내장 객체(built-in objects)의 여러 멤버를 가리키는 정적 프로퍼티와 전역 심볼 레지스트리(global symbol registry)를 가리키는 정적 메서드를 가지며, "new Symbol()" 문법을 지원하지 않아 생성자 측면에서는 불완전한 내장 객체 클래스(built-in object class)와 유사합니다.
+
+Symbol()로부터 반환되는 모든 심볼 값은 고유합니다. 심볼 값은 객체 프로퍼티(object properties)에 대한 식별자로 사용될 수 있습니다; 이것이 심볼 데이터 형식의 유일한 목적입니다. 목적과 용례에 대한 더 자세한 설명은 용어집의 심볼 항목(glossary entry for Symbol)에서 볼 수 있습니다.
+
+심볼(symbol) 데이터 형은 원시 데이터 형(primitive data type)의 일종입니다.
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Symbol
+
+
                             </code>
                         </pre>
                         </div>
@@ -4466,7 +4646,7 @@ asd
                         <dl class="item">
                             <dt><button>Reflect</button></dt>
                             <dd>
-                                asd
+                                -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4483,20 +4663,22 @@ asd
                         <dl class="item">
                             <dt><button>Proxy</button></dt>
                             <dd>
-                                asd
+                                기본적인 동작(속성 접근, 할당, 순회, 열거, 함수 호출 등)의 새로운 행동을 정의할 때 사용
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+ie x 
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Proxy
                             </code>
                         </pre>
                         </div>
                     </div>
                     <!-- //item -->
                 </section>
-                <!-- 자주쓰는 내장객체 -->
+                <!-- 글로벌 객체들 -->
 
                 <!-- Object -->
                 <section class="conts">
@@ -4686,7 +4868,7 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object</span>.fromEntries()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4703,7 +4885,7 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object</span>.getOwnPropertyDescriptor()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4720,7 +4902,7 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object</span>.getOwnPropertyDescriptors()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4737,7 +4919,7 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object</span>.getOwnPropertySymbols()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4754,7 +4936,7 @@ const obj = {
                         <dl class="item">
                             <dt><button><span>Object</span>.getPrototypeOf()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4794,7 +4976,7 @@ Object.is(value1, value2);
                         <dl class="item">
                             <dt><button><span>Object</span>.isExtensible()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4811,7 +4993,7 @@ Object.is(value1, value2);
                         <dl class="item">
                             <dt><button><span>Object</span>.isFrozen()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4828,7 +5010,7 @@ Object.is(value1, value2);
                         <dl class="item">
                             <dt><button><span>Object</span>.isSealed()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4887,7 +5069,7 @@ console.log(Object.keys(object1));
                         <dl class="item">
                             <dt><button><span>Object</span>.seal()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4904,7 +5086,7 @@ console.log(Object.keys(object1));
                         <dl class="item">
                             <dt><button><span>Object</span>.setPrototypeOf()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4921,7 +5103,7 @@ console.log(Object.keys(object1));
                         <dl class="item">
                             <dt><button><span>Object</span>.values()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -4988,7 +5170,7 @@ https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Ob
                         <dl class="item">
                             <dt><button><span>Object.prototype</span>.isPrototypeOf()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -5005,7 +5187,7 @@ https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Ob
                         <dl class="item">
                             <dt><button><span>Object.prototype</span>.propertyIsEnumerable()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -5022,7 +5204,7 @@ https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Ob
                         <dl class="item">
                             <dt><button><span>Object.prototype</span>.toLocaleString()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -5081,7 +5263,7 @@ https://medium.com/%EC%98%A4%EB%8A%98%EC%9D%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E
                         <dl class="item">
                             <dt><button><span>Object.prototype</span>.valueOf()</button></dt>
                             <dd>
-                               aa
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -7905,7 +8087,7 @@ asd
                         <dl class="item">
                             <dt><button><span>Function</span>.length</button></dt>
                             <dd>
-                                asd
+                                함수 인자 숫자
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -7922,13 +8104,56 @@ asd
                         <dl class="item">
                             <dt><button><span>Function</span>.name</button></dt>
                             <dd>
-                                asd
+                                함수이름 
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
 asd
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>Function.prototype</span>.call()</button></dt>
+                            <dd>
+                                this 지정 (바로 실행)
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+사용법
+func.call(thisArg[, arg1[, arg2[, ...]]])
+
+<span class="seg">
+thisArg: func 호출에 제공되는 this의 값.
+arg1, arg2, ...: 객체를 위한 인수.
+반환값: this 와 arguments 를 매개로 호출된 함수의 반환값
+</span>
+
+
+var mike = { name: 'mike' }
+var kelly = { name: 'kelly' }
+
+function name() {
+    console.log(this.name);
+}
+
+name.call(mike) //mike
+
+function update(birthYear, occupation){
+    this.birthYear = birthYear
+    this.occupation = occupation
+}
+
+update.call(mike, 1999, 'designer') //mike = { name: 'mike', birthYear: 1999, occupation: 'designer' }
+
                             </code>
                         </pre>
                         </div>
@@ -7939,13 +8164,94 @@ asd
                         <dl class="item">
                             <dt><button><span>Function.prototype</span>.apply()</button></dt>
                             <dd>
-                                asd
+                                this 지정 (배열로 받음)
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+이미 존재하는 함수를 호출할 때 다른 this 객체를 할당할 수 있습니다. 
+apply 는 지원되는 인수의 타입만 제외하면 call() 과 매우 유사
+                                
+사용법
+func.apply(thisArg, [argsArray])  //붙일 디스로 들어갈 값, 붙일 배열
+
+<span class="seg">
+thisArg 옵션:  func 를 호출하는데 제공될 this 의 값. this 는 메소드에 의해 실제로 보여지는 값이 아닐 수 있음을 유의합니다. 메소드가 non-strict mode 코드의 함수일 경우, null 과 undefined 가 전역 객체로 대체되며, 기본 값은 제한됩니다.
+argsArray 옵션: func 이 호출되어야 하는 인수를 지정하는 유사 배열 객체, 함수에 제공된 인수가 없을 경우 null 또는 undefined. ECMAScript 5 의 시작으로 이러한 인수들은 배열 대신 제네릭 유사 배열 객체로 사용될 수 있습니다. 아래의 브라우저 호환성 정보를 보세요.
+반환값: 지정한 this 값과 인수들로 호출한 함수의 결과.
+</span>
+
+####### 오호 1
+var mike = { name: 'mike' }
+var kelly = { name: 'kelly' }
+
+function name() {
+    console.log(this.name);
+}
+
+
+function update(birthYear, occupation){
+    this.birthYear = birthYear
+    this.occupation = occupation
+}
+
+// .call() 과 같은 결과지만 받는 인자를 배열로 받음.
+update.apply(mike, [1999, 'designer']) //mike = { name: 'mike', birthYear: 1999, occupation: 'designer' }
+
+
+######## 오호 2
+var nums = [1, 4, 5, 6, 10]
+
+// 기존
+Math.min(...nums) //1
+Math.max(...nums) //10
+
+//어플라이
+Math.min.apply(null, nums) //1
+Math.max.apply(null, nums) //10
+
+//콜
+Math.min.call(null, ...nums) //1
+Math.max.call(null, ...nums) //10
+
+
+
+//부가설명
+
+ex1) 배열에 배열 붙일 때
+var array = ['a', 'b'];
+var elements = [0, 1, 2];
+array.push.apply(array, elements);
+console.info(array); // ["a", "b", 0, 1, 2]
+
+
+ex2) 내장함수에 사용
+// min/max number in an array
+var numbers = [5, 6, 2, 3, 7];
+
+// using Math.min/Math.max apply
+var max = Math.max.apply(null, numbers);
+// 이는 Math.max(numbers[0], ...) 또는 Math.max(5, 6, ...)
+// 와 거의 같음
+
+var min = Math.min.apply(null, numbers);
+
+// vs. simple loop based algorithm
+max = -Infinity, min = +Infinity;
+
+for (var i = 0; i &lt; numbers.length; i++) {
+  if (numbers[i] > max) {
+    max = numbers[i];
+  }
+  if (numbers[i] &lt; min) {
+    min = numbers[i];
+  }
+}
+
+
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
                             </code>
                         </pre>
                         </div>
@@ -7956,13 +8262,124 @@ asd
                         <dl class="item">
                             <dt><button><span>Function.prototype</span>.bind()</button></dt>
                             <dd>
-                                asd
+                                this 지정
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+사용법 
+func.bind(thisArg[, arg1[, arg2[, ...]]])
+
+<span class="seg">
+thisArg: 바인딩 함수가 대상 함수(target function)의 this에 전달하는 값입니다. 바인딩 함수를 new 연산자로 생성한 경우 무시됩니다. bind를 사용하여 setTimeout 내에 콜백 함수를 만들 때, thisArg로 전달된 원시 값은 객체로 변환됩니다. bind할 인수(argument)가 제공되지 않으면  실행 스코프 내의 this는 새로운 함수의 thisArg로 처리됩니다.
+arg1, arg2, ...: 대상 함수의 인수 앞에 사용될 인수.
+반환 값: 지정한 this 값 및 초기 인수를 사용하여 변경한 원본 함수의 복제본.
+</span>
+
+
+bind()의 가장 간단한 사용법은 호출 방법과 관계없이 특정 this 값으로 호출되는 함수를 만드는 겁니다. 초보 JavaScript 프로그래머로서 흔한 실수는 객체로부터 메소드를 추출한 뒤 그 함수를 호출할때, 원본 객체가 그 함수의 this로 사용될 것이라 기대하는 겁니다
+(예시 : 콜백 기반 코드에서 해당 메소드 사용). 그러나 특별한 조치가 없으면, 대부분의 경우 원본 객체는 손실됩니다. 원본 객체가 바인딩 되는 함수를 생성하면, 이러한 문제를 깔끔하게 해결할 수 있습니다.
+
+
+var mike = { name: 'mike' }
+var kelly = { name: 'kelly' }
+
+function update(birthYear, occupation){
+    this.birthYear = birthYear
+    this.occupation = occupation
+}
+
+var updataMike = update.bind(mike) //영구적으로 this가 마이크를 바라보게 만듦
+
+<span class="seg">
+updataMike 함수는 이렇게 업데이트함수를 마이크에게 수정할 수 있게 변경됨 
+ƒ update(birthYear, occupation){
+    this.birthYear = birthYear
+    this.occupation = occupation
+}
+</span>
+
+//변경!!
+updataMike(3000, 'designer')
+// {name: 'mike', birthYear: 3000, occupation: 'designer'}
+
+
+
+-------------------------------------------
+
+var iu = { name: 'iu' }
+var user = {
+    name: 'jonghwan', 
+    sayName() {
+        console.log(this.name)
+    }
+}
+
+
+user.sayName(); //jonghwan
+
+let iuSayName = user.sayName; // 이렇게 할당하면 this가 끊김
+iuSayName() // 안나옴..
+
+// call로 연결
+iuSayName.call(user) //user
+iuSayName.call(iu) //iu
+
+// apply로 연결
+iuSayName.apply(user) //user
+iuSayName.apply(iu) //iu
+
+// bind로 연결.. 이런경우는 이게 bind가 맞는듯 
+let iuSayNameBind = user.sayName.bind(iu)
+iuSayNameBind()
+
+
+----------------------------------------------------
+
+object, class 안에서 활용 
+
+
+var evt = {
+    name: 'jonghwan',
+    init() {
+        // window.addEventListener('click', this.clickEvt) // this: window
+        // window.addEventListener('click', this.clickEvt.bind(this)) // this: evt{}
+        window.addEventListener('click', () => this.clickEvt()) // this: evt{}
+    },
+    clickEvt() {
+        console.log(this)  
+    },
+}
+
+evt.init() //한번 실행해줘야 비동기로 담아짐?? 
+
+
+
+class Hoho {
+    constructor() {
+        // window.addEventListener('click', this.click) // this 못찾음 
+        // window.addEventListener('click', this.click.bind(this)) // this Hoho{}
+        window.addEventListener('click', () => this.click()) // this Hoho{}
+    }
+
+    click() {
+        console.log(this)
+    }
+}
+
+new Hoho();
+
+
+
+------------------------------------------------------
+
+
+
+
+
+
+//https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
                             </code>
                         </pre>
                         </div>
@@ -7971,20 +8388,136 @@ asd
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>Function.prototype</span>.call()</button></dt>
+                            <dt><button><span>arrow function</span>() => {}</button></dt>
                             <dd>
-                                asd
+                                함수 선언
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+사용법 
+const aa () => console.log('aa')
+const bb () => { return 'aa' }
+
+
+주의점...
+const user = {
+    name: 'jonghwan',
+    say() {
+        // console.log(this)
+        console.log(this.name)
+
+        function innerFn() {
+            // 여긴 당연히 윈도우고 
+            console.log('일반 함수: ', this) // window
+        }
+
+        const innerArrow = () => {
+            console.log('화살표 함수', this) // 한칸위 객체
+            console.log('화살표 함수 이름', this.name) // jonghwan
+        }
+
+        innerFn()
+        innerArrow()
+    },
+
+
+    test: () => {
+        // 객체에서 바로 실행한 화살표 메서드는 this가 어디있으나 무조건 윈도우임...뭐지 
+        console.log(this)
+    },
+}
+
+// console.log(user.name)
+// console.log(user.say())
+
+const iu = user.say // 할당하면 아이유는 디스가 풀려버림.
+console.log(iu()) // name이 안뜸
+
+
+
+const test = {
+    name: 'test name',
+    innerObj: {
+        innerName: 'inner name ',
+        innerFn() {
+            function aa() { //일반 함수는 어디서나 this는 윈도우
+                console.log('aa: ', this)
+            }
+
+            const bb = () => { //호살표 함수는 객체안에서 한칸 위가 this
+                console.log('bb: ', this)
+            }
+
+
+            aa.call(this); //이러면 결과는 같아짐. this: innerObj
+            // aa(); this: window 
+            bb(); // this: innerObj
+        },
+
+        
+    }
+}
+
+
+test.innerObj.innerFn()
+/*
+    안에 aa, bb 함수가 존재함
+    - 일반함수 aa는 call로 this를 지정하지 않으면 어디에서나 window 
+    - 화살표함수 bb는 지정하지 않으면 한칸 위 객체를 봄 
+    - 객체안 메서드 형식으로 작성된 화살표함수는 어디에 있으나 무조건 window
+*/
+
+
+
+
+
+
+----------------------------------------------------
+
+object, class 안에서 활용 
+
+
+var evt = {
+    name: 'jonghwan',
+    init() {
+        // window.addEventListener('click', this.clickEvt) // this: window
+        // window.addEventListener('click', this.clickEvt.bind(this)) // this: evt{}
+        window.addEventListener('click', () => this.clickEvt()) // this: evt{}
+    },
+    clickEvt() {
+        console.log(this)  
+    },
+}
+
+evt.init() //한번 실행해줘야 비동기로 담아짐?? 
+
+
+
+class Hoho {
+    constructor() {
+        // window.addEventListener('click', this.click) // this 못찾음 
+        // window.addEventListener('click', this.click.bind(this)) // this Hoho{}
+        window.addEventListener('click', () => this.click()) // this Hoho{}
+    }
+
+    click() {
+        console.log(this)
+    }
+}
+
+new Hoho();
+
+
+----------------------------------------------------
+
                             </code>
                         </pre>
                         </div>
                     </div>
                     <!-- //item -->
+                    
                 </section>
                 <!-- //Function -->
             
