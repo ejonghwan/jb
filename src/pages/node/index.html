@@ -226,61 +226,1256 @@ http://coffeenix.net/doc/network/http_1_0_vs_1_1.html
               </section>
               <!-- //Node -->
 
-                <!-- Node -->
-                <section class="conts">
-                    <h2>Node</h2>
-
-                    <div class="depth_2">
-                        <strong>Express</strong>
-                   
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
-                            <dd>
-                                현재 문서의 body 또는 frameset 노드를 반환
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
-asd
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                </div>
-              </section>
-              <!-- //Node -->
                        
                 <!-- Express -->
                 <section class="conts">
                     <h2>Express</h2>
 
                     <div class="depth_2">
-                        <strong>Express</strong>
+                        <strong>express</strong>
                    
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
+                            <dt><button><span>express</span>.json()</button></dt>
                             <dd>
-                                asd
+                                json 파싱하기
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+express.json([options])
+
+const express = require("express");
+const app = express();
+
+app.use(express.json()); // json파일 파싱...bodyParser 대신 이거 쓰면 됨
+
+app.post('/', function(req, res){
+  console.log(req.body);      // 사용자의 JSON 요청
+    res.send(req.body);    // JSON 응답
+});
+
+app.listen(3000);
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>express</span>.Router()</button></dt>
+                            <dd>
+                                라우터 생성
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+var router = express.Router([options])
+
+
+// app.js
+import userRoutes from './routes/userRoutes.js' //가져올 파일
+app.use('/api/user', userRoutes) // 미들웨어로 붙임
+
+
+// userRoutes.js
+import express from 'express';
+const router = express.Router();
+
+// @path  /api/user/alluser/alluser
+router.post() ~ //작성방법
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>express</span>.static()</button></dt>
+                            <dd>
+                                정적파일
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+express.static(root, [options])
+
+정적 파일이란, 직접 값에 변화를 주지 않는 이상 변하지 않는 파일을 의미합니다. 예를 들면, image, css 파일, js 파일 등을 의미합니다.  express는 이러한 정적 파일들을 손쉽게 제공할 수 있는 기능을 가지고 있습니다.
+
+만약, 기능을 제공하지 않는다면 파일이 존재하는 path로 접근해왔을 때 파일을 제공해주면 됩니다. 하지만 이는 굉장히 번거롭고 코드를 복잡하게 만든다는 단점이 있습니다.
+
+
+// 사용하기
+app.use(express.static('public'));
+
+
+// 두 파일 가져오기 
+app.use(express.static('public'));
+app.use(express.static('files'));
+
+// 상대경로로 지정하기 
+app.use('/static', express.static(__dirname + '/public'));
+
+
+
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=pjok1122&logNo=221545195520
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>express</span>.urlencoded()</button></dt>
+                            <dd>
+                                form data parsing 
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.use(express.urlencoded({extended: false}))
+// form submit했을떄 urlincoded방식으로 넘겨주는데 이걸 해석해서 req.body에 넣어줌
+
+
+HTML &lt;form&gt;에서는 enctype 속성을 통해서, 여러가지 방법으로 form을 서버에 제출할 수 있도록 합니다. 기본적으로 enctype을 명시하지 않았을때는 application/x-www-form-urlencoded로 보내지며, 이는 ‘&’으로 분리되고 ‘=’으로 키와 값을 연결하는 구조입니다.
+자세한 사항은 <a href="https://developer.mozilla.org/ko/docs/Web/HTTP/Methods/POST" target="_blank" title="new window">mdn</a> 링크를 참조해 주세요.
+
+
+https://kasterra.github.io/handle-POST-data-in-express/
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>express</span>.text()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+express.text([options])
+
+
+이 메소드는 body를 문자열로 보고 파싱하고, request내의 Content-type과 해당 메소드의 type옵션이 일치하는 request 만을 처리하는 미들웨어를 반환합니다. 모든 형태의 유니코드 인코딩을 받아드리며, gzip이나 deflate인코딩으로 압축된 내용들을 알아서 압축 해제 합니다.
+
+미들웨어로 처리되고 난 다음의 새로운 body 객체 내에는 request 객체 내에서 파싱 된 데이터들이 들어있을 것입니다. 만약에 파싱할 데이터가 없거나, Content-type이 일치하지 않거나 에러가 난다면 body객체는 빈 객체가 될 것입니다.
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>express</span>.raw()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+express.raw([options])
+
+
+이 메소드는 body를 Buffer로 보고 파싱하고, request내의 Content-type과 해당 메소드의 type옵션이 일치하는 request 만을 처리하는 미들웨어를 반환합니다. 모든 형태의 유니코드 인코딩을 받아드리며, gzip이나 deflate인코딩으로 압축된 내용들을 알아서 압축 해제 합니다.
+
+미들웨어로 처리되고 난 다음의 새로운 body 객체 내에는 request 객체 내에서 파싱 된 데이터들이 들어있을 것입니다. 만약에 파싱할 데이터가 없거나, Content-type이 일치하지 않거나 에러가 난다면 body객체는 빈 객체가 될 것입니다.
+
+application/octet-stream은 언제 쓰나요?
+RFC 2046에서 명시된 바로는 application/octet-steam은 임의의 2진 파일을 의미합니다. 대충 웹 요소가 아닌 무언가 정도로 해석하면 됩니다. 이게 언제 쓰이는지는 찾아봐도 잘 모르겠습니다.
+일단 브라우저 쪽에서 해당 헤더를 가진 HTTP POST를 수신했을 때, 파일을 다운로드 하는 창을 띄운다고 합니다.
+
+
+
+https://kasterra.github.io/handle-POST-data-in-express/
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    
+                </div>
+
+
+                    
+
+                    <div class="depth_2">
+                        <strong>Application</strong>
+                   
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.listen()</button></dt>
+                            <dd>
+                                듣기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.listen(path, [callback])
+
+
+var express = require('express')
+var app = express()
+app.listen(3000)
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.get()</button></dt>
+                            <dd>
+                                가져오기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.get('/', function (req, res) {
+    res.send('GET request to homepage')
+})
+
+GET은 불필요한 요청을 제한하기 위해 요청이 캐시될 수 있습니다.
+파라미터에 내용이 노출되기 때문에 민감한 데이터를 다룰 때 GET 요청을 사용해서는 안 됩니다.
+GET 요청은 브라우저 기록에 남습니다.
+GET 요청을 북마크에 추가할 수 있습니다.
+GET 요청에는 데이터 길이에 대한 제한이 있습니다.
+Get 요청은 성공시, 200(Ok) HTTP 응답 코드를 XML, JSON뿐만 아니라 여러 데이터(html, txt등..), 여러 형식의 데이터와 함께 반환합니다.
+GET 요청은 idempotent합니다.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.post()</button></dt>
+                            <dd>
+                                저장, 모두 수정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.post('/', function (req, res) {
+    res.send('POST request to homepage')
+})
+
+
+POST는 리소스를 생성/변경하기 위해 설계되었기 때문에 GET과 달리 전송해야될 데이터를 HTTP 메세지의 Body에 담아서 전송합니다. HTTP 메세지의 Body는 길이의 제한없이 데이터를 전송할 수 있습니다. 그래서 POST 요청은 GET과 달리 대용량 데이터를 전송할 수 있습니다. 이처럼 POST는 데이터가 Body로 전송되고 내용이 눈에 보이지 않아 GET보다 보안적인 면에서 안전하다고 생각할 수 있지만, POST 요청도 크롬 개발자 도구, Fiddler와 같은 툴로 요청 내용을 확인할 수 있기 때문에 민감한 데이터의 경우에는 반드시 암호화해 전송해야 합니다.
+
+그리고 POST로 요청을 보낼 때는 요청 헤더의 Content-Type에 요청 데이터의 타입을 표시해야 합니다. 데이터 타입을 표시하지 않으면 서버는 내용이나 URL에 포함된 리소스의 확장자명 등으로 데이터 타입을 유추합니다. 만약, 알 수 없는 경우에는 application/octet-stream로 요청을 처리합니다.
+
+POST 요청은 캐시되지 않습니다.
+POST 요청은 브라우저 기록에 남아 있지 않습니다.
+POST 요청을 북마크에 추가할 수 없습니다.
+POST 요청에는 데이터 길이에 대한 제한이 없습니다.
+Post 요청 중 자원 생성은 201(Created) HTTP 응답 코드를 반환합니다.
+Post 요청은 idempotent하지 않습니다.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.put()</button></dt>
+                            <dd>
+                                부분수정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.put('/', function (req, res) {
+    res.send('PUT request to homepage')
+})
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.delete()</button></dt>
+                            <dd>
+                                삭제
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.delete('/', function (req, res) {
+    res.send('DELETE request to homepage')
+})
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.route()</button></dt>
+                            <dd>
+                                route 생성
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+var app = express()
+
+app.route('/events')
+    .all(function (req, res, next) {
+    // runs for all HTTP verbs first
+    // think of it as route specific middleware!
+    })
+    .get(function (req, res, next) {
+    res.json({})
+    })
+    .post(function (req, res, next) {
+    // maybe add a new event...
+})
+
+
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.use()</button></dt>
+                            <dd>
+                                미들웨어 붙이기
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.use([path,] callback [, callback...])
+
+app.use(function (req, res, next) {
+    console.log('Time: %d', Date.now())
+    next()
+})
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.render()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.all()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.set()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.get()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.path()</button></dt>
+                            <dd>
+                                path 검색
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.path()
+
+
+var app = express()
+var blog = express()
+var blogAdmin = express()
+
+app.use('/blog', blog)
+blog.use('/admin', blogAdmin)
+
+console.dir(app.path()) // ''
+console.dir(blog.path()) // '/blog'
+console.dir(blogAdmin.path()) // '/blog/admin'
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.param()</button></dt>
+                            <dd>
+                                GET 전송
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.param([name], callback)
+
+app.param('user', function (req, res, next, id) {
+    // try to get the user details from the User model and attach it to the request object
+    User.find(id, function (err, user) {
+      if (err) {
+        next(err)
+      } else if (user) {
+        req.user = user
+        next()
+      } else {
+        next(new Error('failed to load user'))
+      }
+    })
+  })
+
+  app.param('id', function (req, res, next, id) {
+    console.log('CALLED ONLY ONCE')
+    next()
+  })
+  
+  app.get('/user/:id', function (req, res, next) {
+    console.log('although this matches')
+    next()
+  })
+  
+  app.get('/user/:id', function (req, res) {
+    console.log('and this matches too')
+    res.end()
+  })
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.METHOD()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.get()</button></dt>
+                            <dd>
+                                GET 전송
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.get('/', function (req, res) {
+    res.send('GET request to homepage')
+})
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.engine()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.enable()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.enabled()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.disable()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.disabled()</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.locals</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.mountpath</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>mount</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
                             </code>
                         </pre>
                         </div>
                     </div>
                     <!-- //item -->
                 </div>
+
+                <div class="depth_2">
+                    <strong>Request</strong>
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app</button></dt>
+                        <dd>
+                            미들웨어 가져오기
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+// index.js
+app.get('/viewdirectory', require('./mymiddleware.js'))
+
+// mymiddleware.js
+module.exports = function (req, res) {
+  res.send('The views directory is ' + req.app.get('views'))
+}
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.body</button></dt>
+                        <dd>
+                            client에서 보낸 데이터
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+var express = require('express')
+
+var app = express()
+
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.post('/profile', function (req, res, next) {
+    console.log(req.body)
+    res.json(req.body)
+})
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.cookies</button></dt>
+                        <dd>
+                            쿠키
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+// Cookie: name=tj
+console.dir(req.cookies.name)
+// => 'tj'
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.params</button></dt>
+                        <dd>
+                            client 요청 params
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+// GET /user/tj
+console.dir(req.params.name)
+// => 'tj'
+
+
+
+router.delete('/delete/:userId', async(req, res) => {
+    const { userId } = req.params // 클라이언트에서 넘어온 :userId 값이 담김
+})
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.app()</button></dt>
+                        <dd>
+                            미들웨어
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                
+
+                </div>
+
+
+
+
+
+
+                <div class="depth_2">
+                    <strong>Response</strong>
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.listen()</button></dt>
+                        <dd>
+                            듣기
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+app.listen(path, [callback])
+
+
+var express = require('express')
+var app = express()
+app.listen(3000)
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                
+
+                </div>
+
+
+                <div class="depth_2">
+                    <strong>Router</strong>
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>router</span>.listen()</button></dt>
+                        <dd>
+                            듣기
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+app.listen(path, [callback])
+
+
+var express = require('express')
+var app = express()
+app.listen(3000)
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                
+
+                </div>
               </section>
               <!-- //Express -->
+
+
+
+
+              <!-- Node -->
+              <section class="conts">
+                <h2>Node</h2>
+
+                
+          </section>
+          <!-- //Node -->
 
 
             </div>
