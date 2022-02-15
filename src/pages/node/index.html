@@ -979,15 +979,43 @@ app.post('/profile', function (req, res, next) {
                     <dl class="item">
                         <dt><button><span>req</span>.cookies</button></dt>
                         <dd>
-                            쿠키
+                            일반 쿠키
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
+cookie-parser 미들웨어 붙이면 쿠키가 바디에 담기고 그때 부터 쓰면 됨
+
+                            
 // Cookie: name=tj
 console.dir(req.cookies.name)
 // => 'tj'
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.signedCookies</button></dt>
+                        <dd>
+                            암호화된 쿠키
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+실제 값이 노출되어도 상관없는 경우엔 req.cookie 
+보안때문에 쿠키가 노출되면 안된다면 req.signedCookies 
+
+
+app.use(cookieParser('hohoho'))
+res.cookie('DataB', 200, { signed: true })
+
+req.signedCookies.dataB // 개발자 도구 쿠키창에 쿠키값이 노출되지 않음
                             
                         </code>
                     </pre>
@@ -999,7 +1027,7 @@ console.dir(req.cookies.name)
                     <dl class="item">
                         <dt><button><span>req</span>.params</button></dt>
                         <dd>
-                            client 요청 params
+                            client에서 보낸 params
                     </dd>
                     </dl>
                     <div class="code_wrap">
@@ -1023,383 +1051,444 @@ router.delete('/delete/:userId', async(req, res) => {
                     <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
+                        <dt><button><span>req</span>.fresh</button></dt>
                         <dd>
-                            미들웨어
+                            요청 상태
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app()</button></dt>
-                        <dd>
-                            미들웨어
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
--
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                
+console.dir(req.fresh)
+// => true
+응답이 클라이언트 캐시에서 여전히 "신선한" 경우 true가 반환되고, 그렇지 않으면 false가 반환되어 클라이언트 캐시가 이제 부실하고 전체 응답을 보내야 함을 나타냅니다.
 
+클라이언트가 종단 간 다시 로드 요청을 나타내기 위해 Cache-Control: no-cache 요청 헤더를 보낼 때 이 모듈은 이러한 요청을 투명하게 처리하기 위해 false를 반환합니다.
+
+캐시 유효성 검사 작동 방식에 대한 자세한 내용은 HTTP/1.1 캐싱 사양에서 찾을 수 있습니다.
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.stale</button></dt>
+                        <dd>
+                            요청 상태
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+console.dir(req.stale)
+// => true
+
+요청이 "부실"인지 여부를 나타내며 req.fresh의 반대입니다. 자세한 내용은 req.fresh를 참조하세요.
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.ip</button></dt>
+                        <dd>
+                            ip 출력
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+console.dir(req.ip)
+// => '127.0.0.1'
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.ips</button></dt>
+                        <dd>
+                            -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.method</button></dt>
+                        <dd>
+                            GET POST ...등 HTTP메소드 리턴해줌
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+ontains a string corresponding to the HTTP method of the request: GET, POST, PUT, and so on.
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.originalUrl</button></dt>
+                        <dd>
+                            도메인 제외 url 반환
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+//http://localhost:5000/api/user/61c07d24bb241609ebfe7fff
+
+console.log(req.originalUrl)
+///api/user/61c07d24bb241609ebfe7fff
+
+
+// GET /search?q=something
+console.dir(req.originalUrl)
+// => '/search?q=something'
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.protocol</button></dt>
+                        <dd>
+                            프로토콜 반환
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+console.dir(req.protocol)
+// => 'http'
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.res</button></dt>
+                        <dd>
+                            응답 객체에 대한 참조 ? 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+This property holds a reference to the response object that relates to this request object.
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.route</button></dt>
+                        <dd>
+                            라우트값 반환
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+app.get('/user/:id?', function userIdHandler (req, res) {
+    console.log(req.route)
+    res.send('GET')
+})
+
+
+
+//결과 
+Route {
+    path: '/:userId',
+    stack: [
+      Layer {
+        handle: [AsyncFunction (anonymous)],
+        name: '&lt;anonymous&gt;',
+        params: undefined,
+        path: undefined,
+        keys: [],
+        regexp: /^\/?$/i,
+        method: 'get'
+      }
+    ],
+    methods: { get: true }
+  }
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.subdomains</button></dt>
+                        <dd>
+                            도메인 이름 배열로
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+An array of subdomains in the domain name of the request.
+
+// Host: "tobi.ferrets.example.com"
+console.dir(req.subdomains)
+// => ['ferrets', 'tobi']
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.xhr</button></dt>
+                        <dd>
+                            request header가 XMLHttpRequest인지
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+                            
+요청의 X-Requested-With 헤더 필드가 "XMLHttpRequest"인 경우 true인 부울 속성은 요청이 jQuery와 같은 클라이언트 라이브러리에서 발행되었음을 나타냅니다.
+
+console.dir(req.xhr)
+// => true
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.accepts(types)</button></dt>
+                        <dd>
+                            HTTP header 중에서 ‘Accept’ 의 필드값에 가장 잘 매칭되는 type 을 반환
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+HTTP header 중에서 ‘Accept’ 의 필드값에 가장 잘 매칭되는 type 을 반환한다.
+                            
+
+// Accept: text/html
+req.accepts('html')
+// => "html"
+
+// Accept: text/*, application/json
+req.accepts('html')
+// => "html"
+req.accepts('text/html')
+// => "text/html"
+req.accepts(['json', 'text'])
+// => "json"
+req.accepts('application/json')
+// => "application/json"
+
+// Accept: text/*, application/json
+req.accepts('image/png')
+req.accepts('png')
+// => false
+
+// Accept: text/*;q=.5, application/json
+req.accepts(['html', 'json'])
+// => "json"
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.acceptsCharsets(charset [, ...])</button></dt>
+                        <dd>
+                            -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.acceptsEncodings(encoding [, ...])</button></dt>
+                        <dd>
+                            -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.acceptsLanguages(lang [, ...])</button></dt>
+                        <dd>
+                            -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+-
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.get(field)</button></dt>
+                        <dd>
+                            HTTP header 필드값을 반환
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+req.get('Content-Type')
+// => "text/plain"
+
+req.get('content-type')
+// => "text/plain"
+
+req.get('Something')
+// => undefined
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.is(type)</button></dt>
+                        <dd>
+                            HTTP header 중에서 ‘Content-Type’ 의 필드값에 type 이 적절한가 확인
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+들어오는 요청의 "Content-Type" HTTP 헤더 필드가 type 매개변수에 지정된 MIME 유형과 일치하는 경우 일치하는 콘텐츠 유형을 반환합니다. 
+요청에 본문이 없으면 null을 반환합니다. 
+그렇지 않으면 false를 반환합니다.
+
+
+// With Content-Type: text/html; charset=utf-8
+req.is('html')
+// => 'html'
+req.is('text/html')
+// => 'text/html'
+req.is('text/*')
+// => 'text/*'
+
+// When Content-Type is application/json
+req.is('json')
+// => 'json'
+req.is('application/json')
+// => 'application/json'
+req.is('application/*')
+// => 'application/*'
+
+req.is('html')
+// => false
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                    <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>req</span>.range(size[, options])</button></dt>
+                        <dd>
+                            -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+오디오파일? 뭐 용량체크하는건가 ? 아직 잘 모르겠음 
+
+// parse header from request
+var range = req.range(1000)
+
+// the type of the range
+if (range.type === 'bytes') {
+    // the ranges
+    range.forEach(function (r) {
+    // do something with r.start and r.end
+    })
+}
+
+
+//https://nachwon.github.io/byterange/
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                 
                 </div>
 
 
@@ -1412,27 +1501,949 @@ router.delete('/delete/:userId', async(req, res) => {
                     <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
-                        <dt><button><span>res</span>.listen()</button></dt>
+                        <dt><button><span>res</span>.app</button></dt>
                         <dd>
-                            듣기
+                            app에 대한 값
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
-app.listen(path, [callback])
+이 속성은 미들웨어를 사용하는 Express 애플리케이션의 인스턴스에 대한 참조를 보유합니다.
+res.app은 요청 객체의 req.app 속성과 동일합니다.
 
 
-var express = require('express')
-var app = express()
-app.listen(3000)
+console.log(res.app)
+&lt;ref *1&gt; [Function: app] {
+    _events: [Object: null prototype] { mount: [Function: onmount] },
+    _eventsCount: 1,
+    _maxListeners: undefined,
+    setMaxListeners: [Function: setMaxListeners],
+    getMaxListeners: [Function: getMaxListeners],
+    emit: [Function: emit],
+    addListener: [Function: addListener],
+    on: [Function: addListener],
+    prependListener: [Function: prependListener],
+    once: [Function: once],
+    prependOnceListener: [Function: prependOnceListener],
+    removeListener: [Function: removeListener],
+    off: [Function: removeListener],
+    removeAllListeners: [Function: removeAllListeners],
+    listeners: [Function: listeners],
+    rawListeners: [Function: rawListeners],
+    listenerCount: [Function: listenerCount],
+    eventNames: [Function: eventNames],
+    init: [Function: init],
+    defaultConfiguration: [Function: defaultConfiguration],
+    lazyrouter: [Function: lazyrouter],
+    handle: [Function: handle],
+    use: [Function: use],
+    route: [Function: route],
+    engine: [Function: engine],
+    param: [Function: param],
+    set: [Function: set],
+    path: [Function: path],
+    enabled: [Function: enabled],
+    disabled: [Function: disabled],
+    enable: [Function: enable],
+    disable: [Function: disable],
+    acl: [Function (anonymous)],
+    bind: [Function (anonymous)],
+    checkout: [Function (anonymous)],
+    connect: [Function (anonymous)],
+    copy: [Function (anonymous)],
+    delete: [Function (anonymous)],
+    get: [Function (anonymous)],
+    head: [Function (anonymous)],
+    link: [Function (anonymous)],
+    lock: [Function (anonymous)],
+    'm-search': [Function (anonymous)],
+    merge: [Function (anonymous)],
+    mkactivity: [Function (anonymous)],
+    mkcalendar: [Function (anonymous)],
+    mkcol: [Function (anonymous)],
+    move: [Function (anonymous)],
+    notify: [Function (anonymous)],
+    options: [Function (anonymous)],
+    patch: [Function (anonymous)],
+    post: [Function (anonymous)],
+    propfind: [Function (anonymous)],
+    proppatch: [Function (anonymous)],
+    purge: [Function (anonymous)],
+    put: [Function (anonymous)],
+    rebind: [Function (anonymous)],
+    report: [Function (anonymous)],
+    search: [Function (anonymous)],
+    source: [Function (anonymous)],
+    subscribe: [Function (anonymous)],
+    trace: [Function (anonymous)],
+    unbind: [Function (anonymous)],
+    unlink: [Function (anonymous)],
+    unlock: [Function (anonymous)],
+    unsubscribe: [Function (anonymous)],
+    all: [Function: all],
+    del: [Function (anonymous)],
+    render: [Function: render],
+    listen: [Function: listen],
+    request: IncomingMessage { app: [Circular *1] },
+    response: ServerResponse { app: [Circular *1] },
+    cache: {},
+    engines: {},
+    settings: {
+      'x-powered-by': true,
+      etag: 'weak',
+      'etag fn': [Function: generateETag],
+      env: 'development',
+      'query parser': 'extended',
+      'query parser fn': [Function: parseExtendedQueryString],
+      'subdomain offset': 2,
+      'trust proxy': false,
+      'trust proxy fn': [Function: trustNone],
+      view: [Function: View],
+      views: '/Users/a80118535/Desktop/mongodb/back/views',
+      'jsonp callback name': 'callback'
+    },
+    locals: [Object: null prototype] {
+      settings: {
+        'x-powered-by': true,
+        etag: 'weak',
+        'etag fn': [Function: generateETag],
+        env: 'development',
+        'query parser': 'extended',
+        'query parser fn': [Function: parseExtendedQueryString],
+        'subdomain offset': 2,
+        'trust proxy': false,
+        'trust proxy fn': [Function: trustNone],
+        view: [Function: View],
+        views: '/Users/a80118535/Desktop/mongodb/back/views',
+        'jsonp callback name': 'callback'
+      }
+    },
+    mountpath: '/',
+    _router: [Function: router] {
+      params: {},
+      _params: [],
+      caseSensitive: false,
+      mergeParams: undefined,
+      strict: false,
+      stack: [ [Layer], [Layer], [Layer], [Layer], [Layer] ]
+    }
+  }
                         </code>
                     </pre>
                     </div>
                 </div>
                 <!-- //item -->
-                
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.headersSent</button></dt>
+                        <dd>
+                            HTTP로 보냈는지 bool
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
 
+앱이 응답에 대해 HTTP 헤더를 보냈는지 여부를 나타내는 부울 속성입니다.
+
+
+app.get('/', function (req, res) {
+    console.dir(res.headersSent) // false
+    res.send('OK')
+    console.dir(res.headersSent) // true
+})
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.locals</button></dt>
+                        <dd>
+                            HTTP로
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+app.use(function (req, res, next) {
+    res.locals.user = req.user
+    res.locals.authenticated = !req.user.anonymous
+    next()
+})
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.append()</button></dt>
+                        <dd>
+                            HTTP header에 추가
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+
+console.log(res.append('asdasdasd', ['http~']))
+
+
+[Symbol(kOutHeaders)]: [Object: null prototype] {
+    'x-powered-by': [ 'X-Powered-By', 'Express' ],
+    asdasdasd: [ 'asdasdasd', [Array] ]
+}
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.attachment()</button></dt>
+                        <dd>
+                            HTTP header에 파일정보
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+.attachment([filename])
+
+res.attachment()
+// Content-Disposition: attachment
+
+res.attachment('path/to/logo.png')
+// Content-Disposition: attachment; filename="logo.png"
+// Content-Type: image/png
+
+
+
+// return value
+[Symbol(kOutHeaders)]: [Object: null prototype] {
+    'x-powered-by': [ 'X-Powered-By', 'Express' ],
+    'content-type': [ 'Content-Type', 'image/png' ],
+    'content-disposition': [ 'Content-Disposition', 'attachment; filename="logo.png"' ]
+}
+  
+
+//응답 헤더에 아래 값 담김 
+X-Powered-By                 Express
+Content-Type                 image/png; charset=utf-8
+Content-Disposition          attachment; filename="logo.png"
+
+
+
+http://daplus.net/javascript-express%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-nodejs-%EC%84%9C%EB%B2%84%EC%97%90%EC%84%9C-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.cookie()</button></dt>
+                        <dd>
+                            쿠키설정
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+.cookie(name, value [, options])
+
+Property	Type	Description
+domain	    String	Domain name for the cookie. Defaults to the domain name of the app.
+encode	    Function	A synchronous function used for cookie value encoding. Defaults to encodeURIComponent.
+expires	    Date	Expiry date of the cookie in GMT. If not specified or set to 0, creates a session cookie.
+httpOnly	Boolean	Flags the cookie to be accessible only by the web server.
+maxAge	    Number	Convenient option for setting the expiry time relative to the current time in milliseconds.
+path	    String	Path for the cookie. Defaults to “/”.
+secure  	Boolean	Marks the cookie to be used with HTTPS only.
+signed	    Boolean	Indicates if the cookie should be signed.
+sameSite	Boolean or String	Value of the “SameSite” Set-Cookie attribute. More information at https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00#section-4.1.1.
+
+
+ex1)
+res.cookie('name', 'tobi', { domain: '.example.com', path: '/admin', secure: true })
+res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true })
+
+ex2)
+res
+  .status(201)
+  .cookie('access_token', 'Bearer ' + token, {
+    expires: new Date(Date.now() + 8 * 3600000) // cookie will be removed after 8 hours
+  })
+  .cookie('test', 'test')
+  .redirect(301, '/admin')
+
+
+ex3)
+res.cookie('rememberme', '1', { maxAge: 900000, httpOnly: true })
+
+res.cookie('cart', { items: [1, 2, 3] })
+res.cookie('cart', { items: [1, 2, 3] }, { maxAge: 900000 })
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.clearCookie()</button></dt>
+                        <dd>
+                            쿠키 지우기
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+.clearCookie(name [, options])
+
+웹 브라우저 및 기타 호환 클라이언트는 만료 및 maxAge를 제외하고 주어진 옵션이 res.cookie()에 제공된 옵션과 동일한 경우에만 쿠키를 지웁니다.
+
+res.cookie('name', 'tobi', { path: '/admin' })
+res.clearCookie('name', { path: '/admin' })
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.download()</button></dt>
+                        <dd>
+                            파일 내려주기
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+download(path [, filename] [, options] [, fn])
+-
+
+
+ex1) 
+app.get('/download', function(req, res){
+    const file = `${__dirname}/upload-folder/dramaticpenguin.MOV`;
+    res.download(file); // Set disposition and send it.
+});
+
+res.setHeader('Content-disposition', 'attachment; filename=dramaticpenguin.MOV');
+res.setHeader('Content-type', 'video/quicktime');
+
+
+ex2)
+res.download('/report-12345.pdf')
+
+res.download('/report-12345.pdf', 'report.pdf')
+
+res.download('/report-12345.pdf', 'report.pdf', function (err) {
+  if (err) {
+    // Handle error, but keep in mind the response may be partially-sent
+    // so check res.headersSent
+  } else {
+    // decrement a download credit, etc.
+  }
+})
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.send()</button></dt>
+                        <dd>
+                            응답
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.send([body])
+send에 전해진 argument에 따라서 Content-type이 자동적으로 만들어진다. 이게 기본이다.
+
+res.send(Buffer.from('whoop'))
+res.send({ some: 'json' })
+res.send('&lt;p&gt;some html&lt;/p&gt;')
+res.status(404).send('Sorry, we cannot find that!')
+res.status(500).send({ error: 'something blew up' })
+
+
+res.set('Content-Type', 'text/html')
+res.send(Buffer.from('&lt;p&gt;some html&lt;/p&gt;'))
+
+
+
+결론적으로 말하면 res.send()와 res.json()은 별반 다를게 없다.
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.sendFile()</button></dt>
+                        <dd>
+                            파일 응답
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.sendFile(path [, options] [, fn])
+
+주어진 경로에서 파일을 전송합니다. 파일 이름 확장자를 기반으로 Content-Type 응답 HTTP 헤더 필드를 설정합니다. 
+옵션 개체에 루트 옵션이 설정되어 있지 않으면 경로는 파일의 절대 경로여야 합니다.
+express v4.8.0 이상에서 지원
+
+
+
+app.get('/file/:name', function (req, res, next) {
+    var options = {
+      root: path.join(__dirname, 'public'),
+      dotfiles: 'deny',
+      headers: {
+        'x-timestamp': Date.now(),
+        'x-sent': true
+      }
+    }
+  
+    var fileName = req.params.name
+    res.sendFile(fileName, options, function (err) {
+      if (err) {
+        next(err)
+      } else {
+        console.log('Sent:', fileName)
+      }
+    })
+  })
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.sendStatus()</button></dt>
+                        <dd>
+                            상태 응답
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.sendStatus(404)
+
+res.statusCode가 잘못된 HTTP 상태 코드(100~599 범위를 벗어남)로 설정되면 Node.js의 일부 버전에서 오류가 발생합니다. 
+사용 중인 Node.js 버전에 대한 HTTP 서버 문서를 참조하십시오.
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.json()</button></dt>
+                        <dd>
+                            josn 응답
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+res.json([body])
+
+json이 아닌 것도 json 형식으로 바꾸어서 보내준다. 즉 content-type 헤더를 application/JSON으로 고정한다. 그런데 결국 res.json()도 마지막에 res.send()를 호출한다.
+
+
+res.json(null)
+res.json({ user: 'tobi' })
+res.status(500).json({ error: 'message' })
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.jsonp()</button></dt>
+                        <dd>
+                            josnp 응답.. cross-domain 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+res.jsonp([body])
+Cross-domain 이슈 해결용
+JSONP 지원으로 JSON 응답을 보냅니다. 이 메서드는 JSONP 콜백 지원을 선택한다는 점을 제외하고 res.json()과 동일합니다.
+
+res.jsonp(null)
+// => callback(null)
+
+res.jsonp({ user: 'tobi' })
+// => callback({ "user": "tobi" })
+
+res.status(500).jsonp({ error: 'message' })
+// => callback({ "error": "message" })
+
+
+기본적으로 JSONP 콜백 이름은 단순히 콜백입니다. 이것을 jsonp 콜백 이름 설정으로 재정의하십시오.
+다음은 동일한 코드를 사용하는 JSONP 응답의 몇 가지 예입니다.
+
+
+// ?callback=foo
+res.jsonp({ user: 'tobi' })
+// => foo({ "user": "tobi" })
+
+app.set('jsonp callback name', 'cb')
+
+// ?cb=foo
+res.status(500).jsonp({ error: 'message' })
+// => foo({ "error": "message" })
+
+
+
+//http://sugerent.tistory.com/424
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.end()</button></dt>
+                        <dd>
+                            응답
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.end([data] [, encoding])
+
+사실 이 메소드는 안써도 된다. 
+문서를 읽어보면 보내줄 데이터가 없을 때 사용한다고 되어있는데, 
+주로 예를 드는게 404를 리턴해주어야 할 때이다. 그리고 res.json()을 쓰나 res.send()를 쓰나 
+응답을 종료해주는 역할은 하기 때문에 굳이 명시적으로 표시해줄 필요는 없다.
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.status()</button></dt>
+                        <dd>
+                            응답 값 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.status(code)
+
+res.status(403).end()
+res.status(400).send('Bad Request')
+res.status(404).sendFile('/absolute/path/to/404.png')
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.get()</button></dt>
+                        <dd>
+                            HTTP header 값 가져오기 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.get(field)
+필드에서 지정한 HTTP 응답 헤더를 반환
+
+res.get('Content-Type')
+// => "text/plain"
+
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.set()</button></dt>
+                        <dd>
+                            HTTP header 값 설정  
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.set(field [, value])
+
+
+res.set('Content-Type', 'text/plain')
+
+res.set({
+  'Content-Type': 'text/plain',
+  'Content-Length': '123',
+  ETag: '12345'
+})
+
+
+
+Aliased as res.header(field [, value]).
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.redirect()</button></dt>
+                        <dd>
+                            리다이렉트
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.redirect([status,] path)
+클라이언트로 응답값과 함께 리다이렉트 보내기 
+
+
+res.redirect('/foo/bar')
+res.redirect('http://example.com')
+res.redirect(301, 'http://example.com')
+res.redirect('../login')
+
+
+
+
+
+
+ex1) 
+app.get('/category', function(req, res) {
+    var string = encodeURIComponent('something that would break');
+    res.redirect('/?valid=' + string);
+});
+
+
+
+ex2) 
+const url = require('url');    
+app.get('/category', function(req, res) {
+    res.redirect(url.format({
+       pathname:"/",
+       query: {
+          "a": 1,
+          "b": 2,
+          "valid":"your string here"
+        }
+     }));
+ });
+//So if you want to redirect all req query string variables you can simply do
+
+res.redirect(url.format({
+       pathname:"/",
+       query:req.query,
+     });
+ });
+//And if you are using Node >= 7.x you can also use the querystring core module
+
+const querystring = require('querystring');    
+app.get('/category', function(req, res) {
+      const query = querystring.stringify({
+          "a": 1,
+          "b": 2,
+          "valid":"your string here"
+      });
+      res.redirect('/?' + query);
+ });
+
+ 
+ex3) 세션사용 
+app.get('/category', function(req, res) {
+    req.session.valid = true;
+    res.redirect('/');
+  });
+  
+  //And later on after the redirect...
+  
+  app.get('/', function(req, res) {
+    var passedVariable = req.session.valid;
+    req.session.valid = null; // resets session variable
+    // Do something
+  });
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.render()</button></dt>
+                        <dd>
+                            client로 렌더링해서 보냄
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+// send the rendered view to the client
+res.render('index')
+
+// if a callback is specified, the rendered HTML string has to be sent explicitly
+res.render('index', function (err, html) {
+    res.send(html)
+})
+
+// pass a local variable to the view
+res.render('user', { name: 'Tobi' }, function (err, html) {
+    // ...
+})
+
+
+
+
+function(req, res){
+    res.render('index', { title: 'Express' });
+});
+
+res.render('index', { title: 'Express' }) 는
+서버가 클라이언트에게 index.ejs를 렌더링하여 보내겠다는 의미이다.
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.links()</button></dt>
+                        <dd>
+                            header에 links 추가
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.links(links)
+응답의 링크 HTTP 헤더 필드를 채우기 위해 매개변수의 속성으로 제공된 링크를 결합합니다.
+
+
+res.links({
+    next: 'http://api.example.com/users?page=2',
+    last: 'http://api.example.com/users?page=5'
+  })
+
+
+  Yields the following results:
+  Link: &lt;http://api.example.com/users?page=2&gt;; rel="next",
+        &lt;http://api.example.com/users?page=5&gt;; rel="last"
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.location()</button></dt>
+                        <dd>
+                            HTTP Location header 지정  
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+location(path)
+응답 Location HTTP 헤더를 지정된 경로 매개변수로 설정합니다.
+
+res.location('/foo/bar')
+res.location('http://example.com')
+res.location('back')
+
+
+
+//postman headers
+//Location       http://example.com/path/to/logo.png
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.format()</button></dt>
+                        <dd>
+                            포맷지정 ? 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.format(object)
+
+있는 경우 요청 개체의 Accept HTTP 헤더에 대해 콘텐츠 협상을 수행합니다. 
+req.accepts()를 사용하여 품질 값으로 정렬된 수용 가능한 유형을 기반으로 요청에 대한 핸들러를 선택합니다. 
+헤더를 지정하지 않으면 첫 번째 콜백이 호출됩니다. 
+일치하는 항목이 없으면 서버는 406 "Not Acceptable"로 응답하거나 기본 콜백을 호출합니다.
+
+Content-Type 응답 헤더는 콜백이 선택될 때 설정됩니다. 그러나 res.set() 
+또는 res.type()과 같은 메서드를 사용하여 콜백 내에서 이를 변경할 수 있습니다.
+
+다음 예는 Accept 헤더 필드가 "application/json" 또는 "*/json"으로 설정된 경우 
+{ "message": "hey" }로 응답합니다(그러나 "*/*"인 경우 응답은 "야").
+
+
+res.format({
+    'text/plain': function () {
+      res.send('hey')
+    },
+  
+    'text/html': function () {
+      res.send('&lt;p&gt;hey&lt;/p&gt;')
+    },
+  
+    'application/json': function () {
+      res.send({ message: 'hey' })
+    },
+  
+    default: function () {
+      // log the request and respond with 406
+      res.status(406).send('Not Acceptable')
+    }
+})
+
+
+정규화된 MIME 유형 외에도 약간 덜 장황한 구현을 위해 이러한 유형에 매핑된 확장 이름을 사용할 수도 있습니다.
+
+res.format({
+    text: function () {
+        res.send('hey')
+    },
+
+    html: function () {
+        res.send('&lt;p&gt;hey&lt;/p&gt;')
+    },
+
+    json: function () {
+        res.send({ message: 'hey' })
+    }
+})
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.type()</button></dt>
+                        <dd>
+                            HTTP header 타입 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.type(type)
+
+
+res.type('.html')
+// => 'text/html'
+res.type('html')
+// => 'text/html'
+res.type('json')
+// => 'application/json'
+res.type('application/json')
+// => 'application/json'
+res.type('png')
+// => 'image/png'
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>res</span>.vary()</button></dt>
+                        <dd>
+                            response header 필드 추가
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+res.vary(field)
+필드가 아직 없는 경우 Vary 응답 헤더에 필드를 추가합니다.
+
+res.vary('User-Agent').render('docs')
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+               
                 </div>
 
 
@@ -1441,25 +2452,204 @@ app.listen(3000)
                     <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
-                        <dt><button><span>router</span>.listen()</button></dt>
+                        <dt><button><span>router</span>.all()</button></dt>
                         <dd>
-                            듣기
+                            해당 파일 router 모두 설정
                     </dd>
                     </dl>
                     <div class="code_wrap">
                     <pre>
                         <code class="javascript">
-app.listen(path, [callback])
+해당 라우터 모두 설정하기
+router.all(path, [callback, ...] callback)
+
+router.all('*', requireAuthentication, loadUser)
+router.all('*', requireAuthentication)
+router.all('*', loadUser)
+router.all('/api/*', requireAuthentication)
 
 
-var express = require('express')
-var app = express()
-app.listen(3000)
+
+
+router.all('*', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+   });
                         </code>
                     </pre>
                     </div>
                 </div>
                 <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>router</span>.METHOD()</button></dt>
+                        <dd>
+                            HTTP method 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+router.METHOD(path, [callback, ...] callback)
+
+GET, POST, DELETE, PUT ...등등 
+
+
+
+router.get('/', function (req, res) {
+    res.send('hello world')
+})
+
+
+router.get(/^\/commits\/(\w+)(?:\.\.(\w+))?$/, function (req, res) {
+    var from = req.params[0]
+    var to = req.params[1] || 'HEAD'
+    res.send('commit range ' + from + '..' + to)
+})
+
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>router</span>.param()</button></dt>
+                        <dd>
+                            param 지정
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+router.param(name, callback)
+
+
+var express = require('express')
+var app = express()
+var router = express.Router()
+
+// customizing the behavior of router.param()
+router.param(function (param, option) {
+  return function (req, res, next, val) {
+    if (val === option) {
+      next()
+    } else {
+      res.sendStatus(403)
+    }
+  }
+})
+
+// using the customized router.param()
+router.param('id', '1337')
+
+// route to trigger the capture
+router.get('/user/:id', function (req, res) {
+  res.send('OK')
+})
+
+app.use(router)
+
+app.listen(3000, function () {
+  console.log('Ready')
+})
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>router</span>.route()</button></dt>
+                        <dd>
+                            -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+router.route(path)
+
+선택적 미들웨어로 HTTP 동사를 처리하는 데 사용할 수 있는 단일 경로의 인스턴스를 반환합니다. 
+라우터 이름이 중복되어 입력 오류가 발생하지 않도록 하려면 router.route()를 사용하십시오.
+
+위의 router.param() 예제를 기반으로 하는 다음 코드는 router.route()를 사용하여 
+다양한 HTTP 메서드 핸들러를 지정하는 방법을 보여줍니다.
+
+var router = express.Router()
+
+router.param('user_id', function (req, res, next, id) {
+    // sample user, would actually fetch from DB, etc...
+    req.user = {
+    id: id,
+    name: 'TJ'
+    }
+    next()
+})
+
+router.route('/users/:user_id')
+    .all(function (req, res, next) {
+    // runs for all HTTP verbs first
+    // think of it as route specific middleware!
+    next()
+    })
+    .get(function (req, res, next) {
+    res.json(req.user)
+    })
+    .put(function (req, res, next) {
+    // just an example of maybe updating the user
+    req.user.name = req.params.name
+    // save user ... etc
+    res.json(req.user)
+    })
+    .post(function (req, res, next) {
+    next(new Error('not implemented'))
+    })
+    .delete(function (req, res, next) {
+    next(new Error('not implemented'))
+    })
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>router</span>.use()</button></dt>
+                        <dd>
+                            미들웨어 붙이기
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+router.use([path], [function, ...] function)
+app.use()와 비슷.. 
+
+선택적 마운트 경로 경로와 함께 지정된 미들웨어 기능을 사용하며 기본값은 "/"입니다.
+이 메소드는 app.use()와 유사합니다. 간단한 예와 사용 사례가 아래에 설명되어 있습니다. 
+자세한 내용은 app.use()를 참조하세요.
+
+미들웨어는 배관 파이프와 같습니다. 요청은 정의된 첫 번째 미들웨어 기능에서 시작하여 
+일치하는 각 경로에 대해 미들웨어 스택 처리 "아래로" 작동합니다.
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+               
                 
 
                 </div>
@@ -1470,12 +2660,12 @@ app.listen(3000)
 
 
               <!-- Node -->
-              <section class="conts">
+              <!-- <section class="conts">
                 <h2>Node</h2>
 
                 
-          </section>
-          <!-- //Node -->
+             </section> -->
+             <!-- //Node -->
 
 
             </div>
