@@ -1,7 +1,7 @@
 /*!
  * 
- *         Build Data: 2022. 2. 10.
- *         GIT Commit Ver: 504ed41
+ *         Build Data: 2022. 2. 15.
+ *         GIT Commit Ver: 7299b74
  *
  *         User Name : ejonghwan
  *
