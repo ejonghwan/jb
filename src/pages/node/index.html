@@ -478,7 +478,7 @@ GET 요청은 idempotent합니다.
                         <dl class="item">
                             <dt><button><span>app</span>.post()</button></dt>
                             <dd>
-                                저장, 모두 수정
+                                저장, 데이터 전송
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -509,7 +509,7 @@ Post 요청은 idempotent하지 않습니다.
                         <dl class="item">
                             <dt><button><span>app</span>.put()</button></dt>
                             <dd>
-                                부분수정
+                                모두수정
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -517,6 +517,25 @@ Post 요청은 idempotent하지 않습니다.
                             <code class="javascript">
 app.put('/', function (req, res) {
     res.send('PUT request to homepage')
+})
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>app</span>.patch()</button></dt>
+                            <dd>
+                                부분수정
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+app.patch('/', function (req, res) {
+    res.send('patch request to homepage')
 })
                             </code>
                         </pre>

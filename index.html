@@ -82,8 +82,12 @@
     </div>
 
 
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
+    <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" defer></script>
-    <script defer>hljs.initHighlightingOnLoad();</script>
+    <script>
+        window.onload = function() {
+            hljs.initHighlightingOnLoad();
+        }
+    </script>
 </body>
 </html>
