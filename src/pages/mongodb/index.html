@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
    
     <title>Document</title>
-<script defer src="../../../main.75db3ef4a84c93c9d363.js"></script><link href="../../../main.css" rel="stylesheet"></head>
+<script defer src="../../../main.98b71985936f47626972.js"></script><link href="../../../main.css" rel="stylesheet"></head>
 <body>
 
     <div class="wrap">
@@ -25,14 +25,14 @@
                     <h2>MongoDB</h2>
 
                     <div class="depth_2">
-                        <strong>Express</strong>
+                        <strong>-</strong>
                    
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
+                            <dt><button><span>-</span>.-</button></dt>
                             <dd>
-                                현재 문서의 body 또는 frameset 노드를 반환
+                                -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -53,20 +53,161 @@ asd
                     <h2>Mongoose</h2>
 
                     <div class="depth_2">
-                        <strong>Mongoose</strong>
-                   
+                        <strong>타입, 속성</strong>
+                   <!-- item -->
+                   <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>mongoose</span> 스키마 생성</button></dt>
+                        <dd>
+                            -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+
+// # Schema type
+String, Number, id, Date, Buffer, Boolean, Mixed, Array
+
+
+// # Schema attribute
+`
+required:꼭 입력해야 한다.
+unique:다른 행과 중복되면 안 된다.
+trim:공백을 제거합니다.(문자열 타입에 사용)
+default:문서가 생성되면 기본값으로 저장됩니다.
+lowercase:대문자를 소문자로 저장한다(문자열 타입)
+match:정규식으로 저장하려는 값과 비교한다.
+validate:함수로 개발자가 조건을 만듭니다.
+set:값을 입력할 때 함수로 조건을 만듭니다.
+get:값을 출력할 때 함수로 조건을 만듭니다.
+ref:해당하는 모델을 참조할 때 사용한다.
+`
+
+
+// package.json type="module"                             
+
+import mongoose from 'mongoose'
+
+const UserSchema = new mongoose.Schema({
+
+})
+
+const User = mongoose.model('user', UserSchema) //첫번째 인자로 모델 생성 (db에는 users로 저장)
+export default User
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
+                            <dt><button><span>mongoose</span> type</button></dt>
                             <dd>
-                                현재 문서의 body 또는 frameset 노드를 반환
+                                String, Number, id, Date, Buffer, Boolean, Mixed, Array
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+String, Number, id, Date, Buffer, Boolean, Mixed, Array
+
+
+var exampleSchema = new mongoose.Schema({
+    name:{
+     type:String,
+     required:true
+    }
+    age:Number
+    number:Schema.Types.ObjectId
+    created:{
+     type:Date,
+     default:Date.now
+    }
+    binary:Buffer,
+    living:Boolean
+    mixed:Schema.Types.Mixed
+    array:[],
+    arrayNumber:[Number],
+    arrayString:[String]
+ });
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>mongoose</span> attribute</button></dt>
+                            <dd>
+                                required, unique, trim, default, lowercase, match, validate, set, get, ref
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+`
+required:꼭 입력해야 한다.
+unique:다른 행과 중복되면 안 된다.
+trim:공백을 제거합니다.(문자열 타입에 사용)
+default:문서가 생성되면 기본값으로 저장됩니다.
+lowercase:대문자를 소문자로 저장한다(문자열 타입)
+match:정규식으로 저장하려는 값과 비교한다.
+validate:함수로 개발자가 조건을 만듭니다.
+set:값을 입력할 때 함수로 조건을 만듭니다.
+get:값을 출력할 때 함수로 조건을 만듭니다.
+ref:해당하는 모델을 참조할 때 사용한다.
+`
+
+...
+var exampleSchema = mongoose.Schema({
+   firstName:{
+    type:String,
+    required:true,
+    trim:true,
+    lowercase:true  
+   },
+   lastName:{
+    type:String,
+    trim:true,
+    lowercase:true
+   }
+   age:{
+    type:Number,
+    required:true,
+   }
+   created:{
+    type:Date,
+    default:Date.now
+   },
+   number:{
+    type:Number,
+    match:/^\d{3}-\d{3,4}-\d{4}$/
+   },
+   password:{
+    type:String,
+    validate:[
+      function(password){
+       return password&&password.length>6;
+      },'비밀번호를 입력하거나 길이가 6보다커야합니다.'
+     ]
+   },
+   author:{
+    type:Schema.Types.Id,
+    ref:'User'
+   }
+});
+
+
+
                             </code>
                         </pre>
                         </div>

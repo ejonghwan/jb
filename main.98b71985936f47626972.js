@@ -1,7 +1,7 @@
 /*!
  * 
- *         Build Data: 2022. 2. 15.
- *         GIT Commit Ver: 2ead802
+ *         Build Data: 2022. 2. 17.
+ *         GIT Commit Ver: 44d3e09
  *
  *         User Name : ejonghwan
  *
@@ -172,18 +172,18 @@ class Nav {
       this.menu.map((item, i) => {
         this.className.innerHTML += `
                     <li>
-                        <a href="${item.href}" class="${item.state === true ? 'on' : ' '}">${item.menuName}</a>
+                        <a href="${item.href}?nav=${item.id}" class="${item.state === true ? 'on' : ' '}">${item.menuName}</a>
                     </li>
                 `;
-      }); // ㅇ어케해야될까  asdasdasdasdasdgit 
-      // const lis = this.className.querySelectorAll(`li`)            
-      // for(let i = 0; i < lis.length; i++) {
-      //     lis[i].addEventListener('click', e => {
-      //         this.menu[i].state = true;
-      //         console.log('li select: ', this.menu[i])
-      //         alert(this)
-      //     })
-      // }
+      });
+      const lis = this.className.querySelectorAll(`li`);
+      window.addEventListener('load', e => {
+        // e.preventDefault();
+        let shc = location.search;
+        let params = new URLSearchParams(shc);
+        let paramIdx = params.get('nav');
+        lis[paramIdx].children[0].classList.add('on');
+      });
     }
   }
 
@@ -196,7 +196,7 @@ class Footer {
   constructor(className) {
     this.ele = document.querySelector(className);
     this.data = [{
-      info: 'jonghwan'
+      info: 'jjongrrr@naver.com'
     }, {
       info: 'mdn docs '
     }, {
