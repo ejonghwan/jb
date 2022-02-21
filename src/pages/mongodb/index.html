@@ -308,6 +308,83 @@ await mongoose.connect(dbInfo).then(result => console.log('몽고디비 연결�
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
+                            <dt><button><span>mongoose</span>.virtual()</button></dt>
+                            <dd>
+                                가상 필드 만듦
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+`
+아래 같이 설정되어있는 경우 따로 필드가 없어도 
+backend에서 populate({ path: 'comment' })로 Blog모델에 comment 추가해서 보내기 가능
+
+` 
+
+
+
+
+// Blog model
+import mongoose from 'mongoose'
+
+const { Schema, model, Types } = mongoose;
+
+
+const BlogSchema = new Schema({
+    title: { type: String, required: true, },
+    content: { type: String, required: true, },
+    isLive: { type: Boolean, default: false, },
+    user: { type: Types.ObjectId, required: true, ref: 'user' },
+}, {
+    timestamps: true,
+})
+
+// comments 필드가 없으니 가상으로 만듦
+// 이 필드는 db에 저장되는게 아님..데이터 보내줄 때 추가돼서 보내줌
+BlogSchema.virtual('comments', {
+    ref: "comment", //어디를 참조할건지
+    localField: "_id", //이 필드에서 어떤 것을 
+    foreignField: "blog", // 이 필드랑 어떤 관계냐 ...Comment 모델에 들어가보면 blog로 필드이름 저장되어있음.. ref아님
+})
+
+BlogSchema.set("toObject", { virtuals: true });
+BlogSchema.set("toJSON", { virtuals: true });
+
+
+const Blog = model('blog', BlogSchema);
+
+export default Blog;
+
+
+
+//Comment model
+import mongoose from 'mongoose';
+
+const { Types, model, Schema } = mongoose;
+
+
+const CommentModel = new Schema({
+    content: { type: String, required: true, },
+    user: { type: Types.ObjectId, required: true, ref: 'user', },
+    blog: { type: Types.ObjectId, required: true, ref: 'blog', } 
+}, {
+    timestamps: true,
+})
+
+const Comment = model('comment', CommentModel)
+export default Comment;
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
                             <dt><button><span>mongoose</span>.set()</button></dt>
                             <dd>
                                 -
@@ -639,7 +716,7 @@ $sort: { KEY: -1 }
                         <dl class="item">
                             <dt><button><span>$</span>in</button></dt>
                             <dd>
-                                특정 키값 검색
+                                특정 키값 검색해서 있으면 채우기
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -649,6 +726,7 @@ db.nettuts.find( { 'occupation' : { '$in' : [ "actor", "developer" ] } }, { "fir
 in은 특정 key의 값이 ㅁㅁㅁ인 경우에 사용한다.
 이렇게 사용한다. 이렇게 쿼리를 작성하면 occupation 이 actor이거나 developer인 것을 가져온다.
 first 와 last 에 각각 1이 있으므로 오름차순으로 정렬한다.
+
 
 
 
@@ -781,7 +859,7 @@ db.nettuts.find( { "first" : { $regex : /(ma)/ } } );
 
 
 
-https://velopert.com/479
+https://velopert.com/479 여기부터 하면 됨
 
                             </code>
                         </pre>
@@ -801,7 +879,7 @@ https://velopert.com/479
                         <dl class="item">
                             <dt><button><span>model</span>.insert()</button></dt>
                             <dd>
-                                생성
+                                단일, 다수 생성
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -820,7 +898,7 @@ db.products.insert( { item: "card", qty: 15 } )
                         <dl class="item">
                             <dt><button><span>model</span>.insertOne()</button></dt>
                             <dd>
-                                하나 생성
+                                단일 생성
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -829,6 +907,24 @@ db.products.insert( { item: "card", qty: 15 } )
 insertOne({ name: " aaa ", email: " dd@dd.com " }) - 한개만 생성
 insertOne({ name: { a: "aa", b: "bb" }, email: " dd@dd.com " }) - 객체도 배열도 넣기 가능 
 ※ 근데 불러올 땐 findOne({ "name.a": "aa" }) - 이런식으로 해야됨 객체접근에 "" 넣기 꼭!
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.insertMany()</button></dt>
+                            <dd>
+                                다수 생성
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
 
                             </code>
                         </pre>
@@ -933,7 +1029,116 @@ res.status(200).json(user)
                 <!-- 검색 -->
                 <div class="depth_2">
                     <strong>검색</strong>
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.limit()</button></dt>
+                            <dd>
+                                몇개 검색
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+model.find().limit(10) //10개 검색
 
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.skip()</button></dt>
+                            <dd>
+                                검색 시작 위치
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+model.find().skip(3) // 데이터 인덱스 4부터 검색
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.populate()</button></dt>
+                            <dd>
+                                ObjectId를 검색해서 채워주기 
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+
+//ObjectId로 연결되어있는 필드를 해당 필드 검색해서 mongoose가 $in으로 값을 채워 넣어줌 
+model.populate({ path: '해당 ObjectId 연결된 필드명' })
+ex)  user: { type: Types.ObjectId, required: true, ref: 'user' },
+
+
+
+// 한개 추가 
+model.populate({ path: 'user' }) 
+
+// 여러 모델 넣기
+model.populate([ {path: 'comment'}, {path: 'user'} ]) 
+
+// 모델 아래 하위 모델 넣기 
+model.populate({ path: user, populate: { path: 'user' } })
+
+
+
+------------------------------
+
+//모델구조
+import mongoose from 'mongoose'
+
+const { Schema, model, Types } = mongoose;
+
+const BlogSchema = new Schema({
+    title: { type: String, required: true, },
+    content: { type: String, required: true, },
+    isLive: { type: Boolean, default: false, },
+    user: { type: Types.ObjectId, required: true, ref: 'user' },
+}, {
+    timestamps: true,
+})
+
+// comments 필드가 없으니 가상으로 만듦
+// 이 필드는 db에 저장되는게 아님..데이터 보내줄 때 추가돼서 보내줌
+BlogSchema.virtual('comments', {
+    ref: "comment", //어디를 참조할건지
+    localField: "_id", //이 필드에서 어떤 것을 
+    foreignField: "blog", // 이 필드랑 어떤 관계냐 ...Comment 모델에 들어가보면 blog로 필드이름 저장되어있음.. ref아님
+})
+
+BlogSchema.set("toObject", { virtuals: true });
+BlogSchema.set("toJSON", { virtuals: true });
+
+const Blog = model('blog', BlogSchema);
+export default Blog;
+
+----------------------------
+
+
+
+
+
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
