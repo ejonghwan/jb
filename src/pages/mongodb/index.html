@@ -455,6 +455,52 @@ const post = new Post({ ...req.body, params }, { new: true })
                         </pre>
                         </div>
                     </div>
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>{</span> arrayFilters: [{}] <span>}</span></button></dt>
+                            <dd>
+                                조건 필터
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+// model
+User 
+Blog (user, cooments: [ comment_info, user ]) 
+Comment (user, blogId)
+
+user: { name: { first: '', last: '' } }
+
+const user = await User.findById(req.body.userId)
+
+if(req.body.name.first) {
+    // Comment 모델에 있는 user정보 업데이트 
+    await Comment.updateMany({ 'user._id' }, { 'user.name.first': user.name.first })
+
+    // Blog 모델에 있는 user정보 업데이트
+    await Blog.updateMany({ 'user._id' }, { 'user.name.first': user.name.first })
+
+    // Blog 모델에 있는 comments:[] 필드안에 있는 user정보 업데이트
+    await Blog.updateMany(
+        { 'comments.user._id': userId }, // 인덱스를 찾을 수 있으면 효율 더 좋음
+        { 'comments.$[comm].user': user.name.first }, // comments필드에 .$ 인덱스 선택 [comm] 필터에 쓸 변수같은? 
+        { arrayFilters: [ {'comm.user._id': req.body.userId} ] }, // arrayFilters 옵션에 여러 조건을 넣는다..
+    )
+}
+                                
+/* 
+    await Blog.updateMany({}, { 'comments.$[ele].users.$[user].username': user.name.first }, { arrayFilters: [ {"ele.user._id": userId}, {"user._id": userId} ] })
+
+    comments 필드안에 users 배열이 있고 그 안에 username을 필터링해서 바꿔줌 
+
+*/
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
                     <!-- //item -->
                     <!-- item -->
                     <div class="item_wrap">
@@ -503,7 +549,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>$</span>.pull</button></dt>
+                            <dt><button><span>$</span>pull</button></dt>
                             <dd>
                                 배열 값 삭제
                         </dd>
@@ -512,10 +558,51 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
                         <pre>
                             <code class="javascript">
 // Charlie document에서 skills 값의 mongodb 제거
-> db.people.update(
-... { name: "Charlie" },
-... { $pull: { skills: "mongodb" } }
-... )
+db.people.update(
+  { name: "Charlie" },
+  { $pull: { skills: "mongodb" } }
+)
+
+// 다른 모델 하위에 있는 연결된 코멘트 지우기
+Blog 
+  commnets: [...]
+
+await Blog.updateOne({ 'comments._id': req.params.commentId }, { $pull: { comments: { _id: commentId } } })
+// comments._id 선택하고 $pull: { 삭제할 필드: { 삭제조건 }, { 삭제조건 } }  둘 중 하나만 걸리면 삭제
+ 
+// elemMatch....
+// comments._id 선택하고 $pull: { 삭제할 필드: $elemMatch: { { 삭제조건 }, { 삭제조건 } } } 둘다 맞아야 삭제
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>elemMatch</button></dt>
+                            <dd>
+                                둘 다 맞으면
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+// 다른 모델 하위에 있는 연결된 코멘트 지우기
+Blog 
+  commnets: [...]
+
+await Blog.updateOne({ 'comments._id': req.params.commentId }, { $pull: { comments: { _id: commentId } } })
+// comments._id 선택하고 $pull: { 삭제할 필드: { 삭제조건 }, { 삭제조건 } }  둘 중 하나만 걸리면 삭제
+ 
+// elemMatch....
+// comments._id 선택하고 $pull: { 삭제할 필드: $elemMatch: { { 삭제조건 }, { 삭제조건 } } } 둘다 맞아야 삭제
+
+
 
                             </code>
                         </pre>
@@ -1029,6 +1116,24 @@ res.status(200).json(user)
                 <!-- 검색 -->
                 <div class="depth_2">
                     <strong>검색</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.skip()</button></dt>
+                            <dd>
+                                검색 시작 위치
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+model.find().skip(3) // 데이터 인덱스 4부터 검색
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
@@ -1047,24 +1152,7 @@ model.find().limit(10) //10개 검색
                         </div>
                     </div>
                     <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.skip()</button></dt>
-                            <dd>
-                                검색 시작 위치
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
-model.find().skip(3) // 데이터 인덱스 4부터 검색
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
+                   
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
@@ -1448,6 +1536,72 @@ const user = await User.findById(req.params.userId)
                         <pre>
                             <code class="javascript">
 -
+model.updateOne({ 선택 }, { 바꿀거 })
+
+// 아이디로 찾아 변경
+model.updateOne({ _id: '62143c5831b0efa850896c86' }, { content: req.body.content })
+
+// 하위에 있는 배열 컨텐츠 변경  '' + .으로 접근 
+model.updateOne({ 'comments._id': req.params.commentId }, { 'comments.$.content': req.body.content })
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.updateMany()</button></dt>
+                            <dd>
+                                조건에 맞는 여러개 업데이트
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+model.updateMany({ 선택 }, { 바꿀거 })
+
+// 아이디로 찾아 모두 변경
+model.updateMany({ _id: req.params.userId }, { content: req.body.content })
+
+// 하위에 있는 배열 컨텐츠 변경  '' + .으로 접근 
+model.updateMany({ 'comments._id': req.params.commentId }, { 'comments.$.content': req.body.content })
+
+// 유저정보 변경시 연결되어있는 모델 모두 변경
+
+// model
+User 
+Blog (user, cooments: [ comment_info, user ]) 
+Comment (user, blogId)
+
+user: { name: { first: '', last: '' } }
+
+const user = await User.findById(req.body.userId)
+
+if(req.body.name.first) {
+    // Comment 모델에 있는 user정보 업데이트 
+    await Comment.updateMany({ 'user._id' }, { 'user.name.first': user.name.first })
+
+    // Blog 모델에 있는 user정보 업데이트
+    await Blog.updateMany({ 'user._id' }, { 'user.name.first': user.name.first })
+
+    // Blog 모델에 있는 comments:[] 필드안에 있는 user정보 업데이트
+    await Blog.updateMany(
+        { 'comments.user._id': userId }, // 해당 인덱스 있으면 넣는게 더 효율좋음
+        { 'comments.$[comm].user': user.name.first }, // comments필드에 .$ 인덱스 선택 [comm] 필터에 쓸 변수같은? 
+        { arrayFilters: [ {'comm.user._id': req.body.userId} ] }, // arrayFilters 옵션에 여러 조건을 넣는다..
+    )
+}
+
+
+/* 
+    await Blog.updateMany({}, { 'comments.$[ele].users.$[user].username': user.name.first }, { arrayFilters: [ {"ele.user._id": userId}, {"user._id": userId} ] })
+
+    comments 필드안에 users 배열이 있고 그 안에 username을 필터링해서 바꿔줌 
+
+*/
 
                             </code>
                         </pre>
