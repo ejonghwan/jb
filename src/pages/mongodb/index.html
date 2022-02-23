@@ -431,6 +431,24 @@ const user = await User.findOne({ _id: userId })
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>mongoose</span>.countDocuments()</button></dt>
+                            <dd>
+                                문서 숫자
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+const comments = await Comment.find({ blog: req.params.blogId }).countDocuments()  // 몇개 코멘트가 있는지 ..3
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                    
                 </div>
                 <!-- 검증 -->
@@ -520,7 +538,63 @@ db.people.update({ name: "Elly" }, { name: "Elly", age: 17 }, { upsert: true } }
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>search</button></dt>
+                            <dd>
+                                검색
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+BlogSchema.index({ title: 'text', }) //search - text inexing... 인덱싱은 중간에 저장해도 키가 만들어짐
 
+// 검색
+{ $text: { $search: 'rerum'  } }
+
+//2개 중 하나만 포함해도 
+{ $text: { $search: 'rerum abc'  } }
+
+
+
+// 두개 필드에서 검색 (복합키) 
+BlogSchema.index({ title: 'text', content: 'text' })  
+
+
+
+// 단점
+// 정상 단어가 아니면 검색이 안됨 
+
+
+
+-------------------------------
+
+// blog 만들땐 정규표현식으로 find 함 
+
+router.get('/:searchTerm', async(req, res, next) => {
+    try {
+        const result = await Post.find({
+           title: {
+               $regex: req.params.searchTerm,
+               $options: 'i',
+           }
+        });
+
+        console.log('search result', result)
+        res.status(200).json(result);
+
+    } catch(err) {
+        console.log(err)
+        next(err)
+    }
+})
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
@@ -953,6 +1027,27 @@ https://velopert.com/479 여기부터 하면 됨
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>inc</button></dt>
+                            <dd>
+                                값 증가
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+조회수 증가, 포인트 증감에 사용하면 됨
+
+collection.update(
+  {$inc: {'count': 1}
+})
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                   
                 </div>
                 <!-- 쿼리 옵션 -->
@@ -1215,7 +1310,7 @@ export default Blog;
 
 ----------------------------
 
-
+const allBlog = await Blog.find().populate([{ path: 'user' }, { path: 'comments', populate: { path: 'user' } }])
 
 
 
