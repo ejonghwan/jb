@@ -308,6 +308,83 @@ await mongoose.connect(dbInfo).then(result => console.log('몽고디비 연결�
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
+                            <dt><button><span>mongoose</span>.virtual()</button></dt>
+                            <dd>
+                                가상 필드 만듦
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+`
+아래 같이 설정되어있는 경우 따로 필드가 없어도 
+backend에서 populate({ path: 'comment' })로 Blog모델에 comment 추가해서 보내기 가능
+
+` 
+
+
+
+
+// Blog model
+import mongoose from 'mongoose'
+
+const { Schema, model, Types } = mongoose;
+
+
+const BlogSchema = new Schema({
+    title: { type: String, required: true, },
+    content: { type: String, required: true, },
+    isLive: { type: Boolean, default: false, },
+    user: { type: Types.ObjectId, required: true, ref: 'user' },
+}, {
+    timestamps: true,
+})
+
+// comments 필드가 없으니 가상으로 만듦
+// 이 필드는 db에 저장되는게 아님..데이터 보내줄 때 추가돼서 보내줌
+BlogSchema.virtual('comments', {
+    ref: "comment", //어디를 참조할건지
+    localField: "_id", //이 필드에서 어떤 것을 
+    foreignField: "blog", // 이 필드랑 어떤 관계냐 ...Comment 모델에 들어가보면 blog로 필드이름 저장되어있음.. ref아님
+})
+
+BlogSchema.set("toObject", { virtuals: true });
+BlogSchema.set("toJSON", { virtuals: true });
+
+
+const Blog = model('blog', BlogSchema);
+
+export default Blog;
+
+
+
+//Comment model
+import mongoose from 'mongoose';
+
+const { Types, model, Schema } = mongoose;
+
+
+const CommentModel = new Schema({
+    content: { type: String, required: true, },
+    user: { type: Types.ObjectId, required: true, ref: 'user', },
+    blog: { type: Types.ObjectId, required: true, ref: 'blog', } 
+}, {
+    timestamps: true,
+})
+
+const Comment = model('comment', CommentModel)
+export default Comment;
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
                             <dt><button><span>mongoose</span>.set()</button></dt>
                             <dd>
                                 -
@@ -354,6 +431,24 @@ const user = await User.findOne({ _id: userId })
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>mongoose</span>.countDocuments()</button></dt>
+                            <dd>
+                                문서 숫자
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+const comments = await Comment.find({ blog: req.params.blogId }).countDocuments()  // 몇개 코멘트가 있는지 ..3
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                    
                 </div>
                 <!-- 검증 -->
@@ -378,6 +473,52 @@ const post = new Post({ ...req.body, params }, { new: true })
                         </pre>
                         </div>
                     </div>
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>{</span> arrayFilters: [{}] <span>}</span></button></dt>
+                            <dd>
+                                조건 필터
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+// model
+User 
+Blog (user, cooments: [ comment_info, user ]) 
+Comment (user, blogId)
+
+user: { name: { first: '', last: '' } }
+
+const user = await User.findById(req.body.userId)
+
+if(req.body.name.first) {
+    // Comment 모델에 있는 user정보 업데이트 
+    await Comment.updateMany({ 'user._id' }, { 'user.name.first': user.name.first })
+
+    // Blog 모델에 있는 user정보 업데이트
+    await Blog.updateMany({ 'user._id' }, { 'user.name.first': user.name.first })
+
+    // Blog 모델에 있는 comments:[] 필드안에 있는 user정보 업데이트
+    await Blog.updateMany(
+        { 'comments.user._id': userId }, // 인덱스를 찾을 수 있으면 효율 더 좋음
+        { 'comments.$[comm].user': user.name.first }, // comments필드에 .$ 인덱스 선택 [comm] 필터에 쓸 변수같은? 
+        { arrayFilters: [ {'comm.user._id': req.body.userId} ] }, // arrayFilters 옵션에 여러 조건을 넣는다..
+    )
+}
+                                
+/* 
+    await Blog.updateMany({}, { 'comments.$[ele].users.$[user].username': user.name.first }, { arrayFilters: [ {"ele.user._id": userId}, {"user._id": userId} ] })
+
+    comments 필드안에 users 배열이 있고 그 안에 username을 필터링해서 바꿔줌 
+
+*/
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
                     <!-- //item -->
                     <!-- item -->
                     <div class="item_wrap">
@@ -397,7 +538,63 @@ db.people.update({ name: "Elly" }, { name: "Elly", age: 17 }, { upsert: true } }
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>search</button></dt>
+                            <dd>
+                                검색
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+BlogSchema.index({ title: 'text', }) //search - text inexing... 인덱싱은 중간에 저장해도 키가 만들어짐
 
+// 검색
+{ $text: { $search: 'rerum'  } }
+
+//2개 중 하나만 포함해도 
+{ $text: { $search: 'rerum abc'  } }
+
+
+
+// 두개 필드에서 검색 (복합키) 
+BlogSchema.index({ title: 'text', content: 'text' })  
+
+
+
+// 단점
+// 정상 단어가 아니면 검색이 안됨 
+
+
+
+-------------------------------
+
+// blog 만들땐 정규표현식으로 find 함 
+
+router.get('/:searchTerm', async(req, res, next) => {
+    try {
+        const result = await Post.find({
+           title: {
+               $regex: req.params.searchTerm,
+               $options: 'i',
+           }
+        });
+
+        console.log('search result', result)
+        res.status(200).json(result);
+
+    } catch(err) {
+        console.log(err)
+        next(err)
+    }
+})
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
@@ -426,7 +623,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>$</span>.pull</button></dt>
+                            <dt><button><span>$</span>pull</button></dt>
                             <dd>
                                 배열 값 삭제
                         </dd>
@@ -435,10 +632,51 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
                         <pre>
                             <code class="javascript">
 // Charlie document에서 skills 값의 mongodb 제거
-> db.people.update(
-... { name: "Charlie" },
-... { $pull: { skills: "mongodb" } }
-... )
+db.people.update(
+  { name: "Charlie" },
+  { $pull: { skills: "mongodb" } }
+)
+
+// 다른 모델 하위에 있는 연결된 코멘트 지우기
+Blog 
+  commnets: [...]
+
+await Blog.updateOne({ 'comments._id': req.params.commentId }, { $pull: { comments: { _id: commentId } } })
+// comments._id 선택하고 $pull: { 삭제할 필드: { 삭제조건 }, { 삭제조건 } }  둘 중 하나만 걸리면 삭제
+ 
+// elemMatch....
+// comments._id 선택하고 $pull: { 삭제할 필드: $elemMatch: { { 삭제조건 }, { 삭제조건 } } } 둘다 맞아야 삭제
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>elemMatch</button></dt>
+                            <dd>
+                                둘 다 맞으면
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+// 다른 모델 하위에 있는 연결된 코멘트 지우기
+Blog 
+  commnets: [...]
+
+await Blog.updateOne({ 'comments._id': req.params.commentId }, { $pull: { comments: { _id: commentId } } })
+// comments._id 선택하고 $pull: { 삭제할 필드: { 삭제조건 }, { 삭제조건 } }  둘 중 하나만 걸리면 삭제
+ 
+// elemMatch....
+// comments._id 선택하고 $pull: { 삭제할 필드: $elemMatch: { { 삭제조건 }, { 삭제조건 } } } 둘다 맞아야 삭제
+
+
 
                             </code>
                         </pre>
@@ -639,7 +877,7 @@ $sort: { KEY: -1 }
                         <dl class="item">
                             <dt><button><span>$</span>in</button></dt>
                             <dd>
-                                특정 키값 검색
+                                특정 키값 검색해서 있으면 채우기
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -649,6 +887,7 @@ db.nettuts.find( { 'occupation' : { '$in' : [ "actor", "developer" ] } }, { "fir
 in은 특정 key의 값이 ㅁㅁㅁ인 경우에 사용한다.
 이렇게 사용한다. 이렇게 쿼리를 작성하면 occupation 이 actor이거나 developer인 것을 가져온다.
 first 와 last 에 각각 1이 있으므로 오름차순으로 정렬한다.
+
 
 
 
@@ -781,8 +1020,29 @@ db.nettuts.find( { "first" : { $regex : /(ma)/ } } );
 
 
 
-https://velopert.com/479
+https://velopert.com/479 여기부터 하면 됨
 
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>inc</button></dt>
+                            <dd>
+                                값 증가
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+조회수 증가, 포인트 증감에 사용하면 됨
+
+collection.update(
+  {$inc: {'count': 1}
+})
                             </code>
                         </pre>
                         </div>
@@ -801,7 +1061,7 @@ https://velopert.com/479
                         <dl class="item">
                             <dt><button><span>model</span>.insert()</button></dt>
                             <dd>
-                                생성
+                                단일, 다수 생성
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -820,7 +1080,7 @@ db.products.insert( { item: "card", qty: 15 } )
                         <dl class="item">
                             <dt><button><span>model</span>.insertOne()</button></dt>
                             <dd>
-                                하나 생성
+                                단일 생성
                             </dd>
                         </dl>
                         <div class="code_wrap">
@@ -829,6 +1089,24 @@ db.products.insert( { item: "card", qty: 15 } )
 insertOne({ name: " aaa ", email: " dd@dd.com " }) - 한개만 생성
 insertOne({ name: { a: "aa", b: "bb" }, email: " dd@dd.com " }) - 객체도 배열도 넣기 가능 
 ※ 근데 불러올 땐 findOne({ "name.a": "aa" }) - 이런식으로 해야됨 객체접근에 "" 넣기 꼭!
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.insertMany()</button></dt>
+                            <dd>
+                                다수 생성
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
 
                             </code>
                         </pre>
@@ -933,7 +1211,117 @@ res.status(200).json(user)
                 <!-- 검색 -->
                 <div class="depth_2">
                     <strong>검색</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.skip()</button></dt>
+                            <dd>
+                                검색 시작 위치
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+model.find().skip(3) // 데이터 인덱스 4부터 검색
 
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.limit()</button></dt>
+                            <dd>
+                                몇개 검색
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+model.find().limit(10) //10개 검색
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                   
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.populate()</button></dt>
+                            <dd>
+                                ObjectId를 검색해서 채워주기 
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+
+//ObjectId로 연결되어있는 필드를 해당 필드 검색해서 mongoose가 $in으로 값을 채워 넣어줌 
+model.populate({ path: '해당 ObjectId 연결된 필드명' })
+ex)  user: { type: Types.ObjectId, required: true, ref: 'user' },
+
+
+
+// 한개 추가 
+model.populate({ path: 'user' }) 
+
+// 여러 모델 넣기
+model.populate([ {path: 'comment'}, {path: 'user'} ]) 
+
+// 모델 아래 하위 모델 넣기 
+model.populate({ path: user, populate: { path: 'user' } })
+
+
+
+------------------------------
+
+//모델구조
+import mongoose from 'mongoose'
+
+const { Schema, model, Types } = mongoose;
+
+const BlogSchema = new Schema({
+    title: { type: String, required: true, },
+    content: { type: String, required: true, },
+    isLive: { type: Boolean, default: false, },
+    user: { type: Types.ObjectId, required: true, ref: 'user' },
+}, {
+    timestamps: true,
+})
+
+// comments 필드가 없으니 가상으로 만듦
+// 이 필드는 db에 저장되는게 아님..데이터 보내줄 때 추가돼서 보내줌
+BlogSchema.virtual('comments', {
+    ref: "comment", //어디를 참조할건지
+    localField: "_id", //이 필드에서 어떤 것을 
+    foreignField: "blog", // 이 필드랑 어떤 관계냐 ...Comment 모델에 들어가보면 blog로 필드이름 저장되어있음.. ref아님
+})
+
+BlogSchema.set("toObject", { virtuals: true });
+BlogSchema.set("toJSON", { virtuals: true });
+
+const Blog = model('blog', BlogSchema);
+export default Blog;
+
+----------------------------
+
+const allBlog = await Blog.find().populate([{ path: 'user' }, { path: 'comments', populate: { path: 'user' } }])
+
+
+
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
@@ -1243,6 +1631,72 @@ const user = await User.findById(req.params.userId)
                         <pre>
                             <code class="javascript">
 -
+model.updateOne({ 선택 }, { 바꿀거 })
+
+// 아이디로 찾아 변경
+model.updateOne({ _id: '62143c5831b0efa850896c86' }, { content: req.body.content })
+
+// 하위에 있는 배열 컨텐츠 변경  '' + .으로 접근 
+model.updateOne({ 'comments._id': req.params.commentId }, { 'comments.$.content': req.body.content })
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.updateMany()</button></dt>
+                            <dd>
+                                조건에 맞는 여러개 업데이트
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-
+model.updateMany({ 선택 }, { 바꿀거 })
+
+// 아이디로 찾아 모두 변경
+model.updateMany({ _id: req.params.userId }, { content: req.body.content })
+
+// 하위에 있는 배열 컨텐츠 변경  '' + .으로 접근 
+model.updateMany({ 'comments._id': req.params.commentId }, { 'comments.$.content': req.body.content })
+
+// 유저정보 변경시 연결되어있는 모델 모두 변경
+
+// model
+User 
+Blog (user, cooments: [ comment_info, user ]) 
+Comment (user, blogId)
+
+user: { name: { first: '', last: '' } }
+
+const user = await User.findById(req.body.userId)
+
+if(req.body.name.first) {
+    // Comment 모델에 있는 user정보 업데이트 
+    await Comment.updateMany({ 'user._id' }, { 'user.name.first': user.name.first })
+
+    // Blog 모델에 있는 user정보 업데이트
+    await Blog.updateMany({ 'user._id' }, { 'user.name.first': user.name.first })
+
+    // Blog 모델에 있는 comments:[] 필드안에 있는 user정보 업데이트
+    await Blog.updateMany(
+        { 'comments.user._id': userId }, // 해당 인덱스 있으면 넣는게 더 효율좋음
+        { 'comments.$[comm].user': user.name.first }, // comments필드에 .$ 인덱스 선택 [comm] 필터에 쓸 변수같은? 
+        { arrayFilters: [ {'comm.user._id': req.body.userId} ] }, // arrayFilters 옵션에 여러 조건을 넣는다..
+    )
+}
+
+
+/* 
+    await Blog.updateMany({}, { 'comments.$[ele].users.$[user].username': user.name.first }, { arrayFilters: [ {"ele.user._id": userId}, {"user._id": userId} ] })
+
+    comments 필드안에 users 배열이 있고 그 안에 username을 필터링해서 바꿔줌 
+
+*/
 
                             </code>
                         </pre>
