@@ -34,12 +34,12 @@
     font-weight: 700;
     font-style: normal;
 } */
-@font-face {
+/* @font-face {
     font-family: 'Arita-dotum-Medium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
+} */
 
 
 
@@ -48,8 +48,8 @@
 body {
 	-webkit-text-size-adjust: 100%;
 	font-weight: 400;
-	font-family: 'Arita-dotum-Medium', 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
-	/* 'ari-Medium' */
+	font-family: 'AppleSDGothicNeo', 'Noto Sans KR', sans-serif;
+	/* 'ari-Medium', 'Arita-dotum-Medium' */
 	font-size: 1em;
 	line-height: 1.25;
 	color: #555;
@@ -60,6 +60,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	font-size: 100%;
+	letter-spacing: -0.11px;
 }
 div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, figure {
 	margin: 0;
