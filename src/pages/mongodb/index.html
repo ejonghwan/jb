@@ -279,6 +279,102 @@ Data.find(function(err,users){
                 </div>
                 <!-- 기본 -->
 
+                <div class="depth_2">
+                    <strong>트랜젝션</strong>
+               <!-- item -->
+               <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>transactions</span> 기본 개념</button></dt>
+                    <dd>
+                        -
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+-
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Session</span>.startSession()</button></dt>
+                    <dd>
+                        -
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+import { startSession } from 'mongoose'
+
+const session = startSession()
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Session</span>.withTransaction()</button></dt>
+                    <dd>
+                        -
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+-
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Session</span>.abortTransaction()</button></dt>
+                    <dd>
+                        뭐 하나 실패했을 때 원복
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+-
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Session</span>.endSession()</button></dt>
+                    <dd>
+                        세션 끝
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+-
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            
+            </div>
+
                 <!-- 검증 -->
                 <div class="depth_2">
                     <strong>메서드</strong>
@@ -1043,6 +1139,50 @@ https://velopert.com/479 여기부터 하면 됨
 collection.update(
   {$inc: {'count': 1}
 })
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>each</button></dt>
+                            <dd>
+                                여러개 
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+// 여러개 동시. 반복문 비슷~
+model.findOneAndUpdate(id, { $push: { comments: { $each: [푸시할거 1, 푸시할거 2] } } })  
+
+
+// 카운트 하면서 특정갯수만 푸시.. 아래 예제는 최근 3개만 넣고 다 삭제 
+model.findOneAndUpdate(id, { $inc: 1, $push: { comments: { $each: [푸시할거], $slice: 3 } } }) 
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>slice</button></dt>
+                            <dd>
+                                잘라내기 
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+-3 : 예전 3개만 빼고 다 삭제 
+3 : 최근 3개 뺴고 다 삭제
+
+
+// 카운트 하면서 특정갯수만 푸시.. 아래 예제는 최근 3개만 넣고 다 삭제 
+model.findOneAndUpdate(id, { $inc: 1, $push: { comments: { $each: [푸시할거], $slice: 3 } } }) 
                             </code>
                         </pre>
                         </div>
