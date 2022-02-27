@@ -292,7 +292,44 @@ Data.find(function(err,users){
                 <div class="code_wrap">
                 <pre>
                     <code class="javascript">
--
+`                        
+트랜잭션이란 데이터베이스의 상태를 변경하는 논리적 작업단위 
+논리적 단위라 하나의 트랜잭션은 반드시 commit / rollback이 됨
+이런 특성을 이용해 데이터베이스에 장애가 발생했을 때 데이터를 복구하는 작업의 단위로 사용 
+
+트랜잭션은 크게 4가지 특징을 갖는데 이 특징들을 모두 만족해야 트랜잭션이 데이터베이스의 무결성과 일관성을 보장
+
+A: Atomicity (all & noting)
+하나의 트랜잭션 내 모든 연산이 모두 정상적으로 실행되거나, 하나라도 실패 시 모두 실행되지 말아야함
+
+C: Consistency
+트랜잭션이 성공적으로 완료된 후에도 데이터베이스는 항상 일관성 있는 상태여야 함
+
+I: Isolation
+현재 데이터베이스에 접근중인 트랜잭션이 완료될 때까지 다른 트랜잭션이 접근할 수 없다는 것을 의미
+약간 동기 비동기랑 비슷
+
+D: Durability
+일단 완료된 트랜잭션은 데이터베이스에 반영되었으므로 어떠한 경우에도 이 내용이 손실되지 않고 영구적이어야 됨
+
+`
+
+
+## blog api 프로젝트에서의 문제점... 
+faker로 가데이터로 만들 때 데이터 수정에 오류가 있었던 이유는 Isolation 때문임...
+
+병렬로 데이터를 생성했기 때문에 ...
+a data를 불러와서 처리하는 동안 
+a data를 다른데서 동시에 처리해서 commentCount가 그대로였던 것. 
+
+
+
+## 트랜잭션을 꼭 써야할 때.. 
+금융같은 숫자에 민감한 것들..한개가 성공했는데 다른 한개가 성공안한다면? 크리티컬
+하지만 너무 자주 쓰면 메모리 낭비가 심함
+꼭 써야할 때만 쓰기
+
+
                     </code>
                 </pre>
                 </div>
@@ -309,9 +346,9 @@ Data.find(function(err,users){
                 <div class="code_wrap">
                 <pre>
                     <code class="javascript">
-import { startSession } from 'mongoose'
+import mongoose from 'mongoose'
 
-const session = startSession()
+const session = await mongoose.startSession()
 
                     </code>
                 </pre>
@@ -329,7 +366,58 @@ const session = startSession()
                 <div class="code_wrap">
                 <pre>
                     <code class="javascript">
--
+import mongoose from 'mongoose'
+
+const session = await mongoose.startSession()
+await session.withTransaction(async() => {
+    ...
+})
+
+
+
+ex) 
+// @ POST
+// @ /api/blog/:blogId/comment
+route.post('/', async (req, res) => {
+    
+    // 트랜젝션
+    const session = await mongoose.startSession()
+    let createComment;
+    try {
+         await session.withTransaction(async() => {
+            const { content, userId } = req.body;
+            const { blogId } = req.params;
+    
+            if(content && typeof content !== 'string') return res.status(400).send('is requied content') 
+            if(!mongoose.isValidObjectId(userId)) return res.status(400).send('is not objectId')
+            if(!mongoose.isValidObjectId(blogId)) return res.status(400).send('is not objectId')
+    
+            const [user, blog] = await Promise.all([
+                User.findById(userId, {}, { session }), // 두번째 조건 없으니 빈 객체, 뒤에 옵션으로 추가해줘야됨
+                Blog.findById(blogId, {}, { session })
+            ])
+            createComment = await new Comment({ content, user, blog: blogId })
+    
+            await session.abortTransaction() // 하나라도 잘못되었다면 기존에 적용된게 있다 하더라도..트랜잭션 중단 (아토믹) 
+
+            blog.commentCount++;
+            blog.comments.push(createComment);
+            if(blog.commentCount > 3) {
+                blog.comments.shift()
+            }
+          
+           await Promise.all([
+                createComment.save({ session }),
+                blog.save(), // blog는 없어도 되는 이유는 findById에서 세션으로 불러왔기 때문에..
+           ])
+         })
+         return res.status(200).json(createComment);
+    } catch(error) {
+        console.log(error)
+    } finally {
+        await session.endSession();
+    }
+})
 
                     </code>
                 </pre>
@@ -347,7 +435,13 @@ const session = startSession()
                 <div class="code_wrap">
                 <pre>
                     <code class="javascript">
--
+import mongoose from 'mongoose'
+
+const session = await mongoose.startSession()
+await session.withTransaction(async() => {
+    ...
+    await session.abortTransaction() // 하나라도 잘못되었다면 기존에 적용된게 있다 하더라도..트랜잭션 중단 (아토믹) 
+})
 
                     </code>
                 </pre>
@@ -745,6 +839,25 @@ await Blog.updateOne({ 'comments._id': req.params.commentId }, { $pull: { commen
 
 
 
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>pop</button></dt>
+                            <dd>
+                               조건 idx 빼주기  
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+$pop: { field: idx }
+
+$pull은 조건에서 뺴는거고 $pop은 인덱스로 뺴는거
                             </code>
                         </pre>
                         </div>
@@ -1188,6 +1301,7 @@ model.findOneAndUpdate(id, { $inc: 1, $push: { comments: { $each: [푸시할거]
                         </div>
                     </div>
                     <!-- //item -->
+                    
                   
                 </div>
                 <!-- 쿼리 옵션 -->
