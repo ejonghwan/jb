@@ -323,6 +323,14 @@ a data를 불러와서 처리하는 동안
 a data를 다른데서 동시에 처리해서 commentCount가 그대로였던 것. 
 
 
+## 해결방법 
+1. 트랜잭션 사용
+2. db에서 바로 처리.. 
+- db에서 백엔드로 가져와서 처리했을 경우 병렬로 처리(백엔드에서 처리한걸 db에서는 v로 비교함..)할 때 공백이 발생하기에 ..
+"같은 데이터를 병렬로 반복 처리"해서 countCommnet의 카운터가 계속 1이었던것...
+db에서 바로 처리하게 되면 그런 공백이 발생하지 않아 Isolation(일관성) 문제는 해결할 수 있음. 
+
+
 
 ## 트랜잭션을 꼭 써야할 때.. 
 금융같은 숫자에 민감한 것들..한개가 성공했는데 다른 한개가 성공안한다면? 크리티컬
@@ -459,7 +467,18 @@ await session.withTransaction(async() => {
                 <div class="code_wrap">
                 <pre>
                     <code class="javascript">
--
+import mongoose from 'mongoose'
+
+const session = await mongoose.startSession()
+try {
+    await session.withTransaction(async() => {
+        ...
+    })
+} catch(err) {
+    console.log(err)
+} finally {
+    session.endSession() //만든 세션 종료
+}
 
                     </code>
                 </pre>
@@ -1685,168 +1704,7 @@ const user = await User.findById(req.params.userId)
                         </div>
                     </div>
                     <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                하나 찾기
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOne()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
+                     
                 </div>
                 <!-- 검색 -->
 
@@ -2121,42 +1979,7 @@ const user = await User.findOneAndDelete({ _id: params userId })
                         </div>
                     </div>
                     <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOneAndRemove()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>model</span>.findOneAndRemove()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="javascript">
--
-
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
+                   
                 </div>
                 <!-- 삭제 -->
 
