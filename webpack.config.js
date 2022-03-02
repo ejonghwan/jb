@@ -6,6 +6,7 @@ const terserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack'); //웹팩 기본 플로그인은 여기있음
 const childProcess = require('child_process') // 터미널 명령어를 이거로 실행 할 수 있음 
 
+
 module.exports = {
   mode: 'production', //production  devalopment  none
   entry: './src/index.js',
