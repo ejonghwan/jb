@@ -59,6 +59,12 @@ class Nav {
                 menuName: 'SPA' ,
                 state: false,
             },
+            {
+                id: 9,
+                href: `${this.root}/js/canvas.html`, 
+                menuName: 'Canvas' ,
+                state: false,
+            },
         ]
     }
 

@@ -6,9 +6,10 @@ const terserPlugin = require('terser-webpack-plugin')
 const webpack = require('webpack'); //웹팩 기본 플로그인은 여기있음
 const childProcess = require('child_process') // 터미널 명령어를 이거로 실행 할 수 있음 
 
+const webpackMode = process.env.NODE_ENV || 'development';
 
 module.exports = {
-  mode: 'production', //production  devalopment  none
+  mode: webpackMode, //production  devalopment  none
   entry: './src/index.js',
   output: {
     filename: '[name].[chunkhash].js', //id chunkhash name
@@ -80,10 +81,10 @@ module.exports = {
     new HtmlWebpackPlugin({ 
         template:'./src/pages/html/accessibility.html',
         filename:'./src/pages/html/accessibility.html',
-        minify: process.env.NODE_ENV === 'production' ? {
-          collapseWhitespace: true, 
-          removeComments: true, 
-        } : false,
+			  minify: process.env.NODE_ENV === 'production' ? {
+				collapseWhitespace: true,
+				removeComments: true,
+			} : false
     }),
     new HtmlWebpackPlugin({ 
         template:'./src/pages/html/index.html',
@@ -149,6 +150,14 @@ module.exports = {
           removeComments: true, 
         } : false,
       }),
+      new HtmlWebpackPlugin({ 
+        template:'./src/pages/js/canvas.html',
+        filename:'./src/pages/js/canvas.html',
+        minify: process.env.NODE_ENV === 'production' ? {
+          collapseWhitespace: true, 
+          removeComments: true, 
+        } : false,
+      }),
     new CleanWebpackPlugin(),
     new webpack.BannerPlugin({ 
       banner: `
@@ -161,6 +170,7 @@ module.exports = {
 
 
   optimization : {
+    // minimizer: process.env.NODE_ENV === 'production' ? [
     minimizer: process.env.NODE_ENV === 'production' ? [
 
       new terserPlugin({ 

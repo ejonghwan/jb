@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --progress",
-    "build": "webpack --progress",
-    "deploy": "webpack --progress && gh-pages -d dist",
+    "build": "NODE_ENV=production webpack --progress",
+    "deploy": "NODE_ENV=production webpack --progress && gh-pages -d dist",
     "pages": "gh-pages -d dist"
   },
   "repository": {
