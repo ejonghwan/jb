@@ -1,41 +1,4 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-   
-    <title>Document</title>
-<script defer src="../../../main.9f387d260d25a6cd3874.js"></script><link href="../../../main.css" rel="stylesheet"></head>
-<body>
-
-    <div class="wrap">
-        <header>
-            <nav class="global_wrap sub">
-                <ul class="line"></ul>
-            </nav>
-        </header>
-        <main>
-            <div class="global_wrap">
-                
-                <!-- Node -->
-                <section class="conts">
-                    <h2>Network</h2>
-
-                    <div class="depth_2">
-                        <strong>HTTP Header - 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보 전달</strong>
-                   
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>General <span>Header</span></button></dt>
-                            <dd>
-                                공통 헤더
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.fac4cfa84bcaa1ea4d6e.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Network</h2><div class="depth_2"><strong>HTTP Header - 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보 전달</strong><div class="item_wrap"><dl class="item"><dt><button>General <span>Header</span></button></dt><dd>공통 헤더</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 General Header(공통 헤더)
 -  요청과 응답 모두에 적용되지만 바디에서 최종적으로 전송되는 데이터와는 관련이 없는 헤더
@@ -61,20 +24,7 @@ General Header(공통 헤더)
 # Transfer-Encoding : 
 사용자에게 entity를 안전하게 전송하기 위해 사용하는 인코딩 형식을 지정
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>Request <span>Header</span></button></dt>
-                            <dd>
-                                요청 헤더
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Request <span>Header</span></button></dt><dd>요청 헤더</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 Request Header(요청 헤더)
 - HTTP 요청에서 사용되지만 메시지의 컨텐츠와 관련이 없는 패치될 리소스나 클라이언트 자체에 대한 자세한 정보를 포함하는 헤더
@@ -114,20 +64,7 @@ Request Header(요청 헤더)
 # Cookie : 
 쿠기 값 key-value로 표현된다. Set-Cookie 헤더와 함께 서버로부터 이전에 전송됐던 저장된 HTTP 쿠키를 포함
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>Response <span>Header</span></button></dt>
-                            <dd>
-                                응답 헤더
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Response <span>Header</span></button></dt><dd>응답 헤더</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 Response Header(응답 헤더)
 - 위치 또는 서버 자체에 대한 정보(이름, 버전)과 같이 응답에 대한 부가적인 정보를 갖는 헤더
@@ -151,20 +88,7 @@ max-age 시간내에서 얼마나 흘렀는지 초 단위로 알려주는 값
 # Set-Cookie : 
 서버측에서 클라이언트에게 세션 쿠키 정보를 설정 (RFC 2965에서 규정)
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>Entity <span>Header</span></button></dt>
-                            <dd>
-                                엔티티 헤더
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Entity <span>Header</span></button></dt><dd>엔티티 헤더</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 Entity Header(엔티티 헤더)
 - 컨텐츠 길이나 MIME 타입과 같이 엔티티 바디에 대한 자세한 정보를 포함하는 헤더
@@ -218,32 +142,7 @@ http://coffeenix.net/doc/network/http_1_0_vs_1_1.html
 
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                </div>
-              </section>
-              <!-- //Node -->
-
-                       
-                <!-- Express -->
-                <section class="conts">
-                    <h2>Express</h2>
-
-                    <div class="depth_2">
-                        <strong>express</strong>
-                   
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>express</span>.json()</button></dt>
-                            <dd>
-                                json 파싱하기
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div></div></section><section class="conts"><h2>Express</h2><div class="depth_2"><strong>express</strong><div class="item_wrap"><dl class="item"><dt><button><span>express</span>.json()</button></dt><dd>json 파싱하기</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 express.json([options])
 
@@ -261,20 +160,7 @@ app.listen(3000);
 
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>express</span>.Router()</button></dt>
-                            <dd>
-                                라우터 생성
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>express</span>.Router()</button></dt><dd>라우터 생성</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 var router = express.Router([options])
 
@@ -292,20 +178,7 @@ const router = express.Router();
 router.post() ~ //작성방법
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>express</span>.static()</button></dt>
-                            <dd>
-                                정적파일
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>express</span>.static()</button></dt><dd>정적파일</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 express.static(root, [options])
 
@@ -330,20 +203,7 @@ app.use('/static', express.static(__dirname + '/public'));
 https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=pjok1122&logNo=221545195520
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>express</span>.urlencoded()</button></dt>
-                            <dd>
-                                form data parsing 
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>express</span>.urlencoded()</button></dt><dd>form data parsing</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.use(express.urlencoded({extended: false}))
 // form submit했을떄 urlincoded방식으로 넘겨주는데 이걸 해석해서 req.body에 넣어줌
@@ -355,20 +215,7 @@ HTML &lt;form&gt;에서는 enctype 속성을 통해서, 여러가지 방법으�
 
 https://kasterra.github.io/handle-POST-data-in-express/
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>express</span>.text()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>express</span>.text()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 express.text([options])
 
@@ -380,20 +227,7 @@ express.text([options])
 
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>express</span>.raw()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>express</span>.raw()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 
 express.raw([options])
@@ -411,29 +245,7 @@ RFC 2046에서 명시된 바로는 application/octet-steam은 임의의 2진 파
 
 https://kasterra.github.io/handle-POST-data-in-express/
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    
-                </div>
-
-
-                    
-
-                    <div class="depth_2">
-                        <strong>Application</strong>
-                   
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.listen()</button></dt>
-                            <dd>
-                                서버 실행 시점
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div></div><div class="depth_2"><strong>Application</strong><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.listen()</button></dt><dd>서버 실행 시점</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.listen(path, [callback])
 
@@ -443,20 +255,7 @@ var express = require('express')
 var app = express()
 app.listen(3000)
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.get()</button></dt>
-                            <dd>
-                                가져오기
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.get()</button></dt><dd>가져오기</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.get('/', function (req, res) {
     res.send('GET request to homepage')
@@ -470,20 +269,7 @@ GET 요청에는 데이터 길이에 대한 제한이 있습니다.
 Get 요청은 성공시, 200(Ok) HTTP 응답 코드를 XML, JSON뿐만 아니라 여러 데이터(html, txt등..), 여러 형식의 데이터와 함께 반환합니다.
 GET 요청은 idempotent합니다.
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.post()</button></dt>
-                            <dd>
-                                저장, 데이터 전송
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.post()</button></dt><dd>저장, 데이터 전송</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.post('/', function (req, res) {
     res.send('POST request to homepage')
@@ -501,77 +287,25 @@ POST 요청에는 데이터 길이에 대한 제한이 없습니다.
 Post 요청 중 자원 생성은 201(Created) HTTP 응답 코드를 반환합니다.
 Post 요청은 idempotent하지 않습니다.
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.put()</button></dt>
-                            <dd>
-                                모두수정
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.put()</button></dt><dd>모두수정</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.put('/', function (req, res) {
     res.send('PUT request to homepage')
 })
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.patch()</button></dt>
-                            <dd>
-                                부분수정
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.patch()</button></dt><dd>부분수정</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.patch('/', function (req, res) {
     res.send('patch request to homepage')
 })
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.delete()</button></dt>
-                            <dd>
-                                삭제
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.delete()</button></dt><dd>삭제</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.delete('/', function (req, res) {
     res.send('DELETE request to homepage')
 })
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.route()</button></dt>
-                            <dd>
-                                route 생성
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.route()</button></dt><dd>route 생성</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 var app = express()
 
@@ -592,20 +326,7 @@ app.route('/events')
 
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.use()</button></dt>
-                            <dd>
-                                미들웨어 붙이기
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.use()</button></dt><dd>미들웨어 붙이기</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.use([path,] callback [, callback...])
 
@@ -615,91 +336,26 @@ app.use(function (req, res, next) {
 })
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.render()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.render()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 
 
 
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.all()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.all()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.set()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.set()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.get()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.get()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.path()</button></dt>
-                            <dd>
-                                path 검색
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.path()</button></dt><dd>path 검색</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.path()
 
@@ -715,20 +371,7 @@ console.dir(app.path()) // ''
 console.dir(blog.path()) // '/blog'
 console.dir(blogAdmin.path()) // '/blog/admin'
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.param()</button></dt>
-                            <dd>
-                                GET 전송
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.param()</button></dt><dd>GET 전송</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.param([name], callback)
 
@@ -761,197 +404,49 @@ app.param('user', function (req, res, next, id) {
     res.end()
   })
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.METHOD()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.METHOD()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.get()</button></dt>
-                            <dd>
-                                GET 전송
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.get()</button></dt><dd>GET 전송</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.get('/', function (req, res) {
     res.send('GET request to homepage')
 })
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.engine()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.engine()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.enable()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.enable()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.enabled()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.enabled()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.disable()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.disable()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.disabled()</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.disabled()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.locals</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.locals</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>app</span>.mountpath</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.mountpath</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>mount</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>mount</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                </div>
-
-                <div class="depth_2">
-                    <strong>Request</strong>
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.app</button></dt>
-                        <dd>
-                            미들웨어 가져오기
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                        </pre></div></div></div><div class="depth_2"><strong>Request</strong><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.app</button></dt><dd>미들웨어 가져오기</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 // index.js
 app.get('/viewdirectory', require('./mymiddleware.js'))
@@ -962,20 +457,7 @@ module.exports = function (req, res) {
 }
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.body</button></dt>
-                        <dd>
-                            client에서 보낸 데이터
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.body</button></dt><dd>client에서 보낸 데이터</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 var express = require('express')
 
@@ -990,20 +472,7 @@ app.post('/profile', function (req, res, next) {
 })
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.cookies</button></dt>
-                        <dd>
-                            일반 쿠키
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.cookies</button></dt><dd>일반 쿠키</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 cookie-parser 미들웨어 붙이면 쿠키가 바디에 담기고 그때 부터 쓰면 됨
 
@@ -1013,20 +482,7 @@ console.dir(req.cookies.name)
 // => 'tj'
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 <!-- item -->
-                 <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.signedCookies</button></dt>
-                        <dd>
-                            암호화된 쿠키
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.signedCookies</button></dt><dd>암호화된 쿠키</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 실제 값이 노출되어도 상관없는 경우엔 req.cookie 
 보안때문에 쿠키가 노출되면 안된다면 req.signedCookies 
@@ -1038,20 +494,7 @@ res.cookie('DataB', 200, { signed: true })
 req.signedCookies.dataB // 개발자 도구 쿠키창에 쿠키값이 노출되지 않음
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.params</button></dt>
-                        <dd>
-                            client에서 보낸 params
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.params</button></dt><dd>client에서 보낸 params</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 // GET /user/tj
 console.dir(req.params.name)
@@ -1064,20 +507,7 @@ router.delete('/delete/:userId', async(req, res) => {
 })
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.fresh</button></dt>
-                        <dd>
-                            요청 상태
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.fresh</button></dt><dd>요청 상태</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 console.dir(req.fresh)
 // => true
@@ -1088,20 +518,7 @@ console.dir(req.fresh)
 캐시 유효성 검사 작동 방식에 대한 자세한 내용은 HTTP/1.1 캐싱 사양에서 찾을 수 있습니다.
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.stale</button></dt>
-                        <dd>
-                            요청 상태
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.stale</button></dt><dd>요청 상태</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 console.dir(req.stale)
 // => true
@@ -1109,75 +526,23 @@ console.dir(req.stale)
 요청이 "부실"인지 여부를 나타내며 req.fresh의 반대입니다. 자세한 내용은 req.fresh를 참조하세요.
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.ip</button></dt>
-                        <dd>
-                            ip 출력
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.ip</button></dt><dd>ip 출력</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 console.dir(req.ip)
 // => '127.0.0.1'
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.ips</button></dt>
-                        <dd>
-                            -
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.ips</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 -
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.method</button></dt>
-                        <dd>
-                            GET POST ...등 HTTP메소드 리턴해줌
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.method</button></dt><dd>GET POST ...등 HTTP메소드 리턴해줌</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 ontains a string corresponding to the HTTP method of the request: GET, POST, PUT, and so on.
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.originalUrl</button></dt>
-                        <dd>
-                            도메인 제외 url 반환
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.originalUrl</button></dt><dd>도메인 제외 url 반환</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 //http://localhost:5000/api/user/61c07d24bb241609ebfe7fff
 
@@ -1190,57 +555,18 @@ console.dir(req.originalUrl)
 // => '/search?q=something'
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.protocol</button></dt>
-                        <dd>
-                            프로토콜 반환
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.protocol</button></dt><dd>프로토콜 반환</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 console.dir(req.protocol)
 // => 'http'
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.res</button></dt>
-                        <dd>
-                            응답 객체에 대한 참조 ? 
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.res</button></dt><dd>응답 객체에 대한 참조 ?</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 This property holds a reference to the response object that relates to this request object.
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.route</button></dt>
-                        <dd>
-                            라우트값 반환
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.route</button></dt><dd>라우트값 반환</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 app.get('/user/:id?', function userIdHandler (req, res) {
     console.log(req.route)
@@ -1267,21 +593,7 @@ Route {
   }
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.subdomains</button></dt>
-                        <dd>
-                            도메인 이름 배열로
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.subdomains</button></dt><dd>도메인 이름 배열로</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 An array of subdomains in the domain name of the request.
 
@@ -1289,20 +601,7 @@ An array of subdomains in the domain name of the request.
 console.dir(req.subdomains)
 // => ['ferrets', 'tobi']
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.xhr</button></dt>
-                        <dd>
-                            request header가 XMLHttpRequest인지
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.xhr</button></dt><dd>request header가 XMLHttpRequest인지</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
                             
 요청의 X-Requested-With 헤더 필드가 "XMLHttpRequest"인 경우 true인 부울 속성은 요청이 jQuery와 같은 클라이언트 라이브러리에서 발행되었음을 나타냅니다.
@@ -1311,20 +610,7 @@ console.dir(req.xhr)
 // => true
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.accepts(types)</button></dt>
-                        <dd>
-                            HTTP header 중에서 ‘Accept’ 의 필드값에 가장 잘 매칭되는 type 을 반환
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.accepts(types)</button></dt><dd>HTTP header 중에서 ‘Accept’ 의 필드값에 가장 잘 매칭되는 type 을 반환</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 HTTP header 중에서 ‘Accept’ 의 필드값에 가장 잘 매칭되는 type 을 반환한다.
                             
@@ -1352,74 +638,22 @@ req.accepts('png')
 req.accepts(['html', 'json'])
 // => "json"
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.acceptsCharsets(charset [, ...])</button></dt>
-                        <dd>
-                            -
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.acceptsCharsets(charset [, ...])</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 -
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.acceptsEncodings(encoding [, ...])</button></dt>
-                        <dd>
-                            -
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.acceptsEncodings(encoding [, ...])</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 -
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.acceptsLanguages(lang [, ...])</button></dt>
-                        <dd>
-                            -
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.acceptsLanguages(lang [, ...])</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 -
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.get(field)</button></dt>
-                        <dd>
-                            HTTP header 필드값을 반환
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.get(field)</button></dt><dd>HTTP header 필드값을 반환</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 req.get('Content-Type')
 // => "text/plain"
@@ -1431,20 +665,7 @@ req.get('Something')
 // => undefined
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.is(type)</button></dt>
-                        <dd>
-                            HTTP header 중에서 ‘Content-Type’ 의 필드값에 type 이 적절한가 확인
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.is(type)</button></dt><dd>HTTP header 중에서 ‘Content-Type’ 의 필드값에 type 이 적절한가 확인</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 들어오는 요청의 "Content-Type" HTTP 헤더 필드가 type 매개변수에 지정된 MIME 유형과 일치하는 경우 일치하는 콘텐츠 유형을 반환합니다. 
 요청에 본문이 없으면 null을 반환합니다. 
@@ -1471,20 +692,7 @@ req.is('html')
 // => false
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>req</span>.range(size[, options])</button></dt>
-                        <dd>
-                            -
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>req</span>.range(size[, options])</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
 오디오파일? 뭐 용량체크하는건가 ? 아직 잘 모르겠음 
@@ -1504,30 +712,7 @@ if (range.type === 'bytes') {
 //https://nachwon.github.io/byterange/
                             
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                 
-                </div>
-
-
-
-
-
-
-                <div class="depth_2">
-                    <strong>Response</strong>
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.app</button></dt>
-                        <dd>
-                            app에 대한 값
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div></div><div class="depth_2"><strong>Response</strong><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.app</button></dt><dd>app에 대한 값</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 이 속성은 미들웨어를 사용하는 Express 애플리케이션의 인스턴스에 대한 참조를 보유합니다.
 res.app은 요청 객체의 req.app 속성과 동일합니다.
@@ -1650,20 +835,7 @@ console.log(res.app)
     }
   }
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.headersSent</button></dt>
-                        <dd>
-                            HTTP로 보냈는지 bool
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.headersSent</button></dt><dd>HTTP로 보냈는지 bool</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
 앱이 응답에 대해 HTTP 헤더를 보냈는지 여부를 나타내는 부울 속성입니다.
@@ -1675,20 +847,7 @@ app.get('/', function (req, res) {
     console.dir(res.headersSent) // true
 })
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.locals</button></dt>
-                        <dd>
-                            HTTP로
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.locals</button></dt><dd>HTTP로</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 app.use(function (req, res, next) {
     res.locals.user = req.user
@@ -1697,20 +856,7 @@ app.use(function (req, res, next) {
 })
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.append()</button></dt>
-                        <dd>
-                            HTTP header에 추가
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.append()</button></dt><dd>HTTP header에 추가</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
 
@@ -1723,20 +869,7 @@ console.log(res.append('asdasdasd', ['http~']))
 }
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.attachment()</button></dt>
-                        <dd>
-                            HTTP header에 파일정보
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.attachment()</button></dt><dd>HTTP header에 파일정보</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 .attachment([filename])
 
@@ -1767,20 +900,7 @@ Content-Disposition          attachment; filename="logo.png"
 http://daplus.net/javascript-express%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-nodejs-%EC%84%9C%EB%B2%84%EC%97%90%EC%84%9C-%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C/
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.cookie()</button></dt>
-                        <dd>
-                            쿠키설정
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.cookie()</button></dt><dd>쿠키설정</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 .cookie(name, value [, options])
 
@@ -1817,20 +937,7 @@ res.cookie('cart', { items: [1, 2, 3] })
 res.cookie('cart', { items: [1, 2, 3] }, { maxAge: 900000 })
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.clearCookie()</button></dt>
-                        <dd>
-                            쿠키 지우기
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.clearCookie()</button></dt><dd>쿠키 지우기</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 .clearCookie(name [, options])
 
@@ -1840,20 +947,7 @@ res.cookie('name', 'tobi', { path: '/admin' })
 res.clearCookie('name', { path: '/admin' })
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.download()</button></dt>
-                        <dd>
-                            파일 내려주기
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.download()</button></dt><dd>파일 내려주기</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 download(path [, filename] [, options] [, fn])
 -
@@ -1883,20 +977,7 @@ res.download('/report-12345.pdf', 'report.pdf', function (err) {
   }
 })
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.send()</button></dt>
-                        <dd>
-                            응답
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.send()</button></dt><dd>응답</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.send([body])
 send에 전해진 argument에 따라서 Content-type이 자동적으로 만들어진다. 이게 기본이다.
@@ -1916,20 +997,7 @@ res.send(Buffer.from('&lt;p&gt;some html&lt;/p&gt;'))
 결론적으로 말하면 res.send()와 res.json()은 별반 다를게 없다.
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.sendFile()</button></dt>
-                        <dd>
-                            파일 응답
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.sendFile()</button></dt><dd>파일 응답</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.sendFile(path [, options] [, fn])
 
@@ -1960,20 +1028,7 @@ app.get('/file/:name', function (req, res, next) {
   })
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.sendStatus()</button></dt>
-                        <dd>
-                            상태 응답
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.sendStatus()</button></dt><dd>상태 응답</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.sendStatus(404)
 
@@ -1982,20 +1037,7 @@ res.statusCode가 잘못된 HTTP 상태 코드(100~599 범위를 벗어남)로 �
 
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.json()</button></dt>
-                        <dd>
-                            josn 응답
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.json()</button></dt><dd>josn 응답</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
 res.json([body])
@@ -2009,20 +1051,7 @@ res.status(500).json({ error: 'message' })
 
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.jsonp()</button></dt>
-                        <dd>
-                            josnp 응답.. cross-domain 
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.jsonp()</button></dt><dd>josnp 응답.. cross-domain</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
 res.jsonp([body])
@@ -2058,20 +1087,7 @@ res.status(500).jsonp({ error: 'message' })
 //http://sugerent.tistory.com/424
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.end()</button></dt>
-                        <dd>
-                            응답
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.end()</button></dt><dd>응답</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.end([data] [, encoding])
 
@@ -2081,20 +1097,7 @@ res.end([data] [, encoding])
 응답을 종료해주는 역할은 하기 때문에 굳이 명시적으로 표시해줄 필요는 없다.
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.status()</button></dt>
-                        <dd>
-                            응답 값 
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.status()</button></dt><dd>응답 값</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.status(code)
 
@@ -2104,20 +1107,7 @@ res.status(404).sendFile('/absolute/path/to/404.png')
 
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.get()</button></dt>
-                        <dd>
-                            HTTP header 값 가져오기 
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.get()</button></dt><dd>HTTP header 값 가져오기</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.get(field)
 필드에서 지정한 HTTP 응답 헤더를 반환
@@ -2129,20 +1119,7 @@ res.get('Content-Type')
 
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.set()</button></dt>
-                        <dd>
-                            HTTP header 값 설정  
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.set()</button></dt><dd>HTTP header 값 설정</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.set(field [, value])
 
@@ -2162,20 +1139,7 @@ Aliased as res.header(field [, value]).
 
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.redirect()</button></dt>
-                        <dd>
-                            리다이렉트
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.redirect()</button></dt><dd>리다이렉트</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.redirect([status,] path)
 클라이언트로 응답값과 함께 리다이렉트 보내기 
@@ -2246,20 +1210,7 @@ app.get('/category', function(req, res) {
   });
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.render()</button></dt>
-                        <dd>
-                            client로 렌더링해서 보냄
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.render()</button></dt><dd>client로 렌더링해서 보냄</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 // send the rendered view to the client
 res.render('index')
@@ -2285,20 +1236,7 @@ res.render('index', { title: 'Express' }) 는
 서버가 클라이언트에게 index.ejs를 렌더링하여 보내겠다는 의미이다.
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.links()</button></dt>
-                        <dd>
-                            header에 links 추가
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.links()</button></dt><dd>header에 links 추가</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.links(links)
 응답의 링크 HTTP 헤더 필드를 채우기 위해 매개변수의 속성으로 제공된 링크를 결합합니다.
@@ -2315,20 +1253,7 @@ res.links({
         &lt;http://api.example.com/users?page=5&gt;; rel="last"
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.location()</button></dt>
-                        <dd>
-                            HTTP Location header 지정  
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.location()</button></dt><dd>HTTP Location header 지정</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 location(path)
 응답 Location HTTP 헤더를 지정된 경로 매개변수로 설정합니다.
@@ -2343,20 +1268,7 @@ res.location('back')
 //Location       http://example.com/path/to/logo.png
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.format()</button></dt>
-                        <dd>
-                            포맷지정 ? 
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.format()</button></dt><dd>포맷지정 ?</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.format(object)
 
@@ -2409,20 +1321,7 @@ res.format({
 })
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.type()</button></dt>
-                        <dd>
-                            HTTP header 타입 
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.type()</button></dt><dd>HTTP header 타입</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.type(type)
 
@@ -2439,46 +1338,14 @@ res.type('png')
 // => 'image/png'
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>res</span>.vary()</button></dt>
-                        <dd>
-                            response header 필드 추가
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>res</span>.vary()</button></dt><dd>response header 필드 추가</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 res.vary(field)
 필드가 아직 없는 경우 Vary 응답 헤더에 필드를 추가합니다.
 
 res.vary('User-Agent').render('docs')
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-               
-                </div>
-
-
-                <div class="depth_2">
-                    <strong>Router</strong>
-                    <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>router</span>.all()</button></dt>
-                        <dd>
-                            해당 파일 router 모두 설정
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div></div><div class="depth_2"><strong>Router</strong><div class="item_wrap"><dl class="item"><dt><button><span>router</span>.all()</button></dt><dd>해당 파일 router 모두 설정</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 해당 라우터 모두 설정하기
 router.all(path, [callback, ...] callback)
@@ -2500,20 +1367,7 @@ router.all('*', (req, res, next) => {
     next();
    });
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>router</span>.METHOD()</button></dt>
-                        <dd>
-                            HTTP method 
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>router</span>.METHOD()</button></dt><dd>HTTP method</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 router.METHOD(path, [callback, ...] callback)
 
@@ -2536,20 +1390,7 @@ router.get(/^\/commits\/(\w+)(?:\.\.(\w+))?$/, function (req, res) {
 
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>router</span>.param()</button></dt>
-                        <dd>
-                            param 지정
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>router</span>.param()</button></dt><dd>param 지정</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 router.param(name, callback)
 
@@ -2583,20 +1424,7 @@ app.listen(3000, function () {
   console.log('Ready')
 })
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>router</span>.route()</button></dt>
-                        <dd>
-                            -
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>router</span>.route()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 router.route(path)
 
@@ -2640,20 +1468,7 @@ router.route('/users/:user_id')
     })
 
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>router</span>.use()</button></dt>
-                        <dd>
-                            미들웨어 붙이기
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>router</span>.use()</button></dt><dd>미들웨어 붙이기</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 router.use([path], [function, ...] function)
 app.use()와 비슷.. 
@@ -2665,43 +1480,4 @@ app.use()와 비슷..
 미들웨어는 배관 파이프와 같습니다. 요청은 정의된 첫 번째 미들웨어 기능에서 시작하여 
 일치하는 각 경로에 대해 미들웨어 스택 처리 "아래로" 작동합니다.
                         </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-               
-                
-
-                </div>
-              </section>
-              <!-- //Express -->
-
-
-
-
-              <!-- Node -->
-              <!-- <section class="conts">
-                <h2>Node</h2>
-
-                
-             </section> -->
-             <!-- //Node -->
-
-
-            </div>
-        </main>
-        <footer>
-            <div class="global_wrap">
-                <ul class="info">
-                    asdasdsa
-                </ul>
-            </div>
-        </footer>
-    </div>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</body>
-</html>
+                    </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

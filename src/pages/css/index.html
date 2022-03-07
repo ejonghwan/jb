@@ -1,80 +1,10 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-   
-    <title>Document</title>
-<script defer src="../../../main.9f387d260d25a6cd3874.js"></script><link href="../../../main.css" rel="stylesheet"></head>
-<body>
-
-    <div class="wrap">
-        <header>
-            <nav class="global_wrap sub">
-                <ul class="line"></ul>
-            </nav>
-        </header>
-        <main>
-            <div class="global_wrap">
-                
-
-                <section class="conts">
-                    <p>
-                        1. 성능 측성 검사 
-                        <a href="https://pagespeed.web.dev/" target="_blank" title="새창">https://pagespeed.web.dev/</a>
-                    </p>
-                    <p>
-                        2. 구글 크롬 라이트하우스
-                    </p>
-                    <p>
-                        3. font최적화 
-                        <a href="https://d2.naver.com/helloworld/4969726">d2 naver blog post</a>
-                    </p>
-                    <p>
-                        4. 브라우저 렌더링 
-                        <a href="https://d2.naver.com/helloworld/59361">d2 naver blog post</a>
-                    </p>
-                 
-                </section>
-
-                <!-- category 1 -->
-                <section class="conts">
-                    <h2>Performance</h2>
-
-                    <div class="depth_2">
-                        <strong>css optimization</strong>
-                   
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>불필요한 CSS 제거</button></dt>
-                            <dd>
-                                불필요한 CSS를 제거 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.fac4cfa84bcaa1ea4d6e.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><p>1. 성능 측성 검사 <a href="https://pagespeed.web.dev/" target="_blank" title="새창">https://pagespeed.web.dev/</a></p><p>2. 구글 크롬 라이트하우스</p><p>3. font최적화 <a href="https://d2.naver.com/helloworld/4969726">d2 naver blog post</a></p><p>4. 브라우저 렌더링 <a href="https://d2.naver.com/helloworld/59361">d2 naver blog post</a></p></section><section class="conts"><h2>Performance</h2><div class="depth_2"><strong>css optimization</strong><div class="item_wrap"><dl class="item"><dt><button>불필요한 CSS 제거</button></dt><dd>불필요한 CSS를 제거 했는가 ?</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 #remove unused css
 - Remove unused CSS 구글 라이트하우스는 2KB 이상 미사용 CSS가 포함된 파일을 검출해서 오류로 체크함. coverage 탭에 상세확인가능
 * 폰트는 사용하지않는 CSS로 구분하는 오류가있음
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>렌더차단 리소스 제거</button></dt>
-                            <dd>
-                                렌더차단 리소스를 제거 했는가 ?
-                            </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>렌더차단 리소스 제거</button></dt><dd>렌더차단 리소스를 제거 했는가 ?</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 # render blocking
 - CSS는 기본적으로 렌더차단 리소스라고 부르는데 웹 브라우저가 CSS파일을 만나면 다운로드하고 CSS를 해석하는 동안 렌더를 잠깐 멈춤
@@ -145,20 +75,7 @@ https://runebook.dev/ko/docs/html/preloading_content
 
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>LCP</button></dt>
-                            <dd>
-                                -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>LCP</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 # LCP <span class="seg">(Largest Contentful Paint).. 큰덩어리 콘텐츠 그리기</span>
 - 구글의 핵심 성능 지표에 포함되는 한 가지 항목
@@ -241,37 +158,11 @@ decoding="async" - decoding: 암호화했던 이미지를 복호화함. async값
 
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>FID</button></dt>
-                            <dd>
-                                first input delay === total blocking time
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>FID</button></dt><dd>first input delay === total blocking time</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 # FID <span class="seg">first input delay === total blocking time</span>
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button>CLS</button></dt>
-                            <dd>
-                                사용자 경험을 측정하는 대표적인 지표
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>CLS</button></dt><dd>사용자 경험을 측정하는 대표적인 지표</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 # CLS <span class="seg">(cumulative layout shift)</span>
 - 사용자 경험을 측정하는 대표적인 지표
@@ -336,60 +227,8 @@ after - https://t.ly/itb9
 
 
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                </div>
-              </section>
-              <!-- //category 1 -->
-
-
-
-                <!-- category 1 -->
-                <section class="conts">
-                    <h2>category 1</h2>
-
-                    <div class="depth_2">
-                        <strong>Express</strong>
-                   
-                    <!-- item -->
-                    <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
-                            <dd>
-                                현재 문서의 body 또는 frameset 노드를 반환
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
+                        </pre></div></div></div></section><section class="conts"><h2>category 1</h2><div class="depth_2"><strong>Express</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 asd
                             </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- //item -->
-                </div>
-              </section>
-              <!-- //category 1 -->
-               
-
-
-            </div>
-        </main>
-        <footer>
-            <div class="global_wrap">
-                <ul class="info">
-                    asdasdsa
-                </ul>
-            </div>
-        </footer>
-    </div>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-</body>
-</html>
+                        </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
