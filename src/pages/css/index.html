@@ -45,7 +45,66 @@
 
                     <div class="depth_2">
                         <strong>css optimization</strong>
-                   
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>16.6666666 <span>ms</span></button></dt>
+                            <dd>
+                                모니터 주사율과 로드 속도
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+모니터는 1초에 깜빡이는 속도가 있는데 이걸 fps라고 하며 
+모니터의 주사율은 각 모니터마다 다르지만 1초에 60fps로 잡는다면
+
+한번 깜빡일 때 컨텐츠가 그려져야 덜 덜컥거림
+한번 깜빡이는 건  1000ms / 60 = 16.666666ms...
+
+즉 일정하게 16.6ms 마다 로드가 되야 사람들 눈에 자연스럽게 보인다 
+
+ex) 
+0          ~           60
+||||||||||||||||||||||||
+
+이렇게 모두 16ms이면 자연스럽게 화면에 표시되어 상관없지만  
+
+0            ~                60
+||||||| |||||||    ||||||||||
+      20ms     30ms             
+
+어떤 특정 엘리먼트들의 로드시간이 16ms를 넘어간다면 사용자는 저렇게 띄엄띄엄 부자연스러운 화면을 보게 될 것임
+    
+    </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>메모리 누수</button></dt>
+                            <dd>
+                                가비지 콜렉터
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+자바스크립트는 가비지콜렉팅 언어로 사용하지 않는 것들은 가비지 콜렉터가 없애줌... 
+하지만 원하지 않은 참조로 몇가지 경우로 없애지 않을 때가 있는데...  
+
+1. 전역변수 
+2. 해제되지 않은 타이머, 콜백
+3. 돔 외부에서 참조 
+4. 클로저 잘못 사용
+    
+    </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
@@ -149,12 +208,13 @@ https://runebook.dev/ko/docs/html/preloading_content
                         </div>
                     </div>
                     <!-- //item -->
+                    
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button>LCP</button></dt>
+                            <dt><button>LCP <span>로딩속도</span></button></dt>
                             <dd>
-                                -
+                                큰컨텐츠 빨리 그리기
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -245,18 +305,26 @@ decoding="async" - decoding: 암호화했던 이미지를 복호화함. async값
                         </div>
                     </div>
                     <!-- //item -->
+                      
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
                             <dt><button>FID</button></dt>
                             <dd>
-                                first input delay === total blocking time
+                                사용자의 행동에 대해 실제로 이벤트 핸들러가 반응하기까지 걸리는 시간
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
 # FID <span class="seg">first input delay === total blocking time</span>
+
+100ms 이내가 양호....
+
+사용자의 행동에 대해 실제로 이벤트 핸들러가 반응하기까지 걸리는 시간.. 
+
+사용자가 이벤트를 발생시켰을 때 메인스레드가 다른 작업중이라면 해당 작업을 끝내고 실행이 될텐데 그 시간을 말함
+
                             </code>
                         </pre>
                         </div>
@@ -267,7 +335,7 @@ decoding="async" - decoding: 암호화했던 이미지를 복호화함. async값
                         <dl class="item">
                             <dt><button>CLS</button></dt>
                             <dd>
-                                사용자 경험을 측정하는 대표적인 지표
+                                로드시점에서 덜컥거림..기존 레이아웃 변경
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -276,6 +344,7 @@ decoding="async" - decoding: 암호화했던 이미지를 복호화함. async값
 # CLS <span class="seg">(cumulative layout shift)</span>
 - 사용자 경험을 측정하는 대표적인 지표
 - 구글의 검색결과에 반영됨
+- 0.1 이내로 단축
 
 
 # 사례
@@ -334,6 +403,104 @@ font-family: 'Noto sans KR', Verdana (비슷한글꼴), sans-serif; (o)
 before - https://t.ly/w1kp 
 after - https://t.ly/itb9
 
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>FCP <span>로딩속도</span></button></dt>
+                            <dd>
+                                첫 요소가 로드 될 때까지 걸리는 시간
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# FCP <span class="seg">first Contentfull Paint</span>
+첫 요소가 랜더링 되기까지 걸리는 시간 ....
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>FMP <span>로딩속도</span></button></dt>
+                            <dd>
+                                사용자에게 의미있는 컨텐츠 로드되기까지의 시간
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+-
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>그 외 참고사항</button></dt>
+                            <dd>
+                                -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 참고한 유툽
+https://www.youtube.com/watch?v=A6J74xLWqYg
+
+# 크롬 개발자도구 
+https://www.youtube.com/watch?v=cAIo4dEEPuc
+https://www.youtube.com/watch?v=toXJLUa7i0Y
+
+
+# 프로젝트 개선 블로그 
+https://velog.io/@jhyj0521/FE-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94-feat.-Shall-We-Trip-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8
+
+
+# 메모리 누수 참고블로그 
+https://ohgyun.com/442
+
+# js 최적화 
+https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/javascript-startup-optimization?hl=ko
+
+# 랜더 설명 
+https://darrengwon.tistory.com/1332
+
+
+# 서비스 성격에 따라
+1. 넷플릭스 같은 곳은 사용자 상호작용 FID와 메모리, 사용자 입력 안정화 대기시간 중요 
+2. 위키디피아, 이 사이트 같은 경우 정보전달이 목적이니 로드되는 속도, cpu 소요시간이 중요 
+
+
+# 기본환경에서  체크 
+크롬 확장프로그램 같은게 많이 깔려있으면 성능체크에 영향이 가니 
+시크릿모드에서 측정하는걸 추천 
+
+
+# 모바일은 모바일에서 피시는 피시환경에서 체크하기 
+웹으로 모바일로 체크해도 소용이 없다 ...? 라고함
+실제로 모바일로 체크하고 모바일성능체크하면 피시보다 좀 적게나오긴함
+
+
+- 검색
+개발자도구 -> 컨트롤+쉬프트+p   
+
+- 소스내 검색 
+mac: 커맨드+옵션+f 
+win: 컨트롤+쉬프트+f 
 
                             </code>
                         </pre>
