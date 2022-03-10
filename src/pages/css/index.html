@@ -254,7 +254,7 @@ after - https://t.ly/a7uy
 
 ## 3. preconnect / preload
 - css를 그냥 링크하면 css 읽을 때 렌더링 멈춤
-(x)
+(x) ? 이거도 병렬인데 ... 그냥 preload가 더 좋은가봄
 &lt;link rel="stylesheet" href="*.css"&gt; 
 
 (o)
@@ -267,6 +267,13 @@ after - https://t.ly/a7uy
 &lt;link rel="preload" as="style" href="*.css" onload="this.onload=null; this.rel='stylesheet'"&gt;
 - css파일은 다운로드하면서 웹페이지 렌더링을 차단하지않음. 동시에 진행..그리고 로드 후 지연적용함
 - img js 등 다양한 파일들을 병행 로드할 수 있음  as는 필수. as="script" as="image"
+
+
+!! 주의점은 리소스의 사전로드와 병렬진행이 무조건적으로 빠르진 않다 ...(html 파싱 막는 리소스다운로드 제외.. 리소스끼리)
+이미지 리소스를 병렬진행하면 다운로드가 느려질 수 있기 때문에 
+꼭 필요한 이미지부터 사전로드와 병렬진행하고 나머지 이미지는 레이지 로드나 직렬진행하는게 오히려 더 빠를 수 있다 
+
+
 
 
 ## 4. 히어로 이미지 preload... LCP중 img를 미리 다운로드받아둠
@@ -299,6 +306,13 @@ decoding="async" - decoding: 암호화했던 이미지를 복호화함. async값
 * img 요소에만 사용..picture, source에는 사용하지않음
 
 
+
+
+## 7. css import vs link 
+import : 엣지에서 문제발생. 직렬 
+link : 병렬, 사전로드 가능 
+
+결론: link를 쓰자
 
                             </code>
                         </pre>
