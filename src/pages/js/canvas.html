@@ -1,9 +1,356 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.fac4cfa84bcaa1ea4d6e.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Canvas</h2><div class="depth_2"><strong>-</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환 adsadasdasdasdasdasdasdplalsjdlkajdlkajskda</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.c21eee48b043abb303dc.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Canvas</h2><div class="depth_2"><strong>-</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환 adsadasdasdasdasdasdasdplalsjdlkajdlkajskda</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 asd
                             </code>
-                        </pre></div></div></div></section><section class="conts"><h2>Three.js</h2><div class="depth_2"><strong>Vue Vue</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환</dd></dl><div class="code_wrap"><pre>
-                        <code class="javascript">
-asd
+                        </pre></div></div></div></section><section class="conts"><h2>Three.js</h2><div class="depth_2"><strong>기본 요소들</strong><div class="item_wrap"><dl class="item"><dt><button>구성요소</button></dt><dd>Mesh(Geometry + Material) | Scene | Camera | Light</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+three.js는 아래 구성요소를 가지고 있다 
+축 x y z 존재해서 Mesh와 Camera위치가 중요 
+- x 축은 오른쪽이 +
+- y 축은 위가 +
+- z 축은 앞이 +
+
+
+# Mesh
+요소
+ - Geometry : 모양
+ - Material : 재질
+
+
+# Scene
+장면 무대
+
+
+# Camera
+카메라
+
+
+# Light
+빛 조명
+
                         </code>
-                    </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.Color()</button></dt><dd>장면에 컬러 설정</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+
+import * as Three from 'three'
+
+
+const scene = new Three.Scene();
+const color = new Three.Color('red')
+scene.background = color
+
+
+* 장면은 랜더러보다 위에 있어서 먼저 적용 
+* 알파값을 주려면 장면에 컬러주지 말고 랜더러에 줘야됨
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.Clock()</button></dt><dd>시간</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+
+import * as Three from 'three'
+
+/*
+autoStart: true
+elapsedTime: 0
+oldTime: 0
+running: false
+startTime: 0
+*/
+
+
+const clock = new Three.Clock();
+
+const draw = () => {
+
+    // 이렇게 하면 모니터마다 주사율이 달라서 어떤 곳에선 1초에 60번, 노트북에선 30번 ...다 다를 수 있다
+    // mesh.rotation.x += Three.MathUtils.degToRad(.1) 
+    
+
+    // 그럴때 clock을 이용해서 절대 시간을 대입하면 어떤 환경에서든 같은 동작을 구현할 수 있다
+
+
+    const time = clock.getElapsedTime() //여기 안에서는 1초씩 반환 ..
+    mesh.rotation.x = 2 * time 
+}
+
+
+
+
+
+
+                        </code>
+                    </pre></div></div></div><br><div class="depth_2"><strong>랜더러</strong><div class="item_wrap"><dl class="item"><dt><button><span>new</span> WebGLRenderer()</button></dt><dd>WebGL Renderer 인스턴스 생성</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+//js로 바로 생성 
+import * as Three from 'three'
+const renderer = new Three.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement)
+
+
+//element로 생성
+import * as Three from 'three'
+const canvas_1 = document.querySelector('canvas')
+const renderer = new Three.WebGLRenderer({ 
+    canvas: canvas_1, 
+    antialias: true,
+    alpha: true,
+});
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>renderer</span>.render()</button></dt><dd>그리기</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+const renderer = new Three.WebGLRenderer({ canvas: canvas_1, antialias: true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+//씬과 카메라를 생성해서 화면에 그림 
+renderer.render(scene, camera)
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>renderer</span>.setSize()</button></dt><dd>사이즈 지정</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+const renderer = new Three.WebGLRenderer({ canvas: canvas_1, antialias: true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+//씬과 카메라를 생성해서 화면에 그림 
+renderer.render(scene, camera)
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>renderer</span>.setPixelRatio()</button></dt><dd>환경에 맞는 픽셀 수 계산해서 화면 표시</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1)
+// 맥에서는 캔버스 화면 2배 크기됨
+
+/* 
+    console.log(window.devicePixelRatio) 
+    픽셀 밀도 mac 2  window 1 ...
+    mac은 100px 이미지를 표현할때 200픽셀 쓴다는 뜻 그래서 정사이즈 이미지 쓰면 꺠져보임
+    
+    
+    1보다 크면 2로..아님 1로  처리해줘야 성능에 좋음
+*/
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>renderer</span>.setClearAlpha()</button></dt><dd>랜더러 알파값 조절</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+// 0~ 1
+renderer.setClearAlpha(.1)
+
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>renderer</span>.setClearColor()</button></dt><dd>랜더러 컬러 조절</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+renderer.setClearColor('color')
+
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>renderer</span>.setAnimationLoop()</button></dt><dd>requestAnimationFrame 이랑 같음</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+// 사용방법도 같음.. 근데 웹환경이 아닌 VR, AR 같은 곳에선 requestAnimationFrame 못쓰니 사용
+
+renderer.setAnimationLoop(function)
+
+
+
+                        </code>
+                    </pre></div></div></div><div class="depth_2"><strong>씬</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.Scene()</button></dt><dd>장면 인스턴스 생성</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+import * as Three from 'three'
+const scene = new Three.Scene()
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>scene.</span>.add()</button></dt><dd>장면에 추가</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+
+const scene = new Three.Scene();
+
+const camera = new Three.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    1,
+    30
+)
+
+scene.add(camera)
+                            
+                        </code>
+                    </pre></div></div></div><div class="depth_2"><strong>카메라</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.PerspectiveCamera()</button></dt><dd>원근감 카메라 인스턴스 생성</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+import * as Three from 'three'
+const camera = new PerspectiveCamera()
+
+
+
+PerspectiveCamera( fov : Number, aspect : Number, near : Number, far : Number )
+
+fov — 카메로로부터 넓어지는 시야각(부채꼴 V) 
+aspect — 가로, 세로 비율... (가로/세로)
+near — 카메라와 near 사이(target)는 안보임    camera  |  target(안보임)  |(near)
+far — 카메라에 어디까지 보여질건지 ...     camera     |(near)       피사체        |far()  target(안보임)  
+
+
+
+* 위치 설정하지 않으면 초기값은 xyz: 0
+
+
+
+//https://threejs.org/docs/index.html?q=camera#api/ko/cameras/PerspectiveCamera
+
+
+
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.OrthographicCamera()</button></dt><dd>직교 카메라 인스턴스 생성</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+디아, 롤같은 게임들.. 하늘에서 기울여서 보는 뷰
+
+OrthographicCamera( left : Number, right : Number, top : Number, bottom : Number, near : Number, far : Number )
+left — 카메라 절두체 좌평면.
+right — 카메라 절두체 우평면.
+top — 카메라 절두체 상평면.
+bottom — 카메라 절두체 하평면.
+near — 카메라 절두체 근평면.
+far — 카메라 절두체 원평면.
+
+
+* 위치 설정하지 않으면 초기값은 xyz: 0
+
+
+
+
+
+
+ex)
+import * as Three from 'three'
+const camera = new OrthographicCamera(
+    -(window.innerWidth / window.innerHeight),
+    window.innerWidth / window.innerHeight,
+    -1,
+    1,
+    0.1,
+    1000
+)
+
+
+scene.add(camera)
+
+
+
+
+
+//https://threejs.org/docs/index.html?q=camera#api/ko/cameras/OrthographicCamera
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>camera</span>.position</button></dt><dd>위치 설정</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+
+* 위치단위는 구현하는것마다 다름... 
+예를 들어 어떤 집을 구현한다면 m로 기준을 잡고 
+어떤 작은 물건들이라면 cm로 본인이 기준을 잡아야됨
+
+
+camera.position.x = 5
+camera.position.y = 5
+camera.position.z = 5
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>camera</span>.lookAt()</button></dt><dd>카메라 지정공간 바라보기</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+camera.lookAt(x, y, z)
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>camera</span>.zoom</button></dt><dd>카메라 줌 설정</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+//기본값은 1
+camera.zoom = 0.5
+
+// 줌아웃가튼 효과를 내려면 z값이 아니라 zoom속성을 조절해줘야됨
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>camera</span>.updateProjectionMatrix()</button></dt><dd>카메라 업데이트</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+//카메라 설정 변경 시 업데이트
+camera.updateProjectionMatrix()
+                    </code>
+                </pre></div></div></div><div class="depth_2"><strong>Mesh</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.Mesh()</button></dt><dd>요소 인스턴스 생성</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+const geometry = new Three.BoxGeometry(1, 1, 1);
+const material = new Three.MeshBasicMaterial({
+    color: '#123124'
+});
+
+
+const mesh = new Three.Mesh(geometry, material)
+// 만들어둔 모양과 재질 등록 
+scene.add(mesh)
+
+
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>mesh</span>.rotation</button></dt><dd>회전</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+/*
+    단위는 라디안값...
+    360 = 2PI
+*/
+
+
+mesh.rotation.y += 0.1
+
+
+Three.MathUtils.degToRad() //라디안값 각도로 바꿔줌..
+
+
+                    </code>
+                </pre></div></div></div><div class="depth_2"><strong>Mesh Geometry(모양)</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.BoxGeometry()</button></dt><dd>정육면체</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+const geometry = new Three.BoxGeometry(1, 1, 1)
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.BoxGeometry()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+asd
+                    </code>
+                </pre></div></div></div><div class="depth_2"><strong>Mesh Material(재질)</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.MeshBasicMaterial()</button></dt><dd>기본 재질</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+
+// 이 재질은 빛에 반응 안함
+
+const material = new Three.MeshBasicMaterial({
+    color: '#ddd',
+})
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.MeshStandardMaterial()</button></dt><dd>표준 재질</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+
+
+const material = new Three.MeshStandardMaterial({
+    color: '#ddd',
+})
+                    </code>
+                </pre></div></div></div><div class="depth_2"><strong>빛</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.DirectionalLight()</button></dt><dd>모두 비추는 빛</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+//무대 위 요소들을 태양처럼 모두 비춰주는 
+
+
+import * as Three from 'three';
+
+const light = new Three.DirectionalLight('red', 1)  //color, 빛 세기
+scene.add(light)
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>light</span>.position</button></dt><dd>빛 위치</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+//무대 위 요소들을 태양처럼 모두 비춰주는 
+
+
+import * as Three from 'three';
+
+const light = new Three.DirectionalLight('red', 1)
+scene.add(light)
+
+light.position.x = 3 
+light.position.y = 3 
+light.position.z = 3 
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.BoxGeometry()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+asd
+                    </code>
+                </pre></div></div></div><br><br><br><br><br><br><br><br>------------------------------------<div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+asd
+                    </code>
+                </pre></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>

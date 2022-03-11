@@ -1,7 +1,7 @@
 /*!
  * 
- *         Build Data: 2022. 3. 10.
- *         GIT Commit Ver: 1455ffb
+ *         Build Data: 2022. 3. 11.
+ *         GIT Commit Ver: 61921c8
  *
  *         User Name : ejonghwan
  *
@@ -115,6 +115,8 @@ a:hover, a:focus {text-decoration:underline; color: rgb(233, 233, 233);}
 a:active {text-decoration:none;}
 
 
+.hljs-comment, .hljs-quote {font-style: normal !important;}
+
 /* @charset "utf-8"; */
 /* @import url('./reset.css'); */
 /* @import 'reset.css'; */
@@ -201,11 +203,12 @@ aside .aside_btn::before {content: '-'; position: absolute; left: -9px; top: 0px
 
 /* code */
 .hljs {
-    font-size: 14px;
-    font-family: 'consola' !important;
+    font-size: 13px;
+    font-family: 'Menlo' !important;
 	padding: 0 20px !important;
     background: #161b22 !important;
     border-radius: 10px;
+    line-height: 1.8;
 }
 .hljs-comment {font-style: normal;}
 
