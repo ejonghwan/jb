@@ -105,3 +105,5 @@ a:visited {text-decoration:none;}
 a:hover, a:focus {text-decoration:underline; color: rgb(233, 233, 233);}
 a:active {text-decoration:none;}
 
+
+.hljs-comment, .hljs-quote {font-style: normal !important;}
