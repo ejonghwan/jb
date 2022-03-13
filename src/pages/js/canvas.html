@@ -192,6 +192,62 @@ scene.fog = new Three.Fog('black', 3, 7)
                     </div>
                 </div>
                 <!-- //item -->
+                  <!-- item -->
+                  <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.Group()</button></dt>
+                        <dd>
+                            그룹 묶기
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+const group1 = new THREE.Group();
+const box1 = new THREE.Mesh(geometry, material);
+
+const group2 = new THREE.Group();
+const box2 = new THREE.Mesh(geometry, material);
+box2.scale.set(.3, .3, .3);
+group2.position.x = 2;
+
+
+const group3 = new THREE.Group();
+const box3 = new THREE.Mesh(geometry, material);
+box3.scale.set(.1, .1, .1)
+group3.position.x = 0.5
+group3.position.y = 0.1
+
+group3.add(box3)
+group2.add(box2, group3)
+group1.add(box1, group2)
+
+
+scene.add(group1)
+
+
+const clock = new THREE.Clock();
+
+	function draw() {
+		const delta = clock.getDelta();
+
+		group1.rotation.y += delta
+		group2.rotation.y += delta
+		group3.rotation.y += delta
+
+
+		renderer.render(scene, camera);
+		renderer.setAnimationLoop(draw);
+	}
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+
+                <br />
+
                 <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
@@ -410,6 +466,29 @@ mesh.rotation.reorder('YXZ')
 mesh.rotation.y = THREE.MathUtils.degToRad(45)
 mesh.rotation.x = THREE.MathUtils.degToRad(20)
 	
+
+                    </code>
+
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+             <!-- item -->
+             <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>instance</span>.clone()</button></dt>
+                    <dd>
+                        복제
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+
+
+const box1 = new Three.Mesh(모양, 재질)
+const box2 = box1.clone()
+
 
                     </code>
 
