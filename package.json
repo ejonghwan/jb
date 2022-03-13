@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --progress",
-    "build": "NODE_ENV=production webpack --progress",
-    "deploy": "NODE_ENV=production webpack --progress && gh-pages -d dist",
+    "build": "cross-env NODE_ENV=production webpack --progress",
+    "deploy": "cross-env NODE_ENV=production webpack --progress && gh-pages -d dist",
     "pages": "gh-pages -d dist"
   },
   "repository": {
@@ -25,6 +25,7 @@
     "@babel/preset-env": "^7.16.7",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
