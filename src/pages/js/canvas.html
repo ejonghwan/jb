@@ -170,10 +170,257 @@ const draw = () => {
                     </div>
                 </div>
                 <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.fog()</button></dt>
+                        <dd>
+                            안개
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+Three.Fog('black', 3, 7) // color, near, far
+
+
+const scene = new Three.Scene();
+scene.fog = new Three.Fog('black', 3, 7)
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.AxesHelper()</button></dt>
+                        <dd>
+                            축 표시
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+const axesHelper = new THREE.AxesHelper(3)
+scene.add(axesHelper)
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.GridHelper()</button></dt>
+                        <dd>
+                            그리드 표시
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+const gridHelper = new THREE.GridHelper(5)
+scene.add(gridHelper)
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
             </div>
                 
                 <br />
 
+
+                <div class="depth_2">
+                    <strong>속성</strong>
+                    <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>instance</span>.position.x y z</button></dt>
+                    <dd>
+                        위치
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+// light mesh camera 등등...
+
+import * as Three from 'three';
+
+const light = new Three.DirectionalLight('red', 1)
+scene.add(light)
+
+light.position.x = 3 
+light.position.y = 3 
+light.position.z = 3 
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>instance</span>.position.set()</button></dt>
+                    <dd>
+                        위치
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+// light mesh camera 등등...
+
+import * as Three from 'three';
+
+const light = new Three.DirectionalLight('red', 1)
+scene.add(light)
+
+light.position.set(x, y, z) 
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>instance</span>.position.distanceTo()</button></dt>
+                    <dd>
+                        인자까지의 거리
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+// light mesh camera 등등...
+
+import * as Three from 'three';
+
+const light = new Three.DirectionalLight('red', 1)
+scene.add(light)
+
+light.position.distanceTo(new Vector3(1, 2, 0))  
+//light에서부터 새로운 vector까지의 거리
+
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>instance</span>.scale.x y z</button></dt>
+                    <dd>
+                        사이즈 
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+// light mesh camera 등등...
+
+import * as Three from 'three';
+
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshStandardMaterial({
+    color: 'seagreen'
+});
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+mesh.scale.x = 1
+mesh.scale.y = 1
+mesh.scale.z = 1
+
+
+mesh.scale.set(1, 1, 1) // 기본..    등등 다 있음  
+
+
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>instance</span>.rotation.x y z</button></dt>
+                    <dd>
+                        회전 
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+
+/*
+    단위는 라디안값...
+    360 = 2PI
+*/
+
+
+mesh.rotation.y += 0.1
+
+Three.MathUtils.degToRad() //라디안값 각도로 바꿔줌..
+
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+             <!-- item -->
+             <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>instance</span>.rotation.reorder()</button></dt>
+                    <dd>
+                        회전축 독립 
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+
+
+
+회전할 때 회전축 독립시켜주지 않으면 
+축이 그대로 진행되게 됨 
+
+// 축
+mesh.rotation.y = THREE.MathUtils.degToRad(45)
+mesh.rotation.x = THREE.MathUtils.degToRad(20)
+
+위 처럼 했을 시 
+45도 돌리고 그 축에서 20도를 다시 돌림... 
+
+
+
+// reorder를 해주면 각각 축이 다르게 생김
+mesh.rotation.reorder('YXZ')
+mesh.rotation.y = THREE.MathUtils.degToRad(45)
+mesh.rotation.x = THREE.MathUtils.degToRad(20)
+	
+
+                    </code>
+
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+                </div>
+
+
+                <!-- #랜더러 -->
                <div class="depth_2">
                    <strong>랜더러</strong>
                
@@ -344,7 +591,7 @@ renderer.setAnimationLoop(function)
 
 
                 
-                <!-- scene -->
+                <!-- #씬 -->
             <div class="depth_2">
                 <strong>씬</strong>
                 <!-- item -->
@@ -395,11 +642,12 @@ scene.add(camera)
                 <!-- //item -->
                 
                 
+                
             </div>
 
 
 
-            <!-- camera -->
+            <!-- #카메라 -->
             <div class="depth_2">
                 <strong>카메라</strong>
 
@@ -526,13 +774,26 @@ camera.position.z = 5
                 <dl class="item">
                     <dt><button><span>camera</span>.lookAt()</button></dt>
                     <dd>
-                        카메라 지정공간 바라보기
+                        카메라가 특정한것만 바라보기
                 </dd>
                 </dl>
                 <div class="code_wrap">
                 <pre>
                     <code class="javascript">
 camera.lookAt(x, y, z)
+camera.lookAt(mesh.position) //해당 mesh의 포지션을 바라보기...카메라 위치가 변경되어도.
+
+
+ex) 이렇게 해주면 카메라가 이동되어도 계속 mesh를 바라봄
+
+gui.add(camera.position, 'x').min(-10).max(10).step(0.01).name('camera 위치')
+
+camera.lookAt(mesh.position)
+const draw = () => {
+    camera.lookAt(mesh.position)
+    requestAnimationFrame(draw)   
+}
+
                     </code>
                 </pre>
                 </div>
@@ -581,7 +842,7 @@ camera.updateProjectionMatrix()
             </div>
 
 
-                 <!-- mesh -->
+                 <!-- #메시 -->
             <div class="depth_2">
                 <strong>Mesh</strong>
                 <!-- item -->
@@ -642,9 +903,7 @@ Three.MathUtils.degToRad() //라디안값 각도로 바꿔줌..
             </div>
 
 
-
-
-            <!-- mesh 1-->
+            <!-- #메시 모양-->
             <div class="depth_2">
                 <strong>Mesh Geometry(모양)</strong>
                 <!-- item -->
@@ -665,36 +924,10 @@ const geometry = new Three.BoxGeometry(1, 1, 1)
             </div>
             <!-- //item -->
 
-
-
-
-
-             <!-- item -->
-             <div class="item_wrap">
-                <dl class="item">
-                    <dt><button><span>Three</span>.BoxGeometry()</button></dt>
-                    <dd>
-                        -
-                </dd>
-                </dl>
-                <div class="code_wrap">
-                <pre>
-                    <code class="javascript">
-asd
-                    </code>
-                </pre>
-                </div>
-            </div>
-            <!-- //item -->
-
-
             </div>
 
 
-
-
-
-            <!-- mesh 2 -->
+            <!-- #메시 재질-->
             <div class="depth_2">
                 <strong>Mesh Material(재질)</strong>
                 <!-- item -->
@@ -744,7 +977,7 @@ const material = new Three.MeshStandardMaterial({
 
 
 
-            <!-- light -->
+            <!-- #빛 -->
             <div class="depth_2">
                 <strong>빛</strong>
                 <!-- item -->
@@ -770,57 +1003,93 @@ scene.add(light)
                 </div>
             </div>
             <!-- //item -->
-            <!-- item -->
-            <div class="item_wrap">
-                <dl class="item">
-                    <dt><button><span>light</span>.position</button></dt>
-                    <dd>
-                        빛 위치
-                </dd>
-                </dl>
-                <div class="code_wrap">
-                <pre>
-                    <code class="javascript">
-//무대 위 요소들을 태양처럼 모두 비춰주는 
-
-
-import * as Three from 'three';
-
-const light = new Three.DirectionalLight('red', 1)
-scene.add(light)
-
-light.position.x = 3 
-light.position.y = 3 
-light.position.z = 3 
-                    </code>
-                </pre>
-                </div>
-            </div>
-            <!-- //item -->
-
-
-
-
-
              <!-- item -->
              <div class="item_wrap">
                 <dl class="item">
-                    <dt><button><span>Three</span>.BoxGeometry()</button></dt>
+                    <dt><button><span>Three</span>.AmbientLight()</button></dt>
                     <dd>
-                        -
+                        은은하게 밝혀주는 빛
                 </dd>
                 </dl>
                 <div class="code_wrap">
                 <pre>
                     <code class="javascript">
-asd
+import * as Three from 'three';
+
+const light = new Three.AmbientLight('red', 1)  //color, 빛 세기
+scene.add(light)
                     </code>
                 </pre>
                 </div>
             </div>
             <!-- //item -->
+            
 
 
+            </div>
+
+            <!-- #외부 -->
+            <div class="depth_2">
+                <strong>외부 라이브러리</strong>
+                 <!-- item -->
+              <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span></span>Stats.js</button></dt>
+                    <dd>
+                        초당 프레임 
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+npm i Stats.js
+
+import Stats from 'stats.js'
+
+
+// stats
+const stats = new Stats()
+document.body.append(stats.domElement)
+
+
+const draw = () => {
+    stats.update() // 애니메이션 함수에서 업데이트 실행
+    
+    requestAnimationFrame(draw)
+}
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span></span>dat.gui</button></dt>
+                    <dd>
+                        GUI 이동 테스트
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+three js 뿐만 아니라 다른 곳에서도 가능 
+npm i dat.gui
+
+import dat from 'dat.gui'
+
+const gui = new dat.GUI();
+// gui.add(mesh.position, 'y', -5, 5, 0.01) //움직일것, 움직일속성, 범위 최소, 최대, 스탭..단계
+or
+gui.add(mesh.position, 'y').min(-5).max(5).step(0.01).name('메시 z 위치')
+gui.add(camera.position, 'x').min(-10).max(10).step(0.01).name('camera 위치')
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
             </div>
 
 
