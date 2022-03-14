@@ -286,6 +286,309 @@ scene.add(gridHelper)
                     </div>
                 </div>
                 <!-- //item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.OrbitControls()</button></dt>
+                        <dd>
+                            카메라 컨트롤 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+
+// 장면 아웃할 때 부드럽게 더해지기
+controls.enableDamping = true
+request animation draw 함수에 controls.update() 함수 실행해줘야함 
+
+
+// 줌 기능 끄고 키기 
+controls.enableZoom = false
+
+
+// 최대 줌 설정 
+controls.maxDistance = 5
+
+
+// 최소 줌 설정
+controls.minDistance = 2
+
+
+// 위 아래로 회전 하는 각도 ... PI가 180도니깐 / 4하면 45도... 45도만 움직일수 있음
+controls.minPolarAngle = Math.PI / 4 
+
+
+// 위 아래로 회전 하는 각도 ... max
+controls.maxPolarAngle = Math.PI / 4 
+
+
+// 카메라를 돌리는 중심점  x, y, z
+controls.target.set(5, 5, 5)
+
+
+// 카메라 자동으로 돌리기
+controls.autoRotate = true
+controls.autoRotateSpeed = 5
+
+
+
+
+그 외 옵션들은 아래서~
+//https://threejs.org/docs/index.html?q=control#examples/en/controls/OrbitControls
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.TrackballControls()</button></dt>
+                        <dd>
+                            볼 모양처럼 컨트롤
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+//얘는 전방위 모두 스크롤이 됨
+
+
+
+import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls'
+
+const controls = new TrackballControls(camera, renderer.domElement);
+
+
+// 얘는 꼭 update함수 실행해줘야함 
+request animation draw 함수에 controls.update() 
+
+
+// 최대 줌 설정 
+controls.maxDistance = 5
+
+
+// 최소 줌 설정
+controls.minDistance = 2
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.FlyControls()</button></dt>
+                        <dd>
+                            게임같은 컨트롤 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+//게임처럼 방향키 이동 가능한 카메라 컨트롤러
+//다른 키나 마우스 방향에 따라서도 움직임
+
+
+
+import { FlyControls } from 'three/examples/jsm/controls/FlyControls'
+
+const controls = new FlyControls(camera, renderer.domElement);
+
+
+// !!얘는 꼭 update함수실행하면서 delta값을 넣어줘야됨 실행해줘야함 
+
+const clock = new Three.Clock()
+const draw = () => {
+    const delta = clock.getDelta()
+    controls.update(delta)
+
+    requestAnimationFrame(draw)
+}
+
+
+
+`
+ wasd : 게임처럼 방향키 
+ 방향키 : 카메라 좌우위아래 이동 
+ 마우스 좌클릭 : 앞 
+ 마우스 우클릭 : 뒤
+ qe : 보는 시점 이동
+ rf : 위 아래로 카메라
+ 마우스 위치 : 위치 따라감
+`
+
+// 마우스 따라가는 스피드
+controls.rollSpeed = 0.05; //default 0.005
+
+// 이동 스피드
+controls.movementSpeed = 3;
+
+
+// 마우스 자동이동 막기 
+controls.dragToLook = true
+
+
+
+
+
+
+// https://threejs.org/docs/index.html?q=control#examples/en/controls/FlyControls
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.FirstPersonControls()</button></dt>
+                        <dd>
+                            게임같은 컨트롤
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+// 게임처럼 방향키 이동 가능한 카메라 컨트롤러
+// 다른 키나 마우스 방향에 따라서도 움직임
+// 플라이 컨트롤이랑 거의 같은데 좀더 추가됨
+
+
+import { FirstPersonControls } from 'three/examples/jsm/controls/FirstPersonControls'
+
+const controls = new FirstPersonControls(camera, renderer.domElement);
+
+
+// !!얘는 꼭 update함수실행하면서 delta값을 넣어줘야됨 실행해줘야함 
+
+const clock = new Three.Clock()
+const draw = () => {
+    const delta = clock.getDelta()
+    controls.update(delta)
+
+    requestAnimationFrame(draw)
+}
+
+
+
+
+//https://threejs.org/docs/index.html?q=control#examples/en/controls/FirstPersonControls
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.PointerLockControls()</button></dt>
+                        <dd>
+                            포인트 락 컨트롤 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+// 게임에 1인칭 시점으로 멈추면서 마우스 무브로 그 자리에서 화면만 돌릴수있음
+
+
+import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls'
+
+
+const controls = new PointerLockControls(camera, renderer.domElement);
+
+controls.domElement.addEventListener('click', () => {
+    controls.lock()
+})
+
+controls.addEventListener('lock', () => console.log('lock'))
+controls.addEventListener('unlock', () => console.log('un lock'))
+
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.DragControls()</button></dt>
+                        <dd>
+                            포인트 락 컨트롤 
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+// 드래그
+
+
+import { DragControls } from 'three/examples/jsm/controls/DragControls'
+
+
+// Mesh
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+let mesh;
+let material;
+let meshs = []
+
+for(let i = 0; i &lt; 20; i++) {
+    material = new THREE.MeshStandardMaterial({
+        color: `rgb(${Math.round( 200 + Math.random() * 55 )}, ${Math.round( 100 + Math.random() * 155 )}, ${Math.round( 100 + Math.random() * 155 )} )`
+    })
+
+    mesh = new THREE.Mesh(geometry, material)
+    mesh.position.x = Math.random() * 6 - 3
+    mesh.position.y = Math.random() * 6 - 3
+    mesh.position.z = Math.random() * 6 - 3
+
+
+    mesh.name = `box-${i}`
+    meshs[i] = mesh
+
+    scene.add(mesh)
+}
+
+scene.add(mesh);
+
+
+
+
+// 첫번째 매개변수에 메시배열 넣어야함
+const controls = new DragControls(meshs, camera, renderer.domElement);
+console.dir(controls)
+
+// 메시에 이름 정보 넣어주면 이벤트때 특정지을 수 있음 
+controls.addEventListener('dragstart', e => console.log(e.object.name)) 
+
+
+
+
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
             </div>
                 
                 <br />
@@ -921,7 +1224,7 @@ camera.updateProjectionMatrix()
             </div>
 
 
-                 <!-- #메시 -->
+                 <!-- #메시 #요소-->
             <div class="depth_2">
                 <strong>Mesh</strong>
                 <!-- item -->
@@ -982,7 +1285,7 @@ Three.MathUtils.degToRad() //라디안값 각도로 바꿔줌..
             </div>
 
 
-            <!-- #메시 모양-->
+            <!-- #메시 #모양-->
             <div class="depth_2">
                 <strong>Mesh Geometry(모양)</strong>
                 <!-- item -->
@@ -996,7 +1299,112 @@ Three.MathUtils.degToRad() //라디안값 각도로 바꿔줌..
                 <div class="code_wrap">
                 <pre>
                     <code class="javascript">
-const geometry = new Three.BoxGeometry(1, 1, 1)
+BoxGeometry(
+    width : Float, 
+    eight : Float, 
+    depth : Float, 
+    widthSegments : Integer, 
+    heightSegments : Integer, 
+    depthSegments : Integer
+    )
+
+
+const geometry = new Three.BoxGeometry(1, 1, 1, 5) 
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Three</span>.SphereGeometry()</button></dt>
+                    <dd>
+                        구
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+SphereGeometry(
+    radius : Float, 
+    widthSegments : Integer, 
+    heightSegments : Integer,
+    phiStart : Float, 
+    phiLength : Float, 
+    thetaStart : Float, 
+    thetaLength : Float
+    )
+
+
+const geometry = new THREE.SphereGeometry( 10, 20, 20 );
+
+console.log(geometry.attribute.position.array) //도트들이 담겨져 있는 정보
+
+
+
+
+
+ex) 움직이는 모양 만들기 
+
+// Mesh
+const geometry = new THREE.SphereGeometry( 10, 50, 50, 50 );
+const material = new THREE.MeshStandardMaterial({
+    color: 'hotpink',
+    wireframe: true,
+    side: THREE.DoubleSide,
+    flatShading: true,
+    
+});
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+
+// 점 컨트롤
+// console.log(geometry.attributes.position.array)
+
+const geoArr = geometry.attributes.position.array;
+let cloneGeoArr = []
+
+
+for(let i = 0; i &lt; geoArr.length; i = i + 3) {
+    geoArr[i] = geoArr[i] + (Math.random() - 0.5) * 0.01
+    geoArr[i + 1] = geoArr[i + 1] + (Math.random() - 0.5) * 0.01
+    geoArr[i + 2] = geoArr[i + 2] + (Math.random() - 0.5) * 0.01
+
+    cloneGeoArr[i] = geoArr[i] + (Math.random() - 0.5) * 0.01
+    cloneGeoArr[i + 1] = geoArr[i + 1] + (Math.random() - 0.5) * 0.01
+    cloneGeoArr[i + 2] = geoArr[i + 2] + (Math.random() - 0.5) * 0.01
+}
+
+
+const clock = new THREE.Clock();
+    
+	function draw() {
+		// const delta = clock.getDelta();
+		const time = clock.getElapsedTime();
+
+        /*
+            처음에 내가 했던 게 안됐던 이유는 랜덤된 좌표가 draw안에 있어서 계속 랜덤좌표가 찍혔기 때문.... 
+            그게 아니라 랜덤된 좌표를 하나 만들어준 다음 그 좌표안에서 조금씩 변화를 줘야됨 아래처럼 .....공 자체는 멈춰있어야 하기 때문
+        */    
+        for(let i = 0; i &lt; geoArr.length; i += 3) {
+            // 내가한거
+            // geoArr[i] = cloneGeoArr[i] + Math.sin( time * Math.random() - 0.5 ) * 0.2
+            // geoArr[i + 1] = cloneGeoArr[i + 1] + Math.sin( time * Math.random() - 0.5 ) * 0.2
+            // geoArr[i + 2] = cloneGeoArr[i + 2] + Math.sin( time * Math.random() - 0.5 ) * 0.2
+
+            geoArr[i] +=  Math.sin( time + cloneGeoArr[i] * 50 ) * 0.001
+            geoArr[i + 1] +=  Math.sin( time + cloneGeoArr[i + 1] * 50 ) * 0.001
+            geoArr[i + 1] +=  Math.sin( time + cloneGeoArr[i + 2] * 50 ) * 0.001
+            geometry.attributes.position.needsUpdate = true
+            
+        }
+
+		renderer.render(scene, camera);
+		renderer.setAnimationLoop(draw);
+	}
+
+
                     </code>
                 </pre>
                 </div>
@@ -1006,7 +1414,7 @@ const geometry = new Three.BoxGeometry(1, 1, 1)
             </div>
 
 
-            <!-- #메시 재질-->
+            <!-- #메시 #재질-->
             <div class="depth_2">
                 <strong>Mesh Material(재질)</strong>
                 <!-- item -->
@@ -1024,7 +1432,11 @@ const geometry = new Three.BoxGeometry(1, 1, 1)
 // 이 재질은 빛에 반응 안함
 
 const material = new Three.MeshBasicMaterial({
-    color: '#ddd',
+    color: 'hotpink',
+	wireframe: true, //와이어 프레임으로 보기 
+	side: THREE.DoubleSide, // 기본적으로는 단면이지만 이 옵션추가 시 뒷면 옆면도 모두 보이게 설정
+    flatShading: true, // 플리곤처럼 각진 느낌
+    
 })
                     </code>
                 </pre>
@@ -1045,7 +1457,10 @@ const material = new Three.MeshBasicMaterial({
 
 
 const material = new Three.MeshStandardMaterial({
-    color: '#ddd',
+    olor: 'hotpink',
+	wireframe: true, //와이어 프레임으로 보기 
+	side: THREE.DoubleSide, // 기본적으로는 단면이지만 이 옵션추가 시 뒷면 옆면도 모두 보이게 설정
+    flatShading: true, // 플리곤처럼 각진 느낌
 })
                     </code>
                 </pre>
