@@ -31,9 +31,9 @@
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
+                            <dt><button><span></span>-</button></dt>
                             <dd>
-                                현재 문서의 body 또는 frameset 노드를 반환 adsadasdasdasdasdasdasdplalsjdlkajdlkajskda
+                             -
                         </dd>
                         </dl>
                         <div class="code_wrap">
@@ -245,47 +245,40 @@ const clock = new THREE.Clock();
                     </div>
                 </div>
                 <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.TextureLoader()</button></dt>
+                        <dd>
+                            외부 텍스처 대입
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+const textureLoader = new THREE.TextureLoader()
+const textrueImage = textureLoader.load(
+    './textures/add/c.png',
+    () => {console.log('load com')}, 
+    () => {console.log('loading...')}, 
+    () => {console.log('load error')},
+    )
+
+
+const material1 = new THREE.MeshStandardMaterial({
+    map: textrueImage,
+});
+
+
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
 
                 <br />
 
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Three.</span>.AxesHelper()</button></dt>
-                        <dd>
-                            축 표시
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-const axesHelper = new THREE.AxesHelper(3)
-scene.add(axesHelper)
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
-                <!-- item -->
-                <div class="item_wrap">
-                    <dl class="item">
-                        <dt><button><span>Three.</span>.GridHelper()</button></dt>
-                        <dd>
-                            그리드 표시
-                    </dd>
-                    </dl>
-                    <div class="code_wrap">
-                    <pre>
-                        <code class="javascript">
-const gridHelper = new THREE.GridHelper(5)
-scene.add(gridHelper)
-                            
-                        </code>
-                    </pre>
-                    </div>
-                </div>
-                <!-- //item -->
                  <!-- item -->
                  <div class="item_wrap">
                     <dl class="item">
@@ -521,6 +514,56 @@ controls.addEventListener('unlock', () => console.log('un lock'))
 
 
 
+
+ex) 
+
+const keyEvt = new KeyController()
+console.log(keyEvt)	
+
+function walk() {
+    // console.log(11)
+    if(keyEvt.keys['KeyW'] || keyEvt.keys['ArrowUp']) return controls.moveForward(0.02) 
+    if(keyEvt.keys['KeyS'] || keyEvt.keys['ArrowDown']) return controls.moveForward(-0.02)
+    if(keyEvt.keys['KeyA'] || keyEvt.keys['ArrowLeft']) return controls.moveRight(-0.02)
+    if(keyEvt.keys['KeyD'] || keyEvt.keys['ArrowRight']) return controls.moveRight(0.02)
+    
+}
+
+
+const draw = () => {
+    walk()
+    
+    renderer.render(scene, camera);
+    renderer.setAnimationLoop(draw);
+    requestAnimationFrame(draw)
+}
+
+
+
+//KeyController module 
+class KeyController {
+    constructor() {
+        this.keys = [];
+        
+        window.addEventListener('keydown', e => {
+            console.log('눌림')
+            this.keys[e.code] = true;
+        })
+
+        window.addEventListener('keyup', e => {
+            console.log('뗌')
+            delete this.keys[e.code]
+        })
+
+        console.log(this.keys)
+
+    }
+}
+
+
+export default KeyController;
+
+
                         </code>
                     </pre>
                     </div>
@@ -579,11 +622,46 @@ console.dir(controls)
 controls.addEventListener('dragstart', e => console.log(e.object.name)) 
 
 
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <br />
 
-
-
-
-
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.AxesHelper()</button></dt>
+                        <dd>
+                            축 표시
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+const axesHelper = new THREE.AxesHelper(3)
+scene.add(axesHelper)
+                            
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>Three.</span>.GridHelper()</button></dt>
+                        <dd>
+                            그리드 표시
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+const gridHelper = new THREE.GridHelper(5)
+scene.add(gridHelper)
+                            
                         </code>
                     </pre>
                     </div>
@@ -1429,7 +1507,7 @@ const clock = new THREE.Clock();
                 <pre>
                     <code class="javascript">
 
-// 이 재질은 빛에 반응 안함
+// 이 재질은 빛에 반응 안함. 입체적x. 성능은 좋음
 
 const material = new Three.MeshBasicMaterial({
     color: 'hotpink',
@@ -1459,9 +1537,57 @@ const material = new Three.MeshBasicMaterial({
 const material = new Three.MeshStandardMaterial({
     olor: 'hotpink',
 	wireframe: true, //와이어 프레임으로 보기 
+    side: THREE.FrontSide,
+	side: THREE.BackSide,
 	side: THREE.DoubleSide, // 기본적으로는 단면이지만 이 옵션추가 시 뒷면 옆면도 모두 보이게 설정
     flatShading: true, // 플리곤처럼 각진 느낌
+    roughness: 0.2, // 광
+    metalness: 0.3 // 메탈느낌
+    map: texture // 외부 텍스쳐 
 })
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+             <!-- item -->
+             <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Three</span>.MeshLambertMaterial()</button></dt>
+                    <dd>
+                        하이라이트 없는 재질
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+
+// 하이라이트, 반사광이 없는 재질
+const material1 = new THREE.MeshLambertMaterial({
+    color: 'hotpink',
+});
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Three</span>.MeshPhongMaterial()</button></dt>
+                    <dd>
+                        하이라이트 있는 재질
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+// 하이라이트, 반사광 표현 가능 재질
+const material2 = new THREE.MeshPhongMaterial({
+    color: 'seagreen',
+    shininess: 1000, //하이라이트 정도
+    // wireframe: true,
+});
                     </code>
                 </pre>
                 </div>
