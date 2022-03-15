@@ -1205,6 +1205,62 @@ renderer.setAnimationLoop(function)
                     </div>
                 </div>
                 <!-- //item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span></span>그림자 생성</button></dt>
+                        <dd>
+                            그림자 생성 시 설정
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+`castShadow: 그림자가 생겨야하는 요소에 설정 `
+`receiveShadow: 그림자가 보여지게하는 곳에 요소에 설정` 
+
+
+1. 랜더러 설정
+renderer.shadowMap.enabled = true;
+
+2. 그림자를 만들 수 있게 빛에 설정
+light.castShadow = true; 
+
+3. 메시 설정
+mesh.castShadow = true; // 박스
+mesh3.castShadow = true; // 구
+mesh2.receiveShadow = true; // 바닥판
+
+
+`그림자가 깨져보이는 이유는 맵사이즈 기본값 512로 설정되어있어서.. 
+사이즈 너무 키우면 느려짐` 
+light.shadow.mapSize.width = 512;
+light.shadow.mapSize.height = 512;
+
+
+
+`그림자 블러처리`
+light.shadow.radius = 10 //이건 renderer 기본값만 적용됨
+
+
+`그림자 형태 보정`
+renderer.shadowMap.type = THREE.PCFShadowMap //기본값 
+renderer.shadowMap.type = THREE.BasicShadowMap // 뾰족한 픽셀느낌..성능좋음
+// BasicShadowMap으로 설정 후 mapSize를 16정도로 낮추면 마인크래프트 그림자 처럼 됨
+
+renderer.shadowMap.type = THREE.PCFSoftShadowMap // 베이직보다 조금 더 부드러움
+
+
+
+`그림자 최적화.. 처리할 곳까지만 그림자 생성`
+light.shadow.camera.near = 1
+light.shadow.camera.far = 5
+
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
             </div>
 
 
@@ -1650,7 +1706,27 @@ const clock = new THREE.Clock();
                 </div>
             </div>
             <!-- //item -->
+              <!-- item -->
+              <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Three</span>.PlaneGeometry()</button></dt>
+                    <dd>
+                        판
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+const planeGeometry = new THREE.PlaneGeometry(10, 10)
 
+const mesh2 = new THREE.Mesh(planeGeometry, material2)
+
+mesh2.rotation.x = -Math.PI * 0.5
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
             </div>
 
 
@@ -1933,6 +2009,92 @@ import * as Three from 'three';
 
 const light = new Three.AmbientLight('red', 1)  //color, 빛 세기
 scene.add(light)
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+             <!-- item -->
+             <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Three</span>.PointLight()</button></dt>
+                    <dd>
+                        전구같은 빛
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+PointLight( 색, 빛 강도, 조명범위, 빛의 거리에 따라 어두워지는 양 )
+
+const light = new THREE.PointLight('red', .5)
+const LightHelper = new THREE.PointLightHelper(light, 1)
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+             <!-- item -->
+             <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Three</span>.SpotLight()</button></dt>
+                    <dd>
+                        집중 조명
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+SpotLight( 색, 빛 강도, 조명범위, 각도 )
+
+const light = new THREE.SpotLight('red', .5)
+const LightHelper = new THREE.SpotLightHelper(light, 1)
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+             <!-- item -->
+             <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Three</span>.HemisphereLightHelper()</button></dt>
+                    <dd>
+                        두가지 색으로 조명
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+// 그림자 없음. 카메라없음. 엠비언트 라이트처럼 모두를 비춰줌
+// 첫번째 인자는 하늘에서 쏘는 빛
+// 두번째 인자는 바닥에서 쏘는 빛
+
+const light = new THREE.HemisphereLight('red', 'lime', .5)
+const LightHelper = new THREE.HemisphereLightHelper(light, 1)
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+             <!-- item -->
+             <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>Three</span>.RectAreaLight()</button></dt>
+                    <dd>
+                        사각형 빛
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+RectAreaLight(색, 강도, 네모사이즈, 네모 사이즈)
+const light = new THREE.RectAreaLight('red', .5, 2, 2)
+
+
+
+얘는 헬퍼가 코어에 없음  
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper' 에 있음
+const helper = new RectAreaLightHelper(light)
                     </code>
                 </pre>
                 </div>
