@@ -29,6 +29,275 @@ three.js는 아래 구성요소를 가지고 있다
 빛 조명
 
                         </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>그림자 생성</button></dt><dd>그림자 생성 시 설정</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+`castShadow: 그림자가 생겨야하는 요소에 설정 `
+`receiveShadow: 그림자가 보여지게하는 곳에 요소에 설정` 
+
+
+1. 랜더러 설정
+renderer.shadowMap.enabled = true;
+
+2. 그림자를 만들 수 있게 빛에 설정
+light.castShadow = true; 
+
+3. 메시 설정
+mesh.castShadow = true; // 박스
+mesh3.castShadow = true; // 구
+mesh2.receiveShadow = true; // 바닥판
+
+
+`그림자가 깨져보이는 이유는 맵사이즈 기본값 512로 설정되어있어서.. 
+사이즈 너무 키우면 느려짐` 
+light.shadow.mapSize.width = 512;
+light.shadow.mapSize.height = 512;
+
+
+
+`그림자 블러처리`
+light.shadow.radius = 10 //이건 renderer 기본값만 적용됨
+
+
+`그림자 형태 보정`
+renderer.shadowMap.type = THREE.PCFShadowMap //기본값 
+renderer.shadowMap.type = THREE.BasicShadowMap // 뾰족한 픽셀느낌..성능좋음
+// BasicShadowMap으로 설정 후 mapSize를 16정도로 낮추면 마인크래프트 그림자 처럼 됨
+
+renderer.shadowMap.type = THREE.PCFSoftShadowMap // 베이직보다 조금 더 부드러움
+
+
+
+`그림자 최적화.. 처리할 곳까지만 그림자 생성`
+light.shadow.camera.near = 1
+light.shadow.camera.far = 5
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>레이캐스터</button></dt><dd>선택한 타겟 지정</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+`
+캔버스에서 선택한 공간을 특정할 수 없어서 카메라에서 어떠한 광선을 쏘는데 
+모든 오브젝트를 관통하면서 그 위치를 파악 할 수 있음
+예를 들어 동그라미 네모 순서대로 있다고 치면 내가 동그라미를 클릭했을 때 
+레이캐스터는 동그라미 네모를 모두 관통하며 동그라미를 클릭했다는걸 특정지을 수 있음 
+`
+
+
+ex1) 물체 감지 
+// 박스 오브젝트 생성
+const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+const boxMaterial = new THREE.MeshStandardMaterial({ color: '#fff' })
+const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+scene.add(boxMesh)
+boxMesh.name = 'box'
+
+// 도너츠 오브젝트 생성 
+const torusGeometry = new THREE.TorusGeometry(1.5, .5, 20, 50);
+const torusMaterial = new THREE.MeshStandardMaterial({ color: '#555' });
+const torusMesh = new THREE.Mesh(torusGeometry, torusMaterial)
+scene.add(torusMesh)
+torusMesh.name = 'torus'
+
+
+// 감지할 메시들 배열에 넣어둠 
+const meshs = [boxMesh, torusMesh]; 
+
+
+// 레이캐스터 인스턴스 생성
+const raycaster = new THREE.Raycaster();
+
+
+
+function draw() {
+    const delta = clock.getDelta();
+    const ElTime = clock.getElapsedTime() 
+
+
+    // 광선을 아까 그 노란색 라인이랑 똑같이 맞춰주는 작업 
+    const origin = new THREE.Vector3(0, 0, 100) //시작점
+    const direction = new THREE.Vector3(0, 0, -100) //방향.. 방향은 -100이 아니라 -1 
+    direction.normalize() //만약에 방향에 -100을 해주려면 이 메서드로 정규화를 해줘야됨
+    raycaster.set(origin, direction) // 레이캐스터 셋팅
+
+     
+    // 오브젝트 무빙
+    boxMesh.position.y = Math.sin(ElTime) * 3
+    boxMesh.material.color.set('#fff')
+    torusMesh.position.y = Math.cos(ElTime) * 3
+    torusMesh.material.color.set('#fff')
+
+
+    // 레이캐스트 실행
+    const intersects = raycaster.intersectObjects(meshs)
+    intersects.forEach(item => {
+        item.object.material.color.set('#555')
+    })
+
+    renderer.render(scene, camera);
+    renderer.setAnimationLoop(draw);
+}
+
+
+
+
+ex2) 클릭 감지 
+// 박스 오브젝트 생성
+const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+const boxMaterial = new THREE.MeshStandardMaterial({ color: '#fff' })
+const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+scene.add(boxMesh)
+boxMesh.name = 'box'
+
+// 도너츠 오브젝트 생성 
+const torusGeometry = new THREE.TorusGeometry(1.5, .5, 20, 50);
+const torusMaterial = new THREE.MeshStandardMaterial({ color: '#555' });
+const torusMesh = new THREE.Mesh(torusGeometry, torusMaterial)
+scene.add(torusMesh)
+torusMesh.name = 'torus'
+
+
+// 감지할 메시들 배열에 넣어둠 
+const meshs = [boxMesh, torusMesh]; 
+
+
+// 레이캐스터 인스턴스 생성
+const raycaster = new THREE.Raycaster();
+
+
+// mouse 좌표 생성
+const mouse = new THREE.Vector2();
+
+
+
+canvas.addEventListerner('click', e => {
+    // 마우스 좌표를 캔버스와 맞춰주고 
+    mouse.x = e.clientX / canvas.clientWidth * 2 - 1
+    mouse.y = -(e.clientY / canvas.clientHeight * 2 - 1)
+
+    //레이캐스터 셋팅.. 좌표와 카메라
+    raycaster.setFromCamera(mouse, camera) 
+
+    // 레이캐스터 감지 시작 
+    const intersects = raycaster.intersectObjects(meshs)
+ 
+
+    // 브레이크걸려고 포오브로 ..
+    for(const item of intersects) {
+        console.log(item.object.name)
+        
+        item.object.material.color.set('red')
+        // break
+    }
+})
+
+
+
+
+
+` ------- 마우스 드래그 할 때 클릭되는거 방지 ㅎ ------- `
+
+
+// 마우스 클릭방지 
+let mouseClicked;
+let mouseTime;
+let mouseStartX;
+let mouseStartY;
+
+canvas.addEventListener('mousedown', e => {
+    mouseClicked = false
+    mouseStartX = e.clientX
+    mouseStartY = e.clientY 
+    mouseTime = Date.now();
+})
+
+canvas.addEventListener('mouseup', e => {
+    const xgap = Math.abs(e.clientX - mouseStartX)
+    const ygap = Math.abs(e.clientY - mouseStartY)
+
+    // 마우스 드래그 한 시간 
+    Date.now() - mouseTime > 300 ? mouseTime = true : mouseTime = false;
+
+    // 마우스 이동한 거리
+    xgap > 5 || ygap > 5 ? mouseClicked = true : mouseClicked = false;
+})
+
+
+                        </code>
+                    </pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.Raycaster()</button></dt><dd>오브젝트 감지</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+// 박스 오브젝트 생성
+const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+const boxMaterial = new THREE.MeshStandardMaterial({ color: '#fff' })
+const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+scene.add(boxMesh)
+boxMesh.name = 'box'
+
+// 도너츠 오브젝트 생성 
+const torusGeometry = new THREE.TorusGeometry(1.5, .5, 20, 50);
+const torusMaterial = new THREE.MeshStandardMaterial({ color: '#555' });
+const torusMesh = new THREE.Mesh(torusGeometry, torusMaterial)
+scene.add(torusMesh)
+torusMesh.name = 'torus'
+
+
+// 감지할 메시들 배열에 넣어둠 
+const meshs = [boxMesh, torusMesh]; 
+
+
+// 레이캐스터 인스턴스 생성
+const raycaster = new THREE.Raycaster();
+
+
+
+function draw() {
+    const delta = clock.getDelta();
+    const ElTime = clock.getElapsedTime() 
+
+
+    // 광선을 아까 그 노란색 라인이랑 똑같이 맞춰주는 작업 
+    const origin = new THREE.Vector3(0, 0, 100) //시작점
+    const direction = new THREE.Vector3(0, 0, -100) //방향.. 방향은 -100이 아니라 -1 
+    direction.normalize() //만약에 방향에 -100을 해주려면 이 메서드로 정규화를 해줘야됨
+    raycaster.set(origin, direction) // 레이캐스터 셋팅
+
+     
+    // 오브젝트 무빙
+    boxMesh.position.y = Math.sin(ElTime) * 3
+    boxMesh.material.color.set('#fff')
+    torusMesh.position.y = Math.cos(ElTime) * 3
+    torusMesh.material.color.set('#fff')
+
+
+    // 레이캐스트 실행
+    const intersects = raycaster.intersectObjects(meshs)
+    intersects.forEach(item => {
+        item.object.material.color.set('#555')
+    })
+
+    renderer.render(scene, camera);
+    renderer.setAnimationLoop(draw);
+}
+
+
+
+
+
+
+
+
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.Vector3()</button></dt><dd>필드에 점 찍음</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+new Vector2(x, y)  //2차원 
+new Vector3(x, y, z)  //3차원
+
+
+import * as Three from 'three'
+
+const vector = new Three.Vector3(0, 0, 100); // z 100정도 앞에 점 하나 찍음 
+
+                        </code>
                     </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.Color()</button></dt><dd>장면에 컬러 설정</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
@@ -80,13 +349,25 @@ const draw = () => {
 
 
                         </code>
-                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three.</span>.fog()</button></dt><dd>안개</dd></dl><div class="code_wrap"><pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three.</span>.Fog()</button></dt><dd>안개</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 Three.Fog('black', 3, 7) // color, near, far
 
 
 const scene = new Three.Scene();
 scene.fog = new Three.Fog('black', 3, 7)
+                            
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three.</span>.Ling()</button></dt><dd>라인</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+const lineMaterial = new THREE.LineBasicMaterial({ color: 'yellow' })
+const points = []; 
+points.push(new THREE.Vector3(0, 0, 100))
+points.push(new THREE.Vector3(0, 0, -100))
+const lineGeometry = new THREE.BufferGeometry().setFromPoints(points)
+
+const guide = new THREE.Line(lineGeometry, lineMaterial)
+scene.add(guide)
                             
                         </code>
                     </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three.</span>.Group()</button></dt><dd>그룹 묶기</dd></dl><div class="code_wrap"><pre>
@@ -504,7 +785,7 @@ export default KeyController;
 
 
                         </code>
-                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three.</span>.DragControls()</button></dt><dd>포인트 락 컨트롤</dd></dl><div class="code_wrap"><pre>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three.</span>.DragControls()</button></dt><dd>요소들 드래그 가능</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 // 드래그
 
@@ -690,6 +971,36 @@ const renderer = new Three.WebGLRenderer({
     antialias: true,
     alpha: true,
 });
+
+
+// 리사이즈 시 
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// 레티나 대응 최적화
+renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
+
+
+// 애니메이션 함수 
+const draw = () => {
+
+
+    renderer.render(scene, camera);
+	renderer.setAnimationLoop(draw); // or requestAnimationFrame
+}
+
+
+
+// 리사이즈 시 카메라와 랜더링도 다시
+const setSize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.render(scene, camera);
+}
+
+
+
+window.addEventListener('resize', setResize)
                         </code>
                     </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>renderer</span>.render()</button></dt><dd>그리기</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
@@ -743,49 +1054,6 @@ renderer.setClearColor('color')
 renderer.setAnimationLoop(function)
 
 
-
-                        </code>
-                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>그림자 생성</button></dt><dd>그림자 생성 시 설정</dd></dl><div class="code_wrap"><pre>
-                        <code class="javascript">
-`castShadow: 그림자가 생겨야하는 요소에 설정 `
-`receiveShadow: 그림자가 보여지게하는 곳에 요소에 설정` 
-
-
-1. 랜더러 설정
-renderer.shadowMap.enabled = true;
-
-2. 그림자를 만들 수 있게 빛에 설정
-light.castShadow = true; 
-
-3. 메시 설정
-mesh.castShadow = true; // 박스
-mesh3.castShadow = true; // 구
-mesh2.receiveShadow = true; // 바닥판
-
-
-`그림자가 깨져보이는 이유는 맵사이즈 기본값 512로 설정되어있어서.. 
-사이즈 너무 키우면 느려짐` 
-light.shadow.mapSize.width = 512;
-light.shadow.mapSize.height = 512;
-
-
-
-`그림자 블러처리`
-light.shadow.radius = 10 //이건 renderer 기본값만 적용됨
-
-
-`그림자 형태 보정`
-renderer.shadowMap.type = THREE.PCFShadowMap //기본값 
-renderer.shadowMap.type = THREE.BasicShadowMap // 뾰족한 픽셀느낌..성능좋음
-// BasicShadowMap으로 설정 후 mapSize를 16정도로 낮추면 마인크래프트 그림자 처럼 됨
-
-renderer.shadowMap.type = THREE.PCFSoftShadowMap // 베이직보다 조금 더 부드러움
-
-
-
-`그림자 최적화.. 처리할 곳까지만 그림자 생성`
-light.shadow.camera.near = 1
-light.shadow.camera.far = 5
 
                         </code>
                     </pre></div></div></div><!-- #씬 --><div class="depth_2"><strong>씬</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.Scene()</button></dt><dd>장면 인스턴스 생성</dd></dl><div class="code_wrap"><pre>
@@ -1052,6 +1320,37 @@ const mesh2 = new THREE.Mesh(planeGeometry, material2)
 
 mesh2.rotation.x = -Math.PI * 0.5
                     </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.BufferGeometry()</button></dt><dd>미리 모양이 만들어져있지 않음</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+
+const loader = new THREE.TextureLoader()
+const textrue = loader.load('./매탭 이미지 경로')
+const material7 = new THREE.MeshMatcapMaterial({
+    color: '#fff',
+    matcap: textrue,
+})
+
+const mesh = new THREE.Mesh(geometry, material7)
+scene.add(mesh)
+                    
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.TorusGeometry()</button></dt><dd>도너츠 모양</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+
+`
+TorusGeometry(반지름, 두께, 세그먼트~, 세그먼트, 얼마나 길게할지)
+걍 인자값은 공식문서 보는게 빠름
+`
+
+
+const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
+const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+const torus = new THREE.Mesh( geometry, material );
+scene.add( torus );
+
+// https://threejs.org/docs/index.html?q=Geometry#api/en/geometries/TorusGeometry
+
+                    </code>
                 </pre></div></div></div><!-- #메시 #재질--><div class="depth_2"><strong>Mesh Material(재질)</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.MeshBasicMaterial()</button></dt><dd>기본 재질</dd></dl><div class="code_wrap"><pre>
                     <code class="javascript">
 
@@ -1129,33 +1428,7 @@ const material5 = new THREE.MeshToonMaterial({
 gradiuntTexture.magFilter = THREE.NearestFilter
 
                     </code>
-                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.MeshToonMaterial()</button></dt><dd>만화 느낌</dd></dl><div class="code_wrap"><pre>
-                    <code class="javascript">
-
-// 투톤으로 이뤄진 원뿔 모양나옴 
-const geometryCon = new THREE.ConeGeometry(1, 2, 120)
-const material5 = new THREE.MeshToonMaterial({
-    color: 'plum',
-    // map: texture4,
-})
-
-
-
-// 그라데이션 단계를 조금 더 주려면 
-
-const textureLoader = new THREE.TextureLoader(manager)
-const gradiuntTexture = textureLoader.load('./textures/gradient.png') //width 3px height 1px 사이즈를 가진 3톤명암 이미지
-const geometryCon = new THREE.ConeGeometry(1, 2, 120)
-const material5 = new THREE.MeshToonMaterial({
-    color: 'plum',
-    // map: texture4,
-    gradientMap: gradiuntTexture,
-    
-});
-gradiuntTexture.magFilter = THREE.NearestFilter
-
-                    </code>
-                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.MeshToonMaterial()</button></dt><dd>법선</dd></dl><div class="code_wrap"><pre>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.MeshNormalMaterial()</button></dt><dd>법선</dd></dl><div class="code_wrap"><pre>
                     <code class="javascript">
 법선..?? 
 각도에 맞게 컬러 알지비로 보임 .. 어따쓰는거지 ? 
@@ -1163,7 +1436,7 @@ gradiuntTexture.magFilter = THREE.NearestFilter
 
 const material6 = new THREE.MeshNormalMaterial()
                     </code>
-                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.MeshMatcapMaterial()</button></dt><dd>법선</dd></dl><div class="code_wrap"><pre>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.MeshMatcapMaterial()</button></dt><dd>3d 매캡 이미지 적용하는 재질</dd></dl><div class="code_wrap"><pre>
                     <code class="javascript">
 
 const loader = new THREE.TextureLoader()
@@ -1176,6 +1449,17 @@ const material7 = new THREE.MeshMatcapMaterial({
 const mesh = new THREE.Mesh(geometry, material7)
 scene.add(mesh)
                     
+                    </code>
+                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.LineBasicMaterial()</button></dt><dd>라인</dd></dl><div class="code_wrap"><pre>
+                    <code class="javascript">
+const lineMaterial = new THREE.LineBasicMaterial({ color: 'yellow' })
+const points = []; 
+points.push(new THREE.Vector3(0, 0, 100))
+points.push(new THREE.Vector3(0, 0, -100))
+const lineGeometry = new THREE.BufferGeometry().setFromPoints(points)
+
+const guide = new THREE.Line(lineGeometry, lineMaterial)
+scene.add(guide)
                     </code>
                 </pre></div></div></div><!-- #빛 --><div class="depth_2"><strong>빛</strong><div class="item_wrap"><dl class="item"><dt><button><span>Three</span>.DirectionalLight()</button></dt><dd>모두 비추는 빛</dd></dl><div class="code_wrap"><pre>
                     <code class="javascript">

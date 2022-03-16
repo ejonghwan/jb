@@ -290,4 +290,219 @@ asd
                     <code class="markdown">
 asd
                     </code>
-                </pre></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsaasd</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
+                </pre></div></div></section><section class="conts"><h2>SVG</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span>SVG란?</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+- 확장 가능한 벡터 그래픽 
+- XML 기반의 2차원 그래픽
+- 모양이 복잡하고 개체수가 많을수록 성능이 떨어짐 (그냥 돔이 많아지면 ..)
+
+캔버스랑 비교하자면 
+- 비트맵 기반 그래픽 
+- 이미지나 비디오의 픽셀조작, 게임, 퍼포먼스가 중요한 이미지 조작에 쓰임 
+- 저수준(로우레벨) API로 코딩량이 많고 까다로움
+- 크기가 커질수록 성능 떨어짐
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>SVG 삽입방법</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+# img태그로 넣기 
+&lt;img src="images/svg_img.svg" alt=""&gt;
+
+# css로 넣기
+background: url('images/svg_img.svg') no-repeat 0 0; 
+
+# inline 방식
+- css js 안에 넣을 수 있음
+&lt;svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 571 625.5"&gt;
+    &lt;![CDATA[
+        &lt;style&gt;&lt;/style&gt;
+    ]]&gt;
+    &lt;script&gt;&lt;/script&gt;
+    &lt;circle cx="286.5" cy="354.5" r="251" stroke-width="40" fill="none" stroke="#000" stroke-miterlimit="10"/&gt;
+    &lt;circle cx="175" cy="380.5" r="42.5"/&gt;
+    &lt;circle cx="397" cy="380.5" r="42.5"/&gt;
+    &lt;path d="M422 476.16a181.3 181.3 0 0 1-135.48 60.59H286a181.3 181.3 0 0 1-135.48-60.59" stroke-width="30" fill="none" stroke="#000" stroke-miterlimit="10"/&gt;
+    &lt;ellipse cx="168.5" cy="210.5" rx="168.5" ry="121.5"/&gt;
+    &lt;ellipse cx="428.5" cy="198.5" rx="142.5" ry="123.5"/&gt;
+    &lt;ellipse cx="245.5" cy="103" rx="151.5" ry="103"/&gt;
+&lt;/svg&gt;
+
+
+
+
+# obect 태그로 넣기
+- 이미지태그와 차이점은 svg태그가 다 들어감
+- 얘는 서버환경 되야함
+&lt;object data="images/svg_img.svg" type="image/svg+xml"&gt;&lt;object&gt;
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>SVG 사이즈설정</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+# svg 태그에 속성으로  
+svg width="500" height="500" /svg
+
+# viewBox 설정  
+svg viewBox="0 0 500 500" /svg
+- css 설정없으면 화면 가득 차서 반응형으로 작동 
+- css랑 같이 설정하면 뷰박스가 상대적인 사이즈가 됨. 
+(css 500px, viewBox 1000 하면 안쪽 컨텐츠는 1/2 크기) 
+
+# css로 설정 
+svg {width: 500px; height: 500px;}
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>SVG 압축</button></dt><dd><a href="https://jakearchibald.github.io/svgomg/">https://svgomg</a></dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+1. 사이트접속 
+2. 소스라면 paste markup  파일이라면 open svg
+3. 우측 압축 옵션에서 필요한거만 체크 (보통 디폴트)
+4. 우측 하단에 파일로 뽑거나 카피해서 사용
+
+                        </code>
+                    </pre></div></div><br><br><div class="item_wrap"><dl class="item"><dt><button><span></span>SVG 그리기</button></dt><dd>기본적인 도형 그리기</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+&lt;svg class="hoho"&gt;
+
+
+# 사각형
+&lt;rect x="10" y="20" width="200" height="100" /&gt; 
+
+# 레디우스 들어간 사각형 
+&lt;rect x="50" y="50" rx="10" ry="10" width="200" height="100" /&gt;
+
+# 원 
+- (좌표 반지름)
+&lt;circle cx="350" cy="250" r="30" /&gt;
+
+# 타원 
+- (좌표 래디우스)
+&lt;ellipse cx="200" cy="400" rx="100" ry="50" /&gt;
+
+# 선 
+- (x출발점 도착점 y출발점 도착점)
+&lt;line x1="10" x2="400" y1="30" y2="300" stroke="blue" /&gt;
+
+# 이어진 선 x y 
+- (0 0에서 200 100으로, 또 150 300으로 )
+&lt;polyline points="0 0, 200 100, 150 300" /&gt;
+
+# 마무리는 지어주는 이어진 선 
+- (사용방법은 같음)
+&lt;polygon points="0 0, 200 100, 150 300" /&gt;
+
+
+# path 직선 
+M : 맨처음 찍을 위치이동 x y
+L : 직선 x y  
+H : 수평 x 
+V : 수직 y 
+Z : 도형 닫기
+&lt;path d="M 100 200 L 500 100 H 50 V 300 Z" stroke="red" stroke-width="3" fill="transparent" /&gt;
+
+# path 곡선 
+C : 커브시작점 ..C 시작점xy, 중단점xy, 끝점xy  
+&lt;path d="M 100 150 C 100 150, 300 10, 500 150" stroke="red" stroke-width="3" fill="transparent" /&gt;
+
+
+# 그룹 만들기
+- 그룹 묶인 애들은 한번에 컨트롤 가능
+&lt;g&gt; 묶을 태그들 &lt;/g&gt; 
+
+
+# 텍스트 
+&lt;text x="20" y="50"&gt; 테스트 &lt;/text&gt;
+
+# defs 
+- 텍스트와 참조태그 결합
+&lt;text x="20" y="50"&gt; 
+    &lt;textPath href="#text__curve"&gt;
+        테스트  &lt;tspan&gt;얘는 중가넹 스타일 적용 가능 &lt;/tspan&gt; 테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트
+    &lt;/textPath&gt;
+&lt;/text&gt;
+&lt;defs&gt;
+    &lt;path id="text__curve" d="M 50 400 C 50 400, 300 500, 400 400 C 400 400, 600 170, 700 300" stroke="red" fill="transparent"&gt;&lt;/path&gt;
+&lt;/defs&gt;
+
+
+# tspan 
+- 텍스트 중간 스타일 적용
+tspan {fill: red;}
+
+
+
+
+
+&lt;/svg&gt;
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>SVG CSS 속성</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+// 특이하게 인라인속성보다 css태그에 넣은게 더 우선순위임 svg는..
+ 
+# 배경
+.class {fill: brown;}
+
+# 선
+.class {
+    stroke: brown; 
+    stroke-width: 10rem;
+    stroke-linecap: round // 둥글림 처리
+    stroke-linecap: square // 사각
+
+    stroke-linejoin: round // 선끼리 만나는 곳 둥글림 처리
+    stroke-linejoin: bevel // 살짝 깍임
+} 
+
+
+
+
+# 그라데이션 주기 
+- linearGradient, radialGradient
+&lt;defs&gt;
+    &lt;linearGradient id="gra"&gt;
+    &lt;stop offset="0%" stop-color="yellow"&gt;&lt;/stop&gt;
+    &lt;stop offset="50%" stop-color="hotpink"&gt;&lt;/stop&gt;
+    &lt;stop offset="100%" stop-color="deepskyblue"&gt;&lt;/stop&gt;
+    &lt;/linearGradient&gt;
+&lt;/defs&gt;    
+
+&lt;ellipse fill="url('#gra')" class="face__hair" cx="168.5" cy="210.5" rx="168.5" ry="121.5"/&gt;
+
+
+
+# 패턴 
+- 캔버스의 전체 사이즈가 500일 때 width 0.1은 10% circle의 위치와 반지름은 25로 맞춰야 10개가 보임.. 
+잘 안맞추면 짤림 
+- 반응형이면 viewBox 셋팅해주면 됨. 지름 50의 10배인 500으로 설정해면 됨
+- style로 bg 설정가능 ...background: {url('images/file.svg')}.. images/file.svg 안에 스타일 넣고 애니메이션도 가능 
+&lt;defs&gt;
+  &lt;pattern id="bg-pattern" x="0" y="0" width="0.1" height="0.1"&gt; 
+    &lt;circle cx="25" cy="25" r="25" fill="black" /&gt;
+  &lt;/pattern&gt;
+&lt;/defs&gt;
+
+&lt;rect x="0" y="0" width="100%" height="100%" fill="url('#bg-pattern')" /&gt;
+&lt;/svg&gt;
+
+
+
+
+# 마스크 
+- 조절은 fill 명도로 ...마스크는 검은색이 안보이고 흰색이 보이니깐~
+&lt;svg&gt;
+    &lt;defs&gt;
+        &lt;mask id="mask__sircle"&gt;
+            &lt;circle cx="50" cy="80" r="40" fill="#fff" /&gt;
+        &lt;/mask&gt;
+    &lt;/defs&gt;
+    &lt;g mask="url(#mask__sircle)"&gt;
+        &lt;text x="10" y="100"&gt;hohohohoho&lt;/text&gt;
+    &lt;/g&gt;
+&lt;/svg&gt;
+                        </code>
+                    </pre></div></div><br><br><div class="depth_3 list_tyep_1"><strong>SVG 태그</strong> <span class="seg">tag</span><br><span class="html_tag">svg</span> <span class="html_tag">rect</span> <span class="html_tag">circle</span> <span class="html_tag">path</span> <span class="html_tag">ellipse</span> <span class="html_tag">g</span></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsaasd</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
