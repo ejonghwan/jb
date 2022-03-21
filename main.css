@@ -1,7 +1,7 @@
 /*!
  * 
- *         Build Data: 2022. 3. 21.
- *         GIT Commit Ver: 34c0c51
+ *         Build Data: 2022. 3. 22.
+ *         GIT Commit Ver: 8467906
  *
  *         User Name : ejonghwan
  *
@@ -53,7 +53,7 @@
 
 
 /* Type Selector Reset */
-* {box-sizing: border-box;;}
+* {margin:0; padding:0; box-sizing: border-box;;}
 body {
 	-webkit-text-size-adjust: 100%;
 	font-weight: 400;

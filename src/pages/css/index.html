@@ -1,4 +1,117 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.61aadaac0cffa957c543.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><p>1. 성능 측성 검사 <a href="https://pagespeed.web.dev/" target="_blank" title="새창">https://pagespeed.web.dev/</a></p><p>2. 구글 크롬 라이트하우스</p><p>3. font최적화 <a href="https://d2.naver.com/helloworld/4969726">d2 naver blog post</a></p><p>4. 브라우저 렌더링 <a href="https://d2.naver.com/helloworld/59361">d2 naver blog post</a></p></section><section class="conts"><h2>Performance</h2><div class="depth_2"><strong>css optimization</strong><div class="item_wrap"><dl class="item"><dt><button>16.6666666 <span>ms</span></button></dt><dd>모니터 주사율과 로드 속도</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.6055a292953b06df2485.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><p>1. 성능 측성 검사 <a href="https://pagespeed.web.dev/" target="_blank" title="새창">https://pagespeed.web.dev/</a></p><p>2. 구글 크롬 라이트하우스</p><p>3. font최적화 <a href="https://d2.naver.com/helloworld/4969726">d2 naver blog post</a></p><p>4. 브라우저 렌더링 <a href="https://d2.naver.com/helloworld/59361">d2 naver blog post</a></p></section><section class="conts"><h2>Performance</h2><div class="depth_2"><strong>css optimization</strong><div class="item_wrap"><dl class="item"><dt><button>폰트 최적화<span></span></button></dt><dd>상황에 맞게 폰트 최적화 방법</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+
+FOUT (IE, 엣지) 방식 : 시스템폰트 였다가 웹폰트가 늦게 먹어서 움찔거림
+FOIT (크롬) 방식 : 웹폰트가 다운로드 다 받아져야 폰트자체가 생겨남 
+
+
+해결방법(구글에서는 preload와 optional 권장)
+
+
+# 폰트 적용 시점 컨트롤
+
+font-display: 속성 이용
+auto 
+- 브라우저 기본동작
+
+block 
+- FOIT (timeout = 3s...3초까진 기다렸다가 그래도 안나오면 시스템폰트 적용)
+
+swap 
+- FOUT (기본폰트 적용 이후 웹폰트)
+
+fallback 
+- FOIT (timeout = 0.1s)... 0.1초만에 기본폰트를 보여주고 
+  3초 이후에도 웹폰트를 다운로드 못했을 시 기본폰트를 쭉 보여주고 웹폰트는 캐시.. 
+  다음엔 바로 캐시 웹폰트로보여줌
+
+optional 
+- FOIT(timeout = 0.1s)... fallback이랑 비슷하지만 네트워크 상태에 따라 
+  기본폰트로 유지할지 웹폰트로 적용할지 결정, 이후 캐시
+
+
+
+# 폰트 사이즈 줄이기   
+(EOT > TTF/OTF > WOFF > WOFF2) 용량 낮은순
+https://transfonter.org/ (폰트변환)
+
+
+1. 웹폰트 포멧 사용
+@font-face {
+  font-family: fontname;
+  src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
+       url('./assets/fonts/fontname.woff2') format('woff2'), //이거 지원안하면 아래꺼 적용
+       url('./assets/fonts/fontname.woff') format('woff'),
+       url('./assets/fonts/fontname.ttf') format('truetype');
+  font-display: block;
+  unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+}
+
+
+2. local 폰트 사용 (위에꺼처럼)
+src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
+만약 FOIT 방식으로 적용하고 움찔하는걸 없애려면 시스템폰트와 웹폰트가 비슷한걸 쓰고 방식을 FOIT로 됨 
+
+
+3. Subset 사용 (특정문자 몇개만  사용 할 때)
+만약 2글자만 웹폰트를 사용한다면 필요한 2글자만 자를 수 있음 
+(1) https://transfonter.org/  접속 
+(2) 하단 Subset 옵션(특정 폰트) 설정하거나 Charactoers(특정 문자)에 넣고싶은 문자만 넣고 Convert 
+(3) Convert 된 subset 폰트파일 css에 적용
+
+- 단점은 다른곳에서 폰트적용을 했을 때 쓰지않아도 다운로드함. 이 단점을 없애려고 unicode range 적용
+unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+
+
+4. Unicode Range 적용 (위에꺼 단점 대응)
+unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+
+Array.prototype.map.call('ABCDERF', c => 'u+' + ('0000' + c.charCodeAt(0).toString(16).slice(-4)).join(', ') //유니코드 뽑아내는 코드
+
+
+5. data-uri로 변환 (웹팩 이미지 메모리저장하는거랑 비슷한 방식)
+(1) https://transfonter.org/  접속 
+(2) 하단 Subset 옵션(특정 폰트) 설정하거나 Charactoers(특정 문자)에 넣고싶은 문자만 넣고 
+(3) 상단 base64 encode  온!! 하고 Convert
+
+
+3번 Subset과 용량은 비슷하지만 네트워크 요청시간을 줄이고 css불러올떄 같이불러옴  
+
+@font-face {
+    font-family: fontname;
+    src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
+         url('data:app~~~asasfasdas~') format('woff2'), //이거 지원안하면 아래꺼 적용
+         url('data:app~~~asasfasdas~') format('woff'),
+         url('data:app~~~asasfasdas~') format('truetype');
+    font-display: block;
+    unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+}
+                                
+                    
+
+# 폰트 프리로드 
+- 보통은 css를 읽으면서 @font-face를 읽을 때 폰트가 필요해! 하고 다운로드하지만 
+  프리로드는 그 전에 다운로드 하는 기법
+
+1. HTML 에서 사전로드를 하고 
+&lt;link rel="preload" href="주소나 경로.woff2" as="font" type="font/woff2" crossorigin /&gt;
+
+2. @font-face 에서 사용.. 1번에서 사전 로드했으니 css에서 아래 소스를 만나도 로드하지않음
+@font-face {
+    font-family: fontname;
+    src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
+         url('./assets/fonts/fontname.woff2') format('woff2'), //이거 지원안하면 아래꺼 적용
+         url('./assets/fonts/fontname.woff') format('woff'),
+         url('./assets/fonts/fontname.ttf') format('truetype');
+    font-display: block;
+  }
+
+
+!! 여기서 질문?  이거 질문올림
+@font-face가 들어있는 css 자체를 preload로 사전로드하면 폰트도 사전로드 될까 ?  
+
+    </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>16.6666666 <span>ms</span></button></dt><dd>모니터 주사율과 로드 속도</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 모니터는 1초에 깜빡이는 속도가 있는데 이걸 fps라고 하며 
 모니터의 주사율은 각 모니터마다 다르지만 1초에 60fps로 잡는다면
@@ -46,9 +159,19 @@ ex)
 - 라이트하우스에서 Eliminate render-blocking resources 탭
 
 
-# 해결방법 
+# 문제발생 
 1. 스크립트는 돔파싱 후 가져오기 ..해더에 디퍼,어싱크없는 스크립트들 
-2. media 속성이 없는 link rel="stylesheet" 태그
+2. media 속성이 없거나 media="all"인  link rel="stylesheet" 태그
+
+(x) 렌더차단됨 
+link href="style.css" rel="stylesheet" 
+link href="style.css" rel="stylesheet" media="all" 
+
+(o) 특정 조건에만 스타일 해석
+link href="style.css" rel="stylesheet" media="orientation:portrait"
+link href="style.css" rel="stylesheet" media="print"
+
+렌더차단되면 css가 다운로드하고 파싱할때까지 FCP가 발생하지않음 (아래 더 자세히)
 
 
 
@@ -108,6 +231,22 @@ media="orientation:portrait"
 https://runebook.dev/ko/docs/html/preloading_content 
 
 
+
+필수 아닌 css는 preload로 병렬로딩 지연적용(onload)
+
+내용 ++
+1. 
+link rel="stylesheet" href="non-critical.css" media="print" onload="this.media='all'"
+
+"Print" 미디어 타입이란, 사용자가 페이지를 프린트를 하려고 하는 경우에만, 브라우저가 해당 스타일 시트를 불러오는 것으로 렌더링에는 영향을 미치지 않는다. 그리고 여기에 onload 이벤트로 this.media='all'를 추가한다면, 스타일 시트가 로드가 완료되면 미디어 속성을 다시 all로 바꾸면서 스타일 시트가 적용된다.
+
+
+2. 
+또 다른 방법은 link rel="preload"를 사용하는 것이다. 그러나 이 방법은 아래와 같은 단점이 있다
+preload는 생각보다 매우 이른 타이밍에, 높은 우선순위로 다운로드 되므로 다른 중요한 애셋의 다운로드 우선순위를 밀어 버릴 수 있다. 
+
+https://yceffort.kr/2021/03/improve-css-performance
+https://ui.toast.com/weekly-pick/ko_2021117#%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-%EC%9E%AC%EC%A7%80%EC%A0%95
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>LCP <span>로딩속도</span></button></dt><dd>큰컨텐츠 빨리 그리기</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
