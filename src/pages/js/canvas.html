@@ -2664,6 +2664,87 @@ gui.add(camera.position, 'x').min(-10).max(10).step(0.01).name('camera 위치')
                 </div>
             </div>
             <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span></span>cannon.js</button></dt>
+                    <dd>
+                        물리엔진 적용
+                </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="javascript">
+http://schteppe.github.io/cannon.js/docs/
+
+
+npm i cannon-es
+
+import * as CANNON from 'cannon-es';
+
+
+// 1. 캐논 월드 만들기
+const cannonWorld = new CANNON.World();
+
+
+// 2. 중력 만들기 (지구9.8, 달 중력이 다르듯 중력셋팅도 함)
+cannonWorld.gravity.set(0, -10, 0) //x y z 지금은 위에서 아래로 떨어지면 되니 y축만
+
+
+// 3. 캐논 요소 만들기... (three.js 요소에 덧붙일 요소들)
+const floorShape = new CANNON.Plane() // 1. 요소만들고 
+const floorBody = new CANNON.Body({ // 2. 바디만들고 추가
+    mass: 0, //바닥도 셋팅안해주면 중력영향을 받기떄문에 ...0으로 설정 
+    position:  new CANNON.Vec3(0, 0, 0), //위치 vector
+    shape: floorShape,
+})
+cannonWorld.addBody(floorBody)
+
+
+// 캐논에서도 판 돌려줌 
+floorBody.quaternion.setFromAxisAngle( 
+    new CANNON.Vec3(-1, 0, 0),// 축생성 
+    Math.PI / 2 //90 각도설정
+)
+
+
+
+// boxShape 생성
+const boxShape = new CANNON.Box(new CANNON.Vec3(.25, 2.5, .25)); // 중삼에서 어디까지 갈건지 three: 1 이라면 cannon: .5
+const boxBody = new CANNON.Body({
+    mass: 1, // 무게..충격
+    position: new CANNON.Vec3(0, 10, 0), //y 3 조금 띄움
+    shape: boxShape,
+})
+
+cannonWorld.addBody(boxBody)
+
+
+
+
+const clock = new THREE.Clock();
+
+function draw() {
+    const delta = clock.getDelta(); // draw함수 실행 간격 
+    
+    let cannonStepTime = 1/60
+    if(delta &lt; 0.01) { cannonStepTime = 1/120 }
+     cannonWorld.step(cannonStepTime, delta, 3) // 시간단계 셋팅.. 1/60 프레임, 시간차,  잠재적으로 지연되거나 차이가 벌어지는걸 몇번 보정할건지 
+    // floorMesh.position.copy(floorBody.position)// 물리엔진 body가 mesh를 따라가게끔 만듦
+    boxMesh.position.copy(boxBody.position)// 물리엔진 body가 mesh를 따라가게끔 만듦
+    boxMesh.quaternion.copy(boxBody.quaternion) //캐논에서도 쿼터니언써서 여기서도 쿼터니언 카피
+
+
+    renderer.render(scene, camera);
+    renderer.setAnimationLoop(draw);
+}
+
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
             <br /><br />
             <!-- item -->
             <div class="item_wrap">
