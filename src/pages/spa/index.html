@@ -36,7 +36,7 @@
                         </dl>
                         <div class="code_wrap">
                         <pre>
-                            <code class="markdown">
+                            <code class="javascript">
 성능최적화에는 아래 두 가지로 나뉨  
 
 1. 로딩성능 : 필요한 자원들을 미리 로드하거나 지연로드 
@@ -47,6 +47,8 @@
 2. 렌더링 성능 : 필요한 자원들을 화면에 렌더링 
 - bottleneck 코드 최적화
 
+`performance 탭 선.. 
+요청연결준비 | 요청 | 다운로드 | 메인스레드 처리 `
 
                             </code>
                         </pre>
@@ -64,9 +66,160 @@
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
-우리 파일일 경우 이거 쓰다말았음 
+1. cdn 이미지는 파라미터로 이미지 사이즈 조절하기 
+(없다면 여기서 생성 https://imgix.com/)
+
+2. 이미지 사이즈 너무 큰거넣지 않기..레티나 대응해서 2~3배 사이즈 
+
+3. webp 쓰기 
 
 
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>병목현상<span> bottleneck</span></button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+#병목현상 (bottleneck) 이란?   
+
+`차로가 4차선에서 2차선으로 줄어들 때 생기는 교통체증 같이 
+프로그래밍에서 생기는 정체현상
+
+많은 양의 데이터를 순식간에 보냈을 때 메모리가 이를 제대로 소화하지 못해 성능이 떨어지는 현상. 
+주로 용량이 적은 주변기기를 사용할 때 많이 발생. 
+즉 담을 수 있는 데이터의 양은 적으나 한꺼번에 많은 양의 데이터가 유입 됨으로써 
+컴퓨터가 느려지는 현상
+
+
+때문에 js에선 가비지컬렉터(GC) 가 중간중간 제거를 해줌
+
+https://github.com/ejonghwan/performance_apply 
+aticle 컴포넌트안에 병목현상이 생기는 함수 `
+
+
+
+/*
+ * 파라미터로 넘어온 문자열에서 일부 특수문자를 제거하는 함수
+ * (Markdown으로 된 문자열의 특수문자를 제거하기 위함)
+*/
+function removeSpecialCharacter(str) {
+    const removeCharacters = ['#', '_', '*', '~', '&', ';', '!', '[', ']', '`', '>', '\n', '=', '-']
+    let _str = str
+    let i = 0,
+      j = 0
+  
+    for (i = 0; i &lt; removeCharacters.length; i++) {
+      j = 0
+      while (j &lt; _str.length) {
+        if (_str[j] === removeCharacters[i]) {
+          _str = _str.substring(0, j).concat(_str.substring(j + 1))
+          continue
+        }
+        j++
+      }
+    }
+  
+    return _str
+  }
+
+ //jsx 
+ &lt;div className={'Article__summary__desc'}&gt;{removeSpecialCharacter(props.content)}&lt;/div&gt;
+
+
+
+`위 코드의 문제점.. 
+ 인자로 넘어온 마크다운 문자열중 특수문자를 제거하기 위해 
+ 두번의 반복문을 돌고 있음 
+ 
+ 때문에 퍼포먼스 탭에서 반복문을 두번씩 돌다가 메모리가 넘치면 GC가 제거하고 
+ 다시 돌리고를 반복해서 병목현상이 발생
+`
+
+`
+해결방법
+1. .replace 함수와 정규식 사용
+2. 마크다운의 특수문자를 지워주는 라이브러리 사용
+3. 작업하는 양 줄이기 (전체 말고 필요한 부분만 계산)
+`
+
+
+//let _str = str.substring(0, 300); //모든 문자열이 아닌 0~ 300자 까지만 검사 
+//_str = _str.replace(/[\#\_\*\~\&\;\!\[\]\`\>\n\=\-]/g, '') //내장객체와 정규표현식 사용 
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>code splitting & lazy loading<span></span></button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+# code splitting : 코드 분할 ..큰 파일을 필요한부분만 쓸 수 있게 .. 
+- 모듈별로
+- 페이지별로
+- 위 두가지 섞어서
+
+핵심은 "불필요한 코드와 중복되는 코드" 없이 
+"적절한 사이즈의 코드"가 
+"적절한 타이밍에 로드"될 수 있도록 
+
+//https://ko.reactjs.org/docs/code-splitting.html
+//Route-based code splitting
+
+# lazy loading : 나중에 필요한건 나중에 로딩
+
+
+
+
+
+`
+!! 예제 문제점
+현재 번들파일이 용량이 커서 다운로드 시간이 오래걸림
+다운로드 시간이 오래걸리면 다운로드 후 실행하기 떄문에 그만큼 지연됨 
+`
+
+
+`1. 분석 툴 (https://www.npmjs.com/package/webpack-bundle-analyzer)`
+npm i webpack-bundle-analyzer 
+
+`2. cra를 사용한다면 직접 플로그인 넣으려면 웹팩을 리젝하거나 커스텀lib 써야함
+ lib -> cra-bundle-analyzer
+ https://www.npmjs.com/package/cra-bundle-analyzer
+`
+npm i cra-bundle-analyzer
+npx cra-bundle-analyzer
+
+
+
+`3. cra-bundle-analyzer 실행해보면 번들파일에서 
+어떤게 제일 많이 먹고 있는지 블럭으로 보여줌... 
+
+1. chunk.js 제외하고 가장 많이 먹고 있는게 refractor
+2. pakacge-lock.json 에서 refractor 검색해보면 
+3. react-syntax-highlighter 에서 사용하는 하위 종속된 모듈인것 확인
+4. 그렇다면 상세페이지에서만 필요한거니 상제페이지에서만 다운로드하게끔 코드 스플리팅!
+`
                             </code>
                         </pre>
                         </div>
