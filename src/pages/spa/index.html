@@ -1,4 +1,319 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.91f074d4d9b4f787e806.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>React</h2><div class="depth_2"><strong>React</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환 adsadasdasdasdasdasdasdplalsjdlkajdlkajskda</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.91f074d4d9b4f787e806.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>performence</h2><div class="depth_2"><div class="item_wrap"><dl class="item"><dt><button><span></span>성능</button></dt><dd>로딩성능 | 렌더링 성능</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+성능최적화에는 아래 두 가지로 나뉨  
+
+1. 로딩성능 : 필요한 자원들을 미리 로드하거나 지연로드 
+- 이미지 최적화 
+- code split (코드분할)
+- 리소스 텍스트 압축
+- 컴포넌트 레이지 로딩 
+- 컴포넌트 프리로딩 
+- 이미지 프리로딩 
+
+2. 렌더링 성능 : 필요한 자원들을 화면에 렌더링 
+- bottleneck 코드 최적화
+- reflow, repaint 최적화
+
+`performance 탭 선.. 
+요청연결준비 | 요청 | 다운로드 | 메인스레드 처리 `
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>이미지</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+1. cdn 이미지는 파라미터로 이미지 사이즈 조절하기 
+(없다면 여기서 생성 https://imgix.com/)
+
+2. 이미지 사이즈 너무 큰거넣지 않기..레티나 대응해서 2~3배 사이즈 
+
+3. webp 쓰기 
+
+
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>병목현상<span> bottleneck</span></button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+#병목현상 (bottleneck) 이란?   
+
+`차로가 4차선에서 2차선으로 줄어들 때 생기는 교통체증 같이 
+프로그래밍에서 생기는 정체현상
+
+많은 양의 데이터를 순식간에 보냈을 때 메모리가 이를 제대로 소화하지 못해 성능이 떨어지는 현상. 
+주로 용량이 적은 주변기기를 사용할 때 많이 발생. 
+즉 담을 수 있는 데이터의 양은 적으나 한꺼번에 많은 양의 데이터가 유입 됨으로써 
+컴퓨터가 느려지는 현상
+
+
+때문에 js에선 가비지컬렉터(GC) 가 중간중간 제거를 해줌
+
+https://github.com/ejonghwan/performance_apply 
+aticle 컴포넌트안에 병목현상이 생기는 함수 `
+
+
+
+/*
+ * 파라미터로 넘어온 문자열에서 일부 특수문자를 제거하는 함수
+ * (Markdown으로 된 문자열의 특수문자를 제거하기 위함)
+*/
+function removeSpecialCharacter(str) {
+    const removeCharacters = ['#', '_', '*', '~', '&', ';', '!', '[', ']', '`', '>', '\n', '=', '-']
+    let _str = str
+    let i = 0,
+      j = 0
+  
+    for (i = 0; i &lt; removeCharacters.length; i++) {
+      j = 0
+      while (j &lt; _str.length) {
+        if (_str[j] === removeCharacters[i]) {
+          _str = _str.substring(0, j).concat(_str.substring(j + 1))
+          continue
+        }
+        j++
+      }
+    }
+  
+    return _str
+  }
+
+ //jsx 
+ &lt;div className={'Article__summary__desc'}&gt;{removeSpecialCharacter(props.content)}&lt;/div&gt;
+
+
+
+`위 코드의 문제점.. 
+ 인자로 넘어온 마크다운 문자열중 특수문자를 제거하기 위해 
+ 두번의 반복문을 돌고 있음 
+ 
+ 때문에 퍼포먼스 탭에서 반복문을 두번씩 돌다가 메모리가 넘치면 GC가 제거하고 
+ 다시 돌리고를 반복해서 병목현상이 발생
+`
+
+`
+해결방법
+1. .replace 함수와 정규식 사용
+2. 마크다운의 특수문자를 지워주는 라이브러리 사용
+3. 작업하는 양 줄이기 (전체 말고 필요한 부분만 계산)
+`
+
+
+//let _str = str.substring(0, 300); //모든 문자열이 아닌 0~ 300자 까지만 검사 
+//_str = _str.replace(/[\#\_\*\~\&\;\!\[\]\`\>\n\=\-]/g, '') //내장객체와 정규표현식 사용 
+
+
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>code splitting & lazy loading<span></span></button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+# code splitting : 코드 분할 ..큰 파일을 필요한부분만 쓸 수 있게 .. 
+# lazy loading : 나중에 필요한건 나중에 로딩
+- 모듈별로
+- 페이지별로
+- 위 두가지 섞어서
+
+핵심은 "불필요한 코드와 중복되는 코드" 없이 
+"적절한 사이즈의 코드"가 
+"적절한 타이밍에 로드"될 수 있도록 
+
+
+//code splitting은 웹팩이 해주는 것임. 웹팩 설정  (cra는 설정 다 되어있음)
+//https://webpack.js.org/guides/code-splitting/#root
+
+
+//https://ko.reactjs.org/docs/code-splitting.html
+//Route-based code splitting
+
+
+
+`
+!! 예제 문제점
+현재 번들파일이 용량이 커서 다운로드 시간이 오래걸림
+다운로드 시간이 오래걸리면 다운로드 후 실행하기 떄문에 그만큼 지연됨 
+`
+
+
+`1. 분석 툴 (https://www.npmjs.com/package/webpack-bundle-analyzer)`
+npm i webpack-bundle-analyzer 
+
+`2. cra를 사용한다면 직접 플로그인 넣으려면 웹팩을 리젝하거나 커스텀lib 써야함
+ lib -> cra-bundle-analyzer
+ https://www.npmjs.com/package/cra-bundle-analyzer
+`
+npm i cra-bundle-analyzer
+npx cra-bundle-analyzer
+
+
+
+`3. cra-bundle-analyzer 실행해보면 번들파일에서 
+어떤게 제일 많이 먹고 있는지 블럭으로 보여줌... 
+
+1. chunk.js 제외하고 가장 많이 먹고 있는게 refractor
+2. pakacge-lock.json 에서 refractor 검색해보면 
+3. react-syntax-highlighter 에서 사용하는 하위 종속된 모듈인것 확인
+4. 그렇다면 상세페이지에서만 필요한거니 상제페이지에서만 다운로드하게끔 코드 스플리팅!
+`
+
+
+//splitting code 
+`ra는 웹팩설정 안해줘도 되지만 처음부터 설정한다면 code splitting 설정을 따로 해줘야함..웹팩이 해주는거라`
+
+import React, { Suspense, lazy } from 'react'
+import { Switch, Route } from 'react-router-dom'
+
+const Component1 = lazy(() => import('./page/component1/index'))
+const Component2 = lazy(() => import('./page/component1/index'))
+
+&lt;Suspence fallback={&lt;div&gt;loading...&lt;/div&gt;}&gt;
+    &lt;Switch&gt;
+        &lt;Route path="/" component={Component1} exact /&gt;
+        &lt;Route path="/about/:id" component={Component2} exact /&gt;
+    &lt;/Switch&gt;
+&lt;/Suspence&gt;
+
+
+
+//Component2 
+import { Link } from 'react-router-dom'
+&lt;Link to={`/view/${item.id}`}&gt;
+    &lt;Article {...item} /&gt;
+&lt;/Link&gt;
+
+
+
+코드 적용결과 => npx cra-bundle-analyzer 
+refractor 코드와 react-dom 코드가 분리되어있음
+
+때문에 
+리스트 페이지에서는 필요한 모듈만을 불러오고 
+뷰 페이지에서는 두개를 더 불러옴
+
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>서버 </span>텍스트 압축</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+서버에서 압축해줌 -> 클라이언트에서 압축해제
+무분별하게 압축하면 성능이 오히려 떨어지고 2kb 이상만 하는게 좋음
+
+응답받은 헤더에 Content-Encoding: gzip 항목... (gzip으로 압축되어있는 파일)
+
+
+
+웹상 압축방식은 크게 두가지 (gzip이 조금 더 좋음) 
+1. GZIP 
+2. Deflate (LZ77)
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>reflow repaint</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+# 브라우저 렌더링 간단하게 
+1. DOM 생성 
+2. CSSOM 생성
+3. DOM + CSSOM = render tree 생성 
+4. layout (위치 크기 계산해서 배치)
+5. paint (색칠)
+6. composite (레이어별로 layout와 paint가 작업된 레이어들을 합성)
+
+
+
+# 주의
+reflow가 일어나는 css를 사용하면 렌더링할 때마다 1~ 6까지의 단계가 반복됨 ... (1,2,3,4,5,6 단계) 
+
+- 리플로우를 자주 발생하는 소스의 퍼포먼스탭에 프레임을 보면 
+  화면이 그려지는 각각 라인에 걸쳐있는 composite를 볼 수 있는데 
+  라인에 걸쳐 있다면 화면엔 이전 프레임의 화면이 보여질거고 
+  1 프레임이 누락되었기 때문에 60fps의 모니터를 사용시 59프레임이 되어버림... 
+  그래서 뚜둑 끊기는거 (프레임 드랍)
+
+- 퍼포먼스 탭에서 제일 상단에 있는 녹색 그래프가 프레임수를 나타내고(오른쪽에 FPS라고 써져있음) 
+  60fps일 때 들쑥날쑥 하다면 애니메이션이 일어나면서 프레임드랍이 일어난거임
+
+- 퍼포먼스 탭에서 상단에 보라색(레이아웃)과 녹색(컴포짙)이 많다는건 메인스레드가 많이 처리했다는 뜻 
+
+
+
+# 해결
+1. composite만 일어나는 css를 사용하는게 가장 베스트 
+2. repaint부터 일어나는 css 사용  ...(1,2,3,5,6 단계)
+2. GPU를 사용하는 opacity, transform 사용하기... (1,2,3,6 단계)
+   (이건 좀 더 찾아봐야함.. opacity가 어떤 레이어에 있냐에 따라 reflow발생)
+   (GPU를 사용하면 메인스레드가 작업하지 않기에 성능이 향상됨)
+
+
+
+/*  기존 코드
+    width: ${({width}) => width}%;
+    transition: width 1.5s ease;
+*/
+
+/*  개선 코드
+    width: 100%;
+    transform: scaleX(${(props) => props.width / 100});
+    transform-origin: 0;
+    transition: transform 1.5s ease;
+*/
+
+
+
+
+
+
+GPU에 관련된 답글 
+안녕하세요 불멸의너구리좌님,
+
+GPU를 사용하는 상황에서 데이터 통신에 대한 부하가 걸리지는 않는지 질문을 주셨는데요.
+
+브라우저가 GPU에 작업을 위임할 때, 흔히 우리가 생각하는 네트워크 통신처럼 시간이 걸는게 아니라 굉장히 빠른 프로세스 간의 통신이 이뤄집니다. 
+또한, 크롬 브라우저에서는 이미 GPU 프로세스를 포함한 여러 역할을 담당하는 프로세스들이 동작하고 있기 때문에 
+별도의 오버헤드 없이 해당 프로세스들 끼리 데이터를 주고 받을 수 있게 됩니다.
+
+즉, CPU에서 처리함으로써 떨어지는 성능에 비하면 거의 무의미한 수준의 비용이기 때문에 오히려 빨라지는 것입니다.
+
+참고하실 수 있도록 도움되는 링크를 알려드리겠습니다.
+- https://dev.opera.com/articles/ko/css-will-change-property/
+- https://d2.naver.com/helloworld/2922312
+- https://developers.google.com/web/updates/2018/09/inside-browser-part3#raster_and_composite_off_of_the_main_thread
+
+강의에 관심을 가져주셔서 감사합니다. :)
+
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>preload</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+
+# 이미지 슬라이드 팝업을 레이지로드 했을 때
+
+import React, { useState, Suspense, lazy } from 'react'
+const ImageModal = lazy(() => import('./components/ImageModal'))
+
+
+&lt;Suspense fallback={null}&gt;
+&nbsp;&nbsp;&nbsp;{showModal ? &lt;ImageModal closeModal={() =&gt; { setShowModal(false) }} /&gt; : null}
+&lt;/Suspense&gt;
+
+
+
+# 문제점
+code splitting이 잘 되어 나중에 요청이 되지만 
+문제는 느리다 ... 
+
+왜냐면 클릭했을 때 ImageModal 컴포넌트에 있는 모듈 등등을 불러오기 때문에... 
+
+
+
+# 해결방법 
+이럴 때 preload를 해주면 된다. 크게 두가지 방법으로,. 
+
+1. 버튼에 마우스 오버를 했을 때 
+2. 화면로드가 다 끝난 후
+
+코드 스플리팅했던 슬라이드에 사용된 image css module 등을 사전로드 하게 되면 
+미리 로드준비를 해놓고 캐시에 저장해놔서 특정시점(나는 마우스오버에 검) 을 만나면 캐시해둔 
+리소스를 받기 떄문에 빠르다
+
+
+
+
+
+
+                            </code>
+                        </pre></div></div></div></section><section class="conts"><h2>React</h2><div class="depth_2"><strong>React</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환 adsadasdasdasdasdasdasdplalsjdlkajdlkajskda</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 asd
                             </code>
