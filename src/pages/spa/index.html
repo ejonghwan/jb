@@ -24,7 +24,7 @@
                     <h2>performence</h2>
 
                     <div class="depth_2">
-                        <!-- <strong>React</strong> -->
+                        <strong>리소스 관리</strong>
                    
                     <!-- item -->
                     <div class="item_wrap">
@@ -36,10 +36,11 @@
                         </dl>
                         <div class="code_wrap">
                         <pre>
-                            <code class="javascript">
+                            <code class="markdown">
 성능최적화에는 아래 두 가지로 나뉨  
 
-1. 로딩성능 : 필요한 자원들을 미리 로드하거나 지연로드 
+# 로딩성능 
+: 필요한 자원들을 미리 로드하거나 지연로드 
 - 이미지 최적화 
 - code split (코드분할)
 - 리소스 텍스트 압축
@@ -47,9 +48,13 @@
 - 컴포넌트 프리로딩 
 - 이미지 프리로딩 
 
-2. 렌더링 성능 : 필요한 자원들을 화면에 렌더링 
+
+# 렌더링 성능 
+: 필요한 자원들을 화면에 렌더링 
 - bottleneck 코드 최적화
 - reflow, repaint 최적화
+
+
 
 `performance 탭 선.. 
 요청연결준비 | 요청 | 다운로드 | 메인스레드 처리 `
@@ -70,20 +75,371 @@
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
-1. cdn 이미지는 파라미터로 이미지 사이즈 조절하기 
+// 구글에서 배포한 이미지 최적화 앱
+squoosh.app 
+
+
+
+# cdn 이미지는 파라미터로 이미지 사이즈 조절하기 
 (없다면 여기서 생성 https://imgix.com/)
 
-2. 이미지 사이즈 너무 큰거넣지 않기..레티나 대응해서 2~3배 사이즈 
 
-3. webp 쓰기 
-
+# 이미지 사이즈 너무 큰거넣지 않기..레티나 대응해서 2~3배 사이즈 
 
 
+# picture, webp 쓰기 
+&lt;picture&gt;
+    &lt;source srcSet={main_items} type="image/webp" /&gt;
+    &lt;img  data-src={main_items} ref={imgRef_1} /&gt;
+&lt;/picture&gt;
+
+
+
+# intersection observer API 사용하기 
+
+import React, { useEffect, useRef } from 'react'
+const App = () => {
+
+    const imgRef = useRef(null) 
+    useEffect(() => {
+
+        const options = {}
+        const callback = (entries, obsever) => {
+            entries.forEach(item => {
+                if(item.isIntersecting) {
+                    item.target.src = item.target.dataset.src
+                    item.target.previousSibling.src = item.target.previousSibling.dataset.srcset //야는 ref로 안잡아놔서 옵저브안되고 있었음
+                    observer.unobserve(item.target)
+                }
+            })
+        }
+        const observer = new IntersectionObserver(callback, options)
+        observer.observe(imgRef.current)
+
+    }, [])
+
+
+    return (
+        &lt;ficture&gt;
+            &lt;source data-srcset={main_items} type="image/webp" /&gt;
+            &lt;img data-src={'../assets/main1.jpg'} ref={imgRef} alt&gt;
+        &lt;/ficture&gt;
+    )
+}
                             </code>
                         </pre>
                         </div>
                     </div>
                     <!-- item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span></span>비디오</button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# webm 압축해서 사용 
+변환프로그램으로 webm으로 변환
+주의점은 화질 많이 떨어지니 영상이 주가 아닌 사이트에 사용 
+
+webm은 브라우저 호환이 별로 안좋으니 &lt;video&gt;&lt;/video&gt;태그로 분기 
+
+https://www.media.io/ko/video-compressor.html
+
+
+
+# 예제
+import Video_webm from './video.webm'
+import Video from './video.mp4'
+
+&lt;video
+    autoPlay
+    loop
+    muted
+&gt;
+    &lt;source src={Video_webm} type="video/webm" /&gt;
+    &lt;source src={Video} type="video/mp4" /&gt;
+&lt;/video&gt;
+
+https://developer.mozilla.org/ko/docs/Web/HTML/Element/Video
+
+
+
+# 그 외 동영상 화질저하 가려보기
+- 동영상 루프 시간 조금 줄이기 
+- 동영상 앞에 패턴주기 
+- css blur 사용하기
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span></span>폰트</button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+FOUT (IE, 엣지) 방식 : 시스템폰트 였다가 웹폰트가 늦게 먹어서 움찔거림
+FOIT (크롬) 방식 : 웹폰트가 다운로드 다 받아져야 폰트자체가 생겨남 
+
+
+해결방법(구글에서는 preload와 optional 권장)
+
+
+# 폰트 적용 시점 컨트롤
+
+font-display: 속성 이용
+auto 
+- 브라우저 기본동작
+
+block 
+- FOIT (timeout = 3s...3초까진 기다렸다가 그래도 안나오면 시스템폰트 적용)
+
+swap 
+- FOUT (기본폰트 적용 이후 웹폰트)
+
+fallback 
+- FOIT (timeout = 0.1s)... 0.1초만에 기본폰트를 보여주고 
+    3초 이후에도 웹폰트를 다운로드 못했을 시 기본폰트를 쭉 보여주고 웹폰트는 캐시.. 
+    다음엔 바로 캐시 웹폰트로보여줌
+
+optional 
+- FOIT(timeout = 0.1s)... fallback이랑 비슷하지만 네트워크 상태에 따라 
+    기본폰트로 유지할지 웹폰트로 적용할지 결정, 이후 캐시
+
+
+
+# 폰트 사이즈 줄이기   
+(EOT > TTF/OTF > WOFF > WOFF2) 용량 낮은순
+https://transfonter.org/ (폰트변환)
+
+
+1. 웹폰트 포멧 사용
+@font-face {
+    font-family: fontname;
+    src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
+        url('./assets/fonts/fontname.woff2') format('woff2'), //이거 지원안하면 아래꺼 적용
+        url('./assets/fonts/fontname.woff') format('woff'),
+        url('./assets/fonts/fontname.ttf') format('truetype');
+    font-display: block;
+    unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+}
+
+
+2. local 폰트 사용 (위에꺼처럼)
+src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
+만약 FOIT 방식으로 적용하고 움찔하는걸 없애려면 시스템폰트와 웹폰트가 비슷한걸 쓰고 방식을 FOIT로 됨 
+
+
+3. Subset 사용 (특정문자 몇개만  사용 할 때)
+만약 2글자만 웹폰트를 사용한다면 필요한 2글자만 자를 수 있음 
+(1) https://transfonter.org/  접속 
+(2) 하단 Subset 옵션(특정 폰트) 설정하거나 Charactoers(특정 문자)에 넣고싶은 문자만 넣고 Convert 
+(3) Convert 된 subset 폰트파일 css에 적용
+
+- 단점은 다른곳에서 폰트적용을 했을 때 쓰지않아도 다운로드함. 이 단점을 없애려고 unicode range 적용
+unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+
+
+4. Unicode Range 적용 (위에꺼 단점 대응)
+unicode-range: u+0041,u+0042,u+0043,u+0044,u+0045,u+0046,u+0054 // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+
+Array.prototype.map.call('ABCDEFT', c => 'u+' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4)).join(',') //유니코드 뽑아내는 코드 u+0041,u+0042,u+0043,u+0044,u+0045,u+0046,u+0054
+
+
+5. data-uri로 변환 (웹팩 이미지 메모리저장하는거랑 비슷한 방식)
+(1) https://transfonter.org/  접속 
+(2) 하단 Subset 옵션(특정 폰트) 설정하거나 Charactoers(특정 문자)에 넣고싶은 문자만 넣고 
+(3) 상단 base64 encode  온!! 하고 Convert
+
+
+3번 Subset과 용량은 비슷하지만 네트워크 요청시간을 줄이고 css불러올떄 같이불러옴  
+
+@font-face {
+    font-family: fontname;
+    src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
+            url('data:app~~~asasfasdas~') format('woff2'), //이거 지원안하면 아래꺼 적용
+            url('data:app~~~asasfasdas~') format('woff'),
+            url('data:app~~~asasfasdas~') format('truetype');
+    font-display: block;
+    unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+}
+                                
+                    
+
+# 폰트 프리로드 
+- 보통은 css를 읽으면서 @font-face를 읽을 때 폰트가 필요해! 하고 다운로드하지만 
+    프리로드는 그 전에 다운로드 하는 기법
+
+1. HTML 에서 사전로드를 하고 
+&lt;link rel="preload" href="주소나 경로.woff2" as="font" type="font/woff2" crossorigin /&gt;
+
+2. @font-face 에서 사용.. 1번에서 사전 로드했으니 css에서 아래 소스를 만나도 로드하지않음
+@font-face {
+    font-family: fontname;
+    src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
+            url('./assets/fonts/fontname.woff2') format('woff2'), //이거 지원안하면 아래꺼 적용
+            url('./assets/fonts/fontname.woff') format('woff'),
+            url('./assets/fonts/fontname.ttf') format('truetype');
+    font-display: block;
+    }
+
+
+!! 여기서 질문?  이거 질문올림
+@font-face가 들어있는 css 자체를 preload로 사전로드하면 폰트도 사전로드 될까 ?  
+                                
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>텍스트 압축 <span>서버 | 빌드</span></button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+서버에서 압축해줌 -> 클라이언트에서 압축해제
+무분별하게 압축하면 성능이 오히려 떨어지고 2kb 이상만 하는게 좋음
+
+응답받은 헤더에 Content-Encoding: gzip 항목... (gzip으로 압축되어있는 파일)
+
+
+
+
+웹상 압축방식은 크게 두가지 (gzip이 조금 더 좋음) 
+1. GZIP 
+2. Deflate (LZ77)
+
+
+
+
+
+
+Compress(압축) + Minify(경량화?) 둘다 적용하는게 베스트
+
+
+# Compress(압축) - 서버
+네트워크 전송 시, 텍스트 데이터 자체를 압축하는 작업
+쉽게 생각해서 zip으로 압축하듯이 압축한다고 생각하시면 됩니다.
+일반적인 텍스트 파일(html, js, css 등)들은 압축을 통해 사이즈를 줄일 수 있습니다.
+웹에서 사용하는 압축방식은 gzip입니다.
+텍스트의 패턴에 따라 많게는 1/10, 적게는 1/5까지 사이즈가 줄어듭니다.
+이렇게 정리할 수 있습니다.
+Minify와 Uglify는 Build 타임에 적용이 되며, Compress는 네트워크 상에서 전송할 때 압축이 진행됩니다.
+따라서 어떤게 좋다 나쁘다라고 할 수 없고 다른 작업들입니다. 모두 적용하는게 일반적으로는 효율적입니다.
+
+
+
+
+# Minify(경량화?) - 빌드시 
+실제 코드 실행에 불필요한 공백, 주석 등을 제거하는 작업
+let test1 = 123;
+const test2 = 234; 
+
+--->    let test=123;const b=234;
+공백과 개행을 모두 제거했지만 코드 실행에는 아무 문제 없습니다.
+
+
+
+#Uglify(난독화): 코드의 변수명이나 함수명등을 알아보기 힘들게 바꾸는 작업
+let veryImportantValue = 123;
+
+---> let a = 123;
+보안성 강화 + 긴 변수명 또는 함수명을 짦게 바꿔줘서 최적화 효과도 있음
+
+
+
+
+
+
+-------------------------------------------------------------
+유동균님 답변 
+
+1. 
+
+우선, Compress(압축)과 Minify(경량화?)를 구부하셔야 합니다. 둘은 다릅니다. 
+말씀해주신 플러그인은 Minify 플러그인입니다.
+조금 더 세분화해서 예를 들어보면,
+
+Minify: 실제 코드 실행에 불필요한 공백, 주석 등을 제거하는 작업
+let test1 = 123;
+const test2 = 234; 
+
+--->    let test=123;const b=234;
+공백과 개행을 모두 제거했지만 코드 실행에는 아무 문제 없습니다.
+Uglify(난독화): 코드의 변수명이나 함수명등을 알아보기 힘들게 바꾸는 작업
+let veryImportantValue = 123;
+
+---> let a = 123;
+보안성 강화 + 긴 변수명 또는 함수명을 짦게 바꿔줘서 최적화 효과도 있음
+
+
+
+Compress: 네트워크 전송 시, 텍스트 데이터 자체를 압축하는 작업
+쉽게 생각해서 zip으로 압축하듯이 압축한다고 생각하시면 됩니다.
+일반적인 텍스트 파일(html, js, css 등)들은 압축을 통해 사이즈를 줄일 수 있습니다.
+웹에서 사용하는 압축방식은 gzip입니다.
+텍스트의 패턴에 따라 많게는 1/10, 적게는 1/5까지 사이즈가 줄어듭니다.
+이렇게 정리할 수 있습니다.
+Minify와 Uglify는 Build 타임에 적용이 되며, Compress는 네트워크 상에서 전송할 때 압축이 진행됩니다.
+따라서 어떤게 좋다 나쁘다라고 할 수 없고 다른 작업들입니다. 모두 적용하는게 일반적으로는 효율적입니다.
+
+2.
+
+네, 맞습니다.
+위에 정리해뒀듯, Minify와 Uglify는 코드 실행에 전혀 영향을 주지 않습니다. 단지 사람이 보기 힘들어 졌을 뿐입니다.
+
+3.
+
+1번에서 언급했듯 일반적으로 모두 적용하는 것이 효율적입니다.
+
+4. 
+
+음... 이건 그 분이 잘못 알고 계신겁니다.
+텍스트 압축(gzip) 시간은 서비스 시간에 거의 영향을 주지 않습니다.
+
+강의에서도 언급했던거 같은데요, 대략 2KB를 기준으로 그 이하 사이즈인 파일은 압축은 안하는 것이 더 낫습니다. 반대로 그 이상의 사이즈 파일은 압축을 하는 것이 좋다는 것이되는 거죠.
+(보통 이 분기는 압축을 적용하는 곳에서 해줍니다.)
+
+그런데 서비스 코드 중에 2KB를 안 넘는 것이 과연 얼마나 될까요?
+거의 없죠.. 즉, 웬만하면 압축을 하는게 좋다는 겁니다.
+
+이 gzip을 적용하는 작업은 작업 리소스 대비 효율이 굉장히 좋습니다.
+꼭 하시길 바랍니다. 코드가 500KB라면 압축 후, 거의 100~50KB가 될겁니다.
+
+ 
+
+답변이 도움되셨길 바라며, 강의에 관심을 가져주셔서 감사합니다. :)
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
+
+                </div>
+
+
+
+
+                <div class="depth_2">
+                    <strong>코드 관리</strong>
+
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
@@ -94,8 +450,8 @@
                         </dl>
                         <div class="code_wrap">
                         <pre>
-                            <code class="javascript">
-#병목현상 (bottleneck) 이란?   
+                            <code class="markdown">
+# 병목현상 (bottleneck) 이란?   
 
 `차로가 4차선에서 2차선으로 줄어들 때 생기는 교통체증 같이 
 프로그래밍에서 생기는 정체현상
@@ -113,6 +469,7 @@ aticle 컴포넌트안에 병목현상이 생기는 함수 `
 
 
 
+# 예제 코드
 /*
  * 파라미터로 넘어온 문자열에서 일부 특수문자를 제거하는 함수
  * (Markdown으로 된 문자열의 특수문자를 제거하기 위함)
@@ -141,7 +498,7 @@ function removeSpecialCharacter(str) {
  &lt;div className={'Article__summary__desc'}&gt;{removeSpecialCharacter(props.content)}&lt;/div&gt;
 
 
-
+# 문제점
 `위 코드의 문제점.. 
  인자로 넘어온 마크다운 문자열중 특수문자를 제거하기 위해 
  두번의 반복문을 돌고 있음 
@@ -150,12 +507,12 @@ function removeSpecialCharacter(str) {
  다시 돌리고를 반복해서 병목현상이 발생
 `
 
-`
-해결방법
+
+# 해결방법
 1. .replace 함수와 정규식 사용
 2. 마크다운의 특수문자를 지워주는 라이브러리 사용
 3. 작업하는 양 줄이기 (전체 말고 필요한 부분만 계산)
-`
+
 
 
 //let _str = str.substring(0, 300); //모든 문자열이 아닌 0~ 300자 까지만 검사 
@@ -229,15 +586,15 @@ npx cra-bundle-analyzer
 
 
 //splitting code 
-`ra는 웹팩설정 안해줘도 되지만 처음부터 설정한다면 code splitting 설정을 따로 해줘야함..웹팩이 해주는거라`
+`cra는 웹팩설정 안해줘도 되지만 처음부터 설정한다면 code splitting 설정을 따로 해줘야함..웹팩이 해주는거라`
 
 import React, { Suspense, lazy } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-const Component1 = lazy(() => import('./page/component1/index'))
-const Component2 = lazy(() => import('./page/component1/index'))
+const Component1 = lazy(() =&gt; import('./page/component1/index'))
+const Component2 = lazy(() =&gt; import('./page/component1/index'))
 
-&lt;Suspence fallback={&lt;div&gt;loading...&lt;/div&gt;}&gt;
+&lt;Suspence fallback={&lt;div&gt;loading...&lt;div&gt;}&gt;
     &lt;Switch&gt;
         &lt;Route path="/" component={Component1} exact /&gt;
         &lt;Route path="/about/:id" component={Component2} exact /&gt;
@@ -254,7 +611,7 @@ import { Link } from 'react-router-dom'
 
 
 
-코드 적용결과 => npx cra-bundle-analyzer 
+코드 적용결과(npx cra-bundle-analyzer) 
 refractor 코드와 react-dom 코드가 분리되어있음
 
 때문에 
@@ -267,32 +624,7 @@ refractor 코드와 react-dom 코드가 분리되어있음
                         </div>
                     </div>
                     <!-- item -->
-                     <!-- item -->
-                     <div class="item_wrap">
-                        <dl class="item">
-                            <dt><button><span>서버 </span>텍스트 압축</button></dt>
-                            <dd>
-                               -
-                        </dd>
-                        </dl>
-                        <div class="code_wrap">
-                        <pre>
-                            <code class="markdown">
-서버에서 압축해줌 -> 클라이언트에서 압축해제
-무분별하게 압축하면 성능이 오히려 떨어지고 2kb 이상만 하는게 좋음
-
-응답받은 헤더에 Content-Encoding: gzip 항목... (gzip으로 압축되어있는 파일)
-
-
-
-웹상 압축방식은 크게 두가지 (gzip이 조금 더 좋음) 
-1. GZIP 
-2. Deflate (LZ77)
-                            </code>
-                        </pre>
-                        </div>
-                    </div>
-                    <!-- item -->
+                     
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
@@ -383,7 +715,7 @@ GPU를 사용하는 상황에서 데이터 통신에 대한 부하가 걸리지�
                      <!-- item -->
                      <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span></span>preload</button></dt>
+                            <dt><button>preload <span>component</span></button></dt>
                             <dd>
                                -
                         </dd>
@@ -424,8 +756,71 @@ code splitting이 잘 되어 나중에 요청이 되지만
 
 
 
+import React, { useEffect, lazy, Suspense } from 'react'
+
+1. 마우스오버 시 프리로드 
+const handleMouseenter = () => import('./')
+const ImageModal = lazy(() => import('./'))
+&lt;button onClick={imageModal} onMouseEnter={handleMouseenter}&gt;click&lt;/button&gt;
+
+2. 받을게 많다면 마운트 후 시점에
+useEffect(() => {
+    // import한 함수를 변수에 안담아두면 함수실행하고 사용안한다고 에러뜸 
+    const component = import('./')
+}, [])
+const ImageModal = lazy(() => import('./'))
+&lt;button onClick={imageModal} &gt;click&lt;/button&gt;
 
 
+
+
+부가 ------
+// 만약 임포트할게 많다면 팩토리패턴으로 함수 
+const lazyWithPreload = (importFunction) => {
+    const Component = React.lazy(importFunction)
+    console.log(Component)
+    Component.preload = importFunction;
+    return Component
+}
+
+const LazyImageModal = lazyWithPreload(() => import('./components/ImageModal'))
+
+useEffect(() => {
+    LazyImageModal.preload()
+}, [])
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>preload <span>image</span></button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+// 기본적으로 image에 src속성이 들어가는 순간 비동기적으로 이미지 로드함
+const img = new Image()
+img.src = './'
+
+
+# 마운트 후 시점에 이미지 사전로드 
+useEffect(() => {
+    const img = new Image()
+    img.src = './'
+}, [])
+
+`하지만 이렇게 하면 다시 img.src 했을 때 또 로드됨... 미리 로드했기 떄문에 캐시가 걸려있는 상태` 
+`네트워크 탭에서 해당 파일보면 cache-control 항목이 걸려있음`
+
+`중요한건 가장크고 중요한 이미지만 사전로드하는 게 중요함... 모두 사전로드하면 오히려 느려짐`
 
                             </code>
                         </pre>
