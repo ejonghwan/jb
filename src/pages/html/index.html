@@ -618,13 +618,13 @@ avif 45kb
             <h2>SEO</h2>
               <div class="depth_2">
                 <strong>SEO에 영향을 주는 요소들</strong>
-           
+              
                 <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
                         <dt><button><span>1. </span>검색 결과</button></dt>
                         <dd>
-                            검색 결과 페이지(SERP) 노축대비 클릭률
+                            검색 결과 페이지(SERP) 노출대비 클릭률
                         </dd>
                     </dl>
                     <div class="code_wrap">
@@ -785,7 +785,7 @@ https://cards-dev.twitter.com/validator
                     <dl class="item">
                         <dt><button><span>6. </span>로딩 속도</button></dt>
                         <dd>
-                           로딩속도의 중요성
+                           FCP(의미있는 블록), LCP(최대 블록), CLS(덜컥거림)
                         </dd>
                     </dl>
                     <div class="code_wrap">
@@ -852,6 +852,77 @@ asd
                 </div>
             </div>
             <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>11. </span>URL 통합</button></dt>
+                    <dd>
+                      중복 URI 통합
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="markdown">
+
+# canonical tag
+
+중복 url을 검색엔진이 만나면 모두 멋대로 대표 url을 정해서 노출시키거나 다른 곳을 제외시킴..때로는 감점을 줄 때도 있다고함
+때문에 중복 url은 대표를 지정해줘야하는데 이때 쓰는 rel 속성값임 
+
+&lt;link rel="canonical" href="https://example.com/"/&gt;
+
+중복 url ex)
+http://example.com
+http://example.com/
+http://www.example.com/
+https://example.com
+https://example.com/
+https://www.example.com/
+https://m.example.com 
+
+
+# pc mobile 다른 경우 둘 모두에게 대표 url을 걸어주면 한개로 인식  
+pc : &lt;link rel="canonical" href="https://example.com/"/&gt;
+m : &lt;link rel="canonical" href="https://example.com/"/&gt;
+
+
+
+https://myseolabo.com/seo/canonical-tag/
+
+
+
+의문점?? query string도 다른 url로 치나 ?? 
+어떤 블로그에선 다른 url로 친다고 함...
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button><span>12. </span>로봇</button></dt>
+                    <dd>
+                      로봇 설정 
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="markdown">
+
+https://developers.google.com/search/docs/advanced/robots/robots_meta_tag?hl=ko
+
+https://hunit.tistory.com/312
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+            <br />
+            <p><span class="seg"><a href="https://www.next-t.co.kr/blog/2021%EB%85%84-seo%EC%B4%9D%EC%A0%95%EB%A6%AC%EA%B0%80%EC%9D%B4%EB%93%9C-1" taget="_blank">참고 블로그 1   </a></span>  <span class="seg"><a href="https://webclub.tistory.com/354" taget="_blank">참고 블로그 2</a></span></p>
+            
         </section>
         <!-- //SEO -->
 
@@ -888,6 +959,7 @@ asd
                     </div>
                 </div>
                 <!-- //item -->
+                
                 <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
