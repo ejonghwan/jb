@@ -88,7 +88,7 @@ optional
 https://transfonter.org/ (폰트변환)
 
 
-1. 웹폰트 포멧 사용
+# 웹폰트 포멧 사용
 @font-face {
   font-family: fontname;
   src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
@@ -100,12 +100,12 @@ https://transfonter.org/ (폰트변환)
 }
 
 
-2. local 폰트 사용 (위에꺼처럼)
+# local 폰트 사용 (위에꺼처럼)
 src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...로컬폰트 사용
 만약 FOIT 방식으로 적용하고 움찔하는걸 없애려면 시스템폰트와 웹폰트가 비슷한걸 쓰고 방식을 FOIT로 됨 
 
 
-3. Subset 사용 (특정문자 몇개만  사용 할 때)
+# Subset 사용 (특정문자 몇개만  사용 할 때)
 만약 2글자만 웹폰트를 사용한다면 필요한 2글자만 자를 수 있음 
 (1) https://transfonter.org/  접속 
 (2) 하단 Subset 옵션(특정 폰트) 설정하거나 Charactoers(특정 문자)에 넣고싶은 문자만 넣고 Convert 
@@ -115,13 +115,13 @@ src: local('fontname'), //시스템에 있으면 다운로드 받지않고 ...�
 unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
 
 
-4. Unicode Range 적용 (위에꺼 단점 대응)
-unicode-range: u+0041; // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
+# Unicode Range 적용 (위에꺼 단점 대응)
+unicode-range: u+0041,u+0042,u+0043,u+0044,u+0045,u+0046,u+0054 // A에 대한 폰트가 있을 때만 폰트파일 다운로드 
 
-Array.prototype.map.call('ABCDERF', c => 'u+' + ('0000' + c.charCodeAt(0).toString(16).slice(-4)).join(', ') //유니코드 뽑아내는 코드
+Array.prototype.map.call('ABCDEFT', c => 'u+' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4)).join(',') //유니코드 뽑아내는 코드 u+0041,u+0042,u+0043,u+0044,u+0045,u+0046,u+0054
 
 
-5. data-uri로 변환 (웹팩 이미지 메모리저장하는거랑 비슷한 방식)
+# data-uri로 변환 (웹팩 이미지 메모리저장하는거랑 비슷한 방식)
 (1) https://transfonter.org/  접속 
 (2) 하단 Subset 옵션(특정 폰트) 설정하거나 Charactoers(특정 문자)에 넣고싶은 문자만 넣고 
 (3) 상단 base64 encode  온!! 하고 Convert
