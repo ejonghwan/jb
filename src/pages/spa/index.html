@@ -298,6 +298,55 @@ Array.prototype.map.call('ABCDEFT', c => 'u+' + ('0000' + c.charCodeAt(0).toStri
 !! 여기서 질문?  이거 질문올림
 @font-face가 들어있는 css 자체를 preload로 사전로드하면 폰트도 사전로드 될까 ?  
                                 
+
+
+
+# font preload를 CRA 사용시 문제점 
+빌드할 때마다 preload의 href를 변경해줘야하는데 
+웹팩을 커스텀  해주면 해결 
+https://www.npmjs.com/package/react-app-rewired?activeTab=dependents
+
+
+1. 다운로드 
+npm i -D react-app-rewired
+
+2. 스크립츠 수정
+package.json
+"scripts": {
+    -   "start": "react-scripts start",
+    +   "start": "react-app-rewired start",
+
+
+3. 루트경로에 아래 파일 추가 하고 내용추가
+// config-overrides.js
+module.exports = function override(config, env) {
+    //do stuff with the webpack config...
+    return config;
+  }
+
+
+4. 웹팩 플로그인 모듈 설치 
+npm i -D preload-webpack-plugin 
+
+...이거 설치안됨 
+
+5. 설정파일 수정 
+// config-overrides.js
+
+import preloadWebpackPlugin = require('preload-webpack-plugin ')
+module.exports = function override(config, env) {
+    
+    config.plugins.push(new preloadWebpackPlugin({
+        rel: 'preload',
+        as: 'font',
+        include: 'allAssets', 
+        fileWhitelist: [/(.woff2?)/i]
+    }))
+
+    return config;
+  }
+
+
                             </code>
                         </pre>
                         </div>
