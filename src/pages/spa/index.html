@@ -876,6 +876,94 @@ useEffect(() => {
                         </div>
                     </div>
                     <!-- item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>cache<span></span></button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+리소스들에 대한 캐시설정 
+확인은 네트워크탭 다운로드한 리소스들 response header에 cache-control
+
+
+# 캐시: 데이터나 값을 미리 복사해 놓는 임시 장소나 그런 동작
+        브라우저 알고리즘에 의해 아래 두 가지로 적절하게 저장함 
+
+
+
+# 메모리 캐시: 메모리(RAM)에 저장   
+   - 메모리 캐시는 브라우저를 껐다 켜면 사라져있음. 브라우저가 사용하는 메모리를 날렸기 때문 
+     메모리에선 날리고 파일로 가지고 있어서 다시 브라우저 켜보면 디스크캐시만 남음
+
+
+
+# 디스크 캐시: file로 데이터 저장 후 가져와서 사용 
+  - 브라우저 껐다 켜면 메모리 캐시 날라가있고 디스크캐시만 뜸
+
+
+
+# 캐시 설정하기 
+서버에 http request 보낼 때 cache-control에 설정하여 요청
+
+- client: 요청해더에 캐시요청
+- server: 캐시요청오면 설정해서 응답
+
+
+# Cache-Control:
+1. no-cache - 캐시를 사용할건데 사용 전에 서버에 검사 후, 사용걸정 
+2. no-stroe - 캐시 사용 안함 
+3. public   - 모든 환경에서 캐시 사용 가능 
+4. private  - 브라우저 환경에서만 캐시 사용, 외부(캐시서버) 캐시 서버에서는 사용 불가 
+              (예로 로그인 후 캐시데이터들은 남들과 공유되면 안되니깐 이 옵션을 씀)
+5. max-age  - 캐시의 유효기간 60초
+              (no-cache === max-age=0 이어도 캐시를 삭제하는게 아니라 요청할 때 클라이언트에서 이 사진에 캐시가 만료가 되었는데 계속 사용해도 돼 ? 라고 물어봄. 서버에서 ok나면 사용하고 no라면 서버에서 파일 다운로드 )
+
+이외에 ETag, expires 등 있음
+
+
+
+
+
+
+
+# meta tag 
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
+페이지를 cache에서 가져오지 않게 하며 항상 서버에 접속해서 페이지를 가져옵니다.
+그러므로 방문자의 브라우저가 항상 cache를 읽도록 해 놓아도 이것을 무시하고 페이지를 갱신합니다.
+자주 고치는 페이지에서는 이것을 사용하는 것이 항상 방문자에게 바뀐 내용을 보여 줄 수가 있습니다. 
+하지만 페이지 출력 속도는 매번 페이지를 가져오므로 cache를 사용할 수 없어서 시간이 많이 걸린다는 점입니다.
+
+
+
+출처: https://webclub.tistory.com/354 [Web Club]
+
+
+
+-----------확인 필요
+https://www.next-t.co.kr/blog/%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%B5%9C%EC%A0%81%ED%99%94-SEO-%ED%85%8C%ED%81%AC%EB%8B%88%EC%BB%ACSEO-%EB%A9%94%ED%83%80%ED%83%9C%EA%B7%B8-metatags-expires-%EC%86%8D%EC%84%B1
+
+<META HTTP-EQUIV=”Expires” CONTENT=”Mon, 06 Jan 1990 00:00:01 GMT”>
+<META HTTP-EQUIV=”Expires” CONTENT=”-1″>
+<META HTTP-EQUIV=”Pragma” CONTENT=”no-cache”>
+<META HTTP-EQUIV=”Cache-Control” CONTENT=”no-cache”>
+    
+– Expires : 본 문서가 content에 지정된 시간부터 유효하지 않음(캐시만료)을 알려주는 기능을 합니다.
+– content 항목이 -1이면 조건부 캐쉬만료를 의미합니다.
+– Mon, 06 Jan 1990 00:00:01 GMT : 만료날짜를 그리니치 시간으로 적습니다.
+– Pragma : content 항목인 “no-cache” 명령어를 전달합니다. 즉, 캐시 기능을 하지말라는 뜻입니다.
+– Cache-Control : 캐시를 제어하기 위한 기능입니다. content에 ‘no-cache’라고 적혀있기 때문에 cache를 하지 않습니다.
+– Pragma와 Chache-Control의 문제점 : 인터넷 익스플러어 5.0 혹은 HTTP1.0에서는 여러가지 경우에 따라 동작하지 않을 수 있다고 합니다. 또한 웹서버의 제어에 따라 동작하지 않을 수 있습니다.
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
                 </div>
               </section>
                <!-- performence -->
