@@ -14,7 +14,7 @@ body { background: #0d1117; color: #e3e3e3; font-size: 14px; line-height: 1.5rem
 .global_wrap { width: 760PX; margin: 0 auto;}
 h1 {font-size: 15px;}
 h2 {font-size: 18px; margin-bottom: 15px; color: #58a6ff;     font-family: 'consola' !important;}
-h3 {font-size: 15px; font-weight: normal;}
+h3 {font-size: 15px; /*font-weight: normal;*/}
 em {}
 .seg {font-size:11px; color: #666;}
 ::selection {background: rgba(255, 0, 0, 0.15);;}

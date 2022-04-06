@@ -234,6 +234,43 @@ Array.prototype.map.call('ABCDEFT', c => 'u+' + ('0000' + c.charCodeAt(0).toStri
 !! 여기서 질문?  이거 질문올림
 @font-face가 들어있는 css 자체를 preload로 사전로드하면 폰트도 사전로드 될까 ?  
 
+
+
+# 중요 ...나중에 확인 사실 
+- 웹폰트는 한개만 다운로드 받을 시 그거만 사용가능.. (strong, b 태그로 노멀, 볼드정도만 가능함) 
+- 웹폰트 받을 때 @font-face url에서 받는게 아니라 실제 cssom 트리가 만들어질 때 다운을 받기 떄문에 
+  필요한 폰트(thin normal bold 등등..) 클래스로 나눠 쓰는게 효율적으로 보임
+
+폰트 이름은 같게 하고 폰트굵기로 구분을... 
+
+ex) 
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');}
+@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
+
+실제 적용은 엘리먼트에 폰트 적용 했을 때...!!
+
+
+
+근데 좀 이상한 점이 아리따돋음, 아리따부리를 같은 이름으로 저장시 두개를 모두 다운로드 받는데 .. 메인에서는 한개만 다운로드 받음 
+@font-face {
+    font-family: 'Arita-dotum-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Arita-dotum-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-buri-SemiBold.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+
+
+폰트 잘 정리되어있음 
+https://d2.naver.com/helloworld/4969726?fbclid=IwAR3_12Ifl9-yM0TP_21XFNN6Pl3PVYuMH9kLPPFVclfdyOn4asKlhI1ZRCM
+
+
     </code>
                         </pre>
                         </div>
