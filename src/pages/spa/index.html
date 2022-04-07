@@ -887,9 +887,50 @@ useEffect(() => {
                         <div class="code_wrap">
                         <pre>
                             <code class="markdown">
-리소스들에 대한 캐시설정 
-확인은 네트워크탭 다운로드한 리소스들 response header에 cache-control
+# 결론
+서버에서 캐시를 리소스마다 다르게 설정하여 최적화 
+ex) 
+const header = {
+    setHeaders: (res, path) => {
+        if(path.endsWith('.html')) {
+            // html은 변경 시 마다 새로받음
+            res.setHeader('Cache-Control', 'no-cache') 
+        } else if(path.endsWith('.js') || path.endsWith('.css') || path.endsWith('.webp') || path.endsWith('.jpg')) {
+            // hash를 하면 길게줌 (빌드 시에도 변경이 없으면 해시값이 안변함...개쩌네;;)
+            res.setHeader('Cache-Control', 'public, max-age=315360000')
+        } else {
+            // 그 외 파일은 캐시하지않음
+            res.setHeader('Cache-Control', 'no-store')
+        }
+    }
+}
+app.use(express.static(path.join(__dirname, '../build'), header))
 
+1. 이미지가 자주 안바뀌는 리소스들(로고 등)은 max-age를 길게 줘서 다운로드 받지 않게만듦
+
+HTML  no-cache 
+JS    public, max-age=31536000  (hash 붙여야함) max-age 1년임
+CSS   public, max-age=31536000  (hash 붙여야함)
+IMG   public, max-age=31536000  (hash 붙여아함)
+
+
+- html은 메타에 no-cache해서 변경되었을 때만 다운로드함 
+- js css는 변경시, 빌드시 마다 해시를 걸거나 ...함 (리액트는 빌드시 해시 붙음)
+
+  중요..! 순서를 보면 html에서 js와 css를 호출하는데 
+  html/main.a.js/main.a.css 있다고 치고 html 변경 시 서버에서 새로 받는데 
+  js와 css는 변경도 안되었는데 캐시된 a를 사용안하고 b를 새로 받아버림.. 
+  때문에 html만 no-cache로 변경시마다 받고.. js css는 max-age(캐시)를 7일 30일 등으로 설정함
+  (리액트에서 빌드 시에도 js css image가 변경되지 않으면 해시도 변경안됨.. 그래서 캐시된걸 받음) 
+
+- image는 자주 변경되는 이미지일 경우 max-age를 짧게 주거나, js css처럼 해시를 달고 max-age를 길게 줌
+
+
+
+
+------------- 설명 
+ 
+ response header에 cache-control
 
 # 캐시: 데이터나 값을 미리 복사해 놓는 임시 장소나 그런 동작
         브라우저 알고리즘에 의해 아래 두 가지로 적절하게 저장함 
@@ -935,6 +976,13 @@ useEffect(() => {
 
 
 
+
+# ETag
+- 네트워크 탭 응답해더에 ETag값으로 해시가 있음
+1. 클라이언트 리소스 이미지에 ETag : a 가 있으면 
+2. 서버에도 리소스 이미지로 ETag : a 가 있음 
+3. 클라이언트가 이거 사용해도 돼 ? 하면서 ETag를 보내줌 
+4. 서버는 서버에 있는 ETag를 비교해서 같으면 ETag를 보내주고 아니면 변경된 이미지를 보내줌
 
 
 
