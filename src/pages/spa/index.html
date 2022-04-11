@@ -1023,6 +1023,61 @@ https://www.next-t.co.kr/blog/%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%B5%9C%EC%A
                         </div>
                     </div>
                     <!-- item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>unused css</button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 커버리지탭 
+사용하지 않는 css 줄이기 
+
+
+# purgecss module 
+- class 이름을 모두 추출해서 html에서 사용하지 않는 css는 제거해주는 모듈
+
+npm i -D purgecss
+
+// scripts
+"purge": "purgecss --css ./build/static/css/*.css --output ./build/static/css/ --content ./build/index.html ./build/static/js/*.js --config ./purgecss.config.js"
+
+--css: 줄일 파일  --output: 어디로 내보낼건지(위 예제는 같은 경로 덮쓰) --content: 어떤 파일들에 있는 className이랑 비교할건지  --config: 설정파일실행
+
+빌드 후 npm run purge를 하면 줄어든 css 가 나옴... 
+
+
+
+# purgecss 문제점 
+aa:mg 이런 클래스가 있을 때 : 이걸 구분자로 구분함...;;;
+
+해결방법은 configuration 
+https://purgecss.com/configuration.html
+
+
+루트폴더에 purgecss.config.js 생성
+module.exports = {
+    content: ['index.html'], //cli에서 작성안하면 여기서 할수 있음
+    css: ['style.css'],
+    defaultExtractor: (content) => content.match(/className/g) || []
+    defaultExtractor: (content) => content.match(/[\w\:\-]+/g) || []
+    //아까 비교할 --content 이걸 여기에서 비교해서 배열로 리턴
+  }
+
+
+
+
+https://www.npmjs.com/package/purgecss
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
                 </div>
               </section>
                <!-- performence -->
