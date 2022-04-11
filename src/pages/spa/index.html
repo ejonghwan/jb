@@ -1078,6 +1078,167 @@ https://www.npmjs.com/package/purgecss
                         </div>
                     </div>
                     <!-- item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>memoization</button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+# 병목함수에 memoization 적용 
+
+`문제점 
+예제를 퍼포먼스탭에서 돌려보면 getAverageColorOfImage()가 실행시간이 길다  
+매번 이미지를 다운로드하고 그 컬러값의 평균값을 계산하여 bg에 깔기 때문인데.. 
+`
+
+`해결
+객체에 한번 들어왔던 src들을 저장하여 다음에 또 클릭 시 getAverageColorOfImage함수 로직을 
+타지않고 객체에 저장된걸 바로 적용하게끔..
+`
+
+ex code)
+const cache = {} // memoization 로직 추가
+
+
+export function getAverageColorOfImage(imgElement) {
+
+  // memoization 로직 추가
+  if(cache.hasOwnProperty(imgElement.src)) {
+    return cache[imgElement.src]
+  }
+
+
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext && canvas.getContext('2d');
+  const averageColor = {
+    r: 0,
+    g: 0,
+    b: 0,
+  };
+
+  if (!context) {
+    return averageColor;
+  }
+
+  const width = (canvas.width =
+    imgElement.naturalWidth || imgElement.offsetWidth || imgElement.width);
+  const height = (canvas.height =
+    imgElement.naturalHeight || imgElement.offsetHeight || imgElement.height);
+
+  context.drawImage(imgElement, 0, 0);
+
+  const imageData = context.getImageData(0, 0, width, height).data;
+  const length = imageData.length;
+
+  for (let i = 0; i < length; i += 4) {
+    averageColor.r += imageData[i];
+    averageColor.g += imageData[i + 1];
+    averageColor.b += imageData[i + 2];
+  }
+
+  const count = length / 4;
+  averageColor.r = ~~(averageColor.r / count); // ~~ => convert to int
+  averageColor.g = ~~(averageColor.g / count);
+  averageColor.b = ~~(averageColor.b / count);
+
+
+  // 여기서 한번 들어왔던 값들을 적용
+  // console.log(imgElement)
+  cache[imgElement.src] = imgElement 
+
+
+  return averageColor;
+}
+
+
+
+
+모듈로 뺄 때  -------------------------------------------------------------
+
+function memoization(fn) {
+    const cache = {}
+    return function(...args) { 
+        //args는 배열로 오는데 ..1개 이상의 것은 변경될 수 있기에 방어코드
+        //이런 로직은 순수함수여야함... 
+        if(args.length !== 1) {
+            return fn(...args)
+        } 
+
+        if(cache.hasOwnProperty(args)) {
+            return cache[args]
+        }
+
+        const result = fn(...args)
+        cache[args] = result
+
+        return result
+    }
+}
+
+
+` 같은 함수
+memoization(getAverageColorOfImage)(img)  ===  getAverageColorOfImage(img)
+`
+
+
+
+ex code 2)
+
+export function getAverageColorOfImage = memoization(function(imgElement) {
+
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext && canvas.getContext('2d');
+  const averageColor = {
+    r: 0,
+    g: 0,
+    b: 0,
+  };
+
+  if (!context) {
+    return averageColor;
+  }
+
+  const width = (canvas.width =
+    imgElement.naturalWidth || imgElement.offsetWidth || imgElement.width);
+  const height = (canvas.height =
+    imgElement.naturalHeight || imgElement.offsetHeight || imgElement.height);
+
+  context.drawImage(imgElement, 0, 0);
+
+  const imageData = context.getImageData(0, 0, width, height).data;
+  const length = imageData.length;
+
+  for (let i = 0; i < length; i += 4) {
+    averageColor.r += imageData[i];
+    averageColor.g += imageData[i + 1];
+    averageColor.b += imageData[i + 2];
+  }
+
+  const count = length / 4;
+  averageColor.r = ~~(averageColor.r / count); // ~~ => convert to int
+  averageColor.g = ~~(averageColor.g / count);
+  averageColor.b = ~~(averageColor.b / count);
+
+  return averageColor;
+})
+
+
+
+# 주의점 
+이 기법에 단점은 메모리가 든다는 점... 
+input값이 달라지는 것들은 적절하지않음 
+input값이 항상 같고 output도 같은 것들, 혹은 계산 로직이 너무 방대한 것에 한해 적용
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
                 </div>
               </section>
                <!-- performence -->
