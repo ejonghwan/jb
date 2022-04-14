@@ -6339,7 +6339,7 @@ multiply24(10); // 240
 
 
 
-// 중복 객체 겹치기 ....이거떔에 몇시간걸림 기억하자 
+// 중복 객체끼리 겹쳐서 배열만들기 ....이거떔에 몇시간걸림 기억하자 
 const obj = [
     { g: 'nana', order: 'melong' },
     { g: 'nana', order: 'babo' },
@@ -6348,7 +6348,11 @@ const obj = [
     { g: 'set', order: 'hihi' },
 ]
 
-
+obj.reduce(function(acc, cur){
+    acc[cur.g] = acc[cur.g] || []
+    acc[cur.g].push(cur.order)
+    return acc 
+}, {})
 
 
 //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
