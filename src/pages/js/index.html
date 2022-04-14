@@ -6355,6 +6355,21 @@ obj.reduce(function(acc, cur){
 }, {})
 
 
+// 간단하게 기존값에 더한 식을 리턴하면 리턴값에 배열의 값을 계속 더하는 함수 
+var arr = [1,2,3,4,5] 
+arr.reduce((acc, cur) => {
+    console.log(acc, cur, 'plus: ', acc + cur)
+    return acc + cur 
+})
+
+// 콘솔
+1 2 'plus: ' 3
+3 3 'plus: ' 6
+6 4 'plus: ' 10
+10 5 'plus: ' 15
+15
+
+
 //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
                         </code>
                     </pre>
