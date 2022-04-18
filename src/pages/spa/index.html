@@ -1135,14 +1135,14 @@ export function getAverageColorOfImage(imgElement) {
   const imageData = context.getImageData(0, 0, width, height).data;
   const length = imageData.length;
 
-  for (let i = 0; i < length; i += 4) {
+  for (let i = 0; i &lt; length; i += 4) {
     averageColor.r += imageData[i];
     averageColor.g += imageData[i + 1];
     averageColor.b += imageData[i + 2];
   }
 
   const count = length / 4;
-  averageColor.r = ~~(averageColor.r / count); // ~~ => convert to int
+  averageColor.r = ~~(averageColor.r / count); 
   averageColor.g = ~~(averageColor.g / count);
   averageColor.b = ~~(averageColor.b / count);
 
@@ -1213,7 +1213,7 @@ export function getAverageColorOfImage = memoization(function(imgElement) {
   const imageData = context.getImageData(0, 0, width, height).data;
   const length = imageData.length;
 
-  for (let i = 0; i < length; i += 4) {
+  for (let i = 0; i &lt; length; i += 4) {
     averageColor.r += imageData[i];
     averageColor.g += imageData[i + 1];
     averageColor.b += imageData[i + 2];
