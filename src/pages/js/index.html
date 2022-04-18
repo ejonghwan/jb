@@ -239,6 +239,47 @@ element.innerHTML
 element.innerHTML = '내용'
 
 기존 노드 삭제 후 재구성
+
+
+
+//최적화 
+DOM요소가 빠르기 때문에  innerHTML vs appendChild(DocumentFragment)  =  innerHTML이 조금 더 빠름
+https://7942yongdae.tistory.com/70
+
+
+!! 반복할 때 innerHTML을 반복문 밖으로 빼주는게 좋음 ....(데이터 500개정도 테스트 시 퍼포먼스 30가량 상승 ㅎㄷ;;)
+
+나쁜 예)  
+let data = ['a', 'b', 'c', 'd', 'e'];
+let ele = document.querySelector('ele')
+
+data.forEach(item => {
+    ele.innerHTML += `
+        div ${item} div
+    `
+})
+
+
+좋은 예 
+let data = ['a', 'b', 'c', 'd', 'e'];
+let ele = document.querySelector('ele')
+
+let inHtml = ele.innerHTML;    //console.log(inHtml)  이 시점에서는 아무것도 없음
+data.forEach(item => {
+    inHtml += ` //변수에 반복 추가
+        div ${item} div
+    `
+})
+
+//console.log(inHtml) //변수에 배열값 담김 
+inHtml.innerHTML = inHtml //변수에 담긴값 엘리먼트에 적용 
+
+
+
+
+//참고 
+https://falsy.me/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%9D%98-%EC%9D%B4%ED%95%B4-1-reflow-repaint%EC%97%90-%EB%8C%80%ED%95%98%EC%97%AC-%EC%95%8C%EC%95%84%EB%B4%85%EB%8B%88%EB%8B%A4/
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>element</span>.innerText</button></dt><dd>요소에게 추가</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
@@ -583,7 +624,32 @@ asd
                                 </code>
                             </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.createdocumentFragment()</button></dt><dd>새로운 문서 조각을 생성</dd></dl><div class="code_wrap"><pre>
                                 <code class="javascript">
-    asd
+`DOM을 동적으로 생성할 때 메모리상태에서 추가한 후 적용하기 때문에 리플로우가 적게 발생`
+
+
+
+var ul = document.getElementsByTagName("ul")[0]; // assuming it exists
+var docfrag = document.createDocumentFragment();
+var browserList = ["Internet Explorer", "Firefox", "Safari",
+    "Chrome", "Opera"];
+
+browserList.forEach(function(e) {
+    var li = document.createElement("li");
+    li.textContent = e;
+    docfrag.appendChild(li);
+});
+
+ul.appendChild(docfrag);
+// a list with well-known web browsers
+
+
+`자세한건 쓸 때 참고`
+https://developer.mozilla.org/ko/docs/Web/API/Document/createDocumentFragment
+
+
+innerHTML과 성능 비교 블로그 
+https://7942yongdae.tistory.com/70 
+
                                 </code>
                             </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.createElement()</button></dt><dd>주어진 태그명을 사용해 새로운 요소를 생성</dd></dl><div class="code_wrap"><pre>
                                 <code class="javascript">
@@ -2532,6 +2598,37 @@ multiply9(9); // 81
 multiply16(16); // 256
 multiply24(10); // 240
 
+
+
+// 중복 객체끼리 겹쳐서 배열만들기 ....이거떔에 몇시간걸림 기억하자 
+const obj = [
+    { g: 'nana', order: 'melong' },
+    { g: 'nana', order: 'babo' },
+    { g: 'dul', order: 'gogo' },
+    { g: 'nana', order: 'melong' },
+    { g: 'set', order: 'hihi' },
+]
+
+obj.reduce(function(acc, cur){
+    acc[cur.g] = acc[cur.g] || []
+    acc[cur.g].push(cur.order)
+    return acc 
+}, {})
+
+
+// 간단하게 기존값에 더한 식을 리턴하면 리턴값에 배열의 값을 계속 더하는 함수 
+var arr = [1,2,3,4,5] 
+arr.reduce((acc, cur) => {
+    console.log(acc, cur, 'plus: ', acc + cur)
+    return acc + cur 
+})
+
+// 콘솔
+1 2 'plus: ' 3
+3 3 'plus: ' 6
+6 4 'plus: ' 10
+10 5 'plus: ' 15
+15
 
 
 //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce

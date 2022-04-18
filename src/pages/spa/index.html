@@ -710,9 +710,50 @@ useEffect(() => {
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>cache<span></span></button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
-리소스들에 대한 캐시설정 
-확인은 네트워크탭 다운로드한 리소스들 response header에 cache-control
+# 결론
+서버에서 캐시를 리소스마다 다르게 설정하여 최적화 
+ex) 
+const header = {
+    setHeaders: (res, path) => {
+        if(path.endsWith('.html')) {
+            // html은 변경 시 마다 새로받음
+            res.setHeader('Cache-Control', 'no-cache') 
+        } else if(path.endsWith('.js') || path.endsWith('.css') || path.endsWith('.webp') || path.endsWith('.jpg')) {
+            // hash를 하면 길게줌 (빌드 시에도 변경이 없으면 해시값이 안변함...개쩌네;;)
+            res.setHeader('Cache-Control', 'public, max-age=315360000')
+        } else {
+            // 그 외 파일은 캐시하지않음
+            res.setHeader('Cache-Control', 'no-store')
+        }
+    }
+}
+app.use(express.static(path.join(__dirname, '../build'), header))
 
+1. 이미지가 자주 안바뀌는 리소스들(로고 등)은 max-age를 길게 줘서 다운로드 받지 않게만듦
+
+HTML  no-cache 
+JS    public, max-age=31536000  (hash 붙여야함) max-age 1년임
+CSS   public, max-age=31536000  (hash 붙여야함)
+IMG   public, max-age=31536000  (hash 붙여아함)
+
+
+- html은 메타에 no-cache해서 변경되었을 때만 다운로드함 
+- js css는 변경시, 빌드시 마다 해시를 걸거나 ...함 (리액트는 빌드시 해시 붙음)
+
+  중요..! 순서를 보면 html에서 js와 css를 호출하는데 
+  html/main.a.js/main.a.css 있다고 치고 html 변경 시 서버에서 새로 받는데 
+  js와 css는 변경도 안되었는데 캐시된 a를 사용안하고 b를 새로 받아버림.. 
+  때문에 html만 no-cache로 변경시마다 받고.. js css는 max-age(캐시)를 7일 30일 등으로 설정함
+  (리액트에서 빌드 시에도 js css image가 변경되지 않으면 해시도 변경안됨.. 그래서 캐시된걸 받음) 
+
+- image는 자주 변경되는 이미지일 경우 max-age를 짧게 주거나, js css처럼 해시를 달고 max-age를 길게 줌
+
+
+
+
+------------- 설명 
+ 
+ response header에 cache-control
 
 # 캐시: 데이터나 값을 미리 복사해 놓는 임시 장소나 그런 동작
         브라우저 알고리즘에 의해 아래 두 가지로 적절하게 저장함 
@@ -759,6 +800,13 @@ useEffect(() => {
 
 
 
+# ETag
+- 네트워크 탭 응답해더에 ETag값으로 해시가 있음
+1. 클라이언트 리소스 이미지에 ETag : a 가 있으면 
+2. 서버에도 리소스 이미지로 ETag : a 가 있음 
+3. 클라이언트가 이거 사용해도 돼 ? 하면서 ETag를 보내줌 
+4. 서버는 서버에 있는 ETag를 비교해서 같으면 ETag를 보내주고 아니면 변경된 이미지를 보내줌
+
 
 
 
@@ -793,6 +841,196 @@ https://www.next-t.co.kr/blog/%EA%B2%80%EC%83%89%EC%97%94%EC%A7%84%EC%B5%9C%EC%A
 – Pragma : content 항목인 “no-cache” 명령어를 전달합니다. 즉, 캐시 기능을 하지말라는 뜻입니다.
 – Cache-Control : 캐시를 제어하기 위한 기능입니다. content에 ‘no-cache’라고 적혀있기 때문에 cache를 하지 않습니다.
 – Pragma와 Chache-Control의 문제점 : 인터넷 익스플러어 5.0 혹은 HTTP1.0에서는 여러가지 경우에 따라 동작하지 않을 수 있다고 합니다. 또한 웹서버의 제어에 따라 동작하지 않을 수 있습니다.
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>unused css</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+# 커버리지탭 
+사용하지 않는 css 줄이기 
+
+
+# purgecss module 
+- class 이름을 모두 추출해서 html에서 사용하지 않는 css는 제거해주는 모듈
+
+npm i -D purgecss
+
+// scripts
+"purge": "purgecss --css ./build/static/css/*.css --output ./build/static/css/ --content ./build/index.html ./build/static/js/*.js --config ./purgecss.config.js"
+
+--css: 줄일 파일  --output: 어디로 내보낼건지(위 예제는 같은 경로 덮쓰) --content: 어떤 파일들에 있는 className이랑 비교할건지  --config: 설정파일실행
+
+빌드 후 npm run purge를 하면 줄어든 css 가 나옴... 
+
+
+
+# purgecss 문제점 
+aa:mg 이런 클래스가 있을 때 : 이걸 구분자로 구분함...;;;
+
+해결방법은 configuration 
+https://purgecss.com/configuration.html
+
+
+루트폴더에 purgecss.config.js 생성
+module.exports = {
+    content: ['index.html'], //cli에서 작성안하면 여기서 할수 있음
+    css: ['style.css'],
+    defaultExtractor: (content) => content.match(/className/g) || []
+    defaultExtractor: (content) => content.match(/[\w\:\-]+/g) || []
+    //아까 비교할 --content 이걸 여기에서 비교해서 배열로 리턴
+  }
+
+
+
+
+https://www.npmjs.com/package/purgecss
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>memoization</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+# 병목함수에 memoization 적용 
+
+`문제점 
+예제를 퍼포먼스탭에서 돌려보면 getAverageColorOfImage()가 실행시간이 길다  
+매번 이미지를 다운로드하고 그 컬러값의 평균값을 계산하여 bg에 깔기 때문인데.. 
+`
+
+`해결
+객체에 한번 들어왔던 src들을 저장하여 다음에 또 클릭 시 getAverageColorOfImage함수 로직을 
+타지않고 객체에 저장된걸 바로 적용하게끔..
+`
+
+ex code)
+const cache = {} // memoization 로직 추가
+
+
+export function getAverageColorOfImage(imgElement) {
+
+  // memoization 로직 추가
+  if(cache.hasOwnProperty(imgElement.src)) {
+    return cache[imgElement.src]
+  }
+
+
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext && canvas.getContext('2d');
+  const averageColor = {
+    r: 0,
+    g: 0,
+    b: 0,
+  };
+
+  if (!context) {
+    return averageColor;
+  }
+
+  const width = (canvas.width =
+    imgElement.naturalWidth || imgElement.offsetWidth || imgElement.width);
+  const height = (canvas.height =
+    imgElement.naturalHeight || imgElement.offsetHeight || imgElement.height);
+
+  context.drawImage(imgElement, 0, 0);
+
+  const imageData = context.getImageData(0, 0, width, height).data;
+  const length = imageData.length;
+
+  for (let i = 0; i &lt; length; i += 4) {
+    averageColor.r += imageData[i];
+    averageColor.g += imageData[i + 1];
+    averageColor.b += imageData[i + 2];
+  }
+
+  const count = length / 4;
+  averageColor.r = ~~(averageColor.r / count); 
+  averageColor.g = ~~(averageColor.g / count);
+  averageColor.b = ~~(averageColor.b / count);
+
+
+  // 여기서 한번 들어왔던 값들을 적용
+  // console.log(imgElement)
+  cache[imgElement.src] = imgElement 
+
+
+  return averageColor;
+}
+
+
+
+
+모듈로 뺄 때  -------------------------------------------------------------
+
+function memoization(fn) {
+    const cache = {}
+    return function(...args) { 
+        //args는 배열로 오는데 ..1개 이상의 것은 변경될 수 있기에 방어코드
+        //이런 로직은 순수함수여야함... 
+        if(args.length !== 1) {
+            return fn(...args)
+        } 
+
+        if(cache.hasOwnProperty(args)) {
+            return cache[args]
+        }
+
+        const result = fn(...args)
+        cache[args] = result
+
+        return result
+    }
+}
+
+
+` 같은 함수
+memoization(getAverageColorOfImage)(img)  ===  getAverageColorOfImage(img)
+`
+
+
+
+ex code 2)
+
+export function getAverageColorOfImage = memoization(function(imgElement) {
+
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext && canvas.getContext('2d');
+  const averageColor = {
+    r: 0,
+    g: 0,
+    b: 0,
+  };
+
+  if (!context) {
+    return averageColor;
+  }
+
+  const width = (canvas.width =
+    imgElement.naturalWidth || imgElement.offsetWidth || imgElement.width);
+  const height = (canvas.height =
+    imgElement.naturalHeight || imgElement.offsetHeight || imgElement.height);
+
+  context.drawImage(imgElement, 0, 0);
+
+  const imageData = context.getImageData(0, 0, width, height).data;
+  const length = imageData.length;
+
+  for (let i = 0; i &lt; length; i += 4) {
+    averageColor.r += imageData[i];
+    averageColor.g += imageData[i + 1];
+    averageColor.b += imageData[i + 2];
+  }
+
+  const count = length / 4;
+  averageColor.r = ~~(averageColor.r / count); // ~~ => convert to int
+  averageColor.g = ~~(averageColor.g / count);
+  averageColor.b = ~~(averageColor.b / count);
+
+  return averageColor;
+})
+
+
+
+# 주의점 
+이 기법에 단점은 메모리가 든다는 점... 
+input값이 달라지는 것들은 적절하지않음 
+input값이 항상 같고 output도 같은 것들, 혹은 계산 로직이 너무 방대한 것에 한해 적용
+
                             </code>
                         </pre></div></div></div></section><section class="conts"><h2>React</h2><div class="depth_2"><strong>React</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환 adsadasdasdasdasdasdasdplalsjdlkajdlkajskda</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
