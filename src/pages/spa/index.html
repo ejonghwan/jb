@@ -488,6 +488,92 @@ Minify와 Uglify는 Build 타임에 적용이 되며, Compress는 네트워크 �
 
                 <div class="depth_2">
                     <strong>코드 관리</strong>
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>클린코드<span></span></button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="markdown">
+클린 코드란 원하는걸 빠르게 찾을 수 있는 코드
+
+
+ex) 두개를 섞어서 잘 사용 
+1. 선언적 프로그래밍
+세부기능은 함수안에 숨겨두고 넘겨주는 형태로.. 실행 단계에서만 보고 파악가능한 코드 
+&lt;Popup 
+    onsubmit={질문전송}
+    onSuccess={홈으로 이동}
+/&gt;
+
+2. 명령적 프로그래밍 
+&lt;Popup&gt; 
+    세부로직 
+&lt;/Popup&gt;
+
+
+# 응집도 
+- 같은 목적의 코드(당장 몰라도 되는 디테일)는 뭉쳐두기 
+  (하지만 커스텀 훅처럼 그냥 뭉쳐두기만 하면 안됨.. 버튼을 눌렀을때 어떤 기능인지 등 파악불가)
+
+
+# 단일책임 
+- 하나의 일을 하는 뚜렷한 이름의 함수를 만들자 
+
+ex) 폼에서 약관체크 후 질문 제출하는 함수라면 2번으로 작성해야함 
+1. 질문제출 
+2. 약관체크 후 질문제출 
+하지만 두 기능을 함수로 쪼개는게 좋음  (약관체크 / 질문제출) 
+
+
+ex2) 
+
+before
+&lt;button 
+    onClick={async () =&gt; {
+        log('재출 버튼 클릭')
+        await openConfirm();
+    }}
+/&gt;
+
+after 
+&lt;LogClick message="제출 버튼 클릭"&gt;
+    &lt;button onClick={openConfirm} /&gt;
+&lt;/LogClick&gt;
+
+
+
+# 추상화
+- 핵심개념 추출 
+
+선언적 프로그래밍
+세부기능은 함수안에 숨겨두고 넘겨주는 형태로.. 실행 단계에서만 보고 파악가능한 코드 
+&lt;Popup 
+    onsubmit={질문전송}
+    onSuccess={홈으로 이동}
+/&gt;
+
+- 추상화 단계를 비슷하게 정리 
+모두 컴포넌트로 하거나 
+모두 풀거나
+
+
+# 비동기 비지니스 로직의 분리 
+- 성공, 실패를 분리해서 작성 (error 로직은 외부에 위임)
+
+ex) async await 
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
 
                      <!-- item -->
                      <div class="item_wrap">
