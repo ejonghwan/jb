@@ -95,6 +95,53 @@ HTMLCollection은 알아서 넣어줌..
 
 
 <span class="seg">https://humahumahuma.tistory.com/123, mdn</span>
+
+
+
+</code>
+</pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>core</span></button></dt><dd>variable, this, closure, hoisting, prototype, class</dd></dl><div class="code_wrap"><pre>
+    <code class="markdown">
+
+기본 개념 
+
+
+# variable
+
+1. primitive type 
+- Boolean, number, String, null, undefined
+
+- 변하지 않는 값, 주소에 값을 바로 저장 
+- 만약 var a = 1 이라 선언하고 a = 2라고 바꾸면 1은 그대로 있고 2가 새로운 주소값으로 추가됨 (쓰지않는 메모리느 GC가 처리)
+
+ex) 
+var a = 1
+
+name   (value)adress 
+ a           1
+
+
+2. reference type
+- Object ( array, function, object )
+
+- 주소값에 또하나의 주소값을 넣음 
+
+ex) 
+var a = 1
+
+name   (value)adress 
+ a           
+
+
+name2   (value)adress2 
+ a           1
+
+
+
+# NodeList: 
+general lists of nodes
+
+
+
 </code>
 </pre></div></div></section><section class="conts"><h2>찐으로 헷갈려</h2><div class="depth_2"><strong>스크롤 위치</strong><div class="item_wrap"><dl class="item"><dt><button><span>window</span>.scrollY</button></dt><dd>현재 스크롤 Y 위치값</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
