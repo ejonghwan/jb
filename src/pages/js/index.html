@@ -6496,6 +6496,55 @@ arr.reduce((acc, cur) => {
 15
 
 
+
+// reduce로 돔 사이즈 구하기
+style 
+ul > li {width: 30px; border: 1px solid red;}
+ul > li:nth-child(1) {width: 10px;}
+ul > li:nth-child(2) {width: 20px;}
+ul > li:nth-child(3) {width: 30px;}
+ul > li:nth-child(4) {width: 40px;}
+.target {background: blue; display: inline-block; width: 0; border: 1px solid red; transition: all 1s;} 
+
+
+dom
+ul
+    li1/li
+    li2/li
+    li3/li
+    li4/li
+/ul
+
+
+div class="target"/div
+
+
+script 
+var li = document.querySelectorAll('li')
+var li_width = []
+for(let i = 0; i &lt; li.length; i++) {
+    li_width.push(li[i].clientWidth)
+}
+
+for(let i = 0; i &lt; li.length; i++) {
+    li[i].addEventListener('click', e =&gt; {
+        // console.log(li[i])
+        // console.log(li_width)
+
+        var calcHeight = li_width.reduce((acc, cur, idx) =&gt; {
+            if(idx &gt; i) {return acc}
+            return acc + cur
+        })
+
+        document.querySelector('.target').style.width = `${calcHeight}px`
+        console.log(calcHeight)
+
+        
+    })
+}
+
+
+
 //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
                         </code>
                     </pre>
