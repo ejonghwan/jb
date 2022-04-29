@@ -109,38 +109,39 @@ HTMLCollection은 알아서 넣어줌..
 
 1. primitive type 
 - Boolean, number, String, null, undefined
-
 - 변하지 않는 값, 주소에 값을 바로 저장 
 - 만약 var a = 1 이라 선언하고 a = 2라고 바꾸면 1은 그대로 있고 2가 새로운 주소값으로 추가됨 (쓰지않는 메모리느 GC가 처리)
 
-ex) 
-var a = 1
-
-name   (value)adress 
- a           1
-
-
 2. reference type
 - Object ( array, function, object )
+- 이름에 할당, 값에 참조할 주소값을 넣음  
+- 다른 변수에 대입 후 변경하면 같이 변경됨 (참조한 주소가 같기때문)
 
-- 주소값에 또하나의 주소값을 넣음 
+3. 불변성 
+때문에 참조타입은 상황에 따라 잘 설정하여 사용해야함 
+- 원본 데이터를 변경 시 참조한 다른 곳도 변경되어야한다면 불변성을 지키지 않아도 됨. 
+  하지만 원본 데이터를 변경시키지 말아야한다면 불변성을 지켜줘야함 
+ 
+  ex) 얕은 복사 
+  {...}, 
+  Object.assign({}, obj )
+ 
 
-ex) 
-var a = 1
-
-name   (value)adress 
- a           
-
-
-name2   (value)adress2 
- a           1
-
+  ex) 깊은 복사 
+  JSON.stringyfy() / JSON.parse(),
+  { ...obj, aa: { ...obj.aa } } 
 
 
 # NodeList: 
 general lists of nodes
 
 
+
+</code>
+</pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>URLSearchParams</span></button></dt><dd>ie x</dd></dl><div class="code_wrap"><pre>
+    <code class="markdown">
+
+        https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams
 
 </code>
 </pre></div></div></section><section class="conts"><h2>찐으로 헷갈려</h2><div class="depth_2"><strong>스크롤 위치</strong><div class="item_wrap"><dl class="item"><dt><button><span>window</span>.scrollY</button></dt><dd>현재 스크롤 Y 위치값</dd></dl><div class="code_wrap"><pre>
@@ -2681,6 +2682,55 @@ arr.reduce((acc, cur) => {
 6 4 'plus: ' 10
 10 5 'plus: ' 15
 15
+
+
+
+// reduce로 돔 사이즈 구하기
+style 
+ul > li {width: 30px; border: 1px solid red;}
+ul > li:nth-child(1) {width: 10px;}
+ul > li:nth-child(2) {width: 20px;}
+ul > li:nth-child(3) {width: 30px;}
+ul > li:nth-child(4) {width: 40px;}
+.target {background: blue; display: inline-block; width: 0; border: 1px solid red; transition: all 1s;} 
+
+
+dom
+ul
+    li1/li
+    li2/li
+    li3/li
+    li4/li
+/ul
+
+
+div class="target"/div
+
+
+script 
+var li = document.querySelectorAll('li')
+var li_width = []
+for(let i = 0; i &lt; li.length; i++) {
+    li_width.push(li[i].clientWidth)
+}
+
+for(let i = 0; i &lt; li.length; i++) {
+    li[i].addEventListener('click', e =&gt; {
+        // console.log(li[i])
+        // console.log(li_width)
+
+        var calcHeight = li_width.reduce((acc, cur, idx) =&gt; {
+            if(idx &gt; i) {return acc}
+            return acc + cur
+        })
+
+        document.querySelector('.target').style.width = `${calcHeight}px`
+        console.log(calcHeight)
+
+        
+    })
+}
+
 
 
 //https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce

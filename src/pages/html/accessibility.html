@@ -795,4 +795,34 @@ https://www.w3.org/TR/wai-aria-1.1/#aria-expanded
 &lt;dialog role="alertdialog"&gt;...&lt;/dialog&gt;
 
                             </code>
-                        </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
+                        </pre></div></div></div></section><section class="conts"><h2>팁</h2><div class="item_wrap"><dl class="item"><dt><button>popup</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+https://nuli.navercorp.com/community/article/1133131
+
+
+# 버튼 
+aria-haspopup="dialog"
+aria-controls="popup id"
+aria-expanded="true false"
+
+
+# 팝업 본체(display: none, block 되는 박스)
+role="dialog"
+aria-modal="true"
+
+
+# 필수아님 
+aria-labelledby="제목 아이디" (h태그에다 id 추가)
+알림목적일경우 role=alertdialog
+뒷부분에 aria-hidden="true"
+
+
+# 주의
+뒤로 커서안가게만.
+논블록이 아닌 숨겨져있는 경우 히든과 탭인덱스 제거.
+
+
+
+
+                        </code>
+                    </pre></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
