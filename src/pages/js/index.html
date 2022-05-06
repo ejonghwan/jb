@@ -106,7 +106,6 @@ HTMLCollection은 알아서 넣어줌..
 
 
 # variable
-
 1. primitive type 
 - Boolean, number, String, null, undefined
 - 변하지 않는 값, 주소에 값을 바로 저장 
@@ -137,11 +136,100 @@ general lists of nodes
 
 
 
-</code>
-</pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>URLSearchParams</span></button></dt><dd>ie x</dd></dl><div class="code_wrap"><pre>
-    <code class="markdown">
+# this
+1. function - window 
+2. {} - 스코프 한칸 위 
+3. { aa: function(){} } - window
+3-1 { aa: () => {}; } - window
+3-2 { aa: (){} } - window
+4. { aa: () { function() { this - window }; () => { this - 한칸위 } } }
+5. prototype, class - instance
+6. prototype 안 function - window 
+7. eventListener - target element 
+8. eventListener 안 function - undefined
+9. eventListener 안 () => {} - window
 
-        https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams
+
+
+
+# closuer
+ex1) 
+function closuer() {
+    var num = 0;
+    return function() {
+        num++
+        console.log(num)
+    }
+}
+
+var inc = closuer()
+inc() //1
+inc() //2
+inc() //3
+
+`주의점 - closuer()() 커링기법으로 실행하면 안됨 1번만 증가된 상태로 저장돼서 계속 1만 찍힘 (메모리에 값을 새로 저장x)`
+
+
+
+ex2) 
+function clo(fn) {
+    let memo = []
+    return function(...args) { //인자를 배열로받음 
+        
+        if(memo[0] === args[0]) { //배열이 메모에 있으면 그냥 메모에있는 값을 리턴하고 
+            return memo[0]
+        }
+        
+        let result = fn(...args) //메모에 값이 없다면 아래 콜백에서 넘어온 값을 메모에 넣고 리턴 
+        memo.push(result) 
+        return result; //사용하는 실제값
+    }
+}
+
+let clo2 = clo(function(a) { //a 인자는 위에 result
+
+    // 연산이 복잡하거나 매번하기엔 과부하가 걸리는 로직
+    let val = a + 2
+    return val // 여기서 리턴한 값은 위에 result
+})
+ 
+
+clo2(3)  //실제 사용하는 함수 
+
+
+ex3) 
+
+var iu = { name: 'iu' }
+var user = {
+    name: 'jonghwan', 
+    sayName() {
+        console.log(this.name)
+    }
+}
+
+
+user.sayName(); //jonghwan
+
+let iuSayName = user.sayName; // 이렇게 할당하면 this가 끊김
+iuSayName() // 안나옴..
+
+// call로 연결
+iuSayName.call(user) //user
+iuSayName.call(iu) //iu
+
+// apply로 연결
+iuSayName.apply(user) //user
+iuSayName.apply(iu) //iu
+
+// bind로 연결.. 이런경우는 이게 bind가 맞는듯 
+let iuSayNameBind = user.sayName.bind(iu)
+iuSayNameBind()
+
+
+
+
+
+
 
 </code>
 </pre></div></div></section><section class="conts"><h2>찐으로 헷갈려</h2><div class="depth_2"><strong>스크롤 위치</strong><div class="item_wrap"><dl class="item"><dt><button><span>window</span>.scrollY</button></dt><dd>현재 스크롤 Y 위치값</dd></dl><div class="code_wrap"><pre>
@@ -4698,9 +4786,83 @@ asd
                                     <code class="javascript">
 asd
                                     </code>
-                                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>window</span>.customElements<span class="seg">read</span></button></dt><dd>새로운 사용자 지정 요소를 등록하거나, 이전에 등록한 요소에 대한 정보를 얻을 수 있는 CustomElementRegistry 객체를 반환합니다.</dd></dl><div class="code_wrap"><pre>
+                                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>window</span>.customElements<span class="seg">read</span></button></dt><dd>새로운 사용자 지정 요소를 등록, 이전에 등록한 요소에 대한 정보를 얻을 수 있는 CustomElementRegistry 객체를 반환</dd></dl><div class="code_wrap"><pre>
                                     <code class="javascript">
-asd
+// public html
+&lt;script src="../src/index.js" type="module" defer&gt;&lt;/script&gt;
+
+
+
+
+// index.js
+import Layout from '../src/pages/Layout.js'
+window.addEventListener('DOMContentLoaded', () =&gt; new Layout().render()) 
+
+
+
+
+// pages/Layout.js
+import defineMainHeader from '../components/Header.js'
+import Header2 from '../components/Header2.js'
+
+class Layout {
+    constructor() {
+        defineMainHeader()
+    }
+
+    render() {
+        document.querySelector('body').innerHTML = `
+            요긴 메인 레이아웃~ 
+            // 커스텀 엘리먼츠
+            &lt;main-header&gt;&lt;/main-header&gt;
+            
+            ${new Header2().render()}
+        `
+    }
+}
+
+export default Layout
+
+
+
+
+// components/Header.js 
+class Header extends HTMLElement {
+    constructor() {
+        super();
+        this.innerHTML = `
+            &lt;header&gt;
+                &lt;h1&gt;custom element header&lt;/h1&gt;
+                &lt;nav&gt;
+                    &lt;h2&gt;메뉴들&lt;/h2&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;카드&lt;/li&gt;
+                        &lt;li&gt;금융&lt;/li&gt;
+                        &lt;li&gt;메롱&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/nav&gt;
+            &lt;/header&gt;
+        `
+    }
+    connectedCallback() {
+        console.log('connectedCallback 이 함수는 어느 시점에 실행?')
+        this.hoho();
+    }
+
+
+    hoho() {
+        console.log('hoho')
+    }
+}
+export default function defineMainHeader() {
+    //이거 ie 안됨 -_-;;
+    customElements.define('main-header', Header) //등록하는 절차... 첫번째 매개변수로 "이름", 두번째로 "컴포넌트" 
+}
+
+
+
+
+
                                     </code>
                                 </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>window</span>.crypto <span class="seg">read</span></button></dt><dd>브라우저 암호화 객체를 반환</dd></dl><div class="code_wrap"><pre>
                                     <code class="javascript">
@@ -4977,7 +5139,15 @@ FormData 객체 내에 있는 기존 키에 새 값을 설정하거나, 존재�
 FormData.values()
 이 객체에 포함된 모든 밸류를 통과하는 iterator를 반환합니다.
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>History API</button></dt><dd>back(), forward(), go() 히스토리 컨트롤</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>URLSearchParams</span></button></dt><dd>params 가져오기</dd></dl><div class="code_wrap"><pre>
+    <code class="markdown">
+ie x 
+
+
+https://developer.mozilla.org/ko/docs/Web/API/URLSearchParams
+
+</code>
+</pre></div></div><div class="item_wrap"><dl class="item"><dt><button>History API</button></dt><dd>back(), forward(), go() 히스토리 컨트롤</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 asd
                             </code>
@@ -4988,6 +5158,50 @@ asdasdadasd
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Intersection Observer API</button></dt><dd>화면안에 있는 것만 작동</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 
+
+//style
+ul, ol {list-style: none;;}
+.card_box {display: flex; flex-direction: column; gap: 1rem; align-items: flex-start;}
+.card_box li {background: #fff; border: 1px solid #ddd; padding: .5rem; transform: translateX(100px); opacity: 0; transition: 150ms; }
+.card_box li.show  {transform: translateX(0px); opacity: 1;}
+
+
+//html
+&lt;ul class="card_box"&gt;
+    &lt;li class="show"&gt;first card&lt;/li&gt;
+    &lt;li class=""&gt;asdasd1&lt;/li&gt;
+    &lt;li class=""&gt;asdasd1&lt;/li&gt;
+    &lt;li class=""&gt;asdasd1&lt;/li&gt;
+    ..... 
+&lt;/ul&gt;
+
+
+//script
+const lis = document.querySelectorAll('li')
+const observer = new IntersectionObserver(entries =&gt; {
+    entries.forEach(item =&gt; {
+        item.target.classList.toggle("show", item.isIntersecting)
+        console.log('item: ', item)
+        // if(item.isIntersecting) observer.unobserve(item.target) // 이미 생성된건 유지
+    })
+    // console.log(entries)
+}, {
+    // threshold: 1, // 임계값 0 ~ 1
+    rootMargin: '-100px', // 엘리먼트가 사라져있는 위치
+    // root: ,
+    // threshold: 1,
+})
+
+// observer.observe(lis[0]) //등록
+lis.forEach((item, idx) =&gt; {
+    console.log(idx)
+    observer.observe(item)
+})
+
+
+
+
+
 정리개잘됨
 https://baeharam.github.io/posts/javascript/jsintersectionobserver/
 https://heropy.blog/2019/10/27/intersection-observer/
@@ -4997,6 +5211,7 @@ https://www.youtube.com/watch?v=hVcriryAVbg
 
 옵저버 패턴
 https://www.youtube.com/watch?v=1dwx3REUo34
+
 
 
                             </code>
