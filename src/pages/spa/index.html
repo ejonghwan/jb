@@ -1334,20 +1334,253 @@ input값이 항상 같고 output도 같은 것들, 혹은 계산 로직이 너�
                     <h2>React</h2>
 
                     <div class="depth_2">
-                        <strong>React</strong>
-                   
+                        <strong>Hooks</strong>
+                   <!-- item -->
+                   <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span></span>useState</button></dt>
+                        <dd>
+                           -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span></span>useEffect</button></dt>
+                        <dd>
+                           -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span></span>useRef</button></dt>
+                        <dd>
+                           -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span></span>useCallback</button></dt>
+                        <dd>
+                           -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- item -->
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span></span>useMemo</button></dt>
+                        <dd>
+                           -
+                    </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- item -->
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
-                            <dt><button><span>document</span>.body</button></dt>
+                            <dt><button><span></span>useContext</button></dt>
                             <dd>
-                                현재 문서의 body 또는 frameset 노드를 반환 adsadasdasdasdasdasdasdplalsjdlkajdlkajskda
+                               -
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
-asd
+
+` 컨텍스트 등록... Redux랑은 다른 개념 `
+
+                                
+ex1) useContext + useReducer로 Redux처럼 사용하기 
+
+// reducers/index.js 
+export const initialState = {
+    test: true,
+}
+
+export const reducer (state = initialState, action) =&gt; {
+    switch(action.type) {
+        case "TEST_REQUEST": 
+            return {
+                ...state,
+                test: !state.test, 
+            }
+
+        default: 
+            return {
+                ...state
+            }
+    }
+}
+
+
+
+
+//Context_test.js
+import React, { useReducer } from 'react';
+import { reducer, initialState } from '../reducers/index.js'
+
+const [state, dispatch] = useREducer(reducer, initialState) 
+
+
+
+const Context_test = () =&gt; {
+
+    const handleClick = e =&gt; {
+        dispatch({ type: 'TEST_REQUEST' })
+    }
+
+    return (
+        &lt;div&gt;
+             {state.test ? (&lt;span&gt;false&lt;/span&gt;) : (&lt;span&gt;true&lt;/span&gt;)}
+            &lt;button onClick={handleClick}&gt;chage state&lt;/button&gt;
+        &lt;/div&gt;
+    )
+}
+
+
+
+
+//app.js 
+import Context_test from './components/Context_test.js'
+import { reducer, intialState } from './reducers/index.js'
+
+export const TestContext = createContext(null);
+
+
+const App = () =&gt; {
+    const [ state, dispatch ] = useReducer(reducer, intialState);
+    console.log(state) //state 객체로 들어있음
+
+
+    return (
+        &lt;TestContext.Provider value={{ dispatch, test }}&gt;
+            //컴포넌트
+            &lt;Context_test /&gt;
+        &lt;/TestContext.Provider&gt;
+    ) 
+}
+
+
+
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span></span>useReducer</button></dt>
+                            <dd>
+                               -
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
                             </code>
                         </pre>
                         </div>
@@ -1362,14 +1595,14 @@ asd
                 <h2>Vue</h2>
 
                 <div class="depth_2">
-                    <strong>Vue Vue</strong>
+                    <strong>Vue</strong>
                
                 <!-- item -->
                 <div class="item_wrap">
                     <dl class="item">
-                        <dt><button><span>document</span>.body</button></dt>
+                        <dt><button><span>vue </span>.vue</button></dt>
                         <dd>
-                            현재 문서의 body 또는 frameset 노드를 반환
+                            -
                     </dd>
                     </dl>
                     <div class="code_wrap">
