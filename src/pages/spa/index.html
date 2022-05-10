@@ -1472,11 +1472,37 @@ https://ko.reactjs.org/docs/hooks-reference.html#usecontext
                         <pre>
                             <code class="javascript">
 
-` 컨텍스트 등록... Redux랑은 다른 개념 `
+` 
+  컨텍스트 등록... 
+  하나의 값이 변경되면 모두 리렌더링이 되기 때문에 콘텍스트마다의 분리가 중요
+`
 
-                                
+        
+
 ex1) useContext + useReducer로 Redux처럼 사용하기 
 
+
+` 1. 필요한 컨텍스트 작성 `
+// context/ImageContext.js  
+import React, {useReducer, useContext, createContext} from 'react';
+import { reducer, initialState } from './reducers/index.js'
+
+export const ImageContext = createContext(null)
+
+export const ImageContextProvider = ({ children }) =&gt; {
+
+    const [ state, dispatch ] = useReducer(reducer, initialState)
+    return (
+        &lt;ImageContext.Provider value={{ state, dispatch }}&gt;
+            {children}
+        &lt;/ImageContext.Provider&gt;
+    )
+}
+
+
+
+
+` 2. 관리할 리듀서 작성  `
 // reducers/index.js 
 export const initialState = {
     test: true,
@@ -1498,17 +1524,33 @@ export const reducer (state = initialState, action) =&gt; {
 }
 
 
+` 3. 앱에 Provider 추가  `
+//app.js 
+import Context_test from './components/Context_test.js'
+import { ImageContextProvider } from './context/ImageContextProvider.js'
 
 
-//Context_test.js
-import React, { useReducer } from 'react';
-import { reducer, initialState } from '../reducers/index.js'
+const App = () =&gt; {
+    return (
+       &lt;ImageContextProvider&gt;
+           &lt;Context_test /&gt;
+       &lt;/ImageContextProvider&gt;
+    ) 
+}
 
-const [state, dispatch] = useREducer(reducer, initialState) 
 
+
+` 4. 실제 사용할 컴포넌트에 useContext하기  `
+//Context_test.js 
+import React, { useContext } from 'react';
+import { ImageContext } from './context/ImageContextProvider.js'
 
 
 const Context_test = () =&gt; {
+
+    const { state, dispatch } = useContext(ImageContext)
+    //state - 리듀서의 initialState 
+    //dispatch - 리듀서 디스패치 함수 
 
     const handleClick = e =&gt; {
         dispatch({ type: 'TEST_REQUEST' })
@@ -1525,25 +1567,6 @@ const Context_test = () =&gt; {
 
 
 
-//app.js 
-import Context_test from './components/Context_test.js'
-import { reducer, intialState } from './reducers/index.js'
-
-export const TestContext = createContext(null);
-
-
-const App = () =&gt; {
-    const [ state, dispatch ] = useReducer(reducer, intialState);
-    console.log(state) //state 객체로 들어있음
-
-
-    return (
-        &lt;TestContext.Provider value={{ dispatch, test }}&gt;
-            //컴포넌트
-            &lt;Context_test /&gt;
-        &lt;/TestContext.Provider&gt;
-    ) 
-}
 
 
 
