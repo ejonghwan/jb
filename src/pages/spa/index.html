@@ -1105,11 +1105,190 @@ input값이 달라지는 것들은 적절하지않음
 input값이 항상 같고 output도 같은 것들, 혹은 계산 로직이 너무 방대한 것에 한해 적용
 
                             </code>
-                        </pre></div></div></div></section><section class="conts"><h2>React</h2><div class="depth_2"><strong>React</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환 adsadasdasdasdasdasdasdplalsjdlkajdlkajskda</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div></div></section><section class="conts"><h2>React</h2><div class="depth_2"><strong>Hooks</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>useState</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>useEffect</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>useRef</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>useCallback</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>useMemo</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>useContext</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
-asd
+
+` 
+  컨텍스트 등록... 
+  하나의 값이 변경되면 모두 리렌더링이 되기 때문에 콘텍스트마다의 분리가 중요
+`
+
+        
+
+ex1) useContext + useReducer로 Redux처럼 사용하기 
+
+
+` 1. 필요한 컨텍스트 작성 `
+// context/ImageContext.js  
+import React, {useReducer, useContext, createContext} from 'react';
+import { reducer, initialState } from './reducers/index.js'
+
+export const ImageContext = createContext(null)
+
+export const ImageContextProvider = ({ children }) =&gt; {
+
+    const [ state, dispatch ] = useReducer(reducer, initialState)
+    return (
+        &lt;ImageContext.Provider value={{ state, dispatch }}&gt;
+            {children}
+        &lt;/ImageContext.Provider&gt;
+    )
+}
+
+
+
+
+` 2. 관리할 리듀서 작성  `
+// reducers/index.js 
+export const initialState = {
+    test: true,
+}
+
+export const reducer (state = initialState, action) =&gt; {
+    switch(action.type) {
+        case "TEST_REQUEST": 
+            return {
+                ...state,
+                test: !state.test, 
+            }
+
+        default: 
+            return {
+                ...state
+            }
+    }
+}
+
+
+` 3. 앱에 Provider 추가  `
+//app.js 
+import Context_test from './components/Context_test.js'
+import { ImageContextProvider } from './context/ImageContextProvider.js'
+
+
+const App = () =&gt; {
+    return (
+       &lt;ImageContextProvider&gt;
+           &lt;Context_test /&gt;
+       &lt;/ImageContextProvider&gt;
+    ) 
+}
+
+
+
+` 4. 실제 사용할 컴포넌트에 useContext하기  `
+//Context_test.js 
+import React, { useContext } from 'react';
+import { ImageContext } from './context/ImageContextProvider.js'
+
+
+const Context_test = () =&gt; {
+
+    const { state, dispatch } = useContext(ImageContext)
+    //state - 리듀서의 initialState 
+    //dispatch - 리듀서 디스패치 함수 
+
+    const handleClick = e =&gt; {
+        dispatch({ type: 'TEST_REQUEST' })
+    }
+
+    return (
+        &lt;div&gt;
+             {state.test ? (&lt;span&gt;false&lt;/span&gt;) : (&lt;span&gt;true&lt;/span&gt;)}
+            &lt;button onClick={handleClick}&gt;chage state&lt;/button&gt;
+        &lt;/div&gt;
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
                             </code>
-                        </pre></div></div></div></section><section class="conts"><h2>Vue</h2><div class="depth_2"><strong>Vue Vue</strong><div class="item_wrap"><dl class="item"><dt><button><span>document</span>.body</button></dt><dd>현재 문서의 body 또는 frameset 노드를 반환</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>useReducer</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+
+
+
+
+
+
+
+
+https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                            </code>
+                        </pre></div></div></div></section><section class="conts"><h2>Vue</h2><div class="depth_2"><strong>Vue</strong><div class="item_wrap"><dl class="item"><dt><button><span>vue </span>.vue</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 asd
                         </code>
