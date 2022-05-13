@@ -1582,6 +1582,7 @@ router.post('/', async (req, res) => {
 })
 
 
+
 // login
 router.post('/login', async (req, res) => {
     try {
@@ -1606,6 +1607,39 @@ router.post('/login', async (req, res) => {
         console.error(err)
     }
 })
+
+
+
+
+// edit password 
+router.post('/:username/profile', async(req, res) => {
+    try{
+        const { prevPassword, password, checkPassword, userId } = req.body;
+        const user = await User.findById(userId, 'password');
+        const match = await bcrypt.compare(prevPassword, result.password)
+     
+
+        if(!isMatch) return res.status(400).json({match_error: '기존 비밀번호가 다릅니다'}).
+        if(password !== checkPassword) return res.status(400).json({ error: "새로운 비밀번호가 다릅니다" })
+
+
+        if(password === checkPassword) {
+            bcrypt.genSalt(10, (err, salt) => { //salt 로 만들어줌 2의 10승으로 ..그 다음 반환된 salt를 해시로 만들어줌
+                bcrypt.hash(password, salt, (err, hash) => { 
+                    if(err) throw err;
+                    user.password = hash;
+                    user.save();
+                })
+            })
+
+            res.status(200).json({ success: "비밀번호 변경 완료" });
+        }
+
+    } catch(err) {
+        console.log(err)
+    }
+})
+
 
 
 
