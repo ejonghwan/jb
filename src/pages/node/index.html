@@ -2767,11 +2767,11 @@ app.listen(PORT, () => console.log('express server listening port ' + PORT))
 
             <!-- bycript -->
             <div class="depth_2">
-                <strong>bcript</strong>
+                <strong>bcrypt</strong>
                  <!-- item -->
                  <div class="item_wrap">
                     <dl class="item">
-                        <dt><button><span>bcript</span> 사용방법</button></dt>
+                        <dt><button><span>bcrypt</span> 사용방법</button></dt>
                         <dd>
                             -
                         </dd>
@@ -2781,14 +2781,65 @@ app.listen(PORT, () => console.log('express server listening port ' + PORT))
                         <code class="javascript">
 
 `기본적인 흐름 
-1. front에서 backend로 이미지를 post로 보냄 (postman  body -> form-data -> key에 위에 미들웨어와 동일한 키값 image넣음)
-2. dest 설정을 하면 back에 upload 폴더가 생겨서 프론트에서 보낸 이미지가 여기 저장됨 (or diskStorage 사용)
-
+1. 회원가입때 받은 비번을 해시화함 bcrypt.genSalt  bcrypt.hash
+2. 해시화해서 db에 저장 
+3. 로그인 할 때 db에서 가져온 해시암호를 client에서 받은 비번과 비교함 bcrypt.compare(받은비번, db비번)
+4. 맞으면 인증성공
 `
   
 
+// register
+router.post('/', async (req, res) => {
+    try {
+        const { id, password, email, name } = req.body;
+        const user = await new User({ id, password, email, name })
 
-app.listen(PORT, () => console.log('express server listening port ' + PORT))
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(user.password, salt, (err, hash) => {
+                if(err) throw new Error(err);
+                user.password = hash
+               
+                user.save().then(user => {
+                    console.log('then user:', user)
+                    res.status(201).json({ user })  
+                })
+            })
+        })
+
+    } catch(err) {
+        console.error(err)
+    }
+})
+
+
+// login
+router.post('/login', async (req, res) => {
+    try {
+        const { _id, id, password } = req.body
+        const user = await User.findOne({ id: id }) 
+        
+        const match = await bcrypt.compare(password, user.password);
+        if(!match) return res.status(400).json({ err: "비밀번호 불일치" })
+        if(match) {
+            jwt.sign({ _id: _id }, process.env.JWT_KEY, { expiresIn: "2 days" }, (err, token) => {
+                if(err) throw new Error(err)
+                res.status(201).json({
+                    token,
+                    _id: user._id, 
+                    id: user.id,
+                    email: user.email,
+                    name: user.name,
+                });
+            });
+        };
+    } catch(err) {
+        console.error(err)
+    }
+})
+
+
+
+
                         </code>
                     </pre>
                     </div>
@@ -2812,14 +2863,52 @@ app.listen(PORT, () => console.log('express server listening port ' + PORT))
                         <code class="javascript">
 
 `기본적인 흐름 
-1. front에서 backend로 이미지를 post로 보냄 (postman  body -> form-data -> key에 위에 미들웨어와 동일한 키값 image넣음)
-2. dest 설정을 하면 back에 upload 폴더가 생겨서 프론트에서 보낸 이미지가 여기 저장됨 (or diskStorage 사용)
+1. bcrypt에서 해시화된 값(db)과 입력받은(client) 값이 같다면 
+2. jwt을 이용해서 특정값(_id값으로 하는게 편함)을 token 생성 후 client로 response. jwt.sign()
 
+3. client에서는 받은 token을 쿠키나 로컬저장소에 저장해두고 
+4. api호출에 인증이 필요하다면 request할 때 token값을 header에 실어서 보냄  
+
+5. bakcend에서 req.header로 token값을 받아 decode함  jwt.verify(token, jwt_key)
+6. 5번에서 리턴된 값으로 유저를 찾아 리턴해주거나 로그인 유지 등 이후 로직 실행 
 `
   
 
 
-app.listen(PORT, () => console.log('express server listening port ' + PORT))
+// auth.js 커스텀 미들웨어 
+import jwt from 'jsonwebtoken'; 
+export const auth = async (req, res, next) => {
+    try {
+        const token = req.header('x-access-token') //client token
+        const match = jwt.verify(token, process.env.JWT_KEY)
+         //{ _id: '627c7b6cad3ac52d28a40418', iat: 1652419267 }
+
+        if(match) {
+            req.user = match;
+            next()
+        } 
+    } catch(err) {
+        res.status(400).json({ err: 'is not user or token' })
+        console.error(err)
+    }
+}
+
+
+
+// jwt auth test
+router.post('/test', auth, async (req, res) => { // 여기서 auth 미들웨어가 에러나면 catch로
+    try {
+        const findUser = await User.findOne({ _id: req.user._id })
+        res.status(200).json({ findUser })
+        
+        console.log('last line test api: ', req.user._id) // auth 미들웨어에서 req.user에 담아줌 
+    } catch(err) {
+        console.error(err)
+    }
+})
+
+
+
                         </code>
                     </pre>
                     </div>
