@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.c907debd2a01ab9c013b.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>performence</h2><div class="depth_2"><strong>리소스 관리</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>성능</button></dt><dd>로딩성능 | 렌더링 성능</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.59e895c96f5fede998fe.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>performence</h2><div class="depth_2"><strong>리소스 관리</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>성능</button></dt><dd>로딩성능 | 렌더링 성능</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 성능최적화에는 아래 두 가지로 나뉨  
 
@@ -971,6 +971,9 @@ https://www.npmjs.com/package/purgecss
 타지않고 객체에 저장된걸 바로 적용하게끔..
 `
 
+</code>
+
+<code class="javascript">
 ex code)
 const cache = {} // memoization 로직 추가
 
@@ -1024,10 +1027,8 @@ export function getAverageColorOfImage(imgElement) {
 
   return averageColor;
 }
-
-
-
-
+</code>
+<code class="javascript">
 모듈로 뺄 때  -------------------------------------------------------------
 
 function memoization(fn) {
@@ -1054,11 +1055,9 @@ function memoization(fn) {
 ` 같은 함수
 memoization(getAverageColorOfImage)(img)  ===  getAverageColorOfImage(img)
 `
-
-
-
+</code>
+<code class="javascript">
 ex code 2)
-
 export function getAverageColorOfImage = memoization(function(imgElement) {
 
   const canvas = document.createElement('canvas');
@@ -1167,16 +1166,13 @@ https://ko.reactjs.org/docs/hooks-reference.html#usecontext
                         </code>
                     </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>useContext</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
-
 ` 
   컨텍스트 등록... 
   하나의 값이 변경되면 모두 리렌더링이 되기 때문에 콘텍스트마다의 분리가 중요
 `
 
-        
 
 ex1) useContext + useReducer로 Redux처럼 사용하기 
-
 
 ` 1. 필요한 컨텍스트 작성 `
 // context/ImageContext.js  
@@ -1189,15 +1185,14 @@ export const ImageContextProvider = ({ children }) =&gt; {
 
     const [ state, dispatch ] = useReducer(reducer, initialState)
     return (
-        &lt;ImageContext.Provider value={{ state, dispatch }}&gt;
+        &lt;ImageContext.Provider value= state, dispatch &gt;
             {children}
         &lt;/ImageContext.Provider&gt;
     )
 }
 
-
-
-
+</code>
+<code class="javascript">
 ` 2. 관리할 리듀서 작성  `
 // reducers/index.js 
 export const initialState = {
@@ -1219,7 +1214,8 @@ export const reducer (state = initialState, action) =&gt; {
     }
 }
 
-
+</code>
+<code class="javascript">
 ` 3. 앱에 Provider 추가  `
 //app.js 
 import Context_test from './components/Context_test.js'
@@ -1234,8 +1230,8 @@ const App = () =&gt; {
     ) 
 }
 
-
-
+</code>
+<code class="javascript">
 ` 4. 실제 사용할 컴포넌트에 useContext하기  `
 //Context_test.js 
 import React, { useContext } from 'react';
@@ -1259,20 +1255,6 @@ const Context_test = () =&gt; {
         &lt;/div&gt;
     )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 https://ko.reactjs.org/docs/hooks-reference.html#usecontext
                             </code>

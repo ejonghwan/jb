@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.c907debd2a01ab9c013b.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><p>1. 성능 측성 검사 <a href="https://pagespeed.web.dev/" target="_blank" title="새창">https://pagespeed.web.dev/</a></p><p>2. 구글 크롬 라이트하우스</p><p>3. font최적화 <a href="https://d2.naver.com/helloworld/4969726">d2 naver blog post</a></p><p>4. 브라우저 렌더링 <a href="https://d2.naver.com/helloworld/59361">d2 naver blog post</a></p><p>5. 리플로우 질문 남길 블로그 https://blinders.tistory.com/93</p></section><section class="conts"><h2>Performance</h2><div class="depth_2"><strong>css optimization</strong><div class="item_wrap"><dl class="item"><dt><button>사전로드</button></dt><dd>preload | prepetch | preconnect</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.59e895c96f5fede998fe.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><p>1. 성능 측성 검사 <a href="https://pagespeed.web.dev/" target="_blank" title="새창">https://pagespeed.web.dev/</a></p><p>2. 구글 크롬 라이트하우스</p><p>3. font최적화 <a href="https://d2.naver.com/helloworld/4969726">d2 naver blog post</a></p><p>4. 브라우저 렌더링 <a href="https://d2.naver.com/helloworld/59361">d2 naver blog post</a></p><p>5. 리플로우 질문 남길 블로그 https://blinders.tistory.com/93</p></section><section class="conts"><h2>Performance</h2><div class="depth_2"><strong>css optimization</strong><div class="item_wrap"><dl class="item"><dt><button>사전로드</button></dt><dd>preload | prepetch | preconnect</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 
 https://web.dev/i18n/ko/preload-critical-assets/
@@ -606,5 +606,58 @@ win: 컨트롤+쉬프트+f
    50% {}
    100% {}
 }
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>background</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+
+.class {background: color image repeat position/size origin clip attachment}                            
+.class {background: #ddd url('') no-repeat  center center/100% 100%}
+
+
+1. background-attachment. scroll | fixed | local
+2. background-clip. border-box | padding-box | content-box
+3. background-color. name | HEX | rgb() | rgba()
+4. background-image. url(images/bg.gif), url(images/bg2.gif)
+5. background-repeat. repeat | repeat-x | repeat-y | no-repeat | space | round 
+6. background-origin. border-box | padding-box | content-box
+7. background-size. width height | contain | cover | auto
+8. background-position. x y | top | right | left | bottom
+
+
+https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%95%EB%A6%ACcolor-image-position-repeat-%EB%93%B1
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>font</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+
+.class {font: style variant weight size/line-height family;}
+
+1. font-style:normal;
+2. font-variant:normal;
+3. font-weight:normal;
+4. font-size: inherit;
+5. line-height:normal;
+6. font-family: inherit;
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>border</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+
+.class {border: 1px solid #000;}
+
+1. border-width: 1px;
+2. border-style: solid;
+3. border-color: #000;
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>transition</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+
+.class {transition: all 1s ease-in 1s;}
+
+1. transition-property
+2. transition-duration 
+3. transition-timing-function 
+4. transition-delay 
+
                             </code>
                         </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
