@@ -950,10 +950,21 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                             </div>
                         </div>
                         <!-- //item -->
-                        <!-- item -->
-                        <div class="item_wrap">
+                       
+                    </div>
+                </section>
+                <!-- //category 1 -->
+
+                <section class="conts">
+                    <h2>Flex</h2>
+
+                    <div class="depth_2">
+                        <strong></strong>
+
+                         <!-- item -->
+                         <div class="item_wrap">
                             <dl class="item">
-                                <dt><button><span></span>flex</button></dt>
+                                <dt><button><span></span>flex </button></dt>
                                 <dd>
                                     -
                                 </dd>
@@ -980,17 +991,24 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 
 
                             <style>
+
+                                .flex_wrap {height: 300px; display: flex; align-items: center; justify-content: center; background-color: #161b22; border: 1px solid rgb(44, 44, 44); margin-top: 10px; padding:20px;}
                                 .flex1 {
                                     box-sizing: border-box;
-                                    border: 1px solid #ddd;
+                                    border: 1px solid #355999;
                                     margin: 10px 0;
                                     transition: all 1s;
+                                    width: 100%;
+                                    height: 100%;
+                                    
                                 }
+
+                                .attr {color: #608dd1;}
 
                                 .flex1 li {
                                     box-sizing: border-box;
                                     background-color: rgba(234, 255, 4, .1);
-                                    border: 1px solid rgb(238, 255, 0);
+                                    border: 1px solid rgba(255, 255, 255, .5);
                                     transition: all 1s;
                                 }
 
@@ -1003,17 +1021,17 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                 .child label,
                                 .parent label {
                                     color: #888;
-                                    transition: all .3s;
-                                    padding: 0 11px 0 4px;
+                                    transition: all .2s;
+                                    padding: 0 6px 0 2px;
                                     position: relative;
                                     cursor: pointer;
                                 }
 
                                 .child label::after,
                                 .parent label::after {
-                                    content: '';
+                                    /* content: ''; */
                                     display: inline-block;
-                                    background-color: #444;
+                                    background-color: #282746;
                                     width: 1px;
                                     height: 10px;
                                     position: absolute;
@@ -1028,19 +1046,23 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     /* font-weight: bold; */
                                     text-decoration: underline;
                                 }
+                                .dbtn {color:#fff;}
+                                input[type="text"] {background: #0d1117;box-shadow: none;border: none;border-bottom: 1px solid #758095;width: 60px;color: coral;text-align: center;margin-left: 10px;margin-right: 5px;}
                             </style>
 
-                            <ul class="flex1">
-                                <li>1</li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
-                            </ul>
+                            <article class="flex_wrap">
+                                <ul class="flex1">
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                </ul>
+                            </article>
                             <br /><br />
 
                             <article class="parent">
-                                <h3>parent</h3>
+                                <h3><strong>self(parent)</strong></h3>
                                 <div>
                                     <span class="attr">display</span> :
                                     <input type="radio" checked name="display" id="block">
@@ -1051,7 +1073,7 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                 </div>
                                 <div>
                                     <span class="attr">flex-direction</span> :
-                                    <input type="radio" name="flex-direction" id="row">
+                                    <input type="radio" name="flex-direction" checked id="row">
                                     <label for="row">row</label>
 
                                     <input type="radio" name="flex-direction" id="column">
@@ -1059,14 +1081,15 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                 </div>
                                 <div>
                                     <span class="attr">flex-wrap</span> :
-                                    <input type="radio" name="flex-wrap" id="nowrap">
+                                    <input type="radio" name="flex-wrap" checked id="nowrap">
                                     <label for="nowrap">nowrap</label>
-
                                     <input type="radio" name="flex-wrap" id="wrap">
                                     <label for="wrap">wrap</label>
                                 </div>
                                 <div>
                                     <span class="attr">align-content</span> :
+                                    <input type="radio" name="align-content" checked id="stretch1">
+                                    <label for="stretch1">stretch</label>
                                     <input type="radio" name="align-content" id="center1">
                                     <label for="center1">center</label>
                                     <input type="radio" name="align-content" id="flex-start1">
@@ -1077,37 +1100,46 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     <label for="space-around1">space-around</label>
                                     <input type="radio" name="align-content" id="space-between1">
                                     <label for="space-between1">space-between</label>
-                                    <input type="radio" name="align-content" id="stretch1">
-                                    <label for="stretch1">stretch</label>
                                 </div>
                                 <div>
                                     <span class="attr">justify-content</span> :
-                                    <input type="radio" name="justify-content" id="center2">
-                                    <label for="center2">center</label>
-                                    <input type="radio" name="justify-content" id="flex-start2">
+                                    <input type="radio" name="justify-content" checked id="flex-start2">
                                     <label for="flex-start2">flex-start</label>
                                     <input type="radio" name="justify-content" id="flex-end2">
                                     <label for="flex-end2">flex-end</label>
+                                    <input type="radio" name="justify-content" id="center2">
+                                    <label for="center2">center</label>
                                     <input type="radio" name="justify-content" id="space-around2">
                                     <label for="space-around2">space-around</label>
                                     <input type="radio" name="justify-content" id="space-between2">
                                     <label for="space-between2">space-between</label>
                                     <input type="radio" name="justify-content" id="space-evenly2">
                                     <label for="space-evenly2">space-evenly</label>
+                                    <input type="radio" name="justify-content" checked id="stretch33">
+                                    <label for="stretch33">stretch</label>
+                                    
                                 </div>
 
                                 <div>
                                     <span class="attr">align-items</span> :
+                                    <input type="radio" name="align-items" checked id="stretch3">
+                                    <label for="stretch3">stretch</label>
                                     <input type="radio" name="align-items" id="center3">
                                     <label for="center3">center</label>
                                     <input type="radio" name="align-items" id="flex-start3">
                                     <label for="flex-start3">flex-start</label>
                                     <input type="radio" name="align-items" id="flex-end3">
                                     <label for="flex-end3">flex-end</label>
-                                    <input type="radio" name="align-items" id="stretch3">
-                                    <label for="stretch3">stretch</label>
                                     <input type="radio" name="align-items" id="baseline4">
                                     <label for="baseline4">baseline</label>
+                                    <input type="radio" name="align-items" id="self-end11">
+                                    <label for="self-end11">self-end</label>
+                                    <input type="radio" name="align-items" id="self-start11">
+                                    <label for="self-start11">self-start</label>
+                                    <input type="radio" name="align-items" id="revert55">
+                                    <label for="revert55">revert</label>
+                                    <input type="radio" name="align-items" id="unset55">
+                                    <label for="unset55">unset</label>
                                 </div>
 
                             </article>
@@ -1115,32 +1147,34 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                             <br /><br />
 
                             <article class="child">
-                                <h3>child</h3>
+                                <h3><strong>child</strong></h3>
                                 <div>
                                     <span class="attr">flex-grow</span> :
                                     <input type="radio" name="flex-grow" id="1">
                                     <label for="1">1</label>
-                                    <input type="radio" name="flex-grow" id="0">
+                                    <input type="radio" name="flex-grow" checked id="0">
                                     <label for="0">0</label>
                                 </div>
                                 <div>
                                     <span class="attr">flex-shrink</span> :
-                                    <input type="radio" name="flex-shrink" id="1">
-                                    <label for="1">1</label>
-                                    <input type="radio" name="flex-shrink" id="0">
-                                    <label for="0">0</label>
+                                    <input type="radio" name="flex-shrink" checked id="s1">
+                                    <label for="s1">1</label>
+                                    <input type="radio" name="flex-shrink" id="s0">
+                                    <label for="s0">0</label>
                                 </div>
                                 <div>
                                     <span class="attr">flex-basis</span> :
-                                    <input type="radio" name="flex-basis" id="1">
-                                    <label for="1">1</label>
-                                    <input type="radio" name="flex-basis" id="0">
-                                    <label for="0">0</label>
-                                    <input type="radio" name="flex-basis" id="auto">
+                                    <input type="radio" name="flex-basis" id="b0">
+                                    <label for="b0">0</label>
+                                    <input type="radio" name="flex-basis" checked id="auto">
                                     <label for="auto">auto</label>
-                                    <input type="text" id="number" value="0">
-
-
+                                    <input type="text" id="number" value="" placeholder="px or %">
+                                    <button class="dbtn number">click</button>
+                                </div>
+                                <div>
+                                    <span class="attr">width</span> :
+                                    <input type="text" id="width" value=""  placeholder="px or %">
+                                    <button class="dbtn width">click</button>
                                 </div>
                             </article>
 
@@ -1152,18 +1186,16 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 
                             const targetParentEle = document.querySelector('.flex1');
                             const targetChildEles = document.querySelectorAll('.flex1 > li');
-
                             const parent = document.querySelector('.parent');
                             const child = document.querySelector('.child');
+                            const num = document.querySelector('#number')
+                            const width = document.querySelector('#width')
 
                             const flexStyle = getComputedStyle(parent)
 
-
-
-                            window.addEventListener('click', clickEvt)
-
-                            function clickEvt(e) {
-                                console.log(e.target.parentNode.parentNode.classList.contains('parent'))
+                            
+                            const clickEvt = e => {
+                                // console.log(e.target.parentNode.parentNode.classList.contains('parent'))
                                 // parent click
                                 if (e.target.nodeName === 'LABEL' && e.target.parentNode.parentNode.classList.contains('parent')) {
                                     const props = e.target.parentNode.children[0].textContent
@@ -1173,14 +1205,42 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 
                                 // child click
                                 if (e.target.nodeName === 'LABEL' && e.target.parentNode.parentNode.classList.contains('child')) {
-                                    console.log('child')
+                                    // console.log('child')
                                     const props = e.target.parentNode.children[0].textContent
                                     const value = e.target.textContent
                                     for (let i = 0; i < targetChildEles.length; i++) {
                                         targetChildEles[i].style[props] = value
                                     }
                                 }
+
+                                if(e.target.nodeName === 'BUTTON' && e.target.classList.contains('number')) {
+                                    const props = e.target.parentNode.children[0].textContent;
+                                    // let unit = stringFilter(num.value, '%', 'px')
+                                    for (let i = 0; i < targetChildEles.length; i++) {
+                                        targetChildEles[i].style[props] = num.value
+                                    }
+                                }
+
+                                if(e.target.nodeName === 'BUTTON' && e.target.classList.contains('width')) {
+                                    const props = e.target.parentNode.children[0].textContent;
+                                    for (let i = 0; i < targetChildEles.length; i++) {
+                                        targetChildEles[i].style[props] = width.value
+                                    }
+                                }
                             }
+
+                            const stringFilter = (...args) => {
+                                // console.log(args) 나 이거 왜 한거지 ..?
+                                for(let i = 1; i < args.length; i++) {
+                                    if(args[0].indexOf(args[i]) > -1) {
+                                        return args[i]
+                                        break
+                                    }
+                                }
+                            }
+
+                            window.addEventListener('click', clickEvt)
+                          
 
 
 
@@ -1189,11 +1249,9 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 
 
                         <!-- //item -->
+
                     </div>
                 </section>
-                <!-- //category 1 -->
-
-
 
             </div>
         </main>
