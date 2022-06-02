@@ -994,8 +994,8 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     transition: all 1s;
                                 }
 
-                                .child input,
-                                .parent input {
+                                .child input[type="radio"],
+                                .parent input[type="radio"] {
                                     position: absolute;
                                     left: -999px;
                                 }
@@ -1138,8 +1138,9 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     <label for="0">0</label>
                                     <input type="radio" name="flex-basis" id="auto">
                                     <label for="auto">auto</label>
-                                    <input type="text" name="flex-basis" id="number">
-                                    <label for="number">0</label>
+                                    <input type="text" id="number" value="0">
+
+
                                 </div>
                             </article>
 
