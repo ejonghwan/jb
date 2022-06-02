@@ -950,6 +950,244 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                             </div>
                         </div>
                         <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>flex</button></dt>
+                                <dd>
+                                    -
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                                    <code class="markdown">
+# default
+- initial: 0 1 auto;
+- auto: 1 1 auto;
+- flex: 0 0 auto;
+
+                                        
+# flex-grow (0)
+
+# flex-shrink (1)
+
+# flex-basis (auto)
+                     
+
+                                    </code>
+                                </pre>
+                            </div>
+
+
+                            <style>
+                                .flex1 {
+                                    box-sizing: border-box;
+                                    border: 1px solid #ddd;
+                                    margin: 10px 0;
+                                    transition: all 1s;
+                                }
+
+                                .flex1 li {
+                                    box-sizing: border-box;
+                                    background-color: rgba(234, 255, 4, .1);
+                                    border: 1px solid rgb(238, 255, 0);
+                                    transition: all 1s;
+                                }
+
+                                .child input,
+                                .parent input {
+                                    position: absolute;
+                                    left: -999px;
+                                }
+
+                                .child label,
+                                .parent label {
+                                    color: #888;
+                                    transition: all .3s;
+                                    padding: 0 11px 0 4px;
+                                    position: relative;
+                                    cursor: pointer;
+                                }
+
+                                .child label::after,
+                                .parent label::after {
+                                    content: '';
+                                    display: inline-block;
+                                    background-color: #444;
+                                    width: 1px;
+                                    height: 10px;
+                                    position: absolute;
+                                    right: 0;
+                                    top: 50%;
+                                    transform: translateY(-30%);
+                                }
+
+                                .child input:checked+label,
+                                .parent input:checked+label {
+                                    color: #fff;
+                                    /* font-weight: bold; */
+                                    text-decoration: underline;
+                                }
+                            </style>
+
+                            <ul class="flex1">
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                            </ul>
+                            <br /><br />
+
+                            <article class="parent">
+                                <h3>parent</h3>
+                                <div>
+                                    <span class="attr">display</span> :
+                                    <input type="radio" checked name="display" id="block">
+                                    <label for="block">block</label>
+
+                                    <input type="radio" name="display" id="flex">
+                                    <label for="flex">flex</label>
+                                </div>
+                                <div>
+                                    <span class="attr">flex-direction</span> :
+                                    <input type="radio" name="flex-direction" id="row">
+                                    <label for="row">row</label>
+
+                                    <input type="radio" name="flex-direction" id="column">
+                                    <label for="column">column</label>
+                                </div>
+                                <div>
+                                    <span class="attr">flex-wrap</span> :
+                                    <input type="radio" name="flex-wrap" id="nowrap">
+                                    <label for="nowrap">nowrap</label>
+
+                                    <input type="radio" name="flex-wrap" id="wrap">
+                                    <label for="wrap">wrap</label>
+                                </div>
+                                <div>
+                                    <span class="attr">align-content</span> :
+                                    <input type="radio" name="align-content" id="center1">
+                                    <label for="center1">center</label>
+                                    <input type="radio" name="align-content" id="flex-start1">
+                                    <label for="flex-start1">flex-start</label>
+                                    <input type="radio" name="align-content" id="flex-end1">
+                                    <label for="flex-end1">flex-end</label>
+                                    <input type="radio" name="align-content" id="space-around1">
+                                    <label for="space-around1">space-around</label>
+                                    <input type="radio" name="align-content" id="space-between1">
+                                    <label for="space-between1">space-between</label>
+                                    <input type="radio" name="align-content" id="stretch1">
+                                    <label for="stretch1">stretch</label>
+                                </div>
+                                <div>
+                                    <span class="attr">justify-content</span> :
+                                    <input type="radio" name="justify-content" id="center2">
+                                    <label for="center2">center</label>
+                                    <input type="radio" name="justify-content" id="flex-start2">
+                                    <label for="flex-start2">flex-start</label>
+                                    <input type="radio" name="justify-content" id="flex-end2">
+                                    <label for="flex-end2">flex-end</label>
+                                    <input type="radio" name="justify-content" id="space-around2">
+                                    <label for="space-around2">space-around</label>
+                                    <input type="radio" name="justify-content" id="space-between2">
+                                    <label for="space-between2">space-between</label>
+                                    <input type="radio" name="justify-content" id="space-evenly2">
+                                    <label for="space-evenly2">space-evenly</label>
+                                </div>
+
+                                <div>
+                                    <span class="attr">align-items</span> :
+                                    <input type="radio" name="align-items" id="center3">
+                                    <label for="center3">center</label>
+                                    <input type="radio" name="align-items" id="flex-start3">
+                                    <label for="flex-start3">flex-start</label>
+                                    <input type="radio" name="align-items" id="flex-end3">
+                                    <label for="flex-end3">flex-end</label>
+                                    <input type="radio" name="align-items" id="stretch3">
+                                    <label for="stretch3">stretch</label>
+                                    <input type="radio" name="align-items" id="baseline4">
+                                    <label for="baseline4">baseline</label>
+                                </div>
+
+                            </article>
+
+                            <br /><br />
+
+                            <article class="child">
+                                <h3>child</h3>
+                                <div>
+                                    <span class="attr">flex-grow</span> :
+                                    <input type="radio" name="flex-grow" id="1">
+                                    <label for="1">1</label>
+                                    <input type="radio" name="flex-grow" id="0">
+                                    <label for="0">0</label>
+                                </div>
+                                <div>
+                                    <span class="attr">flex-shrink</span> :
+                                    <input type="radio" name="flex-shrink" id="1">
+                                    <label for="1">1</label>
+                                    <input type="radio" name="flex-shrink" id="0">
+                                    <label for="0">0</label>
+                                </div>
+                                <div>
+                                    <span class="attr">flex-basis</span> :
+                                    <input type="radio" name="flex-basis" id="1">
+                                    <label for="1">1</label>
+                                    <input type="radio" name="flex-basis" id="0">
+                                    <label for="0">0</label>
+                                    <input type="radio" name="flex-basis" id="auto">
+                                    <label for="auto">auto</label>
+                                    <input type="text" name="flex-basis" id="number">
+                                    <label for="number">0</label>
+                                </div>
+                            </article>
+
+
+                        </div>
+
+
+                        <script>
+
+                            const targetParentEle = document.querySelector('.flex1');
+                            const targetChildEles = document.querySelectorAll('.flex1 > li');
+
+                            const parent = document.querySelector('.parent');
+                            const child = document.querySelector('.child');
+
+                            const flexStyle = getComputedStyle(parent)
+
+
+
+                            window.addEventListener('click', clickEvt)
+
+                            function clickEvt(e) {
+                                console.log(e.target.parentNode.parentNode.classList.contains('parent'))
+                                // parent click
+                                if (e.target.nodeName === 'LABEL' && e.target.parentNode.parentNode.classList.contains('parent')) {
+                                    const props = e.target.parentNode.children[0].textContent
+                                    const value = e.target.textContent
+                                    targetParentEle.style[props] = value
+                                }
+
+                                // child click
+                                if (e.target.nodeName === 'LABEL' && e.target.parentNode.parentNode.classList.contains('child')) {
+                                    console.log('child')
+                                    const props = e.target.parentNode.children[0].textContent
+                                    const value = e.target.textContent
+                                    for (let i = 0; i < targetChildEles.length; i++) {
+                                        targetChildEles[i].style[props] = value
+                                    }
+                                }
+                            }
+
+
+
+
+                        </script>
+
+
+                        <!-- //item -->
                     </div>
                 </section>
                 <!-- //category 1 -->
