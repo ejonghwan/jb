@@ -569,7 +569,7 @@ mac: 커맨드+옵션+f
 win: 컨트롤+쉬프트+f 
 
                             </code>
-                        </pre></div></div></div></section><section class="conts"><h2>CSS 속성</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span>animation</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div></div></section><section class="conts"><h2>단축 CSS</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span>animation</button></dt><dd>이름, 진행시간, 딜레이, 방향, 카운트, 멈추거나 다시 시작, 타이밍함수, 필모드</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 
 .class {animation: 이름, 진행시간, 딜레이, 방향, 카운트, 멈추거나 다시 시작, 타이밍함수, 필모드}
@@ -607,11 +607,11 @@ win: 컨트롤+쉬프트+f
    100% {}
 }
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>background</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>background</button></dt><dd>#ddd url('') no-repeat center center/100% 100%</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 
 .class {background: color image repeat position/size origin clip attachment}                            
-.class {background: #ddd url('') no-repeat  center center/100% 100%}
+.class {background: #ddd url('') no-repeat center center/100% 100%}
 
 
 1. background-attachment. scroll | fixed | local
@@ -626,7 +626,7 @@ win: 컨트롤+쉬프트+f
 
 https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%95%EB%A6%ACcolor-image-position-repeat-%EB%93%B1
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>font</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>font</button></dt><dd>style variant weight size/line-height family</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 
 .class {font: style variant weight size/line-height family;}
@@ -639,7 +639,7 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 6. font-family: inherit;
 
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>border</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>border</button></dt><dd>1px solid #000; (width style color)</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 
 .class {border: 1px solid #000;}
@@ -649,7 +649,7 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 3. border-color: #000;
 
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>transition</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>transition</button></dt><dd>all 1s ease-in 1s; (property duration timing-function delay)</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 
 .class {transition: all 1s ease-in 1s;}
@@ -660,23 +660,98 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 4. transition-delay 
 
                             </code>
-                        </pre></div></div></div></section><section class="conts"><h2>Flex</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span>flex</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>word-break, word-wrap</button></dt><dd>normal | break-all | keep-all</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+# 줄바꿈 
+
+
+# word-break
+.class { word-break: normal (default value) }
+
+normal : CJK(아시아문자) 문자는 글자 기준으로, CJK 이외의 문자는 단어 기준으로 줄바꿈
+break-all : 문자 기준 
+keep-all : 단어 기준
+initial : 기본값 
+inherit : 상속
+
+
+# word-wrap
+.class { word-wrap: normal (default value) }
+
+normal : 영문은 삐져나감
+break-word : 영문 줄바꿈 (한글은 차이없음) 
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>white-space</button></dt><dd>nowrap | pre | pre-line | pre-wrap</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+# 공백
+
+.class { white-space: normal (default value) }
+
+normal : 자동 줄바꿈
+break-spaces : pre-wrap과 비슷
+nowrap : 줄바꿈x
+pre : 공백 모두 표시, 줄바꿈x (&lt;pre&gt; 태그와 같음)
+pre-line : 새로운 줄에서 공백 모두 표시, 줄바꿈 
+pre-wrap : 공백 모두 표시, 줄바꿈 
+                            </code>
+                        </pre></div></div></div></section><section class="conts"><h2>Flex</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span>상세내용</button></dt><dd></dd></dl><div class="code_wrap"><pre>
                                     <code class="markdown">
-# default
+# self (display: flex)
+
+- flex-direction : 
+  row column
+
+- flex-wrap : 
+  nowrap wrap
+
+- align-content : (wrap인 상태에서 정렬)
+  stretch center flex-start flex-end space-around space-between revert unset 
+  normal initial inherit right left start end
+
+- justify-content : (row일땐 가로축, column일땐 세로축)
+  flex-start flex-end center space-around space-between space-evenly stretch 
+  revert unset normal initial inherit right left start end
+
+- align-items : (row일땐 세로축, column일땐 가로축)
+  stretch center flex-start flex-end baseline self-end self-start revert 
+  unset normal initial inherit end start
+
+
+
+# child
 - initial: 0 1 auto;
 - auto: 1 1 auto;
 - flex: 0 0 auto;
 
                                         
 # flex-grow (0)
+0: 자기자신의 너비
+1: 가로너비를 모두 나눠 가짐
 
 # flex-shrink (1)
+0: 주축 공간이 부족할때 줄지않음 (0 width: 200px 같이주면 다른곳은 줄고 여긴 200px까지 안줄음)
+1: 주축 공간이 부족할때 함께 줄음
 
 # flex-basis (auto)
+- auto라면 width, height가 먼저
+- px % 라면 basis가 먼저
+
                      
 
                                     </code>
-                                </pre></div><style>.flex_wrap {height: 300px; display: flex; align-items: center; justify-content: center; background-color: #161b22; border: 1px solid rgb(44, 44, 44); margin-top: 10px; padding:20px;}
+                                </pre></div><style>.flex_wrap {
+                                    height: 300px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    background-color: #161b22;
+                                    border: 1px solid rgb(44, 44, 44);
+                                    margin-top: 10px;
+                                    padding: 20px;
+                                    overflow: hidden;
+                                }
+
                                 .flex1 {
                                     box-sizing: border-box;
                                     border: 1px solid #355999;
@@ -684,10 +759,12 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     transition: all 1s;
                                     width: 100%;
                                     height: 100%;
-                                    
+
                                 }
 
-                                .attr {color: #608dd1;}
+                                .attr {
+                                    color: #608dd1;
+                                }
 
                                 .flex1 li {
                                     box-sizing: border-box;
@@ -711,6 +788,7 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     cursor: pointer;
                                 }
 
+
                                 .child label::after,
                                 .parent label::after {
                                     /* content: ''; */
@@ -724,23 +802,69 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     transform: translateY(-30%);
                                 }
 
+                                input::placeholder {
+                                    color: #555;
+                                }
+
                                 .child input:checked+label,
                                 .parent input:checked+label {
                                     color: #fff;
                                     /* font-weight: bold; */
-                                    text-decoration: underline;
+                                    /* text-decoration: underline; */
                                 }
-                                .dbtn {color:#fff;}
-                                input[type="text"] {background: #0d1117;box-shadow: none;border: none;border-bottom: 1px solid #758095;width: 60px;color: coral;text-align: center;margin-left: 10px;margin-right: 5px;}</style><article class="flex_wrap"><ul class="flex1"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul></article><br><br><article class="parent"><h3><strong>self(parent)</strong></h3><div><span class="attr">display</span> : <input type="radio" checked="checked" name="display" id="block"> <label for="block">block</label> <input type="radio" name="display" id="flex"> <label for="flex">flex</label></div><div><span class="attr">flex-direction</span> : <input type="radio" name="flex-direction" checked="checked" id="row"> <label for="row">row</label> <input type="radio" name="flex-direction" id="column"> <label for="column">column</label></div><div><span class="attr">flex-wrap</span> : <input type="radio" name="flex-wrap" checked="checked" id="nowrap"> <label for="nowrap">nowrap</label> <input type="radio" name="flex-wrap" id="wrap"> <label for="wrap">wrap</label></div><div><span class="attr">align-content</span> : <input type="radio" name="align-content" checked="checked" id="stretch1"> <label for="stretch1">stretch</label> <input type="radio" name="align-content" id="center1"> <label for="center1">center</label> <input type="radio" name="align-content" id="flex-start1"> <label for="flex-start1">flex-start</label> <input type="radio" name="align-content" id="flex-end1"> <label for="flex-end1">flex-end</label> <input type="radio" name="align-content" id="space-around1"> <label for="space-around1">space-around</label> <input type="radio" name="align-content" id="space-between1"> <label for="space-between1">space-between</label></div><div><span class="attr">justify-content</span> : <input type="radio" name="justify-content" checked="checked" id="flex-start2"> <label for="flex-start2">flex-start</label> <input type="radio" name="justify-content" id="flex-end2"> <label for="flex-end2">flex-end</label> <input type="radio" name="justify-content" id="center2"> <label for="center2">center</label> <input type="radio" name="justify-content" id="space-around2"> <label for="space-around2">space-around</label> <input type="radio" name="justify-content" id="space-between2"> <label for="space-between2">space-between</label> <input type="radio" name="justify-content" id="space-evenly2"> <label for="space-evenly2">space-evenly</label> <input type="radio" name="justify-content" checked="checked" id="stretch33"> <label for="stretch33">stretch</label></div><div><span class="attr">align-items</span> : <input type="radio" name="align-items" checked="checked" id="stretch3"> <label for="stretch3">stretch</label> <input type="radio" name="align-items" id="center3"> <label for="center3">center</label> <input type="radio" name="align-items" id="flex-start3"> <label for="flex-start3">flex-start</label> <input type="radio" name="align-items" id="flex-end3"> <label for="flex-end3">flex-end</label> <input type="radio" name="align-items" id="baseline4"> <label for="baseline4">baseline</label> <input type="radio" name="align-items" id="self-end11"> <label for="self-end11">self-end</label> <input type="radio" name="align-items" id="self-start11"> <label for="self-start11">self-start</label> <input type="radio" name="align-items" id="revert55"> <label for="revert55">revert</label> <input type="radio" name="align-items" id="unset55"> <label for="unset55">unset</label></div></article><br><br><article class="child"><h3><strong>child</strong></h3><div><span class="attr">flex-grow</span> : <input type="radio" name="flex-grow" id="1"> <label for="1">1</label> <input type="radio" name="flex-grow" checked="checked" id="0"> <label for="0">0</label></div><div><span class="attr">flex-shrink</span> : <input type="radio" name="flex-shrink" checked="checked" id="s1"> <label for="s1">1</label> <input type="radio" name="flex-shrink" id="s0"> <label for="s0">0</label></div><div><span class="attr">flex-basis</span> : <input type="radio" name="flex-basis" id="b0"> <label for="b0">0</label> <input type="radio" name="flex-basis" checked="checked" id="auto"> <label for="auto">auto</label> <input type="text" id="number" value="" placeholder="px or %"> <button class="dbtn number">click</button></div><div><span class="attr">width</span> : <input type="text" id="width" value="" placeholder="px or %"> <button class="dbtn width">click</button></div></article></div><script>const targetParentEle = document.querySelector('.flex1');
+
+                                .dbtn {
+                                    color: #fff;
+                                    padding: 2px 15px 2px 10px;
+                                    border: 1px solid #555;
+                                    border-radius: 6px;
+                                    position: relative;
+                                    font-size: 11px;
+                                    ;
+                                }
+
+                                .dbtn::after {
+                                    content: '';
+                                    display: inline-block;
+                                    width: 4px;
+                                    height: 4px;
+                                    border-right: 1px solid #ddd;
+                                    border-top: 1px solid #ddd;
+                                    transform: translateY(-30%) rotate(45deg);
+                                    position: absolute;
+                                    top: 50%;
+                                    right: 7px;
+                                }
+
+                                input[type="text"] {
+                                    background: #0d1117;
+                                    box-shadow: none;
+                                    border: none;
+                                    border-bottom: 1px solid coral;
+                                    width: 60px;
+                                    color: coral;
+                                    text-align: center;
+                                    margin-left: 10px;
+                                    margin-right: 5px;
+                                }</style><article class="flex_wrap"><ul class="flex1"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul></article><br><article class="parent"><h3><strong>self(parent)</strong></h3><div><span class="attr">display</span> : <input type="radio" checked="checked" name="display" id="block"> <label for="block">block</label> <input type="radio" name="display" id="flex"> <label for="flex">flex</label></div><div><span class="attr">flex-direction</span> : <input type="radio" name="flex-direction" checked="checked" id="row"> <label for="row">row</label> <input type="radio" name="flex-direction" id="column"> <label for="column">column</label></div><div><span class="attr">flex-wrap</span> : <input type="radio" name="flex-wrap" checked="checked" id="nowrap"> <label for="nowrap">nowrap</label> <input type="radio" name="flex-wrap" id="wrap"> <label for="wrap">wrap</label></div><div><span class="attr">align-content</span> : <input type="radio" name="align-content" checked="checked" id="stretch1"> <label for="stretch1">stretch</label> <input type="radio" name="align-content" id="center1"> <label for="center1">center</label> <input type="radio" name="align-content" id="flex-start1"> <label for="flex-start1">flex-start</label> <input type="radio" name="align-content" id="flex-end1"> <label for="flex-end1">flex-end</label> <input type="radio" name="align-content" id="space-around1"> <label for="space-around1">space-around</label> <input type="radio" name="align-content" id="space-between1"> <label for="space-between1">space-between</label></div><div><span class="attr">justify-content</span> : <input type="radio" name="justify-content" checked="checked" id="flex-start2"> <label for="flex-start2">flex-start</label> <input type="radio" name="justify-content" id="flex-end2"> <label for="flex-end2">flex-end</label> <input type="radio" name="justify-content" id="center2"> <label for="center2">center</label> <input type="radio" name="justify-content" id="space-around2"> <label for="space-around2">space-around</label> <input type="radio" name="justify-content" id="space-between2"> <label for="space-between2">space-between</label> <input type="radio" name="justify-content" id="space-evenly2"> <label for="space-evenly2">space-evenly</label> <input type="radio" name="justify-content" id="stretch33"> <label for="stretch33">stretch</label></div><div><span class="attr">align-items</span> : <input type="radio" name="align-items" checked="checked" id="stretch3"> <label for="stretch3">stretch</label> <input type="radio" name="align-items" id="center3"> <label for="center3">center</label> <input type="radio" name="align-items" id="flex-start3"> <label for="flex-start3">flex-start</label> <input type="radio" name="align-items" id="flex-end3"> <label for="flex-end3">flex-end</label> <input type="radio" name="align-items" id="baseline4"> <label for="baseline4">baseline</label> <input type="radio" name="align-items" id="self-end11"> <label for="self-end11">self-end</label> <input type="radio" name="align-items" id="self-start11"> <label for="self-start11">self-start</label> <input type="radio" name="align-items" id="revert55"> <label for="revert55">revert</label> <input type="radio" name="align-items" id="unset55"> <label for="unset55">unset</label></div></article><br><article class="child"><h3><strong>child</strong></h3><div><span class="attr">flex-grow</span> : <input type="radio" name="flex-grow" id="1"> <label for="1">1</label> <input type="radio" name="flex-grow" checked="checked" id="0"> <label for="0">0</label></div><div><span class="attr">flex-shrink</span> : <input type="radio" name="flex-shrink" checked="checked" id="s1"> <label for="s1">1</label> <input type="radio" name="flex-shrink" id="s0"> <label for="s0">0</label></div><div><span class="attr">flex-basis</span> : <input type="radio" name="flex-basis" id="b0"> <label for="b0">0</label> <input type="radio" name="flex-basis" checked="checked" id="auto"> <label for="auto">auto</label> <input type="text" id="number" value="" placeholder="px / %"> <button class="dbtn number">click</button></div><div><span class="attr">width</span> : <input type="text" id="width" value="" placeholder="px / %"> <button class="dbtn width">click</button></div><br><article class="custom"><h3><strong>select box custom</strong> <button class="dbtn custombtn">custom click!</button></h3><div class="select-box123"><span class="attr">select box</span> : <input type="text" id="select" value="" placeholder="box num"></div><div class="flex-grow123"><span class="attr">flex-grow</span> : <input type="radio" name="flex-grow123" id="grow1" data-val="1"> <label for="grow1">1</label> <input type="radio" name="flex-grow123" checked="checked" id="grow0" data-val="0"> <label for="grow0">0</label></div><div class="flex-shrink123"><span class="attr">flex-shrink</span> : <input type="radio" name="flex-shrink123" checked="checked" id="shrink1" data-val="1"> <label for="shrink1">1</label> <input type="radio" name="flex-shrink123" id="shrink0" data-val="0"> <label for="shrink0">0</label></div><div class="flex-basis123"><span class="attr">flex-basis</span> : <input type="radio" name="flex-basis123" id="basis0" data-val="0"> <label for="basis0">0</label> <input type="radio" name="flex-basis123" checked="checked" id="basisauto" data-val="auto"> <label for="basisauto">auto</label> <input type="text" id="number123" value="" placeholder="px / %"></div><div class="width123"><span class="attr">width</span> : <input type="text" id="width123" value="" placeholder="px / %"></div></article></article></div><script>const targetParentEle = document.querySelector('.flex1');
                             const targetChildEles = document.querySelectorAll('.flex1 > li');
                             const parent = document.querySelector('.parent');
                             const child = document.querySelector('.child');
                             const num = document.querySelector('#number')
                             const width = document.querySelector('#width')
 
-                            const flexStyle = getComputedStyle(parent)
+                            // cus
+                            const customBox = document.querySelector('.custom')
+                            const customBtn = document.querySelector('.custombtn')
+                            const val = {
+                                targetNum: 1,
+                                flexGrow: 0,
+                                flexShrink: 1,
+                                flexBasis: "auto",
+                                // width: '0px',
+                            }
 
-                            
+
                             const clickEvt = e => {
                                 // console.log(e.target.parentNode.parentNode.classList.contains('parent'))
                                 // parent click
@@ -760,7 +884,7 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     }
                                 }
 
-                                if(e.target.nodeName === 'BUTTON' && e.target.classList.contains('number')) {
+                                if (e.target.nodeName === 'BUTTON' && e.target.classList.contains('number')) {
                                     const props = e.target.parentNode.children[0].textContent;
                                     // let unit = stringFilter(num.value, '%', 'px')
                                     for (let i = 0; i < targetChildEles.length; i++) {
@@ -768,7 +892,7 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                                     }
                                 }
 
-                                if(e.target.nodeName === 'BUTTON' && e.target.classList.contains('width')) {
+                                if (e.target.nodeName === 'BUTTON' && e.target.classList.contains('width')) {
                                     const props = e.target.parentNode.children[0].textContent;
                                     for (let i = 0; i < targetChildEles.length; i++) {
                                         targetChildEles[i].style[props] = width.value
@@ -777,13 +901,116 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
                             }
 
                             const stringFilter = (...args) => {
-                                // console.log(args) 나 이거 왜 한거지 ..?
-                                for(let i = 1; i < args.length; i++) {
-                                    if(args[0].indexOf(args[i]) > -1) {
+                                // 나 이거 왜 한거지 ..?
+                                for (let i = 1; i < args.length; i++) {
+                                    if (args[0].indexOf(args[i]) > -1) {
                                         return args[i]
                                         break
                                     }
                                 }
                             }
 
-                            window.addEventListener('click', clickEvt)</script></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
+
+                            const dataset = e => {
+                                if (e.target.parentNode.classList.contains('select-box123')) {
+                                    val["targetNum"] = e.target.value
+                                }
+                                if (e.target.parentNode.classList.contains('flex-grow123')) {
+                                    val[flexGrow] = e.target.dataset.val
+                                }
+                                if (e.target.parentNode.classList.contains('flex-shrink123')) {
+                                    val["flexShrink"] = e.target.dataset.val
+                                }
+                                if (e.target.parentNode.classList.contains('flex-basis123')) {
+                                    val["flexBasis"] = e.target.dataset.val
+                                }
+                                if (e.target.parentNode.classList.contains('flex-basis123') && e.target.getAttribute('id') === 'number123') {
+                                    val["flexBasis"] = e.target.value
+                                }
+                                if (e.target.parentNode.classList.contains('width123')) {
+                                    val["width"] = e.target.value
+                                }
+                                console.log('value', val)
+                            }
+
+                            const dataInit = () => {
+
+                                console.log(val.flexBasis)
+
+                                for (let i = 0; i < targetChildEles.length; i++) {
+                                    targetChildEles[val.targetNum - 1].style["flexGrow"] = val.flexGrow
+                                    targetChildEles[val.targetNum - 1].style["flexShrink"] = val.flexShrink
+                                    targetChildEles[val.targetNum - 1].style["flexBasis"] = val.flexBasis
+                                    targetChildEles[val.targetNum - 1].style["width"] = val.width
+
+                                }
+                            }
+
+
+
+                            window.addEventListener('click', clickEvt)
+                            customBox.addEventListener('change', dataset)
+                            customBtn.addEventListener('click', dataInit)</script></div></section><section class="conts"><h2>Grid</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span></button></dt><dd></dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+-
+                            </code>
+                        </pre></div></div></div></section><section class="conts"><h2>Dark mode</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span>dark mode</button></dt><dd></dd></dl><div class="code_wrap"><pre>
+                            <code class="css">
+1. 변수설정 
+
+:root[data-color=data] {
+    --main-bg-color: black;
+    ... 
+    ... 
+}
+
+
+:root[data-color=light] {
+    --main-bg-color: #fff;
+    ... 
+    ... 
+}
+                            </code>
+                            <code class="css">
+2. 변수사용 
+
+body { background-color: var(--main-bg-color, #fff) } 
+                     </code>
+                            <code class="javascript">
+3. html 제어 
+
+const darkInput = document.querySelector('.inputTag')
+
+function activeDarkMode() {
+    if(darkInput.checked) {
+        document.documentElement.setAttribute('data-color', 'dark')
+        localStorage.setItem('darkmode', 'dark')
+    } else {
+        document.documentElement.setAttribute('data-color', 'light')
+        localStorage.setItem('darkmode', 'light')
+    }
+}
+
+
+                        </code>
+                        <code class="javascript">
+4. 저장소에 저장해서 쓰기
+
+let dargToggle = localStorage.getItem('darkmode')
+
+function darkmode() {
+    if(dargToggle === 'dark') {
+        document.documentElement.setAttribute('data-color', 'dark')
+        darkInput.checked = true;
+    } else {
+        document.documentElement.setAttribute('data-color', 'light')
+        darkInput.checked = false;
+    }
+}
+
+
+
+let dargToggle = localStorage.getItem('darkmode')
+
+                        </code>
+                        </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
