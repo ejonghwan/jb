@@ -1478,6 +1478,17 @@ https://ko.reactjs.org/docs/hooks-reference.html#usecontext
   하나의 값이 변경되면 모두 리렌더링이 되기 때문에 콘텍스트마다의 분리가 중요
 `
 
+// 간단 정리
+// 1. 컨텍스트 만들기  createContext()
+// 2. 공급자 만들기 - 공급자 함수(hoc) UserContext.Provider
+// 3. reducer 연결 useReducer가 (state, dispatch) 리턴해줌  - useReducer(reducer, initialstate)
+// 4. UserContext.Provider에 prop으로 내려주기
+// 5. 사용할 곳에 Provider감싸주기
+
+// 사용할떈 createContext 들어있는 변수 호출해서 사용 
+// const { state, dispatch } = useContext(ImageContext)
+
+
 
 ex1) useContext + useReducer로 Redux처럼 사용하기 
 
