@@ -2906,7 +2906,15 @@ router.post('/:username/profile', async(req, res) => {
 5. bakcend에서 req.header로 token값을 받아 decode함  jwt.verify(token, jwt_key)
 6. 5번에서 리턴된 값으로 유저를 찾아 리턴해주거나 로그인 유지 등 이후 로직 실행 
 `
-  
+
+
+` 사용방법
+jwt.sign(payload, secret, options, [callback])
+
+
+https://github.com/auth0/node-jsonwebtoken
+`
+
 
 
 // auth.js 커스텀 미들웨어 
