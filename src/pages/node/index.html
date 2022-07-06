@@ -510,12 +510,16 @@ Post 요청은 idempotent하지 않습니다.
                         <dl class="item">
                             <dt><button><span>app</span>.put()</button></dt>
                             <dd>
-                                모두수정
+                                필드 모두수정
                         </dd>
                         </dl>
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+!!주의점
+필드 부분만 전달하면 필드 외 부분은 null or 초기화 됨
+
+
 app.put('/', function (req, res) {
     res.send('PUT request to homepage')
 })
@@ -529,7 +533,7 @@ app.put('/', function (req, res) {
                         <dl class="item">
                             <dt><button><span>app</span>.patch()</button></dt>
                             <dd>
-                                부분수정
+                                필드 부분수정
                         </dd>
                         </dl>
                         <div class="code_wrap">
