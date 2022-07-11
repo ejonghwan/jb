@@ -2972,11 +2972,43 @@ router.post('/test', auth, async (req, res) => { // 여기서 auth 미들웨어�
 
 
               <!-- Node -->
-              <!-- <section class="conts">
+              <section class="conts">
                 <h2>Node</h2>
-
                 
-             </section> -->
+                 <!-- json web token -->
+             <div class="depth_2">
+                <strong></strong>
+                 <!-- item -->
+                 <div class="item_wrap">
+                    <dl class="item">
+                        <dt><button><span>path</span> 사용방법</button></dt>
+                        <dd>
+                            es6 type module일 때 파일경로 찾기
+                        </dd>
+                    </dl>
+                    <div class="code_wrap">
+                    <pre>
+                        <code class="javascript">
+import path from 'path'
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename); 
+const __dirname2 =path.resolve(); 
+
+// __dirname
+//C:\Users\user.SH80095621\Desktop\ipt\back\middleware 현재 경로
+
+// __dirname2
+//C:\Users\user.SH80095621\Desktop\ipt\back\  최초디렉토리
+                        </code>
+                    </pre>
+                    </div>
+                </div>
+                <!-- //item -->
+            </div>
+                
+             </section>
              <!-- //Node -->
 
 
