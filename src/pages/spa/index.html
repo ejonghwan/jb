@@ -1612,7 +1612,7 @@ https://ko.reactjs.org/docs/hooks-reference.html#usecontext
                         <!-- item -->
                         <div class="item_wrap">
                             <dl class="item">
-                                <dt><button><span>v6 기준</span>react-router-dom</button></dt>
+                                <dt><button>react-router-dom <span>v6 기준</span></button></dt>
                                 <dd>
                                     router
                                 </dd>
@@ -1635,8 +1635,8 @@ Link
 //https://reactrouter.com/docs/en/v6/getting-started/installation
                         </code>
 
-<code class="javascript">
-1. react-router-dom import  
+<code class="markdown">
+# 1. react-router-dom import  
 
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 
@@ -1652,8 +1652,8 @@ Link - 링크 생성
 
 
 </code>
-<code class="javascript">
-2. 선언  
+<code class="markdown">
+# 2. 선언  
 
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 
@@ -1676,8 +1676,55 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 &lt;Link to=""&gt;&lt;/Link&gt;
 &lt;Link to=""&gt;&lt;/Link&gt;
 
+</code>
+
+<code class="markdown">
+
+# query string 가져올때 쓰기 
+
+react-router-dom v6 이상 쓰시는 분들은 useSearchParams 를 사용
+
+import { useSearchParams } from 'react-router-dom';
+
+const [searchParams] = useSearchParams();
+const detail = searchParams.get('detail') === 'true';
 
 
+----------------------------------------------------------
+
+# 샘플
+
+import {useSearchParams} from 'react-router-dom';
+
+export default function App() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const removeQueryParams = () => {
+    const param = searchParams.get('q');
+
+    if (param) {
+      // 👇️ delete each query param
+      searchParams.delete('q');
+
+      // 👇️ update state after
+      setSearchParams(searchParams);
+    }
+  };
+
+  const handleChange = event => {
+    setSearchParams({q: event.target.value});
+  };
+
+  console.log(searchParams.get('q'));
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={removeQueryParams}&gt;Remove query param&lt;/button&gt;
+
+      &lt;input id="search" autoComplete="off" onChange={handleChange} /&gt;
+    &lt;/div&gt;
+  );
+}
 
 
 
