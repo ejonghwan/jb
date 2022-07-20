@@ -223,6 +223,93 @@ http://coffeenix.net/doc/network/http_1_0_vs_1_1.html
                     </div>
                     <!-- //item -->
                 </div>
+
+                <div class="depth_2">
+                    <strong>개념</strong>
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Debounce <span></span></button></dt>
+                            <dd>
+                                이벤트가 끝날 때까지 기다렸다가 한번만 실행 
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+const debounce = (cb, waitTime = 500) => {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            cb(...args)
+        }, waitTime);
+    }
+}
+                                
+                            </code>
+
+                            <code class="markdown">
+
+
+디바운스와 쓰로틀 
+참고 자료 
+https://class.codejong.kr/t/topic/58/2
+https://css-tricks.com/debouncing-throttling-explained-examples/
+
+
+리액트에서 로대쉬 이용하여 디바운스 쓰로틀 사용 
+https://velog.io/@edie_ko/React-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81-%EC%8B%9C%ED%82%A4%EA%B8%B0-feat.-Lodash-throttle-debounce
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>Throttle <span></span></button></dt>
+                            <dd>
+                                이벤트가 실행하면 주기적으로 실행
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+const throttle = (cb, waitTime = 0) => {
+    let waiting = true;
+    return (...args) => {
+        if(waiting) {
+            cb(...args)
+            waiting = false;
+            setTimeout(() => {
+                waiting = true;
+            }, waitTime)
+        }
+    }
+}                 
+                            </code>
+
+                            <code class="markdown">
+디바운스와 쓰로틀 
+참고 자료 
+https://class.codejong.kr/t/topic/58
+https://css-tricks.com/debouncing-throttling-explained-examples/
+
+
+
+리액트에서 로대쉬 이용하여 디바운스 쓰로틀 사용 
+https://velog.io/@edie_ko/React-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81-%EC%8B%9C%ED%82%A4%EA%B8%B0-feat.-Lodash-throttle-debounce
+https://velog.io/@skawnkk/debounce-throttle
+
+바닐라
+https://velog.io/@pjeeyoung/Throttle-Debounce-%EA%B0%9C%EB%85%90%EA%B3%BC-%EA%B5%AC%ED%98%84
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                </div>
               </section>
               <!-- //Node -->
 
