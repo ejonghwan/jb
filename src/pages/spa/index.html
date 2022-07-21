@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.59e895c96f5fede998fe.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>performence</h2><div class="depth_2"><strong>리소스 관리</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>성능</button></dt><dd>로딩성능 | 렌더링 성능</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.59e895c96f5fede998fe.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Performence</h2><div class="depth_2"><strong>리소스 관리</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>성능</button></dt><dd>로딩성능 | 렌더링 성능</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 성능최적화에는 아래 두 가지로 나뉨  
 
@@ -1171,6 +1171,17 @@ https://ko.reactjs.org/docs/hooks-reference.html#usecontext
   하나의 값이 변경되면 모두 리렌더링이 되기 때문에 콘텍스트마다의 분리가 중요
 `
 
+// 간단 정리
+// 1. 컨텍스트 만들기  createContext()
+// 2. 공급자 만들기 - 공급자 함수(hoc) UserContext.Provider
+// 3. reducer 연결 useReducer가 (state, dispatch) 리턴해줌  - useReducer(reducer, initialstate)
+// 4. UserContext.Provider에 prop으로 내려주기
+// 5. 사용할 곳에 Provider감싸주기
+
+// 사용할떈 createContext 들어있는 변수 호출해서 사용 
+// const { state, dispatch } = useContext(ImageContext)
+
+
 
 ex1) useContext + useReducer로 Redux처럼 사용하기 
 
@@ -1270,7 +1281,119 @@ https://ko.reactjs.org/docs/hooks-reference.html#usecontext
 
 https://ko.reactjs.org/docs/hooks-reference.html#usecontext
                             </code>
-                        </pre></div></div></div></section><section class="conts"><h2>Vue</h2><div class="depth_2"><strong>Vue</strong><div class="item_wrap"><dl class="item"><dt><button><span>vue </span>.vue</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div></div><div class="depth_2"><strong>Library</strong><div class="item_wrap"><dl class="item"><dt><button>react-router-dom <span>v6 기준</span></button></dt><dd>router</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+react-router (아래 두개 포함)
+react-router-dom (웹은 얘만 받아서씀)
+react-router-native
+BrowserRouter
+Route
+Routes
+Link
+
+
+
+//참고한 블로그 및 공식 
+//https://kyung-a.tistory.com/36                         
+//https://reactrouter.com/docs/en/v6/getting-started/installation
+                        </code>
+
+<code class="markdown">
+# 1. react-router-dom import  
+
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
+
+
+/*
+BrowserRouter - HTML5의 history API 사용 (req, res 등에 적합)
+HashRouter - URL의 hash를 사용 (static한 파일에 적합)
+Route - 요청받은 pathname 컴포넌트를 렌더링
+Routes - Route들의 충돌 방지 (path 일치하지 않을 시 맨 아래 path없는 라우트 실행)
+Link - 링크 생성
+*/
+
+
+
+</code>
+<code class="markdown">
+# 2. 선언  
+
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
+
+`App.js`
+&lt;BrowserRouter&gt;
+    &lt;Component /&gt;
+&lt;/BrowserRouter&gt;
+
+
+`Route.js`
+&lt;Routes&gt;
+    &lt;Route path="" element={&lt;Component /&gt;}&gt;
+    &lt;Route path="" element={&lt;Component /&gt;}&gt;
+    &lt;Route path="" element={&lt;Component /&gt;}&gt;
+&lt;/Routes&gt;
+
+
+`page`
+&lt;Link to=""&gt;&lt;/Link&gt;
+&lt;Link to=""&gt;&lt;/Link&gt;
+&lt;Link to=""&gt;&lt;/Link&gt;
+
+</code>
+
+<code class="markdown">
+
+# query string 가져올때 쓰기 
+
+react-router-dom v6 이상 쓰시는 분들은 useSearchParams 를 사용
+
+import { useSearchParams } from 'react-router-dom';
+
+const [searchParams] = useSearchParams();
+const detail = searchParams.get('detail') === 'true';
+
+
+----------------------------------------------------------
+
+# 샘플
+
+import {useSearchParams} from 'react-router-dom';
+
+export default function App() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const removeQueryParams = () => {
+    const param = searchParams.get('q');
+
+    if (param) {
+      // 👇️ delete each query param
+      searchParams.delete('q');
+
+      // 👇️ update state after
+      setSearchParams(searchParams);
+    }
+  };
+
+  const handleChange = event => {
+    setSearchParams({q: event.target.value});
+  };
+
+  console.log(searchParams.get('q'));
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={removeQueryParams}&gt;Remove query param&lt;/button&gt;
+
+      &lt;input id="search" autoComplete="off" onChange={handleChange} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+
+
+
+</code>
+                    </pre></div></div></div></section><section class="conts"><h2>Vue</h2><div class="depth_2"><strong>Vue</strong><div class="item_wrap"><dl class="item"><dt><button><span>vue </span>.vue</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 asd
                         </code>

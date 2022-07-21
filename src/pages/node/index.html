@@ -142,6 +142,63 @@ http://coffeenix.net/doc/network/http_1_0_vs_1_1.html
 
 
                             </code>
+                        </pre></div></div></div><div class="depth_2"><strong>개념</strong><div class="item_wrap"><dl class="item"><dt><button>Debounce <span></span></button></dt><dd>이벤트가 끝날 때까지 기다렸다가 한번만 실행</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+const debounce = (cb, waitTime = 500) => {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            cb(...args)
+        }, waitTime);
+    }
+}
+                                
+                            </code>
+
+                            <code class="markdown">
+
+
+디바운스와 쓰로틀 
+참고 자료 
+https://class.codejong.kr/t/topic/58/2
+https://css-tricks.com/debouncing-throttling-explained-examples/
+
+
+리액트에서 로대쉬 이용하여 디바운스 쓰로틀 사용 
+https://velog.io/@edie_ko/React-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81-%EC%8B%9C%ED%82%A4%EA%B8%B0-feat.-Lodash-throttle-debounce
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Throttle <span></span></button></dt><dd>이벤트가 실행하면 주기적으로 실행</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+const throttle = (cb, waitTime = 0) => {
+    let waiting = true;
+    return (...args) => {
+        if(waiting) {
+            cb(...args)
+            waiting = false;
+            setTimeout(() => {
+                waiting = true;
+            }, waitTime)
+        }
+    }
+}                 
+                            </code>
+
+                            <code class="markdown">
+디바운스와 쓰로틀 
+참고 자료 
+https://class.codejong.kr/t/topic/58
+https://css-tricks.com/debouncing-throttling-explained-examples/
+
+
+
+리액트에서 로대쉬 이용하여 디바운스 쓰로틀 사용 
+https://velog.io/@edie_ko/React-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81-%EC%8B%9C%ED%82%A4%EA%B8%B0-feat.-Lodash-throttle-debounce
+https://velog.io/@skawnkk/debounce-throttle
+
+바닐라
+https://velog.io/@pjeeyoung/Throttle-Debounce-%EA%B0%9C%EB%85%90%EA%B3%BC-%EA%B5%AC%ED%98%84
+                            </code>
                         </pre></div></div></div></section><section class="conts"><h2>Express</h2><div class="depth_2"><strong>express</strong><div class="item_wrap"><dl class="item"><dt><button><span>express</span>.json()</button></dt><dd>json 파싱하기</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 express.json([options])
@@ -287,13 +344,17 @@ POST 요청에는 데이터 길이에 대한 제한이 없습니다.
 Post 요청 중 자원 생성은 201(Created) HTTP 응답 코드를 반환합니다.
 Post 요청은 idempotent하지 않습니다.
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.put()</button></dt><dd>모두수정</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.put()</button></dt><dd>필드 모두수정</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
+!!주의점
+필드 부분만 전달하면 필드 외 부분은 null or 초기화 됨
+
+
 app.put('/', function (req, res) {
     res.send('PUT request to homepage')
 })
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.patch()</button></dt><dd>부분수정</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>app</span>.patch()</button></dt><dd>필드 부분수정</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 app.patch('/', function (req, res) {
     res.send('patch request to homepage')
@@ -1658,7 +1719,15 @@ router.post('/:username/profile', async(req, res) => {
 5. bakcend에서 req.header로 token값을 받아 decode함  jwt.verify(token, jwt_key)
 6. 5번에서 리턴된 값으로 유저를 찾아 리턴해주거나 로그인 유지 등 이후 로직 실행 
 `
-  
+
+
+` 사용방법
+jwt.sign(payload, secret, options, [callback])
+
+
+https://github.com/auth0/node-jsonwebtoken
+`
+
 
 
 // auth.js 커스텀 미들웨어 
@@ -1695,5 +1764,20 @@ router.post('/test', auth, async (req, res) => { // 여기서 auth 미들웨어�
 
 
 
+                        </code>
+                    </pre></div></div></div></section><section class="conts"><h2>Node</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span>path</span> 사용방법</button></dt><dd>es6 type module일 때 파일경로 찾기</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+import path from 'path'
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename); 
+const __dirname2 =path.resolve(); 
+
+// __dirname
+//C:\Users\user.SH80095621\Desktop\ipt\back\middleware 현재 경로
+
+// __dirname2
+//C:\Users\user.SH80095621\Desktop\ipt\back\  최초디렉토리
                         </code>
                     </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
