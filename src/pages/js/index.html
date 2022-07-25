@@ -453,6 +453,41 @@ function book() {
 
 
         </code>
+
+<code class="markdown">
+   # Argument 처리구조
+
+   function hoho() { return arguments }
+   hoho('a', 'b')
+   
+   //{0: a, 1: b}
+
+   1. 함수 호출됨. ()
+   2. 함수 내부로 이동해서 arguments 생성 및 {key:value} 형태로 저장 
+      (key가 없기 때문에 0부터 index 부여해서 key로 사용... {0: param1, 1: param2})
+         
+   - Array-like (Array는 아니고 프로퍼티지만 반복문 가능) 
+     {0: a, 1: b} 이 값을 array-like 라고함 
+   특징
+   - 1씩 증가함
+   - length 존재함
+
+
+   # Param 처리구조 
+   
+   function hoho(param) { return param; }
+   hoho('a', 'b')
+
+   1. 실행문을 만나면 함수 내부로 엔진이동
+   2. 실행문에 있는 'a', 'b'를 함수내부 컨텍스트에 설정  ( {param: 1} 이런식으로 ) 
+   3. Argument 오브젝트 생성 
+   4. 넘겨 받은 파라미터 수를 Argument length 프로퍼티에 설정 
+   5. 파라미터 수만큼 반복하면서 값을 설정 ex) {0: 'a', 1: 'b'}
+   
+   위 과정을 함수 초기화 단계에서 실행함
+   
+   
+</code>
     </pre>
     </div>
 </div>
