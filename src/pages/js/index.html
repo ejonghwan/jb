@@ -462,11 +462,13 @@ function book() {
 <code class="markdown">
 # Argument 처리구조
 
+    !!arguments는 function object 생성 시 [[FormalParameters]]에 설정됨. 
+
     1. 함수가 실행되면 실행컨텍스트에 3개의 파라미터를 넘겨줌 (실행시점은 실행콘텍스트가 생성될 때) 
-       - 함수를 호출한 오브젝트 
+       - 함수를 호출한 오브젝트  (function object 생성 시 만들어졌음.)
          함수를 호출한 오브젝트를 This Binding Component에 설정하여 this로 참조
 
-       - 함수코드 
+       - 함수코드 (function object 생성 시 만들어졌음.)
          function object의 내부 프로퍼티 [[Code]]에 설정
 
        - 호출한 함수의 파라미터 값
@@ -474,9 +476,49 @@ function book() {
 
 
     2. 파라미터 값 매핑
+       - 호출한 함수에서 넘겨준 파마리터값을 fn('a', 'b')
+       - 호출된 함수의 파라미터 작성 순서에 맞추어 값을 매핑 function fn(a, b){} (function object 생성 시 만들어졌음.)
+       
+       ** 실행콘텍스트로 넘겨준 파라미터값과 {function object}의 [[FormalParameters]]에 작성된 이름에 값을 매핑
+          결과를 선언적 환경 레코드에 설정함. 
+
+    ex1)
+    var obj = {}
+    obj.getTotal = function(one, two) {
+        var one; 
+        console.log(one + two);
+        two = 77 
+        console.log(two)
+    }
+    obj.getTotal(11, 22)
+
+    글로벌 생략... obj.getTotal(11, 22)을 만남
+    -- 준비단계
+    1. 실행컨텍스트 객체 생성됨 
+
+    -- 초기화 
+    2. 넘겨받은 11, 22 파라미터값 [[FormalParametars]]에 매핑. 
+    3. 매핑한 값을 선언적 환경 레코드에 설정 {one: 11, two: 22} 
+    4. var one;변수를 초기화 하려는데 선언적 환경 레코드에 이미 one가 존재. undefined 기록하지않음. 
+    5. two = 77; 변수도 레코드에 이미 two가 존재해서 기록하지않음. 
+
+    -- 코드실행
+    6. console.log(one + two)  // 33
+    7. two = 77. 레코드의 two에 할당함
+    8. console.log(two) // 77
+
+
+    ex2)
+    var obj = {}
+    obj.getTotal = function(one, two, two) {
+        console.log(one + two) //66
+    }
+    obj.getTotal(11, 22, 55)
+    위 소스는 매핑하고 선언적 환경 레코드에 기록하는 과정에서 two가 있으니 뒤에껄 덮음 
 
 
 
+# 부가설명
     function hoho() { return arguments }
     hoho('a', 'b')
 
@@ -692,10 +734,91 @@ function book() {
         
         **중요. 저런식으로 하나의 실행컨텍스트에 있어야만 메모리에서 빠르게 실행됨. 의도적으로 설계해야함
 
+</code>
 
-    
 
+<code class="markdown">
+
+# function 인스턴스 
+
+    - 빌트인 Function 오브젝트 
+      1. function 오브젝트: function 키워드로 생성 (사실 얘도 Function 인스턴스임) 
+      2. function 인스턴스: new 연산자로 생성 (prototype에 저장)
+
+# function 인스턴스 생성 
+
+    ex)
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.getName = function() {
+        return this.name + '입니다'
+    }
+
+    var jong = new Person('jong')
+    console.log(jong.name) //jong 
+    console.log(jong.getName) //jong입니다
+
+    실행순서 
+    1. Person object를 생성 
+    2. 생성과 동시에 Person.prototype이라는 오브젝트 공간이 만들어짐
+    3. Person.prototype 오브젝트에 getName연결 후 function(){} 값 할당
+    4. var jong = new Person('jong'); 
+       Person()를 실행하면서 인스턴스를 생성하고 이 인스턴스에 name값을 할당
+       Person.prototype에 연결된 프로퍼티 getName을 인스턴스에 할당.
+       인스턴스: {name: 'jong', getName: function() {} } //이런모양
+       
+    5. 할당된 인스턴스는 자동으로 리턴됨. 
+       var jong = new Person()에서 jong은 인스턴스가 되며, jong.getName을 하면 인스턴스를 참조해 실행함 
+
+
+
+# 생성자 함수
+    - new 연산자와 함께 인스턴스를 생성하는 함수 
+
+    - new 연산자
+      인스턴스 생성 제어, 생성자 함수 호출 
+
+    - 생성자함수 
+      인스턴스 생성, 반환 
+      인스턴스 초기값 설정
+
+# 실행 순서 
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.getName = function() {
+        return this.name + '입니다'
+    }
+    var jong = new Person('jong')
+
+    0. Person function object 생성때 Person()함수 전체를 참조하도록 내부 프로퍼티 [[Construct]]에 설정
+    1. 엔진이 new 연산자를 만나면 function의 [[Construct]]를 호출하며 파라미터로 jong 넘겨줌 
+    2. [[Construct]]에서 인스턴스 생성해서 반환 
+    3. 반환된 인스턴스를 new 연산자가 받아 new연산자를 호출한 곳으로 반환 
+    4. function object의 [[Construct]]가 인스턴스를 생성해서 반환하기 때문에 인스턴스 생성자 함수라고 불림
+
+
+# 인스턴스 생성과정 (코드는 위에꺼)
+
+    0. function 키워드를 만나 Person function object 생성될 때 [[Construct]]가 생성되며 함수 전체를 참조하게 만듦 
+    1. new 연산자를 만나 Person을 실행하게 되면 [[Construct]]가 인스턴스를 반환. (파라미터값도 [[Construct]]에 넘겨줌)
+    2. 빈 Object 생성 (이게 인스턴스) 
+    3. 오브젝트에 내부 처리용 프로퍼티 설정. (공통 프로퍼티 + 선택적 프로퍼티)
+    4. 오브젝트의 [[Class]]에 "Object"설정  (생성된 인스턴스 타입은 Object)
+    5. Person.prototype에 연결된 메서드를 생성한 인스턴스의 [[Prototype]]에 설정 (constructor도 같이 설정됨)
     
+    아래 같은 모양
+    Person 인스턴스: {
+        name: 'jong',
+        __proto__: {
+            constructor: Person, //외부 프로퍼티 constructor도 같이 설정됨  
+            getName: function() {},
+            __proto__: Object   //여기에 Object가 설정되면서 기본내장 프로퍼티 6개 받아옴. 
+        }
+    }
+
+
 </code>
     </pre>
     </div>
