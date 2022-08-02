@@ -346,13 +346,15 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
     <pre>
-        <code class="markdown">
+        <code class="markdown javascript">
+
 # Function 오브젝트
 - function name(){} 은 모두 {name:value} 형태의 인스턴스 객체임. (new가 생략된 것) 
 - function 을 선언하면 엔진이 만났을 때 정적 렉시컬 환경을 생성. 스코프가 결정됨 
   1. 엔진이 function 키워드 만남. 
   2. 빌트인 Function 오브젝트의 prototype에 연결된 메소드로 
   3. function 오브젝트 {name:value} 형태로 생성 및 저장
+
 
 
 ex) console.dir(function aa(){}) 찍어보면 aa: f()~ 
@@ -422,15 +424,15 @@ ex) console.dir(function aa(){}) 찍어보면 aa: f()~
         //(7) 6번에서 리턴된 값이 나옴
 
 
-ex2 결론
-(1) 엔진이 실행을 만나면 엔진컨트롤이 함수내부로 이동  
-(2) 함수 선언문부터 outer 컨텍스트 위로 호이스팅 및 해석 
-(3) 표현식 outer 컨텍스트 위로 호이스팅. 초기화 (undefined)
-(4) 코드실행 (값 할당)  
+        ex2 결론
+        (1) 엔진이 실행을 만나면 엔진컨트롤이 함수내부로 이동  
+        (2) 함수 선언문부터 outer 컨텍스트 위로 호이스팅 및 해석 
+        (3) 표현식 outer 컨텍스트 위로 호이스팅. 초기화 (undefined)
+        (4) 코드실행 (값 할당)  
 
-(?의문) let const 는 호이스팅을 하는데 undefined 일때 오류를 내뱉음?. 아니면 호이스팅 자체를 안함?
+        (?의문) let const 는 호이스팅을 하는데 undefined 일때 오류를 내뱉음?. 아니면 호이스팅 자체를 안함?
 
------------------------------------------------ 
+ //////////////////////////////////////
 !!주의
 console.log(aa)
 function aa(){}
@@ -453,48 +455,63 @@ function book() {
 3. 근데 같은게 존재하여 getbook: value에서 value를 덮음 
 4. 두번째 돌면서 ..함수표현식과 변수를 찾지만 없음 
 5. 코드를 실행하며 function object이기 때문에 {} 에서 getbook을 찾아 실행  
------------------------------------------------
+
 
 </code>
 
 <code class="markdown">
-   # Argument 처리구조
+# Argument 처리구조
 
-   function hoho() { return arguments }
-   hoho('a', 'b')
-   
-   //{0: a, 1: b}
+    1. 함수가 실행되면 실행컨텍스트에 3개의 파라미터를 넘겨줌 (실행시점은 실행콘텍스트가 생성될 때) 
+       - 함수를 호출한 오브젝트 
+         함수를 호출한 오브젝트를 This Binding Component에 설정하여 this로 참조
 
-   1. 함수 호출됨. ()
-   2. 함수 내부로 이동해서 arguments 생성 및 {key:value} 형태로 저장 
-      (key가 없기 때문에 0부터 index 부여해서 key로 사용... {0: param1, 1: param2})
-         
-   - Array-like (Array는 아니고 프로퍼티지만 반복문 가능) 
-     {0: a, 1: b} 이 값을 array-like 라고함 
-   특징
-   - 1씩 증가함
-   - length 존재함
+       - 함수코드 
+         function object의 내부 프로퍼티 [[Code]]에 설정
+
+       - 호출한 함수의 파라미터 값
+         호출한 함수의 Argument 오브젝트에 설정
 
 
-   # Param 처리구조 
-   
-   function hoho(param) { return param; }
-   hoho('a', 'b')
+    2. 파라미터 값 매핑
 
-   1. 실행문을 만나면 함수 내부로 엔진이동
-   2. 실행문에 있는 'a', 'b'를 함수내부 컨텍스트에 설정  ( {param: 1} 이런식으로 ) 
-   3. Argument 오브젝트 생성 
-   4. 넘겨 받은 파라미터 수를 Argument length 프로퍼티에 설정 
-   5. 파라미터 수만큼 반복하면서 값을 설정 ex) {0: 'a', 1: 'b'}
-   
-   위 과정을 함수 초기화 단계에서 실행함
+
+
+    function hoho() { return arguments }
+    hoho('a', 'b')
+
+    //{0: a, 1: b}
+
+    1. 함수 호출됨. ()
+    2. 함수 내부로 이동해서 arguments 생성 및 {key:value} 형태로 저장 
+        (key가 없기 때문에 0부터 index 부여해서 key로 사용... {0: param1, 1: param2})
+            
+    - Array-like (Array는 아니고 프로퍼티지만 반복문 가능) 
+        {0: a, 1: b} 이 값을 array-like 라고함 
+    특징
+    - 1씩 증가함
+    - length 존재함
+
+
+# Param 처리구조 
+
+    function hoho(param) { return param; }
+    hoho('a', 'b')
+
+    1. 실행문을 만나면 함수 내부로 엔진이동
+    2. 실행문에 있는 'a', 'b'를 함수내부 컨텍스트에 설정  ( {param: 1} 이런식으로 ) 
+    3. Argument 오브젝트 생성 
+    4. 넘겨 받은 파라미터 수를 Argument length 프로퍼티에 설정 
+    5. 파라미터 수만큼 반복하면서 값을 설정 ex) {0: 'a', 1: 'b'}
+
+    위 과정을 함수 초기화 단계에서 실행함
    
    
 </code>
 
 
 <code class="markdown">
-    # 스코프 
+# 스코프 
     
     - 스코프의 목적 
     1. 범위를 제한하여 식별자 해결 
@@ -539,7 +556,7 @@ function book() {
     
     
     
-    # 글로벌 스코프 
+# 글로벌 스코프 
     - 글로벌 오브젝트에 함수와 변수 작성 
     - 최상위 스코프      
 </code>
@@ -548,19 +565,20 @@ function book() {
 
 <code class="markdown">
 
-    # Lexical Environment
+# Lexical Environment
     - 자바스크립트 코드에서 변수나 함수 등의 식별자를 정의하는데 사용하는 객체
       1. Environment Record (식별자와 참조 혹은 값을 기록)
       2. outer  (다른 Lexical Environment를 참조하는 포인터로 구성)
      
       
 
-    # 실행 컨텍스트
+# 실행 컨텍스트
     - 함수가 실행되는 영역 
     - 함수코드를 실행하고 실행결과를 저장
     - 함수 호출하면 실행컨텍스트를 생성하고 실행콘텍스트 안으로 이동
 
-    # 실행콘텍스트 실행 단계
+
+# 실행콘텍스트 실행 단계
     1. 준비 단계
     2. 초기화 단계 
     3. 코드 실행 단계 
@@ -571,13 +589,31 @@ function book() {
         eval코드: 동적 환경
 
 
-    # 실행콘텍스트 상태 컴포넌트 
+# 실행콘텍스트 상태 컴포넌트 
     - 유형.. 실행콘텍스트도 객체..프로퍼티로 저장됨.  (이게 Environment Record 인듯)
     실행콘텍스트(EC) : {
-        렉시컬 환경 컴포넌트(LEC) : {}, 
+        렉시컬 환경 컴포넌트(LEC) : {
+            선언적 환경 레코드: {}, //변수, 함수, 트라이케치문..정적
+            오브젝트 환경 레코드: {}, //글로벌 함수/변수, with문..동적
+        }, 
         변수 환경 컴포넌트(VEC): {},
         this 바인딩 컴포넌트(TBC): {},
     }
+
+
+    0. 글로벌 환경 컴포넌트 (동적반영)
+        ex) 구성 
+        실행 콘텍스트(EC): {
+            글로벌 환경 컴포넌트(GC): {
+                환경레코드(ER): { 
+                    여기는 오브젝트 환경 레코드만 있음. 
+                    오브젝트 환경 레코드: {}
+                },
+                외부 렉시컬 환경 참조(OLER): null
+            }   
+        } 
+
+    ** var let const 키워드를 사용하지않고 변수를 선언하면 글로벌 오브젝트 환경 레코드에 설정됨
 
     1. 렉시컬 환경 컴포넌트(LEC)
         - 함수와 변수의 식별자 해결을 위한 환경.
@@ -615,6 +651,49 @@ function book() {
     2. 변수 환경 컴포넌트(VEC)
         - 초기화 단계에서 렉시컬 환경 컴포넌트와 같게 설정 (초깃값을 복원할 때 사용하기 위해)
         - 함수 코드가 실행되면 실행결과를 렉시컬 환경 컴포넌트에 설정. (초깃값이 변해서 이를 유지하기 위한 것)
+
+
+    3. 디스 바인딩(TBC)
+    
+        ex) 
+        var obj = { point: 100 }
+        obj.getPoint = function() {
+            return this.point
+        }
+
+        obj.getPoint();
+
+        실행순서 
+        1. 전역 실행컨텍스트 열림
+        2. 함수선언문 찾음 (없음)
+        3. 변수 초기화 (obj, obj.getPoint)
+        4. 코드실행 (obj 값할당, obj.getPoint에 값 할당)
+        5. obj.getPoint(); 를 만나면 함수내부로 들어가기 전, 실행컨텍스트 생성 (3개 컴포넌트도 만듦)
+        6. 생성 당시 this를 참조함 
+           
+            실행컨텍스트: {
+                어휘 환경 컴포넌트: {
+                    환경 레코드: {
+                        선언적 레코드 환경: {},
+                        오브젝트 레코드 환경: {}
+                    }
+                    외부 참조 레코드: {}
+                }, 
+                변수 환경 컴포넌트: {}
+                this 바인딩 컴포넌트: {
+                    point: 100,
+                    getPoint: function object
+
+                }
+            }
+
+        7. 엔진컨트롤이 함수내부로 이동 
+        8. 코드실행 (point 식별자는 this 바인딩안에 있으니 찾아서 해결 후 리턴)
+        
+        **중요. 저런식으로 하나의 실행컨텍스트에 있어야만 메모리에서 빠르게 실행됨. 의도적으로 설계해야함
+
+
+    
 
     
 </code>
@@ -14551,9 +14630,14 @@ asd
 
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/atom-one-dark.min.css">
+    <!-- <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/vs2015.min.css">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script> -->
+      <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css"> -->
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+    <script>hljs.highlightAll();</script>
 
 </body>
 
