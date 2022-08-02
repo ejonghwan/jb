@@ -812,9 +812,9 @@ function book() {
     Person 인스턴스: {
         name: 'jong',
         __proto__: {
-            constructor: Person, //외부 프로퍼티 constructor도 같이 설정됨  
+            constructor: Person, //외부 프로퍼티 constructor도 같이 설정됨. Person 전체를 참조.
             getName: function() {},
-            __proto__: Object   //여기에 Object가 설정되면서 기본내장 프로퍼티 6개 받아옴. 
+            __proto__: Object   //여기에 Object가 설정되면서 기본내장 프로퍼티 6개 받아옴. 참조
         }
     }
 
