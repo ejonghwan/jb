@@ -784,8 +784,11 @@ function book() {
       인스턴스 초기값 설정
 
 # 실행 순서 
+
+    ex code)
     function Person(name) {
         this.name = name;
+        this.hoho = 'hoho'
     }
     Person.prototype.getName = function() {
         return this.name + '입니다'
@@ -801,7 +804,7 @@ function book() {
 
 # 인스턴스 생성과정 (코드는 위에꺼)
 
-    0. function 키워드를 만나 Person function object 생성될 때 [[Construct]]가 생성되며 함수 전체를 참조하게 만듦 
+    0. function 키워드를 만나 Person function object 생성될 때 [[Construct]]가 생성되며 함수 전체를 참조하게 만듦. 인스턴스에 constructor도 여기서 보내준거. 
     1. new 연산자를 만나 Person을 실행하게 되면 [[Construct]]가 인스턴스를 반환. (파라미터값도 [[Construct]]에 넘겨줌)
     2. 빈 Object 생성 (이게 인스턴스) 
     3. 오브젝트에 내부 처리용 프로퍼티 설정. (공통 프로퍼티 + 선택적 프로퍼티)
@@ -817,6 +820,240 @@ function book() {
             __proto__: Object   //여기에 Object가 설정되면서 기본내장 프로퍼티 6개 받아옴. 참조
         }
     }
+
+    최신 크롬에서 찍으면 아래처럼 보임 __proto__를 [[Prototype]]으로 표기하는듯
+    Person 인스턴스: {
+        name: 'jong',
+        [[Prototype]]: { //prototype에 연결된거. 이부분이 __proto__ (생략가능)
+            getName: f function() {},
+            constructor: f Person(name), //컨스트럭터에 Person함수 자체를 참조
+            [[Prototype]]: Object  //Object 기본 6개 메서드 들어있음 
+        }
+    }
+
+    접근할 땐 jong.__proto__ 로 접근해야함.. 
+
+
+
+# constructor 프로퍼티
+
+    - 생성자 함수인 function object를 참조 
+    - function object 생성 당시 만들어짐 [[Construct]]
+    - prototype에 연결되어 있음 
+    - ES5에서는 수정불가. ES6에서는 수정, 추가 가능해서 활용도 높음 (class에 constructor() 함수인듯.) 
+
+
+    간단 구조 
+    Person function object: {
+        prototype: {
+            constructor: Person()
+        }
+    }
+
+# constructor 프로퍼티 특성    
+    ex code) 참고 
+
+    1. 생성자를 참조하고 있음 
+        Person === Person.prototype.constructor //true
+        Person === jong.__proto__.constructor //true  (__proto__는 생략가능) 
+
+        이유는 constructor가 생성자함수 전체를 참조하기 때문. 
+
+    2. 인스턴스와 생성자는 다른 타입 
+        typeof Person //function 
+        typeof jong //object  (function object 생성자로 jong 인스턴스를 만듦)
+
+        타입이 변경되는 이유는 인스턴스를 만들 때 생성자에 있는 내부프로퍼티 [[Constroct]]가 실행될 때 생성한 오브젝트의 [[Class]]에 "Object"를 할당하기 때문.
+    
+        *포인트: function object 타입이 변경된다는 것은 성격과 목적이 바뀐다는 의미.
+                인스턴스는 함수가 아니라 인스턴스 그 자체 의미로 생각해야함.
+                prototype가 존재하고 거기에 많은 메서드들이 연결됨 
+                function은 함수가 하나지만 인스턴스는 함수가 다수임. 
+
+
+
+       의문??
+       1. jong.getName() //jong 
+       2. jong.__proto__.getName() //undefined   
+       
+       ** 풀림 
+       1번은 인스턴스 생성 당시 name을 바로 불러온거고 
+       2번은 prototype에 저장된 name을 찾으니 당연히 없는거 
+
+       구조로 보면 
+       Person function object: {
+            name: 'jong', //인스턴스 생성하면 여기에 기록 
+            prototype: { //연결된 prototype 공간. 2번에선 여기껄 찾은거임 
+                //당연히 2번은 name값이 없으니 undefined  
+                getName: f(),
+                constructor: Person(),
+                prototype: Object,
+            }
+       }
+
+       ** 이유
+       Person.prototype.constructor('메롱') 얘 자체가 Person 함수를 참조하고 있으니 이렇게 해주면 
+       2. jong.__proto__.getName() //'메롱'
+
+       구조로 보면 
+       Person function object: {
+            name: 'jong',
+            prototype: { 
+                name: "메롱", //이제 생김.
+                getName: f(),
+                constructor: Person(),
+                prototype: Object,
+            }
+       }
+
+       ** 정리
+       인스턴스.name 했을 때는 name이 없으면 prototype 체이닝을 따라 아래로 가면서 찾지만 
+       인스턴스.__proto__.getName()은 상위로 가지않고 아래에도 없으니 undefind 
+
+       jong.getName() 랑 jong.__proto__.getName()이랑 완전 같지만, 위치를 잘 확인할 것 
+       인스턴스.__proto__ 는 prototype 공간에 접근할 수 있게 해주는애임!! 
+
+       + Person.prototype.getName() //undefined 얘도 동일함
+        
+       
+       **결론
+
+       console.dir(Person) 생성자
+       Person: {
+            ...,
+            prototype: {
+                getName: f(),
+                ... 
+            }
+       }
+
+       console.dir(jong) 인스턴스 
+       Person: {
+            name: 'jong', //여기는 인스턴스.name으로 접근
+            hoho: 'hoho',
+            prototype: {
+                getName: f(), //여기는 인스턴스.__proto__.getName()으로 접근
+                constructor: Person(name),
+                prototype: Object,
+            }
+       }
+
+
+       
+# prototype 상속 
+
+    - prototype의 목적은 확장  
+      Person.prototype.getName = f()
+
+    - prototype 공유
+      인스턴스에서 prototype 메서드를 사용 
+      jong.getName()  (proto는 생략가능)
+
+    - prototype 상속 
+      prototype에서의 상속은 사실 확장의 개념임 
+
+      1. 생성자 함수 this 연결 
+      2. prototype 연결
+
+    ex code)
+
+    function AA(nameA) {
+        this.nameA = nameA;
+    }
+    AA.prototype.getNameA = function() { return this.nameA + '임' }
+    
+    var aObj = new AA('aaaa')
+
+
+    function BB(nameB) {
+        this.nameB = nameB;
+        AA.call(this, nameB) // 1. 생성자 this 연결
+    }
+
+    BB.prototype = Object.create(AA.prototype, {}) // 2. prototype 연결 (getA 연결됨)
+    BB.prototype.getNameB = function() { return this.nameB + '임' }
+    
+    var bObj = new BB('bbbb')
+
+
+    구조)
+    1. 생성자 
+    f BB(b) {
+        arguments: null,
+        caller: null,
+        length: 1,
+        name: 'BB',
+        prototype: AA { //함수는 prototype으로 저장됨 (공간개념)
+            getB: f(),
+            prototype: Object { //prototype에 상속이 들어와있음
+                getA: f(),
+                constructor: f AA(a),
+                [[Prototype]]: Object //기본 Object 
+            } 
+        }
+    }
+
+    2. 인스턴스
+    BB: {
+        a: 'bbbb',
+        b: 'bbbb'
+        [[prototype]]: AA { //인스턴스는 내부 프로퍼티로 저장됨.. (연결의미) 원래는 __proto__ 
+            getB: f(),
+            [[prototype]]: Object {
+                getA: f(),
+                constructor: f AA(a), //얘는 생성자 [[Construct]]에서 할당한거
+                [[prototype]]: Object {} // 기본 Object 메서드 6개
+            }
+        }
+    }
+
+
+
+# prototype this 
+
+    - this는 하나 앞을 참조함 (객체랑 같음)
+      ex)
+      var jong = new Person('jj') 
+      jong.getName()
+
+      1. Person.prototype.getName 메서드 안의 this는 jong을 참조
+         jong.hwan.getName() 만약 이렇게 되어있으면 hwan을 참조 
+
+      2. jong안에는 Person이 담겨있기떄문에 결국 this를 공유하게 되는거임, 
+         prototype에 연결된 메서드도 동일
+
+
+
+# prototype 호출시점 
+
+    - 인스턴스 생성하면 prototype에 메서드 연결됨 
+    - 인스턴스에 넣은 함수가 먼저 실행됨
+
+      jong 인스턴스: {
+         name: 'jong',
+         getName: f(),  //인스턴스에 직접 설정한 함수   !!얘가 먼저 실행됨 
+         [[Prototype]]: {
+            getName: f()  //prototype으로 연결된 함수 
+            ...
+         }   
+      } 
+
+
+    
+# prototype 주의 
+
+    - prototype에 한번에 많은 요소를 넣을 때 constructor가 사라지지 않게 주의 
+      사라져도 인스턴스는 생성되지만.. 이론상 존재해야 어색하지않음 
+
+    Person.prototype = {
+        constructor: Person //원래 있던거처럼 생성자를 참조하는 constructor 넣어줌 
+        name: 'hoho',
+        getName2: function() {}
+    }
+
+    **팁
+    객체에 constructor: f() 이렇게 함수가 바로 담긴건 객체 키(constructor)로 실행 
+
 
 
 </code>
