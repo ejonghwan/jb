@@ -1,7 +1,7 @@
 /*!
  * 
- *         Build Data: 2022. 8. 3.
- *         GIT Commit Ver: ad4aacc
+ *         Build Data: 2022. 8. 4.
+ *         GIT Commit Ver: ac18b02
  *
  *         User Name : ejonghwan
  *
