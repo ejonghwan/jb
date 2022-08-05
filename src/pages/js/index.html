@@ -203,21 +203,6 @@ general lists of nodes
 
 
 
-# this
-1. function - window 
-2. {} - 스코프 한칸 위 
-3. { aa: function(){} } - window
-3-1 { aa: () => {}; } - window
-3-2 { aa: (){} } - window
-4. { aa: () { function() { this - window }; () => { this - 한칸위 } } }
-5. prototype, class - instance
-6. prototype 안 function - window 
-7. eventListener - target element 
-8. eventListener 안 function - undefined
-9. eventListener 안 () => {} - window
-
-
-
 
 # closuer
 ex1) 
@@ -350,7 +335,8 @@ iuSayNameBind()
                 </dd>
             </dl>
             <div class="code_wrap">
-<pre><code class="markdown">
+<pre>
+    <code class="markdown">
 # Function 오브젝트
     - function name(){} 은 모두 {name:value} 형태의 인스턴스 객체임. (new가 생략된 것) 
     - function 을 선언하면 엔진이 만났을 때 정적 렉시컬 환경을 생성. 스코프가 결정됨 
@@ -387,7 +373,7 @@ iuSayNameBind()
             </dl>
             <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # 내부 프로퍼티 (내부값이라 쓰진 못함)
 
     프로퍼티이름 - 값 형태 | 설명
@@ -443,7 +429,7 @@ iuSayNameBind()
             </dl>
             <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # 엔진 해석 순서 
     1. 함수 선언문을 작성된 순서대로 해석. (호이스팅 {name: value}형태로 값 저장 ) 
     2. 함수 표현식을 작성한 순서대로 해석. (호이스팅 이름부터 위로.. 그 후에 코드실행되며 할당)(표현식이 먼저 작성되었어도 선언문을 먼저 해석함.)
@@ -513,7 +499,7 @@ iuSayNameBind()
             </dl>
             <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # Argument 처리구조
 
     !!arguments는 function object 생성 시 [[FormalParameters]]에 설정됨. 
@@ -623,7 +609,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # 스코프 
     
     - 스코프의 목적 
@@ -691,7 +677,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # Lexical Environment
     - 자바스크립트 코드에서 변수나 함수 등의 식별자를 정의하는데 사용하는 객체
       1. Environment Record (식별자와 참조 혹은 값을 기록)
@@ -715,7 +701,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 
 # 실행 컨텍스트
     - 함수가 실행되는 영역 
@@ -750,7 +736,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # 실행콘텍스트 상태 컴포넌트 
     - 유형.. 실행콘텍스트도 객체..프로퍼티로 저장됨.  (이게 Environment Record 인듯)
     실행콘텍스트(EC) : {
@@ -876,7 +862,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # function 인스턴스 
 
     - 빌트인 Function 오브젝트 
@@ -925,7 +911,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # 생성자 함수
     - new 연산자와 함께 인스턴스를 생성하는 함수 
 
@@ -970,7 +956,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # 인스턴스 생성과정 (코드는 위에꺼)
 
     0. function 키워드를 만나 Person function object 생성될 때 [[Construct]]가 생성되며 함수 전체를 참조하게 만듦. 인스턴스에 constructor도 여기서 보내준거. 
@@ -1018,7 +1004,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # constructor 프로퍼티
 
     - 생성자 함수인 function object를 참조 
@@ -1138,7 +1124,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # prototype 상속 
 
     - prototype의 목적은 확장  
@@ -1218,12 +1204,12 @@ iuSayNameBind()
     <dl class="item">
         <dt><button>prototype this<span></span></button></dt>
         <dd>
-
+           
         </dd>
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 
 # prototype this 
 
@@ -1276,7 +1262,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 
 # prototype 프로퍼티 공유시점
     - 사용하는 시점에 prototype의 프로퍼티 공유 
@@ -1339,7 +1325,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # prototype 주의 
     - prototype에 한번에 많은 요소를 넣을 때 constructor가 사라지지 않게 주의 
       사라져도 인스턴스는 생성되지만.. 이론상 존재해야 어색하지않음 
@@ -1373,7 +1359,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # this 
     - this는 키워드 
     - obj.name() 호출하면 name앞에 obj가 this 
@@ -1383,6 +1369,23 @@ iuSayNameBind()
     - window는 JS에서 만든게 아니고 글로벌 오브젝트의 스코프도 아님 
       window와 글로벌 오브젝트를 같은 선상에서 사용 
       Host 오브젝트 개념 적용
+
+
+      
+# this가 가르키는
+    1. function - window 
+    2. {} - 스코프 한칸 위 
+    3. { aa: function(){} } - window
+    3-1 { aa: () => {}; } - window
+    3-2 { aa: (){} } - window
+    4. { aa: () { function() { this - window }; () => { this - 한칸위 } } }
+    5. prototype, class - instance
+    6. prototype 안 function - window 
+    7. eventListener - target element 
+    8. eventListener 안 function - undefined
+    9. eventListener 안 () => {} - window
+
+
 
 
 </code>
@@ -1400,7 +1403,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # this와 글로벌 오브젝트 
     - window.onload = function(){} 밖에서 작성 
       1. this === window //true
@@ -1428,7 +1431,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # this와 window 오브젝트 
     window.onload = function() {
         1. this가 window 참조. 
@@ -1461,7 +1464,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 
 # this와 strict모드 
     - strict에서는 함수이름만 작성하면 함수안의 this는 undefined로 설정됨 
@@ -1511,7 +1514,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # this와 인스턴스 
     - 인스턴스를 쓰는 목적이 각 객체마다 this는 다르게 메소드는 같은걸 쓸 수 있어서 
     
@@ -1546,7 +1549,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 
 # this와 .call()
     - this를 변경해줌 
@@ -1634,7 +1637,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 
 # this와 .apply()
     - call과 다른점은 두번째 인자로 받는 매개변수값들이 유동적일 때 사용함 
@@ -1678,7 +1681,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 
 # this와 .bind()
     - bind는 두번에 나누어 처리. 
@@ -1752,7 +1755,7 @@ iuSayNameBind()
     </dl>
     <div class="code_wrap">
 <pre>
-<code class="markdown">
+    <code class="markdown">
 # this와 콜백 함수
     - () => {} 와 function의 this는 다름 arrow는 어디서든 this === window !!주의
     - 배열 메서드중에 thisArg 있는건 this를 callback 안에서 쓸 수 있음. 7개정도 있음!
@@ -1790,12 +1793,12 @@ iuSayNameBind()
     <dl class="item">
         <dt><button>즉시실행 함수<span></span></button></dt>
         <dd>
-
+            IIFE
         </dd>
     </dl>
     <div class="code_wrap">
-<pre>
-<code class="markdown">
+        <pre>
+            <code class="markdown">
 # IIFE 즉시실행함수 (무명함수, 익명함수)
     - 변수의 초기값을 설정할 때 사용 
       함수 안의 결과는 바로 실행하고 날려버리기 때문.
@@ -1825,9 +1828,9 @@ iuSayNameBind()
 
     var n = (1 + 2) 
 
-
-</code>
-</pre>
+            </code>
+        </pre>
+   
     </div>
 </div>
 <!-- //item -->
