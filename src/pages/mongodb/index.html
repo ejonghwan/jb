@@ -19,16 +19,17 @@
         <main>
             <div class="global_wrap">
                 
-
+                <p>query 정리 https://velopert.com/479</p>
+                <p>query 정리 https://mongoosejs.com/docs/api/model.html</p>
                 <!-- MongoDB -->
                 <section class="conts">
                     <h2>MongoDB</h2>
-
+                   
                     <div class="depth_2">
-                        <strong>-</strong>
+                        <!-- <strong>-</strong> -->
                    
                     <!-- item -->
-                    <div class="item_wrap">
+                    <!-- <div class="item_wrap">
                         <dl class="item">
                             <dt><button><span>-</span>.-</button></dt>
                             <dd>
@@ -42,7 +43,7 @@ asd
                             </code>
                         </pre>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- //item -->
                 </div>
               </section>
@@ -904,6 +905,20 @@ await Blog.updateOne({ 'comments._id': req.params.commentId }, { $pull: { commen
 // elemMatch....
 // comments._id 선택하고 $pull: { 삭제할 필드: $elemMatch: { { 삭제조건 }, { 삭제조건 } } } 둘다 맞아야 삭제
 
+
+
+//find ex
+$elemMatch 연산자
+$elemMatch 연산자는 Embedded Documents 배열을 쿼리할때 사용됩니다. 저희 mock-up data 에서는 comments 가 Embedded Document에 속합니다.
+
+예제11: comments 중 “Charlie” 가 작성한 덧글이 있는 Document 조회
+db.articles.find( { “comments”: { $elemMatch: { “name”: “Charlie” } } } )
+
+
+
+
+// 배열과 오브젝트일때 쿼리 
+https://koonsland.tistory.com/120
 
 
                             </code>
