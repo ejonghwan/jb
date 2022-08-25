@@ -1174,7 +1174,8 @@ occupation 이 actor도 아니고 developer도 아닌 것을 가져온다.
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
--
+const existingUser = await User.findOne({$or: [{id: id}, {phoneNumber: phoneNumber}] });
+if(existingUser) return res.status(400).json({ message: '유저가 이미 존재합니다' });
                             </code>
                         </pre>
                         </div>
@@ -1632,6 +1633,7 @@ db.monsters.find({ name: 'Slime', hp: 25 }); // name이 Slime이고 hp가 25인 
 
 // 여러 조건 중 한가지만 해당
 db.monsters.find({ $or: [{ name: 'Slime' }, { hp: 50 }] }); // name이 Slime이거나 hp가 50
+
 
 
 // 
