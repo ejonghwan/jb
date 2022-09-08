@@ -48,7 +48,7 @@ const SideBar = {
         const ul = document.querySelector('aside > ul')
         let toggle = false;
         console.log(ul)
-        window.addEventListener('click', e => {
+        asideToggle.addEventListener('click', e => {
             toggle = !toggle
             toggle ? ul.style.display = 'none' : ul.style.display = 'block'
             
