@@ -1,8 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.59e895c96f5fede998fe.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>MongoDB</h2><div class="depth_2"><strong>-</strong><div class="item_wrap"><dl class="item"><dt><button><span>-</span>.-</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
-                            <code class="javascript">
-asd
-                            </code>
-                        </pre></div></div></div></section><section class="conts"><h2>Mongoose</h2><div class="depth_2"><strong>타입, 속성</strong><div class="item_wrap"><dl class="item"><dt><button><span>mongoose</span> 스키마 생성</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.51a6f877651722342e78.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><p>query 정리 https://velopert.com/479</p><p>query 정리 https://mongoosejs.com/docs/api/model.html</p><section class="conts"><h2>MongoDB</h2><div class="depth_2"></div></section><section class="conts"><h2>Mongoose</h2><div class="depth_2"><strong>타입, 속성</strong><div class="item_wrap"><dl class="item"><dt><button><span>mongoose</span> 스키마 생성</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
 
@@ -553,6 +549,20 @@ await Blog.updateOne({ 'comments._id': req.params.commentId }, { $pull: { commen
 
 
 
+//find ex
+$elemMatch 연산자
+$elemMatch 연산자는 Embedded Documents 배열을 쿼리할때 사용됩니다. 저희 mock-up data 에서는 comments 가 Embedded Document에 속합니다.
+
+예제11: comments 중 “Charlie” 가 작성한 덧글이 있는 Document 조회
+db.articles.find( { “comments”: { $elemMatch: { “name”: “Charlie” } } } )
+
+
+
+
+// 배열과 오브젝트일때 쿼리 
+https://koonsland.tistory.com/120
+
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>set</button></dt><dd>특정 필드 추가 및 업데이트</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
@@ -650,7 +660,8 @@ occupation 이 actor도 아니고 developer도 아닌 것을 가져온다.
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>or</button></dt><dd>주어진 조건 중 하나라도 있으면</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
--
+const existingUser = await User.findOne({$or: [{id: id}, {phoneNumber: phoneNumber}] });
+if(existingUser) return res.status(400).json({ message: '유저가 이미 존재합니다' });
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>and</button></dt><dd>주어진 조건이 모두 맞을 때</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
@@ -899,6 +910,7 @@ db.monsters.find({ name: 'Slime', hp: 25 }); // name이 Slime이고 hp가 25인 
 db.monsters.find({ $or: [{ name: 'Slime' }, { hp: 50 }] }); // name이 Slime이거나 hp가 50
 
 
+
 // 
 db.monsters.find({ hp: { $lt: 100 } }); // hp가 100보다 다큐먼트
 
@@ -1120,6 +1132,14 @@ const user = await User.findOneAndDelete({ _id: params userId })
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.findOneAndRemove()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 -
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.exec()</button></dt><dd>온전한 promise로 만듦</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+findOne findOneAndUpdate findOneAndDelete 등은 유사 프로미스 
+.exec() 을 붙이면 온전한 프로미스 객체가 됨 
+
+붙이든 안붙이든 동일하지만 에러 발생 시 stack trace에 코드 위치가 표기 되기에 붙이는걸 권장
 
                             </code>
                         </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
