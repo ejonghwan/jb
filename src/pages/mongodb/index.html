@@ -1996,6 +1996,27 @@ const user = await User.findOneAndDelete({ _id: params userId })
                         </div>
                     </div>
                     <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.exec()</button></dt>
+                            <dd>
+                                온전한 promise로 만듦
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+findOne findOneAndUpdate findOneAndDelete 등은 유사 프로미스 
+.exec() 을 붙이면 온전한 프로미스 객체가 됨 
+
+붙이든 안붙이든 동일하지만 에러 발생 시 stack trace에 코드 위치가 표기 되기에 붙이는걸 권장
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                    
                 </div>
                 <!-- 삭제 -->

@@ -11,8 +11,11 @@ const SideBar = {
         const asideCreate = document.createElement('aside');
         const mainTag = document.querySelector('main section.conts')
         if(mainTag) { mainTag.appendChild(asideCreate) }
-        const asideTag = document.querySelector('aside')
+        const asideTag = document.querySelector('aside');
         
+        
+       
+
         if(asideTag) {
             window.addEventListener('scroll', function() {
                 // let asideTop = asideTag.getBoundingClientRect().top
@@ -28,6 +31,7 @@ const SideBar = {
             // console.log(asideTag)
             // render
             asideTag.innerHTML = `
+                <button class="asideToggle">-</button>
                 <ul>    
                     ${[...this.ele].map(item => {
                         return `
@@ -40,7 +44,16 @@ const SideBar = {
             `
         }
         
-
+        const asideToggle = document.querySelector('.asideToggle')
+        const ul = document.querySelector('aside > ul')
+        let toggle = false;
+        console.log(ul)
+        window.addEventListener('click', e => {
+            toggle = !toggle
+            toggle ? ul.style.display = 'none' : ul.style.display = 'block'
+            
+            
+        })
 
         // click
         const btns = document.querySelectorAll('.aside_btn');
