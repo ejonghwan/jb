@@ -2135,7 +2135,33 @@ asd
 
                     <div class="depth_2">
                         <strong>element 사이즈, 위치</strong>
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>element</span>.offsetTop</button></dt>
+                                <dd>
+                                    상단에서 떨어진 위치 (부모기준)
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="javascript">
+부모기준에서 떨어진 위치 
 
+div  - 렐러티브 
+  div  - 앱솔루트 top:5px 
+
+렐러티브 기준에서 떨어진 위치 
+
+
+만약 절대 위치 구하려면 
+element.getBoundingClientRect().top + pageYOffset 써야됨
+
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
                         <!-- item -->
                         <div class="item_wrap">
                             <dl class="item">
