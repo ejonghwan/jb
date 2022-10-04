@@ -1623,7 +1623,7 @@ const allBlog = await Blog.find().populate([{ path: 'user' }, { path: 'comments'
                         <pre>
                             <code class="javascript">
 // 모두검색
-.find() 
+.find({ 탐색 }, { 수정할 것 }, { 옵션 }) 
 
 
 // 특정값으로 검색 
@@ -1638,6 +1638,18 @@ db.monsters.find({ $or: [{ name: 'Slime' }, { hp: 50 }] }); // name이 Slime이�
 
 // 
 db.monsters.find({ hp: { $lt: 100 } }); // hp가 100보다 다큐먼트
+
+
+
+// 특정조건 나중 추가
+// db 구조 : 1뎁스 public: {type: Boolean, require: true, default: false,}
+DB.find({ public: true }); 
+
+// db 구조 : 2뎁스 public: {type: Boolean, require: true, default: false,}
+DB.find({ "1뎁스.public": true }); 
+
+
+
 
                             </code>
                         </pre>
