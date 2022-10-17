@@ -1754,7 +1754,11 @@ const user = await User.findById(req.params.userId)
                         <pre>
                             <code class="javascript">
 -
+update 아토믹하다 
+*아토믹(원자성): 모두 반영되거나 모두 롤백되거나 
 
+아토믹 참고
+https://chrisjune-13837.medium.com/db-transaction-%EA%B3%BC-acid%EB%9E%80-45a785403f9e 
                             </code>
                         </pre>
                         </div>
@@ -1856,6 +1860,10 @@ if(req.body.name.first) {
                         <pre>
                             <code class="javascript">
 
+findOneAndUpdate은 아토믹하다 
+*아토믹(원자성): 모두 반영되거나 모두 롤백되거나 
+
+
 업데이트된 콜렉션 반환받고 싶으면 이거~
 
 app.put('/user/update/:userId', async (req, res) => {
@@ -1939,6 +1947,37 @@ router.put('/update/:userId', async(req, res) => {
                         </div>
                     </div>
                     <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.findByIdAndUpdate()</button></dt>
+                            <dd>
+                                아이디 검색 후 수정 
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+findByIdAndUpdate은 내부적으로 findOneAndUpdate가 실행됨
+findOneAndUpdate은 아토믹하다. 따라서 findByIdAndUpdate도 아토믹하다
+*아토믹(원자성): 모두 반영되거나 모두 롤백되거나 
+
+아이디로 찾을거면 findByIdAndUpdate
+그 외로 찾을거면 findOneAndUpdate
+
+*_id는 인덱싱이 되어있음.
+
+
+
+
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                 </div>
                 <!-- 수정 -->
 
@@ -1961,6 +2000,29 @@ router.put('/update/:userId', async(req, res) => {
 콜렉션을 받을 필요없으면 얘가 좀 더 효율적  
 
 const user = await User.deleteOne({ _id: params userId })
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>model</span>.deleteMany()</button></dt>
+                            <dd>
+                                여러개 삭제
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+얘는 삭제만 함.. 
+콜렉션을 받을 필요없으면 얘가 좀 더 효율적  
+
+
+projectId가 ["id", "id"] 배열로와도, "id" 문자열로 와도 .. {_id: "id"}객체로 와도 삭제가 됨
+const project = await Project.deleteMany({ _id: projectId });
 
                             </code>
                         </pre>
@@ -2023,6 +2085,11 @@ findOne findOneAndUpdate findOneAndDelete 등은 유사 프로미스
 .exec() 을 붙이면 온전한 프로미스 객체가 됨 
 
 붙이든 안붙이든 동일하지만 에러 발생 시 stack trace에 코드 위치가 표기 되기에 붙이는걸 권장
+
+
+--10 17 수정
+업데이트 후 .exec()안붙이면 바로 실행안될수도 있음 
+업데이트 메서드들에 콜백이 있는데 콜백 사용안할거면 .exec() 붙이자
 
                             </code>
                         </pre>
