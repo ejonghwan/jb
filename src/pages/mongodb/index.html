@@ -21,6 +21,7 @@
                 
                 <p>query 정리 https://velopert.com/479</p>
                 <p>query 정리 https://mongoosejs.com/docs/api/model.html</p>
+                <p>params query body 차이 https://dar0m.tistory.com/m/222</p>
                 <!-- MongoDB -->
                 <section class="conts">
                     <h2>MongoDB</h2>
@@ -842,6 +843,20 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
                         <pre>
                             <code class="javascript">
 // Charlie document에서 skills 값의 mongodb 제거
+// 얘는 무조건 객체여야하는듯? 
+// $push 는 []구조면 []로 넣어주고 ..$pull은 []도 {}으로 ...
+
+
+유저 구조- projects: [ {_id: projectId, date: []} ]
+await Promise.all([
+    Project.deleteMany({ _id: projectId }),
+    User.updateOne({_id: userId}, { $pull: {projects: {_id: projectId} } }, { new: true })
+])
+
+
+
+
+
 db.people.update(
   { name: "Charlie" },
   { $pull: { skills: "mongodb" } }
@@ -1287,6 +1302,15 @@ https://velopert.com/479 여기부터 하면 됨
 collection.update(
   {$inc: {'count': 1}
 })
+
+
+
+감소할 땐 -1
+
+collection.update(
+  {$inc: {'count': -1}
+})
+
                             </code>
                         </pre>
                         </div>
@@ -1753,6 +1777,9 @@ const user = await User.findById(req.params.userId)
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+
+몽고 3.2? 부턴가 update 대신 updateOne / updateMany 사용권장
+
 -
 update 아토믹하다 
 *아토믹(원자성): 모두 반영되거나 모두 롤백되거나 
