@@ -1332,6 +1332,65 @@ input값이 항상 같고 output도 같은 것들, 혹은 계산 로직이 너�
                             </div>
                         </div>
                         <!-- item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>throttle</button></dt>
+                                <dd>
+                                    주기적으로 실행
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="markdown">
+                                
+function throttle(cb, wait) {
+    var waiting = true;
+    return function(args) {
+        if(waiting) {
+            cb(args);
+            waiting = false;
+
+            setTimeout(function() {
+                // console.log('hoho')
+                waiting = true
+            }, wait)
+        } 
+    }
+}
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- item -->
+                           <!-- item -->
+                           <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>debounce</button></dt>
+                                <dd>
+                                    특정 시간동안 맨처음 혹은 마지막 한번만 실행
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="markdown">
+function debounce(cb, wait) {
+    var timeout;
+    return function(args) {
+
+        console.log(timeout)
+        clearTimeout(timeout); //한번이면 바로 클리어
+
+        timeout = setTimeout(function() {
+            cb(args);
+        }, wait);
+    }
+}
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- item -->
                     </div>
                 </section>
                 <!-- performence -->
