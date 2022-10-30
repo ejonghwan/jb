@@ -1359,6 +1359,25 @@ function throttle(cb, wait) {
     }
 }
                             </code>
+<code class="markdown">
+raf로 쓰로틀링
+function throttleUsingRaf(cb) {
+    var rAfTimeout = null;
+  
+    return function () {
+      if (rAfTimeout) {
+        window.cancelAnimationFrame(rAfTimeout);
+      }
+      rAfTimeout = window.requestAnimationFrame(function () {
+        cb();
+      })
+    }
+  }
+  function onScroll() {
+    // code ...
+  }
+  document.addEventListener('scroll', throttleUsingRaf(onScroll));
+</code>
                         </pre>
                             </div>
                         </div>
