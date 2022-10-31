@@ -877,6 +877,131 @@ http://blog.hivelab.co.kr/%EA%B3%B5%EC%9C%A0-vertical-align-%ED%8C%8C%ED%97%A4%E
                                      a[href="https://net.tutsplus.com"] {
                                         color: #1f6053; /* nettuts green */
                                       }
+
+
+                                      a[href*="tuts"] {
+                                        color: #1f6053; /* nettuts green */
+                                      }
+
+
+                                      a[href^="http"] {
+                                        background: url(path/to/external/icon.png) no-repeat;
+                                        padding-left: 10px;
+                                     }
+
+                                     a[href$=".jpg"] {
+                                        color: red;
+                                     }
+
+                                     a[data-filetype="image"] {
+                                        color: red;
+                                     }
+
+                                     a[data-info~="external"] {
+                                        color: red;
+                                     }
+                                      
+                                     a[data-info~="image"] {
+                                        border: 1px solid black;
+                                     }
+
+                                     input[type=radio]:checked {
+                                        border: 1px solid black;
+                                     }
+
+                                     .clearfix:after {
+                                        content: "";
+                                        display: block;
+                                        clear: both;
+                                        visibility: hidden;
+                                        font-size: 0;
+                                        height: 0;
+                                        }
+
+                                        div:hover {
+                                            background: #e3e3e3;
+                                          }
+
+                                          div:not(#container) {
+                                            color: blue;
+                                         }
+
+                                         *:not(p) {
+                                            color: green;
+                                          }
+
+
+                                          #첫 라인
+                                          p::first-line {
+                                            font-weight: bold;
+                                            font-size: 1.2em;
+                                         }
+
+
+                                         #첫 글자
+                                         p::first-letter {
+                                            float: left;
+                                            font-size: 2em;
+                                            font-weight: bold;
+                                            font-family: cursive;
+                                            padding-right: 2px;
+                                         }
+                                     
+                                         
+                                         li:nth-child(3) {
+                                            color: red;
+                                         }
+
+                                         li:nth-last-child(2) {
+                                            color: red;
+                                         }
+
+                                         ul:nth-of-type(3) {
+                                            border: 1px solid black;
+                                         }
+
+                                         ul:nth-last-of-type(3) {
+                                            border: 1px solid black;
+                                         }
+
+                                         ul li:first-child {
+                                            border-top: none;
+                                         }
+
+                                         ul > li:last-child {
+                                            color: green;
+                                         }
+
+                                         div p:only-child {
+                                            color: red;
+                                         }
+
+                                         li:only-of-type {
+                                            font-weight: bold;
+                                         }
+
+
+
+                                         :nth-child( an+b )
+                                         a와 b는 정수입니다. 0과 음수도 가능합니다.
+n에는 음이 아닌 정수, 즉 0, 1, 2, 3, …이 차례대로 대입됩니다.
+an+b 대신에 even, odd를 넣을 수도 있습니다.
+n에 0, 1, 2, 3, …을 대입하면 3n+2은 2, 5, 8, 11, …이 됩니다. 
+li 요소 중 그 순서에 있는 것을 선택하고 빨간색으로 만듭니다.
+li:nth-child( -2n+5 ) {
+    color: red;
+  }
+
+  li:nth-last-child( 2n ) {
+    color: red;
+  }
+  n에 0, 1, 2, 3, …을 대입하면 2n은 0, 2, 4, 6, …이 됩니다.
+
+
+  li:nth-last-child( 3n - 1 ) {
+    color: red;
+  }
+  n에 0, 1, 2, 3, …을 대입하면 3n-1은 -1, 2, 5, 8, …이 됩니
                             </code>
                         </pre>
                             </div>
