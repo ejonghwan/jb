@@ -821,6 +821,73 @@ http://blog.hivelab.co.kr/%EA%B3%B5%EC%9C%A0-vertical-align-%ED%8C%8C%ED%97%A4%E
 
                 <!-- category 1 -->
                 <section class="conts">
+                    <h2>CSS Selector</h2>
+
+                    <div class="depth_2">
+                        <strong>cccc</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>*</button></dt>
+                                <dd>
+                                    기본
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="markdown">
+                                #container {
+                                    width: 960px;
+                                    margin: auto;
+                                 }
+
+                                 .error {
+                                    color: red;
+                                  }
+
+                                  li a {
+                                    text-decoration: none;
+                                  }
+
+                                  div#container > ul {
+                                    border: 1px solid black;
+                                  }
+
+                                  a { color: red; }
+
+
+                                  a:link { color: red; }
+                                    a:visted { color: purple; }
+                                    가상 클래스로 하기도 합니다. 예상하듯이 이는 클릭했었거나 
+                                    방문했던 페이지에 있는 앵커 태그에만 특정한 스타일을 적용할 수 있습니다.
+
+
+                                    ul + p {
+                                        color: red;
+                                     }
+
+                                     ul ~ p {
+                                        color: red;
+                                     }
+
+                                     a[title] {
+                                        color: green;
+                                     }
+
+                                     a[href="https://net.tutsplus.com"] {
+                                        color: #1f6053; /* nettuts green */
+                                      }
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        </div>
+               </section>
+                <!-- //category 1 -->
+
+                <!-- category 1 -->
+                <section class="conts">
                     <h2>단축 CSS</h2>
 
                     <div class="depth_2">
