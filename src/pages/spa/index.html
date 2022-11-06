@@ -1436,32 +1436,36 @@ function debounce(cb, wait) {
 import React, { useState } from 'react'
 
 const Counter = () => {
-    const [number, setNumber] = useState(0);
+    const [n, setN] = useState(0)
+ 
 
-    const onIncrease = () => {
-      setNumber(number + 1);
+    // 함수에 state를 바로 사용할 경우 
+    const inc = () => {
+      setN(n + 1)
     }
   
-    const onDecrease = () => {
-      setNumber(number - 1);
+    const dec = () => {
+      setN(n - 1)
     }
 
+    // prev값을 인자로 받아서 사용할 경우 
+    const [n, setN] = useState(0)
+ 
 
-    // 기존 값 업데이트 
-    const onIncrease = () => {
-        setNumber(prevNumber => prevNumber + 1);
-      }
-
-      const onDecrease = () => {
-        setNumber(prevNumber => prevNumber - 1);
-      }
-
+    const inc = () => {
+      setN(n => n + 1)
+    }
+  
+    const dec = () => {
+      setN(n => n - 1)
+    }
+  
 
     return (
       <div>
-        <h1>{number}</h1>
-        <button onClick={onIncrease}>+1</button>
-        <button onClick={onDecrease}>-1</button>
+        <h1>{n}</h1>
+        <button onClick={inc}>inc</button>
+        <button onClick={dec}>dec</button>
       </div>
     );
   }
