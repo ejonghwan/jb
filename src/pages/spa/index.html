@@ -1473,10 +1473,25 @@ const Counter = () => {
   export default Counter;
 
 
-  주의 
-  1. 아래형태라면 바로 실행 
-  onClick={onIncrease()} 
+<!-- 이거 아직 안함 해야됨 퍼퓰 정리도 해야됨 -->
 
+  주의 
+  1. onClick={onIncrease()}  형태라면 바로 실행에
+  2. closure 때문에 hook들은 컴포넌트 함수 바로 아래있어야함.
+  3. 커스텀 훅들은 use로 시작해야함.
+  4. closuer 때문에 submit 이벤트에 e.preventDefault 안먹는 현상... 이건 아직도 모르겠네 대체방법 
+
+    _debounce 걸고 콜백함수로 실행함수 실행시 안먹음. 콘솔에는 e 객체가 찍힘
+     const dd = _debounce(() => {
+         return console.log(1111)
+     })
+
+     const fn = (e) => {
+        e.preventDefault();
+         console.log(e)
+         dd();
+    }
+ 
 
 
 
