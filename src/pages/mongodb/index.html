@@ -809,6 +809,32 @@ router.get('/:searchTerm', async(req, res, next) => {
                     <!-- item -->
                     <div class="item_wrap">
                         <dl class="item">
+                            <dt><button><span></span>select()</button></dt>
+                            <dd>
+                                원하는 필드만
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+
+db구조
+joinUser: [{
+    _id: { type: Types.ObjectId, ref: 'user' },
+    state: { type: Boolean, default: false },
+}]
+
+const isUser = await Project.findById(projectId).select({'joinUser': {$elemMatch: { _id: userId }} })
+
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
                             <dt><button><span>$</span>push</button></dt>
                             <dd>
                                 배열 값 추가
@@ -817,6 +843,17 @@ router.get('/:searchTerm', async(req, res, next) => {
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+
+db구조
+joinUser: [{
+    _id: { type: Types.ObjectId, ref: 'user' },
+    state: { type: Boolean, default: false },
+}]
+
+const project = await Project.findByIdAndUpdate(projectId, { $push: { "joinUser": { _id: userId } } }, { new: true })
+
+
+
 // Charlie document의 skills 배열에 "angularjs" 추가
 > db.people.update(
 ... { name: "Charlie" },
@@ -1627,8 +1664,19 @@ const allBlog = await Blog.find().populate([{ path: 'user' }, { path: 'comments'
 
 
 
+### 객체 뎁스 안에 또 아이디로 저장되어 있을 경우 둘다 퍼퓰시킬 때 
 
+- db 구조 
+  _id: { 
+    type: mongoose.Schema.Types.ObjectId, ref: 'user' 
+    target: { type: mongoose.Schema.Types.ObjectId, ref: 'project' }
+    },
 
+- backend query 
+  await Model.findbyId(id).populate("_id.target")
+  
+  이렇게 해주면 _id, target 둘 다 퍼퓰해줌
+  
 
                             </code>
                         </pre>
