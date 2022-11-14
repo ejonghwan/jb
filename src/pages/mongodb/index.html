@@ -695,6 +695,37 @@ const post = new Post({ ...req.body, params }, { new: true })
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+
+
+
+
+
+그냥 text: [{ }]  
+위 구조일 때는 
+Project.findByIdAndUpdate(projectId, { $pull: { "joinUser": { _id: userId } } }, { new: true }),
+
+
+
+text: [{ text2: [ {  } ] }]
+위 구조일때는 
+arrayFilters 써야됨
+           
+ex1) 
+db 구조 
+joinProjects: [
+    { _id: { type: Types.ObjectId, ref: 'project'}, state: { type: Boolean, default: false } }
+],
+
+필터
+User.findByIdAndUpdate(userId, { "joinProjects.$[ele].state": true }, { arrayFilters: [{"ele._id": projectId}], new: true })
+
+1. joinProjects 필드 안에 배열 중 $[ele] 이 아래 있는 state를 : true로 
+2. $[ele]는 뒤에서 arrayFilters로 넣어줌 = 위에서는 ele._id: projectId 로 필터
+
+
+
+
+ex2)
 // model
 User 
 Blog (user, cooments: [ comment_info, user ]) 
@@ -720,11 +751,14 @@ if(req.body.name.first) {
 }
                                 
 /* 
-    await Blog.updateMany({}, { 'comments.$[ele].users.$[user].username': user.name.first }, { arrayFilters: [ {"ele.user._id": userId}, {"user._id": userId} ] })
-
+    await Blog.updateMany({}, 
+        { 'comments.$[ele].users.$[user].username': user.name.first }, 
+        { arrayFilters: [ {"ele.user._id": userId}, 
+        {"user._id": userId} ] })
     comments 필드안에 users 배열이 있고 그 안에 username을 필터링해서 바꿔줌 
 
 */
+
 
                             </code>
                         </pre>
@@ -844,6 +878,18 @@ const isUser = await Project.findById(projectId).select({'joinUser': {$elemMatch
                         <pre>
                             <code class="javascript">
 
+그냥 text: [{ }]  
+위 구조일 때는 
+Project.findByIdAndUpdate(projectId, { $push: { "joinUser": { _id: userId } } }, { new: true }),
+
+
+text: [{ text2: [ {  } ] }]
+위 구조일때는 
+arrayFilters 써야됨
+                                
+----------------------------------------------
+
+
 db구조
 joinUser: [{
     _id: { type: Types.ObjectId, ref: 'user' },
@@ -879,6 +925,42 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+
+
+그냥 text: [{ }]  
+위 구조일 때는 
+Project.findByIdAndUpdate(projectId, { $pull: { "joinUser": { _id: userId } } }, { new: true }),
+
+
+text: [{ text2: [ {  } ] }]
+위 구조일때는 
+arrayFilters 써야됨
+
+
+
+-----------------------------------------                     
+
+db.book.find({
+    "auther":{
+            $elemMatch: {"name":"park"} // auther배열객체 들 중에서 {"name":"park"} 검색.
+    }
+})
+
+
+//북 db 구조 
+
+...: 
+auther: [ { "name": "park", "age": 30 } ]
+
+
+출처: https://inpa.tistory.com/entry/MONGO-%F0%9F%93%9A-Embedded-%EB%B0%B0%EC%97%B4-%EA%B0%9D%EC%B2%B4-%EA%B2%80%EC%83%89-%EC%BF%BC%EB%A6%AC#$elemMatch
+
+
+
+
+
+
+
 // Charlie document에서 skills 값의 mongodb 제거
 // 얘는 무조건 객체여야하는듯? 
 // $push 는 []구조면 []로 넣어주고 ..$pull은 []도 {}으로 ...
@@ -1609,6 +1691,10 @@ model.find().limit(10) //10개 검색
                         <div class="code_wrap">
                         <pre>
                             <code class="javascript">
+
+https://www.zerocho.com/category/MongoDB/post/59a66f8372262500184b5363
+
+
 
 
 //ObjectId로 연결되어있는 필드를 해당 필드 검색해서 mongoose가 $in으로 값을 채워 넣어줌 
