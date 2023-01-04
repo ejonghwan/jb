@@ -129,7 +129,7 @@ footer .line > li {color: #6b6c76; }
 
     .conts .item {display: block; margin-top: 5px;}
     .conts .item > dd {padding-left: 0px; margin-top: -2px; line-height: 1.5; position: relative; padding-left:7px; color: #666; }
-    .conts .item > dd::before {content: '-'; font-family: 'Noto Sans'; display: inline-block; position: absolute; top: 2px; left:0px; color: #666; font-size: 12px;;}
+    .conts .item > dd::before {content: ''; font-family: 'Noto Sans'; display: inline-block; position: absolute; top: 2px; left:0px; color: #666; font-size: 12px;;}
     .conts .item > dt > button:hover {border: none;}
     .wrap main {padding: 80px 0 40px; }
 
