@@ -334,6 +334,7 @@ window.getComputedStyle
 
 
 <span class="seg"><a href="https://poiemaweb.com/js-dom" target="_blank">https://poiemaweb.com/js-dom</a></span>
+<span class="seg"><a href="https://dkje.github.io/2020/08/18/createDomElement/" target="_blank">https://dkje.github.io/2020/08/18/createDomElement/</a></span>
 
 
 
@@ -2031,6 +2032,597 @@ iuSayNameBind()
                 <!-- 찐으로 많이 쓰는 메서드 -->
                 <section class="conts">
                     <h2>찐으로 헷갈려</h2>
+                    <div class="depth_2">
+                        <strong>자주 사용 element node 재정리</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.parentNode <span class="seg">read</span></button></dt>
+                                <dd>
+                                    부모 찾기.  상위노드 접근 가능
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+부모는 하나니깐 하나의 노드 반환
+node.parentNode  -  html 상위 노드에 접근가능 node 반환
+node.parentElement  -  html 상위 노드에 접근 불가능 element 반환
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.parentElement <span class="seg">read</span></button></dt>
+                                <dd>
+                                    부모 찾기.  상위노드 접근 불가능
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+부모는 하나니깐 하나의 노드 반환
+node.parentNode  -  html 상위 노드에 접근가능 node 반환
+node.parentElement  -  html 상위 노드에 접근 불가능 element 반환값
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+<br />
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.firstChild<span class="seg">read</span></button></dt>
+                                <dd>
+                                    첫번째 자식.  Node 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.lastChild<span class="seg">read</span></button></dt>
+                                <dd>
+                                    마지막 자식.  Node 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.previousSibling<span class="seg">read</span></button></dt>
+                                <dd>
+                                    이전 형제.  Node 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.nextSibling<span class="seg">read</span></button></dt>
+                                <dd>
+                                    다음 형제.  Node 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <br />
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.firstElementChild<span class="seg">read</span></button></dt>
+                                <dd>
+                                    첫번째 자식.  Element 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.lastElementChild<span class="seg">read</span></button></dt>
+                                <dd>
+                                    마지막 자식.  Element 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.previousElementSibling <span class="seg">read</span></button></dt>
+                                <dd>
+                                    이전 형제.  Element 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.nextElementSibling<span class="seg">read</span></button></dt>
+                                <dd>
+                                    다음 형제.  Element 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <br />
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.hasChildNodes()<span class="seg">read</span></button></dt>
+                                <dd>
+                                    자식에 node 있는지.  bool 반환
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.childNodes<span class="seg">read</span></button></dt>
+                                <dd>
+                                    자식들.  [HTMLCollection] 반환 - live
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.children<span class="seg">read</span></button></dt>
+                                <dd>
+                                    자식들.  [NodeList] 반환 - nonlive
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.nodeValue<span class="seg">read</span></button></dt>
+                                <dd>
+                                    노드의 값
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.nodeName<span class="seg">read</span></button></dt>
+                                <dd>
+                                    
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.nodeType<span class="seg">read</span></button></dt>
+                                <dd>
+                                    
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <br />
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.className<span class="seg">read</span></button></dt>
+                                <dd>attribute</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.classList<span class="seg">read</span></button></dt>
+                                <dd>attribute</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.id<span class="seg">read</span></button></dt>
+                                <dd>attribute</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.hasAttribute(attribute)<span class="seg">read</span></button></dt>
+                                <dd>attribute</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.getAttribute(attribute)<span class="seg">read</span></button></dt>
+                                <dd>attribute</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.setAttribute(attribute, value)<span class="seg">read</span></button></dt>
+                                <dd>attribute</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.removeAttribute(attribute)<span class="seg">read</span></button></dt>
+                                <dd>attribute</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <br />
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.createElement(tagName) <span class="seg">read</span></button></dt>
+                                <dd>HTMLElement를 상속</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.createTextNode(text)<span class="seg">read</span></button></dt>
+                                <dd></dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.appendChild(Node)<span class="seg">read</span></button></dt>
+                                <dd></dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.removeChild(Node)<span class="seg">read</span></button></dt>
+                                <dd></dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <br />
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.textContent<span class="seg">read</span></button></dt>
+                                <dd>성능 좋음</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.innerText<span class="seg">read</span></button></dt>
+                                <dd>비표준. 앵간함 사용x</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.innerHTML<span class="seg">read</span></button></dt>
+                                <dd></dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.insertAdjacentHTML(pos, str)</button></dt>
+                                <dd>beforebegin  afterbegin  beforeend  afterend</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+‘beforebegin’
+    p
+        ‘afterbegin’
+        foo 
+        ‘beforeend’
+    p
+‘afterend’
+
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.insertAdjacentElement(pos, ele)</button></dt>
+                                <dd>beforebegin  afterbegin  beforeend  afterend</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+‘beforebegin’
+    p
+        ‘afterbegin’
+        foo 
+        ‘beforeend’
+    p
+‘afterend’
+
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>Node</span>.insertAdjacentText(pos, str)</button></dt>
+                                <dd>beforebegin  afterbegin  beforeend  afterend</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+‘beforebegin’
+    p
+        ‘afterbegin’
+        foo 
+        ‘beforeend’
+    p
+‘afterend’
+
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <br />
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>성능<br />보안</button></dt>
+                                <dd>dom조작<span>&lt;</span> innerHTML <span>&lt;</span> insertAdjacentHTML<br />dom조작<span>&gt;</span> innerHTML <span>&gt;=</span> insertAdjacentHTML</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="markdown">
+
+장단점 
+
+# innerHTML 
+- DOM 조작 방식에 비해 빠르고 간편하다.
+- 간편하게 문자열로 정의한 여러 요소를 DOM에 추가할 수 있다.
+- 콘텐츠를 취득할 수 있다.
+
+- XSS공격에 취약점이 있기 때문에 사용자로 부터 입력받은 콘텐츠(untrusted data: 댓글, 
+사용자 이름 등)를 추가할 때 주의하여야 한다.
+- 해당 요소의 내용을 덮어 쓴다. 즉, HTML을 다시 파싱한다. 이것은 비효율적이다.
+
+
+# createElement
+- 특정 노드 한 개(노드, 텍스트, 데이터 등)를 DOM에 추가할 때 적합하다.
+
+- innerHTML보다 느리고 더 많은 코드가 필요하다.
+
+
+# insertAdjacentHTML()
+- 간편하게 문자열로 정의된 여러 요소를 DOM에 추가할 수 있다.
+- 삽입되는 위치를 선정할 수 있다.
+
+- XSS공격에 취약점이 있기 때문에 사용자로 부터 입력받은 콘텐츠(untrusted data: 댓글, 
+사용자 이름 등)를 추가할 때 주의하여야 한다.
+
+
+결론
+innerHTML과 insertAdjacentHTML()은 
+크로스 스크립팅 공격(XSS: Cross-Site Scripting Attacks)에 취약하다. 
+따라서 untrusted data의 경우, 주의하여야 한다. 
+텍스트를 추가 또는 변경시에는 textContent, 
+새로운 요소의 추가 또는 삭제시에는 DOM 조작 방식을 사용하도록 한다.
+            
+
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+
+
+
+
+
+                    </div>
+     
+
+
                     <div class="depth_2">
                         <strong>스크롤 위치</strong>
                         <!-- item -->
