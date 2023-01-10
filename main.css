@@ -1,7 +1,7 @@
 /*!
  * 
- *         Build Data: 2022. 9. 8.
- *         GIT Commit Ver: 649c2be
+ *         Build Data: 2023. 1. 10.
+ *         GIT Commit Ver: 5d8e4de
  *
  *         User Name : ejonghwan
  *
@@ -209,7 +209,7 @@ section.conts + section.conts {margin-top: 50px;}
 
 .depth_2 + .depth_2 {margin-top:20px;} 
 .depth_2 > strong, 
-h3 > strong {font-size: 12px; color: #557191; display: inline-block; margin-left: -15px; }
+h3 > strong {font-size: 12px; /*color: #557191;*/ color: #6d93bf; display: inline-block; margin-left: -15px; }
  
 .depth_3 {color: #999; font-size: 14px; margin-top: 0px;} 
 .depth_3 + .depth_3 {margin-top: 10px;;}
@@ -272,7 +272,7 @@ footer .line > li {color: #6b6c76; }
 
     .conts .item {display: block; margin-top: 5px;}
     .conts .item > dd {padding-left: 0px; margin-top: -2px; line-height: 1.5; position: relative; padding-left:7px; color: #666; }
-    .conts .item > dd::before {content: '-'; font-family: 'Noto Sans'; display: inline-block; position: absolute; top: 2px; left:0px; color: #666; font-size: 12px;;}
+    .conts .item > dd::before {content: ''; font-family: 'Noto Sans'; display: inline-block; position: absolute; top: 2px; left:0px; color: #666; font-size: 12px;;}
     .conts .item > dt > button:hover {border: none;}
     .wrap main {padding: 80px 0 40px; }
 

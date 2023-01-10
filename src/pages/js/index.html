@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="minimum-scale=1,width=device-width,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.d47b242430c508375503.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap line"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><div class="item_wrap"><dl class="item"><dt><button><span>default</span></button></dt><dd>nodes, element, nodeList, HTML Collection, DOMTokenList</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="minimum-scale=1,width=device-width,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.2382b002bd80f3ac9b95.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap line"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><div class="item_wrap"><dl class="item"><dt><button><span>default</span></button></dt><dd>nodes, element, nodeList, HTML Collection, DOMTokenList</dd></dl><div class="code_wrap"><pre>
     <code class="markdown">
 
 
@@ -107,6 +107,168 @@ HTMLCollection은 알아서 넣어줌..
 
 
 <span class="seg">https://humahumahuma.tistory.com/123, mdn</span>
+
+
+
+</code>
+</pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>DOM</span></button></dt><dd>dom 좀더 자세히</dd></dl><div class="code_wrap"><pre>
+<code class="markdown">
+
+# dom은 node에서 상속 
+var el = document.querySelector('li')
+el.__proto__  // HTMLLIElement
+el.__proto__.__proto__  // HTMLElement
+el.__proto__.__proto__.__proto__  // Element
+el.__proto__.__proto__.__proto__.__proto__  // Node 
+el.__proto__.__proto__.__proto__.__proto__.__proto__  // EventTarget   
+el.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__  // Object   
+
+
+-------------------------------------------
+
+
+# Array Like Object 
+1. [HTMLCollection] : getElementsByClassName() / getElementsByTagName()
+2. [NodeList] : document.querySelectorAll() 
+
+
+# [HTMLCollection]
+Live - 변경시 바로 [HTMLCollection] node에 적용되기 때문에 반복문 쓸 때 주의해야됨 
+
+ex)  홀수만 변경됨
+var el = document.getElementsByClassName('aside_btn')
+for(var i = 0; i &lt; el.length; i++) {
+    console.log(el)
+    console.log(el[i])
+    el[i].className = 'hoho' // 여기서 변경한걸 el에 저장된 콜렉션에 바로 등록하기 때문에 적용이 제대로 되지않음
+}
+
+
+# [NodeList] 
+non-Live - 변경 사항이 NodeList에 바로 반영되지 않음
+
+ex)  모두 정상 변경
+var el = document.querySelectorAll('aside_btn')
+for(var i = 0; i &lt; el.length; i++) {
+    console.log(el)
+    console.log(el[i])
+    el[i].className = 'hoho' // 여기서 변경한걸 el에 저장된 콜렉션에 바로 등록하기 때문에 적용이 제대로 되지않음
+}
+
+
+-------------------------------------------
+
+
+# dom search  -  HTMLElement 상속
+
+- Node로 찾아줌  -  띄어쓰기or공백도 #textNode로 찾아주니 주의 
+parentNode  
+firstChild    
+lastChild
+previousSibling
+nextSibling
+
+
+- 체크
+nodeValue
+nodeName
+nodeType
+
+
+- 복수
+hasChildNodes()  -  자식 노드가 있는지 불린값 반환
+childNodes   -  nodeList   
+children   -  HTMLCollection
+
+
+- Element로 찾아줌 
+firstElementChild 
+lastElementChild  
+previousElementSibling 
+nextElementSibling
+
+
+
+- 속성
+className
+classList
+id
+hasAttribute(attribute)
+getAttribute(attribute)
+setAttribute(attribute, value)
+removeAttribute(attribute)
+
+
+
+- 조작
+textContent
+innerText
+innerHTML
+
+
+- 돔조작
+createElement(tagName)  -  HTMLElement를 상속
+createTextNode(text)
+appendChild(Node)
+removeChild(Node)
+
+
+
+insertAdjacentHTML(position, string)
+‘beforebegin’
+    p
+        ‘afterbegin’
+        foo 
+        ‘beforeend’
+    p
+‘afterend’
+
+
+# 장단점 
+
+1. innerHTML 
+- DOM 조작 방식에 비해 빠르고 간편하다.
+- 간편하게 문자열로 정의한 여러 요소를 DOM에 추가할 수 있다.
+- 콘텐츠를 취득할 수 있다.
+
+- XSS공격에 취약점이 있기 때문에 사용자로 부터 입력받은 콘텐츠(untrusted data: 댓글, 
+사용자 이름 등)를 추가할 때 주의하여야 한다.
+- 해당 요소의 내용을 덮어 쓴다. 즉, HTML을 다시 파싱한다. 이것은 비효율적이다.
+
+
+
+2. createElement
+- 특정 노드 한 개(노드, 텍스트, 데이터 등)를 DOM에 추가할 때 적합하다.
+
+- innerHTML보다 느리고 더 많은 코드가 필요하다.
+
+
+
+3. insertAdjacentHTML()
+- 간편하게 문자열로 정의된 여러 요소를 DOM에 추가할 수 있다.
+- 삽입되는 위치를 선정할 수 있다.
+
+- XSS공격에 취약점이 있기 때문에 사용자로 부터 입력받은 콘텐츠(untrusted data: 댓글, 
+사용자 이름 등)를 추가할 때 주의하여야 한다.
+
+
+4. 결론
+innerHTML과 insertAdjacentHTML()은 크로스 스크립팅 공격(XSS: Cross-Site Scripting Attacks)에 취약하다. 
+따라서 untrusted data의 경우, 주의하여야 한다. 
+텍스트를 추가 또는 변경시에는 textContent, 새로운 요소의 추가 또는 삭제시에는 DOM 조작 방식을 사용하도록 한다.
+
+
+
+
+# css 조작
+window.getComputedStyle
+
+
+
+
+
+<span class="seg"><a href="https://poiemaweb.com/js-dom" target="_blank">https://poiemaweb.com/js-dom</a></span>
+<span class="seg"><a href="https://dkje.github.io/2020/08/18/createDomElement/" target="_blank">https://dkje.github.io/2020/08/18/createDomElement/</a></span>
 
 
 
@@ -1379,7 +1541,175 @@ iuSayNameBind()
     var n = (1 + 2) 
 
             </code>
-        </pre></div></div></div></section><section class="conts"><h2>찐으로 헷갈려</h2><div class="depth_2"><strong>스크롤 위치</strong><div class="item_wrap"><dl class="item"><dt><button><span>window</span>.scrollY</button></dt><dd>현재 스크롤 Y 위치값</dd></dl><div class="code_wrap"><pre>
+        </pre></div></div></div></section><section class="conts"><h2>찐으로 헷갈려</h2><div class="depth_2"><strong>자주 사용 element node 재정리</strong><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.parentNode <span class="seg">read</span></button></dt><dd>부모 찾기. 상위노드 접근 가능</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+부모는 하나니깐 하나의 노드 반환
+node.parentNode  -  html 상위 노드에 접근가능 node 반환
+node.parentElement  -  html 상위 노드에 접근 불가능 element 반환
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.parentElement <span class="seg">read</span></button></dt><dd>부모 찾기. 상위노드 접근 불가능</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+부모는 하나니깐 하나의 노드 반환
+node.parentNode  -  html 상위 노드에 접근가능 node 반환
+node.parentElement  -  html 상위 노드에 접근 불가능 element 반환값
+        </code>
+    </pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.firstChild<span class="seg">read</span></button></dt><dd>첫번째 자식. Node 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.lastChild<span class="seg">read</span></button></dt><dd>마지막 자식. Node 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.previousSibling<span class="seg">read</span></button></dt><dd>이전 형제. Node 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.nextSibling<span class="seg">read</span></button></dt><dd>다음 형제. Node 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.firstElementChild<span class="seg">read</span></button></dt><dd>첫번째 자식. Element 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.lastElementChild<span class="seg">read</span></button></dt><dd>마지막 자식. Element 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.previousElementSibling <span class="seg">read</span></button></dt><dd>이전 형제. Element 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.nextElementSibling<span class="seg">read</span></button></dt><dd>다음 형제. Element 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.hasChildNodes()<span class="seg">read</span></button></dt><dd>자식에 node 있는지. bool 반환</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.childNodes<span class="seg">read</span></button></dt><dd>자식들. [HTMLCollection] 반환 - live</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.children<span class="seg">read</span></button></dt><dd>자식들. [NodeList] 반환 - nonlive</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.nodeValue<span class="seg">read</span></button></dt><dd>노드의 값</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.nodeName<span class="seg">read</span></button></dt><dd></dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.nodeType<span class="seg">read</span></button></dt><dd></dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.className<span class="seg">read</span></button></dt><dd>attribute</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.classList<span class="seg">read</span></button></dt><dd>attribute</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.id<span class="seg">read</span></button></dt><dd>attribute</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.hasAttribute(attribute)<span class="seg">read</span></button></dt><dd>attribute</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.getAttribute(attribute)<span class="seg">read</span></button></dt><dd>attribute</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.setAttribute(attribute, value)<span class="seg">read</span></button></dt><dd>attribute</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.removeAttribute(attribute)<span class="seg">read</span></button></dt><dd>attribute</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.createElement(tagName) <span class="seg">read</span></button></dt><dd>HTMLElement를 상속</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.createTextNode(text)<span class="seg">read</span></button></dt><dd></dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.appendChild(Node)<span class="seg">read</span></button></dt><dd></dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.removeChild(Node)<span class="seg">read</span></button></dt><dd></dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.textContent<span class="seg">read</span></button></dt><dd>성능 좋음</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.innerText<span class="seg">read</span></button></dt><dd>비표준. 앵간함 사용x</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.innerHTML<span class="seg">read</span></button></dt><dd></dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.insertAdjacentHTML(pos, str)</button></dt><dd>beforebegin afterbegin beforeend afterend</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+‘beforebegin’
+    p
+        ‘afterbegin’
+        foo 
+        ‘beforeend’
+    p
+‘afterend’
+
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.insertAdjacentElement(pos, ele)</button></dt><dd>beforebegin afterbegin beforeend afterend</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+‘beforebegin’
+    p
+        ‘afterbegin’
+        foo 
+        ‘beforeend’
+    p
+‘afterend’
+
+        </code>
+    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.insertAdjacentText(pos, str)</button></dt><dd>beforebegin afterbegin beforeend afterend</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+‘beforebegin’
+    p
+        ‘afterbegin’
+        foo 
+        
+        ‘beforeend’
+    p
+‘afterend’
+
+        </code>
+    </pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button>성능<br>보안</button></dt><dd>dom조작<span>&lt;</span> innerHTML <span>&lt;</span> insertAdjacentHTML<br>dom조작<span>&gt;</span> innerHTML <span>&gt;=</span> insertAdjacentHTML</dd></dl><div class="code_wrap"><pre>
+        <code class="markdown">
+
+장단점 
+
+# innerHTML 
+- DOM 조작 방식에 비해 빠르고 간편하다.
+- 간편하게 문자열로 정의한 여러 요소를 DOM에 추가할 수 있다.
+- 콘텐츠를 취득할 수 있다.
+
+- XSS공격에 취약점이 있기 때문에 사용자로 부터 입력받은 콘텐츠(untrusted data: 댓글, 
+사용자 이름 등)를 추가할 때 주의하여야 한다.
+- 해당 요소의 내용을 덮어 쓴다. 즉, HTML을 다시 파싱한다. 이것은 비효율적이다.
+
+
+# createElement
+- 특정 노드 한 개(노드, 텍스트, 데이터 등)를 DOM에 추가할 때 적합하다.
+
+- innerHTML보다 느리고 더 많은 코드가 필요하다.
+
+
+# insertAdjacentHTML()
+- 간편하게 문자열로 정의된 여러 요소를 DOM에 추가할 수 있다.
+- 삽입되는 위치를 선정할 수 있다.
+
+- XSS공격에 취약점이 있기 때문에 사용자로 부터 입력받은 콘텐츠(untrusted data: 댓글, 
+사용자 이름 등)를 추가할 때 주의하여야 한다.
+
+
+결론
+innerHTML과 insertAdjacentHTML()은 
+크로스 스크립팅 공격(XSS: Cross-Site Scripting Attacks)에 취약하다. 
+따라서 untrusted data의 경우, 주의하여야 한다. 
+텍스트를 추가 또는 변경시에는 textContent, 
+새로운 요소의 추가 또는 삭제시에는 DOM 조작 방식을 사용하도록 한다.
+            
+
+        </code>
+    </pre></div></div></div><div class="depth_2"><strong>스크롤 위치</strong><div class="item_wrap"><dl class="item"><dt><button><span>window</span>.scrollY</button></dt><dd>현재 스크롤 Y 위치값</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 - 익스 지원안함
 - pageYoffset 같은 기능
@@ -1456,7 +1786,21 @@ asd
                             <code class="javascript">
 asd
                             </code>
-                        </pre></div></div></div><div class="depth_2"><strong>element 사이즈, 위치</strong><div class="item_wrap"><dl class="item"><dt><button><span>element</span>.getBoundingClientRect()</button></dt><dd>요소의 위치정보, 사이즈정보</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div></div><div class="depth_2"><strong>element 사이즈, 위치</strong><div class="item_wrap"><dl class="item"><dt><button><span>element</span>.offsetTop</button></dt><dd>상단에서 떨어진 위치 (부모기준)</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+부모기준에서 떨어진 위치 
+
+div  - 렐러티브 
+  div  - 앱솔루트 top:5px 
+
+렐러티브 기준에서 떨어진 위치 
+
+
+만약 절대 위치 구하려면 
+element.getBoundingClientRect().top + pageYOffset 써야됨
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>element</span>.getBoundingClientRect()</button></dt><dd>요소의 위치정보, 사이즈정보</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 사이즈 잘 정리된 사이트 
 https://it-eldorado.tistory.com/140
@@ -5290,7 +5634,7 @@ asd
                             <code class="javascript">
 asd
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Math</span>.abs(x)</button></dt><dd>숫자의 절댓값을 반환</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Math</span>.abs(x)</button></dt><dd>숫자의 양수 절댓값을 반환</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 삼각 함수(sin(), cos(), tan(), asin(), acos(), atan(), atan2())는 매개변수와 반환값 모두 호도법(라디안)을 사용합니다.
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.d47b242430c508375503.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><p>1. 성능 측성 검사 <a href="https://pagespeed.web.dev/" target="_blank" title="새창">https://pagespeed.web.dev/</a></p><p>2. 구글 크롬 라이트하우스</p><p>3. font최적화 <a href="https://d2.naver.com/helloworld/4969726">d2 naver blog post</a></p><p>4. 브라우저 렌더링 <a href="https://d2.naver.com/helloworld/59361">d2 naver blog post</a></p><p>5. 리플로우 질문 남길 블로그 https://blinders.tistory.com/93</p></section><section class="conts"><h2>Performance</h2><div class="depth_2"><strong>css optimization</strong><div class="item_wrap"><dl class="item"><dt><button>사전로드</button></dt><dd>preload | prepetch | preconnect</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.2382b002bd80f3ac9b95.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><p>1. 성능 측성 검사 <a href="https://pagespeed.web.dev/" target="_blank" title="새창">https://pagespeed.web.dev/</a></p><p>2. 구글 크롬 라이트하우스</p><p>3. font최적화 <a href="https://d2.naver.com/helloworld/4969726">d2 naver blog post</a></p><p>4. 브라우저 렌더링 <a href="https://d2.naver.com/helloworld/59361">d2 naver blog post</a></p><p>5. 리플로우 질문 남길 블로그 https://blinders.tistory.com/93</p></section><section class="conts"><h2>Performance</h2><div class="depth_2"><strong>css optimization</strong><div class="item_wrap"><dl class="item"><dt><button>사전로드</button></dt><dd>preload | prepetch | preconnect</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 
 https://web.dev/i18n/ko/preload-critical-assets/
@@ -586,6 +586,175 @@ width, height 등 수치값 은 auto
 http://blog.hivelab.co.kr/%EA%B3%B5%EC%9C%A0-vertical-align-%ED%8C%8C%ED%97%A4%EC%B9%98%EA%B8%B0-1%EB%B6%80/
 
 
+                            </code>
+                        </pre></div></div></div></section><section class="conts"><h2>CSS Selector</h2><div class="depth_2"><strong>cccc</strong><div class="item_wrap"><dl class="item"><dt><button>*</button></dt><dd>기본</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+                                #container {
+                                    width: 960px;
+                                    margin: auto;
+                                 }
+
+                                 .error {
+                                    color: red;
+                                  }
+
+                                  li a {
+                                    text-decoration: none;
+                                  }
+
+                                  div#container > ul {
+                                    border: 1px solid black;
+                                  }
+
+                                  a { color: red; }
+
+
+                                  a:link { color: red; }
+                                    a:visted { color: purple; }
+                                    가상 클래스로 하기도 합니다. 예상하듯이 이는 클릭했었거나 
+                                    방문했던 페이지에 있는 앵커 태그에만 특정한 스타일을 적용할 수 있습니다.
+
+
+                                    ul + p {
+                                        color: red;
+                                     }
+
+                                     ul ~ p {
+                                        color: red;
+                                     }
+
+                                     a[title] {
+                                        color: green;
+                                     }
+
+                                     a[href="https://net.tutsplus.com"] {
+                                        color: #1f6053; /* nettuts green */
+                                      }
+
+
+                                      a[href*="tuts"] {
+                                        color: #1f6053; /* nettuts green */
+                                      }
+
+
+                                      a[href^="http"] {
+                                        background: url(path/to/external/icon.png) no-repeat;
+                                        padding-left: 10px;
+                                     }
+
+                                     a[href$=".jpg"] {
+                                        color: red;
+                                     }
+
+                                     a[data-filetype="image"] {
+                                        color: red;
+                                     }
+
+                                     a[data-info~="external"] {
+                                        color: red;
+                                     }
+                                      
+                                     a[data-info~="image"] {
+                                        border: 1px solid black;
+                                     }
+
+                                     input[type=radio]:checked {
+                                        border: 1px solid black;
+                                     }
+
+                                     .clearfix:after {
+                                        content: "";
+                                        display: block;
+                                        clear: both;
+                                        visibility: hidden;
+                                        font-size: 0;
+                                        height: 0;
+                                        }
+
+                                        div:hover {
+                                            background: #e3e3e3;
+                                          }
+
+                                          div:not(#container) {
+                                            color: blue;
+                                         }
+
+                                         *:not(p) {
+                                            color: green;
+                                          }
+
+
+                                          #첫 라인
+                                          p::first-line {
+                                            font-weight: bold;
+                                            font-size: 1.2em;
+                                         }
+
+
+                                         #첫 글자
+                                         p::first-letter {
+                                            float: left;
+                                            font-size: 2em;
+                                            font-weight: bold;
+                                            font-family: cursive;
+                                            padding-right: 2px;
+                                         }
+                                     
+                                         
+                                         li:nth-child(3) {
+                                            color: red;
+                                         }
+
+                                         li:nth-last-child(2) {
+                                            color: red;
+                                         }
+
+                                         ul:nth-of-type(3) {
+                                            border: 1px solid black;
+                                         }
+
+                                         ul:nth-last-of-type(3) {
+                                            border: 1px solid black;
+                                         }
+
+                                         ul li:first-child {
+                                            border-top: none;
+                                         }
+
+                                         ul > li:last-child {
+                                            color: green;
+                                         }
+
+                                         div p:only-child {
+                                            color: red;
+                                         }
+
+                                         li:only-of-type {
+                                            font-weight: bold;
+                                         }
+
+
+
+                                         :nth-child( an+b )
+                                         a와 b는 정수입니다. 0과 음수도 가능합니다.
+n에는 음이 아닌 정수, 즉 0, 1, 2, 3, …이 차례대로 대입됩니다.
+an+b 대신에 even, odd를 넣을 수도 있습니다.
+n에 0, 1, 2, 3, …을 대입하면 3n+2은 2, 5, 8, 11, …이 됩니다. 
+li 요소 중 그 순서에 있는 것을 선택하고 빨간색으로 만듭니다.
+li:nth-child( -2n+5 ) {
+    color: red;
+  }
+
+  li:nth-last-child( 2n ) {
+    color: red;
+  }
+  n에 0, 1, 2, 3, …을 대입하면 2n은 0, 2, 4, 6, …이 됩니다.
+
+
+  li:nth-last-child( 3n - 1 ) {
+    color: red;
+  }
+  n에 0, 1, 2, 3, …을 대입하면 3n-1은 -1, 2, 5, 8, …이 됩니
                             </code>
                         </pre></div></div></div></section><section class="conts"><h2>단축 CSS</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span>animation</button></dt><dd>이름, 진행시간, 딜레이, 방향, 카운트, 멈추거나 다시 시작, 타이밍함수, 필모드</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">

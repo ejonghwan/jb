@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.d47b242430c508375503.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Performence</h2><p>아직안본거(최적화) https://uzihoon.com/post/ef453fd0-ab14-11ea-98ac-61734eebc216</p><div class="depth_2"><strong>리소스 관리</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>성능</button></dt><dd>로딩성능 | 렌더링 성능</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.2382b002bd80f3ac9b95.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Performence</h2><p>아직안본거(최적화) https://uzihoon.com/post/ef453fd0-ab14-11ea-98ac-61734eebc216</p><div class="depth_2"><strong>리소스 관리</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>성능</button></dt><dd>로딩성능 | 렌더링 성능</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 성능최적화에는 아래 두 가지로 나뉨  
 
@@ -400,7 +400,12 @@ ex) 두개를 섞어서 잘 사용
     onSuccess={홈으로 이동}
 /&gt;
 
+ex2) map, reduce 등 세부로직은 map함수 안에 추상화되어있고 우리는 이용만 하면 된다 
+- 선언적 프로그래밍 안은 어쩃든 명령적으로 되어있긴함
+
+
 2. 명령적 프로그래밍 
+   - 세세하게 모든걸 설명함 
 &lt;Popup&gt; 
     세부로직 
 &lt;/Popup&gt;
@@ -1104,9 +1109,125 @@ input값이 달라지는 것들은 적절하지않음
 input값이 항상 같고 output도 같은 것들, 혹은 계산 로직이 너무 방대한 것에 한해 적용
 
                             </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>throttle</button></dt><dd>주기적으로 실행</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+                                
+function throttle(cb, wait) {
+    var waiting = true;
+    return function(args) {
+        if(waiting) {
+            cb(args);
+            waiting = false;
+
+            setTimeout(function() {
+                // console.log('hoho')
+                waiting = true
+            }, wait)
+        } 
+    }
+}
+                            </code>
+<code class="markdown">
+raf로 쓰로틀링
+function throttleUsingRaf(cb) {
+    var rAfTimeout = null;
+  
+    return function () {
+      if (rAfTimeout) {
+        window.cancelAnimationFrame(rAfTimeout);
+      }
+      rAfTimeout = window.requestAnimationFrame(function () {
+        cb();
+      })
+    }
+  }
+  function onScroll() {
+    // code ...
+  }
+  document.addEventListener('scroll', throttleUsingRaf(onScroll));
+</code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>debounce</button></dt><dd>특정 시간동안 맨처음 혹은 마지막 한번만 실행</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+function debounce(cb, wait) {
+    var timeout;
+    return function(args) {
+
+        console.log(timeout)
+        clearTimeout(timeout); //한번이면 바로 클리어
+
+        timeout = setTimeout(function() {
+            cb(args);
+        }, wait);
+    }
+}
+                            </code>
                         </pre></div></div></div></section><section class="conts"><h2>React</h2><div class="depth_2"><strong>Hooks</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>useState</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
+// 상태값 관리
 
+import React, { useState } from 'react'
+
+const Counter = () => {
+    const [n, setN] = useState(0)
+ 
+
+    // 함수에 state를 바로 사용할 경우 
+    const inc = () => {
+      setN(n + 1)
+    }
+  
+    const dec = () => {
+      setN(n - 1)
+    }
+
+    // prev값을 인자로 받아서 사용할 경우 
+    const [n, setN] = useState(0)
+ 
+
+    const inc = () => {
+      setN(n => n + 1)
+    }
+  
+    const dec = () => {
+      setN(n => n - 1)
+    }
+  
+
+    return (
+      <div>
+        <h1>{n}</h1>
+        <button onclick="{inc}">inc</button>
+        <button onclick="{dec}">dec</button>
+      </div>
+    );
+  }
+  
+  export default Counter;
+
+
+
+
+  주의 
+  1. onClick={onIncrease()}  형태라면 바로 실행에
+  2. closure 때문에 hook들은 컴포넌트 함수 바로 아래있어야함.
+  3. 커스텀 훅들은 use로 시작해야함.
+  4. closuer 때문에 submit 이벤트에 e.preventDefault 안먹는 현상... 이건 아직도 모르겠네 대체방법 
+
+    이거 디바운스 적용하다가 난거... 결론은 로대쉬꺼 말고 커스텀된 util.js에 있는 debounce를 가져와서 적용했는데 
+    const fn = debounce(300, (e) => { 실행로직 })
+    이 형태에서 e 객체에 있는 preventDefault가 안먹어서 분리했음. (콘솔엔 찍혔음)
+
+    // 분리
+    const dd = _debounce(() => {
+        return console.log(1111)
+    })
+
+    const fn = (e) => {
+        e.preventDefault();
+        console.log(e)
+        dd();
+    }
+ 
 
 
 
@@ -1297,6 +1418,99 @@ https://ko.reactjs.org/docs/hooks-reference.html#usecontext
 
 
 https://ko.reactjs.org/docs/hooks-reference.html#usecontext
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>useTransition</button></dt><dd>startTransition</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+
+18 버전 이상
+
+
+
+
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>Suspense</button></dt><dd>Suspense and SSR</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+18 버전 이상
+테코톡: 설명 좀 대충함 
+https://www.youtube.com/watch?v=focpJqfSu4k
+
+유툽: 자세한 설명
+https://www.youtube.com/watch?v=8q7OQSPLF4k 
+
+# CSR
+1. Load JS (빈화면)
+2. Fetch Data (빈화면)
+3. Render Components (빈화면)
+4. Interactive (화면과 상호작용 동시에 완료)
+
+
+# SSR 
+1. Fetch Data (빈화면)
+2. Render as HTML (브라우저가 화면 그림)
+3. Load JS (js 읽음)
+4. Hydrate (완료)
+
+(1) 브라우저가 서버에 페이지를 요청하면 데이터를 내려주고  
+(2) 리액트 컴포넌트를 HTML로 렌더링함 (인터렉티브하지않음) 
+(3) JS를 로드 (모든 로직을 브라우저 HTML과 연결)
+(4) 3. 연결하는 과정을 Hydrate 라고함.. 컴포넌트를 렌더링하고 이벤트 핸들러를 연결하는 과정
+
+기존 SSR의 문제점. 
+1. 모든 data fetch가 끝나야 어떤 것이라도 보여줄 수 있다. 
+2. 모든 JS 코드를 로딩하기 전에는 Hydration 단계로 넘어갈 수 없다
+3. 앱이 상호작용할 수 있는 상태가 되려면 앱 전체 Hydration이 완료되어야했다. 
+
+
+
+## Suspense 이용
+
+기존에는 앱 전체를 묶어야했다면 Suspense를 이용한다면 컴포넌트 별로 Hydrate
+아래 3개의 컴포넌트를 Suspense로 묶어 개별로 진행
+
+NavBar Component: 
+1. Fetch data
+2. render as HTML 
+3. Load JS
+4. Hydrate 
+
+Posts Component:
+위 4단계 동일 
+
+Comments Component:
+위 4단계 동일 
+
+
+
+Layout 
+   NavBar 
+   SideBar 
+   Post 
+   Suspense fallback={<spinner>} 
+      Comments 
+   Suspense
+
+
+* 위 구조일 때 코멘트 컴포넌트가 그려지기 전, 스피너가 도는 동안 NavBar, SideBar, Post를 먼저 그림. 
+** 서버에서 렌더링이 완료되면 코먼트 컴포넌트를 그림
+
+----------------------------------------
+
+코멘트에 대한 JS코드가 로드 될 때까지 클라이언트에서 Hydrate를 시작 할 수 없는 문제점 해결법?
+과거: SSR에서 lazy와 suspense 사용불가 
+
+18버전부터는 코멘트가 로드 되기 전 앱에 코멘트를 Hydrate 가능 
+import { lazy } from 'react'
+
+const Comments = lazy(() => import("./Comments.js"))
+//...
+
+Suspense fallback=spinner
+   Comments
+
+
+
+
                             </code>
                         </pre></div></div></div><div class="depth_2"><strong>Library</strong><div class="item_wrap"><dl class="item"><dt><button>react-router-dom <span>v6 기준</span></button></dt><dd>router</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.d47b242430c508375503.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><p>query 정리 https://velopert.com/479</p><p>query 정리 https://mongoosejs.com/docs/api/model.html</p><section class="conts"><h2>MongoDB</h2><div class="depth_2"></div></section><section class="conts"><h2>Mongoose</h2><div class="depth_2"><strong>타입, 속성</strong><div class="item_wrap"><dl class="item"><dt><button><span>mongoose</span> 스키마 생성</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.2382b002bd80f3ac9b95.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><p>query 정리 https://velopert.com/479</p><p>query 정리 https://mongoosejs.com/docs/api/model.html</p><p>params query body 차이 https://dar0m.tistory.com/m/222</p><section class="conts"><h2>MongoDB</h2><div class="depth_2"></div></section><section class="conts"><h2>Mongoose</h2><div class="depth_2"><strong>타입, 속성</strong><div class="item_wrap"><dl class="item"><dt><button><span>mongoose</span> 스키마 생성</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
 
@@ -414,6 +414,37 @@ const post = new Post({ ...req.body, params }, { new: true })
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>{</span> arrayFilters: [{}] <span>}</span></button></dt><dd>조건 필터</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
+
+
+
+
+
+그냥 text: [{ }]  
+위 구조일 때는 
+Project.findByIdAndUpdate(projectId, { $pull: { "joinUser": { _id: userId } } }, { new: true }),
+
+
+
+text: [{ text2: [ {  } ] }]
+위 구조일때는 
+arrayFilters 써야됨
+           
+ex1) 
+db 구조 
+joinProjects: [
+    { _id: { type: Types.ObjectId, ref: 'project'}, state: { type: Boolean, default: false } }
+],
+
+필터
+User.findByIdAndUpdate(userId, { "joinProjects.$[ele].state": true }, { arrayFilters: [{"ele._id": projectId}], new: true })
+
+1. joinProjects 필드 안에 배열 중 $[ele] 이 아래 있는 state를 : true로 
+2. $[ele]는 뒤에서 arrayFilters로 넣어줌 = 위에서는 ele._id: projectId 로 필터
+
+
+
+
+ex2)
 // model
 User 
 Blog (user, cooments: [ comment_info, user ]) 
@@ -439,11 +470,14 @@ if(req.body.name.first) {
 }
                                 
 /* 
-    await Blog.updateMany({}, { 'comments.$[ele].users.$[user].username': user.name.first }, { arrayFilters: [ {"ele.user._id": userId}, {"user._id": userId} ] })
-
+    await Blog.updateMany({}, 
+        { 'comments.$[ele].users.$[user].username': user.name.first }, 
+        { arrayFilters: [ {"ele.user._id": userId}, 
+        {"user._id": userId} ] })
     comments 필드안에 users 배열이 있고 그 안에 username을 필터링해서 바꿔줌 
 
 */
+
 
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>{</span> upsert: true <span>}</span></button></dt><dd>값이 없다면 추가</dd></dl><div class="code_wrap"><pre>
@@ -495,8 +529,44 @@ router.get('/:searchTerm', async(req, res, next) => {
     }
 })
                             </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>select()</button></dt><dd>원하는 필드만</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+
+db구조
+joinUser: [{
+    _id: { type: Types.ObjectId, ref: 'user' },
+    state: { type: Boolean, default: false },
+}]
+
+const isUser = await Project.findById(projectId).select({'joinUser': {$elemMatch: { _id: userId }} })
+
+
+                            </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>push</button></dt><dd>배열 값 추가</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
+
+그냥 text: [{ }]  
+위 구조일 때는 
+Project.findByIdAndUpdate(projectId, { $push: { "joinUser": { _id: userId } } }, { new: true }),
+
+
+text: [{ text2: [ {  } ] }]
+위 구조일때는 
+arrayFilters 써야됨
+                                
+----------------------------------------------
+
+
+db구조
+joinUser: [{
+    _id: { type: Types.ObjectId, ref: 'user' },
+    state: { type: Boolean, default: false },
+}]
+
+const project = await Project.findByIdAndUpdate(projectId, { $push: { "joinUser": { _id: userId } } }, { new: true })
+
+
+
 // Charlie document의 skills 배열에 "angularjs" 추가
 > db.people.update(
 ... { name: "Charlie" },
@@ -509,7 +579,57 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>pull</button></dt><dd>배열 값 삭제</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
+
+
+그냥 text: [{ }]  
+위 구조일 때는 
+Project.findByIdAndUpdate(projectId, { $pull: { "joinUser": { _id: userId } } }, { new: true }),
+
+
+text: [{ text2: [ {  } ] }]
+위 구조일때는 
+arrayFilters 써야됨
+
+
+
+-----------------------------------------                     
+
+db.book.find({
+    "auther":{
+            $elemMatch: {"name":"park"} // auther배열객체 들 중에서 {"name":"park"} 검색.
+    }
+})
+
+
+//북 db 구조 
+
+...: 
+auther: [ { "name": "park", "age": 30 } ]
+
+
+출처: https://inpa.tistory.com/entry/MONGO-%F0%9F%93%9A-Embedded-%EB%B0%B0%EC%97%B4-%EA%B0%9D%EC%B2%B4-%EA%B2%80%EC%83%89-%EC%BF%BC%EB%A6%AC#$elemMatch
+
+
+
+
+
+
+
 // Charlie document에서 skills 값의 mongodb 제거
+// 얘는 무조건 객체여야하는듯? 
+// $push 는 []구조면 []로 넣어주고 ..$pull은 []도 {}으로 ...
+
+
+유저 구조- projects: [ {_id: projectId, date: []} ]
+await Promise.all([
+    Project.deleteMany({ _id: projectId }),
+    User.updateOne({_id: userId}, { $pull: {projects: {_id: projectId} } }, { new: true })
+])
+
+
+
+
+
 db.people.update(
   { name: "Charlie" },
   { $pull: { skills: "mongodb" } }
@@ -708,6 +828,15 @@ https://velopert.com/479 여기부터 하면 됨
 collection.update(
   {$inc: {'count': 1}
 })
+
+
+
+감소할 땐 -1
+
+collection.update(
+  {$inc: {'count': -1}
+})
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>each</button></dt><dd>여러개</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
@@ -837,6 +966,10 @@ model.find().limit(10) //10개 검색
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.populate()</button></dt><dd>ObjectId를 검색해서 채워주기</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 
+https://www.zerocho.com/category/MongoDB/post/59a66f8372262500184b5363
+
+
+
 
 //ObjectId로 연결되어있는 필드를 해당 필드 검색해서 mongoose가 $in으로 값을 채워 넣어줌 
 model.populate({ path: '해당 ObjectId 연결된 필드명' })
@@ -891,14 +1024,25 @@ const allBlog = await Blog.find().populate([{ path: 'user' }, { path: 'comments'
 
 
 
+### 객체 뎁스 안에 또 아이디로 저장되어 있을 경우 둘다 퍼퓰시킬 때 
 
+- db 구조 
+  _id: { 
+    type: mongoose.Schema.Types.ObjectId, ref: 'user' 
+    target: { type: mongoose.Schema.Types.ObjectId, ref: 'project' }
+    },
 
+- backend query 
+  await Model.findbyId(id).populate("_id.target")
+  
+  이렇게 해주면 _id, target 둘 다 퍼퓰해줌
+  
 
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.find()</button></dt><dd>다수 검색 (배열반환)</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 // 모두검색
-.find() 
+.find({ 탐색 }, { 수정할 것 }, { 옵션 }) 
 
 
 // 특정값으로 검색 
@@ -913,6 +1057,18 @@ db.monsters.find({ $or: [{ name: 'Slime' }, { hp: 50 }] }); // name이 Slime이�
 
 // 
 db.monsters.find({ hp: { $lt: 100 } }); // hp가 100보다 다큐먼트
+
+
+
+// 특정조건 나중 추가
+// db 구조 : 1뎁스 public: {type: Boolean, require: true, default: false,}
+DB.find({ public: true }); 
+
+// db 구조 : 2뎁스 public: {type: Boolean, require: true, default: false,}
+DB.find({ "1뎁스.public": true }); 
+
+
+
 
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.findOne()</button></dt><dd>하나 검색 (객체반환)</dd></dl><div class="code_wrap"><pre>
@@ -968,8 +1124,15 @@ const user = await User.findById(req.params.userId)
                             </code>
                         </pre></div></div></div><div class="depth_2"><strong>수정</strong><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.update()</button></dt><dd>수정</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
--
 
+몽고 3.2? 부턴가 update 대신 updateOne / updateMany 사용권장
+
+-
+update 아토믹하다 
+*아토믹(원자성): 모두 반영되거나 모두 롤백되거나 
+
+아토믹 참고
+https://chrisjune-13837.medium.com/db-transaction-%EA%B3%BC-acid%EB%9E%80-45a785403f9e 
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.updateOne()</button></dt><dd>하나 찾아 업데이트</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
@@ -1031,6 +1194,10 @@ if(req.body.name.first) {
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.findOneAndUpdate()</button></dt><dd>검색 후 수정 (반환)</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
+
+findOneAndUpdate은 아토믹하다 
+*아토믹(원자성): 모두 반영되거나 모두 롤백되거나 
+
 
 업데이트된 콜렉션 반환받고 싶으면 이거~
 
@@ -1111,12 +1278,40 @@ router.put('/update/:userId', async(req, res) => {
 })
 
                             </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.findByIdAndUpdate()</button></dt><dd>아이디 검색 후 수정</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+
+findByIdAndUpdate은 내부적으로 findOneAndUpdate가 실행됨
+findOneAndUpdate은 아토믹하다. 따라서 findByIdAndUpdate도 아토믹하다
+*아토믹(원자성): 모두 반영되거나 모두 롤백되거나 
+
+아이디로 찾을거면 findByIdAndUpdate
+그 외로 찾을거면 findOneAndUpdate
+
+*_id는 인덱싱이 되어있음.
+
+
+
+
+
+
+                            </code>
                         </pre></div></div></div><div class="depth_2"><strong>삭제</strong><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.deleteOne()</button></dt><dd>하나 삭제</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 얘는 삭제만 함.. 
 콜렉션을 받을 필요없으면 얘가 좀 더 효율적  
 
 const user = await User.deleteOne({ _id: params userId })
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.deleteMany()</button></dt><dd>여러개 삭제</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+얘는 삭제만 함.. 
+콜렉션을 받을 필요없으면 얘가 좀 더 효율적  
+
+
+projectId가 ["id", "id"] 배열로와도, "id" 문자열로 와도 .. {_id: "id"}객체로 와도 삭제가 됨
+const project = await Project.deleteMany({ _id: projectId });
 
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>model</span>.findOneAndDelete()</button></dt><dd>검색 후 하나 삭제 (유저반환)</dd></dl><div class="code_wrap"><pre>
@@ -1140,6 +1335,11 @@ findOne findOneAndUpdate findOneAndDelete 등은 유사 프로미스
 .exec() 을 붙이면 온전한 프로미스 객체가 됨 
 
 붙이든 안붙이든 동일하지만 에러 발생 시 stack trace에 코드 위치가 표기 되기에 붙이는걸 권장
+
+
+--10 17 수정
+업데이트 후 .exec()안붙이면 바로 실행안될수도 있음 
+업데이트 메서드들에 콜백이 있는데 콜백 사용안할거면 .exec() 붙이자
 
                             </code>
                         </pre></div></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
