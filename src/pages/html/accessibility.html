@@ -1474,6 +1474,210 @@ https://www.shinhancard.com/email/email_new/1212185_3199.html
 
 
 
+* {box-sizing: border-box; padding: 0; margin: 0;}
+html, body {width: 100%; height: 100%;}
+ol, ul {list-style: none;}        
+a {text-decoration: none;}
+
+h1 {font-size: 20px;}
+h2 {font-size: 18px;}
+h3 {font-size: 16px;}
+
+.tab_wrap .tab_list {display: flex; width: 100%; margin-top:20px; margin-bottom: 20px;}
+
+.tab_wrap .tab_list > li {flex: 1 1 auto; width: 33.3333%; }
+.tab_wrap .tab_list > li > .tabs {display: block; padding: 5px 20px; border-right: 1px solid #ececec;;}
+.tab_wrap .tab_list > li > .tabs.active {background-color: #ececec;}
+
+.tab_wrap .tab_contents .tab_conts {display: none; /*background-color: #ececec;*/ border-top: 1px solid #ddd; border-bottom: 1px solid #ddd;; padding: 50px 30px;}
+.tab_wrap .tab_contents .tab_conts.active {display: block;}
+
+label {position: relative; flex: 1 1 auto; width: 33.33333%; cursor: pointer;}
+label.active {background-color: #ececec;}
+input {    position: absolute;left: 0;top: 0;width: 10px;height: 10px;opacity: 0.01;margin: 0;}
+
+
+
+
+&lt;article class="tab_6 tab_wrap"&gt;
+    &lt;h1 id="tab_title5"&gt;이중탭&lt;/h1&gt;
+    &lt;ul class="tab_list" role="tablist" aria-labelledby="tab_title5"&gt;
+        &lt;li role="none"&gt;
+            &lt;label id="tab51" for="hoho51" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts51"&gt;
+                &lt;span role="text"&gt;t1&lt;/span&gt;
+                &lt;input type="radio" name="hoho5" id="hoho51" checked=""&gt;
+            &lt;/label&gt;
+        &lt;/li&gt;
+        &lt;li role="none"&gt;
+            &lt;label id="tab52" for="hoho52" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts52"&gt;
+                &lt;span role="text"&gt;t2&lt;/span&gt;
+                &lt;input type="radio" name="hoho5" id="hoho52"&gt;
+            &lt;/label&gt;
+        &lt;/li&gt;
+        &lt;li role="none"&gt;
+            &lt;label id="tab53" for="hoho53" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts53"&gt;
+                &lt;span role="text"&gt;t3&lt;/span&gt;
+                &lt;input type="radio" name="hoho5" id="hoho53"&gt;
+            &lt;/label&gt;  
+        &lt;/li&gt;  
+    &lt;/ul&gt;
+    &lt;div class="tab_contents"&gt;
+        &lt;section id="tab_conts51" class="tab_conts active" role="tabpanel" aria-labelledby="tab51"&gt;
+            &lt;h2&gt;content1&lt;/h2&gt;
+            &lt;br&gt;&lt;br&gt;
+
+            &lt;article class="tab_7 tab_wrap"&gt;
+                &lt;h3 id="tab_title6"&gt;안쪽 이중탭 v2&lt;/h3&gt;
+                &lt;ul class="tab_list" role="tablist" aria-labelledby="tab_title6"&gt;
+                    &lt;li role="none"&gt;
+                        &lt;label id="tab512" for="hoho512" class="tabs active" role="tab" aria-selected="true" aria-controls="tab_conts512"&gt;
+                            &lt;span role="text"&gt;inner t1&lt;/span&gt;
+                            &lt;input type="radio" name="hoho52" id="hoho512" checked="" role="none"&gt;
+                        &lt;/label&gt;
+                    &lt;/li&gt;
+                    &lt;li role="none"&gt;
+                        &lt;label id="tab522" for="hoho522" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts522"&gt;
+                            &lt;span role="text"&gt;inner t2&lt;/span&gt;
+                            &lt;input type="radio" name="hoho52" id="hoho522" role="none"&gt;
+                        &lt;/label&gt;
+                    &lt;/li&gt;
+                    &lt;li role="none"&gt;
+                        &lt;label id="tab532" for="hoho532" class="tabs" role="tab" aria-selected="false" aria-controls="tab_conts532"&gt;
+                            &lt;span role="text"&gt;inner t3&lt;/span&gt;
+                            &lt;input type="radio" name="hoho52" id="hoho532" role="none"&gt;
+                        &lt;/label&gt;  
+                    &lt;/li&gt;  
+                &lt;/ul&gt;
+                &lt;div class="tab_contents"&gt;
+                    &lt;section id="tab_conts512" class="tab_conts active" role="tabpanel" aria-labelledby="tab512"&gt;
+                        &lt;h4&gt;inner content1&lt;/h4&gt;
+                    &lt;/section&gt;
+                    &lt;section id="tab_conts522" class="tab_conts" role="tabpanel" aria-labelledby="tab522"&gt;
+                        &lt;h4&gt;inner content2&lt;/h4&gt;
+                    &lt;/section&gt;
+                    &lt;section id="tab_conts532" class="tab_conts" role="tabpanel" aria-labelledby="tab532"&gt;
+                        &lt;h4&gt;inner content3&lt;/h4&gt;
+                    &lt;/section&gt;
+                &lt;/div&gt;
+            &lt;/article&gt;
+
+        &lt;/section&gt;
+        &lt;section id="tab_conts52" class="tab_conts" role="tabpanel" aria-labelledby="tab52"&gt;
+            &lt;h2&gt;content2&lt;/h2&gt;
+        &lt;/section&gt;
+        &lt;section id="tab_conts53" class="tab_conts" role="tabpanel" aria-labelledby="tab53"&gt;
+            &lt;h2&gt;content3&lt;/h2&gt;
+        &lt;/section&gt;
+    &lt;/div&gt;
+&lt;/article&gt;
+
+        
+
+
+class AccTab {
+    constructor(className, option) {
+        this.className = className;
+        this.option = option || 'default';
+    }
+
+    init() {
+        console.log('init')
+
+        // ele
+        this.tab_btn = document.querySelectorAll(`${this.className} > .tab_list .tabs`); 
+        this.tab_conts = document.querySelectorAll(`${this.className} > .tab_contents > .tab_conts`)
+
+        // global
+        this.idx = 0;
+        this.target = null;
+
+        // tab button evt
+        this.evt(this.tab_btn, 'click', this.tabAction.bind(this))
+    }
+
+    tabAction(e, idx, list, target) {
+        e.preventDefault();
+        if(this.option.tabType && this.option.tabType === 'radio') {
+            this.clearAttr(list, 'checked', 'false')
+            this.setAttr(target, 'checked', 'true')
+        }
+
+        this.idx = idx;
+        this.clearClass(list, 'active')
+        this.clearClass(this.tab_conts, 'active')
+        this.addClass(target, 'active')
+        this.addClass(this.tab_conts[idx], 'active')
+        this.clearAttr(list, 'aria-selected', 'false')
+        this.setAttr(target, 'aria-selected', 'true')
+        
+    }
+
+    clearClass(els, className) {
+        for(const a of els) { a.classList.remove(className) }
+    }
+    clearAttr(els, attrName, value) {
+        for(const a of els) { this.setAttr(a, attrName, value) }
+    }
+    addClass(el, className) {
+        return el.classList.add(className)
+    }
+    removeClass(el, className) {
+        return el.classList.remove(className)
+    }
+    hasClass(el, className) {
+        return el.classList.contains(clasName)
+    }
+    setAttr(el, attrName, value) {
+        return el.setAttribute(attrName, value)
+    }
+    removeAttr(el, attrName) {
+        return el.removeAttribute(attrName)
+    }
+
+    evt(targets, evtName, fn) {
+        if(targets.length) {
+            for(let i = 0; i &lt; targets.length; i++) {
+                targets[i].addEventListener(evtName, e => fn(e, i, targets, targets[i]))
+            }        
+        } else {
+            targets.addEventListener(evtName, e => fn(e))
+        }
+        
+    }
+
+}
+
+
+
+// 이중탭
+const myTab6 = new AccTab('.tab_6', { tabType: 'radio' });
+myTab6.init();
+
+const myTab7 = new AccTab('.tab_7', { tabType: 'radio' });
+myTab7.init();
+
+
+
+
+
+
+
+
+// 명시적
+&lt;label for="name"&gt;이름&lt;/label&gt;
+&lt;input type="text" id="name"/&gt;
+
+// 암시적
+&lt;label&gt;
+  이름
+  &lt;input type="text" id="name"/&gt;
+&lt;/label&gt;
+
+이라는데... 암시적은 옛날에 어떤 기기가 안읽고 그냥 지나갔다고함 
+
+
+
+
                         </code>
                     </pre>
                         </div>
