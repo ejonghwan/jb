@@ -16087,13 +16087,23 @@ const emit = (el, evt, data) => {
     el.dispatchEvent(event) //엘리먼트에 등록
 } 
 
-// 어떤 이벤트일때 emit등록할지
-document.body.addEventListener('click', e => emit( document.body, '@customClick', [1,2,3,4] )) 
 
 // 커스텀 이벤트 행동 등록
 document.body.addEventListener('@customClick', e => {
-    e.detail //[1,2,3,4]
+    console.log(e.detail) //[1,2,3,4]
+    // @customClick 이벤트가 실행됐을 때 
 })
+
+
+// 어떤 이벤트일때 emit등록할지
+1. 얘는 비동기로 등록되는지 평가 위치에 상관없이 잘 됨
+document.body.addEventListener('click', e => emit( document.body, '@customClick', [1,2,3,4] ))  혹은
+
+2. 그냥 실행하는건 무조건 listener보다 뒤에 있어야 실행됨. 왜 그런지 잘 모르겠음.. 
+   커스텀이벤트를 등록하는 리스너가 비동기가 아닌가 ? 
+emit(document.body, '@customClick', [1,2,3,4]) 
+
+
 
 
 
