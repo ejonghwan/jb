@@ -837,6 +837,8 @@ aria-labelledby="제목 아이디" (h태그에다 id 추가)
 논블록이 아닌 숨겨져있는 경우 히든과 탭인덱스 제거.
 
 
+참고 
+https://selosele.github.io/2020/11/23/layer-popup-close-button-position/
 
 
                         </code>
@@ -1047,6 +1049,25 @@ myTab7.init();
 
 이라는데... 암시적은 옛날에 어떤 기기가 안읽고 그냥 지나갔다고함 
 
+
+
+
+** 결론!! 
+1. 탭에 input label 형제로 쓸 경우 
+   - label에 role="tab" 쓰면 보조기기가  input label 두번 잡음 (role="tab" 때문에)
+   - role="tab"을 안쓰면 몇번쨰 라디오라고만 읽음 (tab인데 radio라고 읽으면 좀..?)
+   - style input:checked + label도 넣어야됨 
+   - 탭키로 잡고 좌우 화살표로 이동 가능
+
+   - aria-hidden 넣으면 그냥 텍스트만 읽어줌 (몇번쨰 이런거 안읽음)
+   - 신한플레이처럼 input에 display: none주면 pc에서 키보드탭이 못잡음
+     (보조기기는 잡음 눈은 보이는데 손발이 불편한사람들). 아마 모바일은 가능..? 
+
+
+
+2. label안에 input을 넣을 경우
+   - 명시적으로 for id 연결하면 문제 없을듯..?
+   - 굳이 hidden 들 넣을 필요없음
 
 
 

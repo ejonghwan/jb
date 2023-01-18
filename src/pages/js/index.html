@@ -6601,6 +6601,37 @@ obj.addEventListener('animalfound', (e) => console.log(e.detail.name));
 obj.dispatchEvent(catFound);
 
 // 콘솔에 "cat" 기록됨
+
+
+----------------------------------------------------
+
+// 커스텀 이벤트 
+const emit = (el, evt, data) => {
+    const event = new CustomEvent(evt, { detail: data }) //커스텀 이벤트 생성 
+    el.dispatchEvent(event) //엘리먼트에 등록
+} 
+
+
+// 커스텀 이벤트 행동 등록
+document.body.addEventListener('@customClick', e => {
+    console.log(e.detail) //[1,2,3,4]
+    // @customClick 이벤트가 실행됐을 때 
+})
+
+
+// 어떤 이벤트일때 emit등록할지
+1. 얘는 비동기로 등록되는지 평가 위치에 상관없이 잘 됨
+document.body.addEventListener('click', e => emit( document.body, '@customClick', [1,2,3,4] ))  혹은
+
+2. 그냥 실행하는건 무조건 listener보다 뒤에 있어야 실행됨. 왜 그런지 잘 모르겠음.. 
+   커스텀이벤트를 등록하는 리스너가 비동기가 아닌가 ? 
+emit(document.body, '@customClick', [1,2,3,4]) 
+
+
+
+
+
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>FormData</button></dt><dd>form 요소 데이터들 컨트롤</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
