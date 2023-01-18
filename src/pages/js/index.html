@@ -16077,6 +16077,27 @@ obj.addEventListener('animalfound', (e) => console.log(e.detail.name));
 obj.dispatchEvent(catFound);
 
 // 콘솔에 "cat" 기록됨
+
+
+----------------------------------------------------
+
+// 커스텀 이벤트 
+const emit = (el, evt, data) => {
+    const event = new CustomEvent(evt, { detail: data }) //커스텀 이벤트 생성 
+    el.dispatchEvent(event) //엘리먼트에 등록
+} 
+
+// 어떤 이벤트일때 emit등록할지
+document.body.addEventListener('click', e => emit( document.body, '@customClick', [1,2,3,4] )) 
+
+// 커스텀 이벤트 행동 등록
+document.body.addEventListener('@customClick', e => {
+    e.detail //[1,2,3,4]
+})
+
+
+
+
                             </code>
                         </pre>
                         </div>
