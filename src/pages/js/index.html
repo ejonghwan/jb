@@ -2565,11 +2565,28 @@ node.parentElement  -  html 상위 노드에 접근 불가능 element 반환값
                             </div>
                         </div>
                         <!-- //item -->
-                        <br />
+                        <br /><br />
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>document</span>.readyState</button></dt>
+                                <dd>문서 로딩 상태</dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+
+
+            https://plnkr.co/edit/sX1w7BGpMxfCERwq?p=preview&preview
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
                          <!-- item -->
                          <div class="item_wrap">
                             <dl class="item">
-                                <dt><button>성능<br />보안</button></dt>
+                                <dt><button>성능 / 보안</button></dt>
                                 <dd>dom조작<span>&lt;</span> innerHTML <span>&lt;</span> insertAdjacentHTML<br />dom조작<span>&gt;</span> innerHTML <span>&gt;=</span> insertAdjacentHTML</dd>
                             </dl>
                             <div class="code_wrap">
@@ -16081,7 +16098,8 @@ obj.dispatchEvent(catFound);
 
 ----------------------------------------------------
 
-// 커스텀 이벤트 
+
+// 커스텀 이벤트 ex) 1
 const emit = (el, evt, data) => {
     const event = new CustomEvent(evt, { detail: data }) //커스텀 이벤트 생성 
     el.dispatchEvent(event) //엘리먼트에 등록
@@ -16104,6 +16122,26 @@ document.body.addEventListener('click', e => emit( document.body, '@customClick'
 emit(document.body, '@customClick', [1,2,3,4]) 
 
 
+
+----------------------------------------------------
+
+
+// 커스텀 이벤트 ex) 2
+const emit = (el, evt, data) => {
+    const event = new CustomEvent(evt, { detail: data }) 
+    el.dispatchEvent(event) 
+} 
+
+document.addEventListener('@update', e => {
+    document.body.innerHTML += `${e.detail.map( a => a )}` //[{ data }]
+})
+emit( document.querySelector('ele'), '@update', data )
+
+
+// 약간 [{}] 데이터 업데이트 됐을 때 커스텀 이벤트 쓰면 편할듯 
+// (변경된 데이터만)(근데 상태관리하는 배열만들면 되는거 이닌가 ? )
+
+// 이렇게 사용할땐 @click을 등록하기 전에 emit() 평가시  커스텀 이벤트가 등록되지 않음 (순서 중요)
 
 
 
