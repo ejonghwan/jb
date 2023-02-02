@@ -574,23 +574,61 @@ innerHTML과 insertAdjacentHTML()은
 
 
 # preload
-기본적으로 뒤에서 사용될 리소스들 중에 먼저 불러와야하는 것들이 있다면 preload를 써서 HTML parse할때 다운받게함
+기본적으로 사용될 리소스들 중에 먼저 불러와야하는 것들이 있다면 preload를 써서 HTML parse할때 다운받게함
+preload로 다운받은 리소스들은 ()실행문을 만나면 다운로드하지않고 바로 실행할 수 있으니 빠름.  
+(무조건 화면이 빠르게 보이고 기능이 작동할 수 있게.  FP - LCP까지의 시간 단축이 핵심)
 
 1. font: 
 덜컥거림을 방지하기 위해 preload하면 미리 다운받았기 때문에 font-face url()을 만나면 다운받은걸로 바로 적용됨
+subset을 쓰면 전체 폰트파일에서 필요한 것만 미리 가져올수도 있음.
 
 2. image: 
 첫화면에 필요한 이미지를 preload 하게되면 img src 태그를 만나기전에 미리 다운받기 떄문에 태그를 만난 순간 바로 적용 
 
-3. css: 
+3. css:  
 첫화면 혹은 메인에 필요한 css를 preload 하게되면 link style 보다 더 먼저 다운되었기에 빠르게 적용됨 
 (preload보다 더 빠른건 head에 style 인라인 넣는 방법)
 
 
-내일 이어서 ..
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 
 # lazyload
+당장 로드될 때 필요없는 리소스들은 나중에 불러오게 함 
+필요한 리소스만 불러온 후 나머지 소스들은 화면이 먼저 불러와진 후 천천히 다운로드 
+
+1. image (이미지 최적화에서 자세히 설명)
+img loading="lazy" 를 쓰거나 new IntersectionObserver로 제어. 
+(img src=""는 만나는 순간 다운받기 떄문에, data-src="" 에서 src로 넣는 방법)
+
+2. css 
+  - media="print"로 한 후 onload evt 후 속성바꿔도 됨   
+  &lt;link rel="stylesheet" href="./css/media_test.css" media="print" onload="this.media='all'"&gt; 
+
+  - onload 후 js로 head 삽입 (위 방법이 더 깔끔한듯) 
+  head.innerHTML += `&lt;link rel="stylesheet" href="./css/media_query_test.css" /&gt;`
+
+  두 방법 모두 퍼포먼스탭에서 onload event 후 리소스를 다운받음.
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
+# prepatch
+접속 할 페이지의 리소스를 다운로드함 
+(예를 들어 메인페이지에 들어갔을 때 서브페이지 자원들을 미리 로드할 수 있음)
+?이거랑 lazy를 내가 넣은거랑 차이가 있을지 테스트 해봐야함
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
+# preconnect
+접속할 url의 TCP 통신의 기초작업을 미리 설정
+..리소스를 많이 먹기 떄문에 과도하게 사용 노
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 
 # Load Event
@@ -625,6 +663,9 @@ alert(getComputedStyle(document.body).marginTop);
 2. head 리소스 다운로드 (사전로드한게 있다면 먼저) (style Tag가 있다면 먼저 동시에 CSSOM)
 3. DOM 다 그려지면 readyState: interactive + DOMContentLoaded가
 4. Load evt + readyState: complete
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 
 # readyState 속성
@@ -696,6 +737,53 @@ https://blog.shiren.dev/2016-11-15-%ED%81%AC%EB%A1%AC%EA%B0%9C%EB%B0%9C%EC%9E%90
             <div class="code_wrap">
                 <pre>
 <code class="markdown">
+
+# 반응형에서 이미지 (m: 360x360 120kb, pc: 120x120 20kb) 12장으로 테스트 
+
+1. 3배수 이미지 하나를 그대로 썼을 때 (lazy 적용x)
+-FCP: 0.2  -SI: 0.2  -LCP: 1.1  -TtI: 0.2  -TBT: 0  -CLS: 0.2(성능나빠짐) 
+
+1-1. 3배수 이미지 하나를 그대로 썼을 때 (js lazy 적용o)
+-FCP: 0.2  -SI: 0.2  -LCP: 0.2 -TtI: 0.2  -TBT: 0  -CLS: 0.2
+
+2. pc/m 이미지를 나누고 media query사용. loading="lazy" 적용
+-FCP: 0.2  -SI: 0.2  -LCP: 0.5  -TtI: 0.2  -TBT: 0  -CLS: 0
+
+3. pc/m 이미지를 나누고 media query사용. IntersectionObserver 적용  (가장 빠름)
+-FCP: 0.2  -SI: 0.2  -LCP: 0.3  -TtI: 0.2  -TBT: 0  -CLS: 0
+
+3번 code)
+const obTarget = document.querySelectorAll('ele')
+const inter = new IntersectionObserver(ent =&gt; ob(ent))
+const ob = ents =&gt; {
+    if(document.body.clientWidth &lt;= 600) { //600 이하 브라우저 
+        //ents는 옵저버하고 있는 엘리먼트를 담은 객체
+        ents.forEach(ent =&gt; {
+            if(ent.classList.contains('mobile') && ent.isIntersecting) {
+                ent.target.src = ent.target.dataset.src
+            }
+        })
+    }
+}
+
+obTarget.forEach(item =&gt; inter.observe(item))
+
+
+4. bg로 넣었을 때 css media query 사용.
+media query는 조건에 맞지 않으면 그냥 지나가버림. 
+분기처리만 잘 되어있다면 m으로 접근시 pc안에 있는 url()은 다운로드하지 않음.
+
+
+
+3번이 가장 빠르고 이미지 렌더링도 가장 빨랐음. 
+그럼 반응형할땐 이미지를 두개로 관리하고 new IntersectionObserver로 lazy 관리를 해야하나 ? 
+아니면 큰 이미지만 그렇게 하면 될까 ..
+
+
+
+# image preload 
+- 리소스를 html 파싱 후에 받는게 아니라 파싱하면서 미리 다운로드 받아둠
+- 라이트하우스 돌려보면 html parse 하는 구간에서 다운로드 시작 (preload 안걸면 모두 파싱 후 DCL 부터 받음 ) 
 
 
 
