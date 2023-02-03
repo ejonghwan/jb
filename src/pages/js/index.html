@@ -578,17 +578,40 @@ innerHTML과 insertAdjacentHTML()은
 preload로 다운받은 리소스들은 ()실행문을 만나면 다운로드하지않고 바로 실행할 수 있으니 빠름.  
 (무조건 화면이 빠르게 보이고 기능이 작동할 수 있게.  FP - LCP까지의 시간 단축이 핵심)
 
-1. font: 
+1. font:   &lt;link rel="preload" href="../fonts/BMDoHyeon.woff2" type="font/woff2" as="font" crossorigin /&gt;
 덜컥거림을 방지하기 위해 preload하면 미리 다운받았기 때문에 font-face url()을 만나면 다운받은걸로 바로 적용됨
 subset을 쓰면 전체 폰트파일에서 필요한 것만 미리 가져올수도 있음.
 
-2. image: 
+ex)
+@font-face {
+    font-family: 'BMDoHyeon';
+    src: local('BMDoHyeon'),
+        url('../fonts/BMDoHyeon.woff2') format('woff2'),
+        url('../fonts/BMDoHyeon.woff') format('woff'),
+        url('../fonts/BMDOHYEON_ttf.ttf') format('truetype');
+    /* font-display: swap; */
+}
+
+
+2. image: &lt;link rel="preload" as="image" href="./images/img.jpg" &gt;
 첫화면에 필요한 이미지를 preload 하게되면 img src 태그를 만나기전에 미리 다운받기 떄문에 태그를 만난 순간 바로 적용 
 
+
 3. css:  
+&lt;link rel="stylesheet" href="./css/media_test.css" media="print" onload="this.media='all'"&gt;
+&lt;link rel="preload" as="style" href="./css/reset.css" &gt;
 첫화면 혹은 메인에 필요한 css를 preload 하게되면 link style 보다 더 먼저 다운되었기에 빠르게 적용됨 
 (preload보다 더 빠른건 head에 style 인라인 넣는 방법)
 
+ex1) 
+모바일로 접속했을 때 html parse 하면서 mobile.css 파일만 받음. 
+html parse가 끝나는 시점에 나머지 pc.css, tablet.css 다운받고 처리.
+&lt;link rel="stylesheet" href="./css/reset.css" media="all"&gt;
+&lt;link rel="stylesheet" href="./css/pc.css" media="all and (min-width: 1000px) and (max-width: 4000px)"&gt;
+&lt;link rel="stylesheet" href="./css/tablet.css" media="all and (min-width: 481px) and (max-width: 1000px)"&gt;
+&lt;link rel="stylesheet" href="./css/mobile.css" media="all and (min-width: 0px) and (max-width: 480px)"&gt;
+
+q? 필요한 디바이스꺼만 받고 나머지 print 설정 후  this.media로 조절하고 싶은데 방법ㅇ ㅣ없나 ..?  스크립트 없이 
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -610,6 +633,7 @@ img loading="lazy" 를 쓰거나 new IntersectionObserver로 제어.
 
   두 방법 모두 퍼포먼스탭에서 onload event 후 리소스를 다운받음.
 
+  
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
@@ -800,7 +824,7 @@ media query는 조건에 맞지 않으면 그냥 지나가버림.
             </dl>
             <div class="code_wrap">
                 <pre>
-<code class="markdown">
+<code class="javascript">
 
 
 
