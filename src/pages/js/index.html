@@ -342,7 +342,7 @@ iuSayNameBind()
             <dl class="item">
                 <dt><button><span>DOM</span> 기본</button></dt>
                 <dd>
-                    dom 좀더 자세히
+                    상속, nodeList, innerHTML, insertAdjacentHTML 
                 </dd>
             </dl>
             <div class="code_wrap">
@@ -565,14 +565,12 @@ innerHTML과 insertAdjacentHTML()은
          <div class="item_wrap">
             <dl class="item">
                 <dt><button><span>DOM</span> document load</button></dt>
-                <dd>DOMContentLoaded load readyState</dd>
+                <dd>로딩 시점, 타이밍, preload, prepatch, lazyload</dd>
             </dl>
             <div class="code_wrap">
 
                 <pre>
 <code class="markdown">
-
-
 # preload
 기본적으로 사용될 리소스들 중에 먼저 불러와야하는 것들이 있다면 preload를 써서 HTML parse할때 다운받게함
 preload로 다운받은 리소스들은 ()실행문을 만나면 다운로드하지않고 바로 실행할 수 있으니 빠름.  
@@ -613,9 +611,11 @@ html parse가 끝나는 시점에 나머지 pc.css, tablet.css 다운받고 처�
 
 q? 필요한 디바이스꺼만 받고 나머지 print 설정 후  this.media로 조절하고 싶은데 방법ㅇ ㅣ없나 ..?  스크립트 없이 
 
-ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+</code>
+</pre>
 
-
+<pre>
+    <code class="markdown">
 # lazyload
 당장 로드될 때 필요없는 리소스들은 나중에 불러오게 함 
 필요한 리소스만 불러온 후 나머지 소스들은 화면이 먼저 불러와진 후 천천히 다운로드 
@@ -633,27 +633,99 @@ img loading="lazy" 를 쓰거나 new IntersectionObserver로 제어.
 
   두 방법 모두 퍼포먼스탭에서 onload event 후 리소스를 다운받음.
 
-  
 
-ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-
-# prepatch
-접속 할 페이지의 리소스를 다운로드함 
+  </code>
+  </pre>
+  <pre>
+    <code class="markdown">
+# prefetch
+나중에 접속 할 페이지의 리소스(html, style, script)를 다운로드함 
 (예를 들어 메인페이지에 들어갔을 때 서브페이지 자원들을 미리 로드할 수 있음)
-?이거랑 lazy를 내가 넣은거랑 차이가 있을지 테스트 해봐야함
+lazy랑 비슷한 개념이지만 로드시점이 조금 다름. 
 
 
-ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+# test 1) prefetch 없이 일반적인 다운로드 (용량 큰 css파일 두개)
+&lt;link rel="stylesheet" href="common.css"&gt;
+&lt;link rel="stylesheet" href="dx-com.css"&gt;
+결과 
+- 퍼포먼스 점수: 74 (LCP 2.7s) 
+- 로드시점: 순서대로
 
+
+------------------------------------------------------
+
+
+# test 2) prefetch로 다운로드 (bg에서 다운로드 후 메모리 캐시저장)
+&lt;link rel="prefetch" href="common.css" as="style"&gt;
+&lt;link rel="prefetch" href="dx-com.css" as="style"&gt;
+결과 
+- 퍼포먼스 점수: 98
+- 로드시점: 중간 html에 img 태그가 있어도 무조건 후순위 다운로드함. (html 파싱 안막음)
+           근데 onload 후가 아니라 html parse 이후. 요청시작함
+
+*본창에서 다운로드 138kb           142ms
+ 서브페이지에선 prefetch cache     14ms
+ 서브페이지 새로고침 시 disk cache  0ms
+ 브라우저 종료후 키면 memory cache  0ms
+
+
+------------------------------------------------------
+
+
+# test 3) link media로 조절 (이게 메모리 캐시저장하는지 확인해야됨)
+&lt;link rel="stylesheet" href="common.css" media="print" onload="this.media='all'"&gt;
+&lt;link rel="stylesheet" href="dx-com.css" media="print" onload="this.media='all'"&gt;
+결과 
+- 퍼포먼스 점수: 100
+- 로드시점: 중간 html에 img 태그가 있어도 무조건 후순위 다운로드함. 
+           근데 onload 후가 아니라 html parse 이후. 요청시작함
+           (rel에 prefetch 들어가면 무한로드함)
+
+?q 근데 왜 다운로드 시점이 html parse 이후인지 ..?
+
+이거 내일 테스트해봐야됨 캐시
+
+
+------------------------------------------------------
+
+
+# test 4) script로 문자열 붙여보기
+
+window.onload = () =&gt; {
+    document.head.innerHTML += "
+        &lt;link rel="stylesheet" href="common.css"&gt;
+        &lt;link rel="stylesheet" href="dx-com.css"&gt;
+    "
+}
+
+결과
+- 퍼포먼스 점수: 100
+- 로드시점: 예상대로 onload event 이후 요청
+
+
+----------------------
+중요... 이거 서브페이지 가면 disk cache일땐 두번 로드함; 
+disk cache 인데 처음꺼 35ms 두번쨰꺼 10ms
+
+새로고침하면 memory cache로 바뀌면서 한번만 다운로드하는데 
+디스크캐시일땐 캐시값이 달라서 두번다운로드 하는듯..
+
+</code>
+</pre>
+
+<pre>
+    <code class="markdown">
 
 # preconnect
 접속할 url의 TCP 통신의 기초작업을 미리 설정
 ..리소스를 많이 먹기 떄문에 과도하게 사용 노
 
 
-ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+</code>
+</pre>
 
+<pre>
+    <code class="markdown">
 
 # Load Event
 1. DOMContentLoaded 
