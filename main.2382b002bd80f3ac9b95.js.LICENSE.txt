@@ -1,9 +1,0 @@
-/*!
- * 
- *         Build Data: 2023. 2. 3.
- *         GIT Commit Ver: be654fa
- *
- *         User Name : ejonghwan
- *
- *
- */
