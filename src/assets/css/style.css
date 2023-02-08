@@ -75,7 +75,7 @@ h3 > strong {font-size: 12px; /*color: #557191;*/ color: #6d93bf; display: inlin
 
 
 /* aside */
-aside {position: absolute; top: 0%; left: 800px; z-index: 50; }
+aside {position: absolute; top: 0%; left: 800px; z-index: 50;width: 100px; }
 aside ul li button{color: #fff;}
 aside .aside_btn {position: relative;}
 aside .aside_btn::before {content: '-'; position: absolute; left: -9px; top: 0px; color: rgb(77, 77, 77);}
@@ -140,7 +140,7 @@ footer .line > li {color: #6b6c76; }
     
     /* aside {display: none;} */
     aside {  right: 0px; left: auto; background: black; padding: 15px;-webkit-backdrop-filter: blur(50px);
-        backdrop-filter: blur(50px);
+        backdrop-filter: blur(50px); 
       ;}
 
       footer .line > li {color: #6b6c76; padding: 0 10px; margin: 0;}
