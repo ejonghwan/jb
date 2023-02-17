@@ -514,4 +514,61 @@ media query는 조건에 맞지 않으면 그냥 지나가버림.
 
 
 </code>
+</pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>js</span> evaluation</button></dt><dd>함수형 프로그래밍, 지연 평가</dd></dl><div class="code_wrap"><pre>
+<code class="javascript">
+
+# 함수형 프로그래밍에서 지연평가란 함수의 평가 순서를 지연함
+
+
+- 예를 들어서 배열을 탐색해서 여러 작업을 할 경우,
+let arr = [] //100000개의 숫자가 담겨있음
+for(let i = 0; i &lt 100000; i++) {
+    arr.push( Math.round( i * Math.random(100) ) )
+}
+
+----------------------------------------------------
+# 일반 객체지향 메서드 사용 시  
+arr.map(a => a * 10).filter(a => a % 5).slice(0, 5)
+
+1. 모든 배열을 돌며 값에 * 10
+2. 모든 배열을 돌며 그중에 a % 5 조건에 맞는것만 찾음 
+3. 5번째까지만 자름
+
+특징: map filter slice가 모두  순차적으로 작동한다는 점
+성능: 100000개 돌렸을 때 28ms...
+---------------------------------------------------- 
+
+----------------------------------------------------
+# 지연평가 함수를 사용 시
+go(
+    arr,
+    L.map(a => a * 10),
+    L.filter(a => a % 5),
+    take(5)
+)
+
+*go 함수는 reduce를 이용해 값을 합성하는 pipe 함수 
+
+1. L.map으로 한번 실행 
+2. L.filter로 한번 실행  
+3. take 함수 한번 실행 
+....위에꺼 조건에 맞을 떄까지 반복
+
+특징: map filter take 함수가 한가지 값에만 개별적으로 작동한다는점. 
+      이렇게 되면 배열을 다 돌필요가 없이 조건에 맞는다면 돌지않음. 
+      위 조건에서는 5개만 찾는거니 5번만 도는 것. 
+성능: 100000개 돌렸을 때 0.3ms...
+---------------------------------------------------- 
+
+
+
+결론: 배열이 클수록 성능차이는 많이 나고 트렌젝션 처리도 쉬움 (성능차는 순회값이 4000개 이상부터 나는듯)
+참고:
+유인동님 함수형 프로그래밍 
+https://armadillo-dev.github.io/javascript/whit-is-lazy-evaluation/
+
+
+
+
+</code>
 </pre></div></div></div></section></div></main><footer><div class="global_wrap">asdasdas</div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/atom-one-dark.min.css"><script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script><script>hljs.highlightAll();</script></body></html>
