@@ -760,6 +760,31 @@ if(req.body.name.first) {
 */
 
 
+
+ex3) 
+
+db 구조 
+db project: 
+     categorys: [{ categoryName: '', _id: '' }, ...],
+     ...
+     
+db category: 
+     _id: ''
+     categoryName: ''
+     project: ['_id', '_id']
+
+// 카테고리 디비에 프로젝트 추가     
+await Category.findByIdAndUpdate(findCategory._id, { $push: { projects: newProject._id } }, { new: true }).exec(); 
+
+// 프로젝트에 카테고리 추가
+await Project.findByIdAndUpdate(newProject._id, 
+    { 'categorys.$[cate]._id' : findCategory._id }, // 카테고리안에 _id를 나중에 생성된 category._id로 업데이트함. 배열중 필터는 아래조건
+    { arrayFilters: [ {'cate.categoryName': findCategory.categoryName} ] }, // []안에 있는 것중 arrayFilters로 걸러서 cate.categoryName이 같은것만 바꿈.
+).exec();
+
+
+
+
                             </code>
                         </pre>
                         </div>
