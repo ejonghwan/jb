@@ -1072,4 +1072,135 @@ myTab7.init();
 
 
                         </code>
+                    </pre></div></div></section><section class="conts"><h2>검사 / 특이케이스</h2><div class="item_wrap"><dl class="item"><dt><button>순차/임의 탐색</button></dt><dd>순차탐색이 가능하면 임의 탐색이 가능해야함</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+컨텐츠에 순차탐색이 가능한 경우 임의탐색도 가능하게 만들어야함. 
+
+ex)
+# 구조 1
+a 
+  h2 
+  span 
+  p 
+
+위 구조는 모두 순차탐색과 임의탐색이 되며 보조기기로 접근 시 모두 
+h2내용.링크 span내용.링크 p내용.링크 라고 읽어줌.   
+
+
+# 구조 2
+a role="button"
+  h2 
+  span 
+  p 
+
+위 구조는 순차탐색과 임의탐색이 모두 안되며 보조기기로 접근 시 
+한번에 쭉 읽어줌
+
+
+웹와치에선 구조2로 하라고함.
+     
+  
+# 순차탐색이 되는데 임의탐색이 되지않으면 문제
+ex)
+버튼이 안에 있는데 투명요소로 영역을 넓혔을 때는 
+넓힌 부분을 aria-hidden시켜 초점이 접근못하게 하면 ok 
+
+
+# 순차탐색은 논리적인 구조로 이동해야함
+
+1.컨텐츠 2.헤더  (x)
+1. 헤더 2. 컨텐츠 (o)   
+
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>슬라이드</button></dt><dd></dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+# 슬라이드 제작시 주의사항 
+1. 오토 슬라이드는 재생 정지 컨트롤 버튼이 필수 
+2. 위치는 슬라이드보다 위쪽
+3. 팝업이떳을땐 오토슬라이드 정지 시켜야함. 안그럼 뒤에 탭인덱스 붙음.
+4. 보고 있는 것 빼곤 모두 aria-hidden + tabindex -1
+5. 이전버튼 - 다음버튼 - 슬라이드 항목 순으로 작업해야됨
+
+
+
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>라디오 기능</button></dt><dd>라디오 버튼 이동시 행동이 되면 안됨</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+ex) 
+라디오로 탭을 만들었을 때.. 좌우 키보드로 이동시 아래 컨텐츠가 바뀌면 안됨
+이동후 선택했을때 바뀌어야함
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>프로그래스바</button></dt><dd>초점이동. 진행상태 알림.</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+형태가 어떻게 생겼든 초점이동이 되어야하고 갔을 때 몇%진행되었는지 음성으로 제공해야함
+
+ex) 
+프로그래스 진행바 형태
+1. role="img" aria-label로 진행상태 알림
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>상태변화</button></dt><dd>상태변화가 되면 역할/상태 등을 업데이트</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+ex) 탭, 팝업, 아코디언, 메뉴 등등
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>대체텍스트</button></dt><dd>장식요소가 아닌 것들은 대체텍스트 필수</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+# 주의
+1. 중복해서 알리는지 확인 
+2. 버튼과 장식이 따로 있을 경우 (버튼)(화살표) 무시하게하거나 설명
+3. 불필요한 정보를 넣거나 이해하기 어려운 텍스트로 넣지 말자 (버튼에 버튼이미지라고 넣으면 x)
+
+
+# 레이블 요소 
+- 라디오버튼에 대체텍스트는 고정된 의미를 제공하는것이 좋음. 
+  none/block으로 선택됨, 해제됨을 넣으면 헷갈릴수 있기 때문에
+  "후불교통 기능 신청" "라디오"를 넣으면  
+  "후불교통 기능 신청 선택됨 or 선택안됨" 이렇게 읽어줌 
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>역할지정</button></dt><dd>컨트롤할 수 있는 요소에 역할 필수</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+ex)
+a href="" role="button" 5000원 
+위 같이 버튼명이 애매한 경우 보조기기는 5000원 링크. 라고 읽음 
+title / aria-label 으로 명시해줘야함
+
+1. title="어디어디로 이동"
+2. aria=label="어디어디로 이동"
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>탭</button></dt><dd>탭 만들떄 주의사항</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+ex)
+소스는 위에 tab 참고
+
+1. 탭안에 전체보기가 있는 경우 title속성으로 현재 활성화된 명칭 설명 권장
+2. 탭 논리적 순서 잘 지켜서 .. 
+   순서) 탭1제목 - 탭2제목 - 탭1컨텐츠  
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>IOS 보조기기 오류</button></dt><dd>보이스오버 오류</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+1. a 보조기기 선택박스가 다 안감싸짐. 
+해결) role="button"으로 해결 
+
+
+2. 레이어팝업이 떳을때 x버튼 아래쪽 레이어에 링크나 버튼이 있다면 
+팝업을 닫았을때 아래 링크에 고정됨 
+해결) setTimeout으로 해결
+                        </code>
                     </pre></div></div></section></div></main><footer><div class="global_wrap"><ul class="info">asdasdsa</ul></div></footer></div><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script></body></html>
