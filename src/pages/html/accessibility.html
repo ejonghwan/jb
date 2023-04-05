@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.72c8c3f8ca5b43dfbb9e.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Reference</h2><p><a href="https://github.com/lezhin/accessibility/blob/master/aria/README.md#nav" target="_blank" title="html standards page">https://github.com</a> <span class="seg">정찬명님 1</span></p><p><a href="https://tech.lezhin.com/2018/04/20/wai-aria" target="_blank" title="check">https://tech.lezhin.com/</a> <span class="seg">정찬명님 2</span></p><p><a href="https://nuli.navercorp.com/community/article/1132671" target="_blank" title="check">https://nuli.navercorp.com</a> <span class="seg">널리</span></p><p><a href="https://nuli.navercorp.com/tool/waiAria" target="_blank" title="check">https://nuli.navercorp.com/tool/waiAria</a> <span class="seg">널리 UI</span></p><p><a href="https://nuli.navercorp.com/community/article/1115205?email=true" target="_blank" title="check">https://nuli.navercorp.com/community/article/1115205?email=true</a> <span class="seg">널리 보이스오버 사용방법</span></p><p><a href="https://aoa.gitbook.io/skymimo/wai-aria/landmark-role" target="_blank" title="check">https://aoa.gitbook.io/skymimo</a> <span class="seg">AOA 항공사 사용사례</span></p><p><a href="https://developers.google.com/search/docs/advanced/javascript/javascript-seo-basics?hl=ko" target="_blank" title="check">https://developers.google.com/search/docs/</a> <span class="seg">구글검색 센터 SEO</span></p></section><section class="conts"><h2>Prosecutor</h2><div class="depth_2"><strong>자가 진단~</strong><div class="item_wrap"><dl class="item"><dt><button><span>1. </span>대체 텍스트</button></dt><dd>적절한 대체 텍스트 제공 했는가 ?</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.72c8c3f8ca5b43dfbb9e.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>Reference</h2><p><a href="https://github.com/lezhin/accessibility/blob/master/aria/README.md#nav" target="_blank" title="html standards page">https://github.com</a> <span class="seg">정찬명님 1</span></p><p><a href="https://tech.lezhin.com/2018/04/20/wai-aria" target="_blank" title="check">https://tech.lezhin.com/</a> <span class="seg">정찬명님 2</span></p><p><a href="https://tech.lezhin.com/2018/04/20/wai-aria" target="_blank" title="check">https://tech.lezhin.com/2018/04/20/wai-aria</a> <span class="seg">정찬명님 레진 가이드</span></p><p><a href="https://nuli.navercorp.com/community/article/1132671" target="_blank" title="check">https://nuli.navercorp.com</a> <span class="seg">널리</span></p><p><a href="https://nuli.navercorp.com/tool/waiAria" target="_blank" title="check">https://nuli.navercorp.com/tool/waiAria</a> <span class="seg">널리 UI</span></p><p><a href="https://nuli.navercorp.com/community/article/1115205?email=true" target="_blank" title="check">https://nuli.navercorp.com/community/article/1115205?email=true</a> <span class="seg">널리 보이스오버 사용방법</span></p><p><a href="https://aoa.gitbook.io/skymimo/wai-aria/landmark-role" target="_blank" title="check">https://aoa.gitbook.io/skymimo</a> <span class="seg">AOA 항공사 사용사례</span></p><p><a href="https://developers.google.com/search/docs/advanced/javascript/javascript-seo-basics?hl=ko" target="_blank" title="check">https://developers.google.com/search/docs/</a> <span class="seg">구글검색 센터 SEO</span></p></section><section class="conts"><h2>Prosecutor</h2><div class="depth_2"><strong>자가 진단~</strong><div class="item_wrap"><dl class="item"><dt><button><span>1. </span>대체 텍스트</button></dt><dd>적절한 대체 텍스트 제공 했는가 ?</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 # 장식 목적 이미지 대체 텍스트 제공 금지
 &lt;img alt="장식"&gt; (x)
@@ -190,7 +190,8 @@ https://learnui.design/tools/accessible-color-generator.html
 - 의견을 제공해야한다
 
 # 예)
-인풋창에 잘못입력 되었을 때 나타나는 오류메시지
+1. 인풋창에 잘못입력 되었을 때 나타나는 오류메시지
+2. 입력서식은 입력 오류를 방지하거나 정정할 수 있어야한다
 
 
                             </code>
@@ -323,6 +324,11 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
 예) 긴급하거나 위험한 경고 (이종환님이 10만원 송금 실패)
 &lt;p role="alert"&gt;우편번호 입력 오류&lt;/p&gt;
 &lt;p role="alert"&gt;로그인 후 이용가능&lt;/p&gt;
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>role=</span>"alertdialog"</button></dt><dd>긴급한 알림</dd></dl><div class="code_wrap"><pre>
+                            <code class="markdown">
+긴급 팝업일때 사용
+이것도 role="alter"처럼 보조기기 음성과 포커스가 바로 가는지는 테스트해봐야함
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>role=</span>"menu"</button></dt><dd>메뉴</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
@@ -1072,7 +1078,66 @@ myTab7.init();
 
 
                         </code>
-                    </pre></div></div></section><section class="conts"><h2>검사 / 특이케이스</h2><div class="item_wrap"><dl class="item"><dt><button>순차/임의 탐색</button></dt><dd>순차탐색이 가능하면 임의 탐색이 가능해야함</dd></dl><div class="code_wrap"><pre>
+                    </pre></div></div></section><section class="conts"><h2>검사 / 특이케이스</h2><div class="item_wrap"><dl class="item"><dt><button>지침내용</button></dt><dd>평가기준</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+
+# 대체텍스트
+- 텍스트 아닌 콘텐츠는 대체 가능한 텍스트를 함께 제공해야 한다. 
+
+# 자막, 수화 등의 제공
+- 영상, 음성 콘텐츠는 동등한 내용의 자막, 원고, 수화가 제공돼야 한다 
+
+# 색에 무관한 인식 
+- 모든 정보는 색에 관계없이 인식될 수 있어야 한다 
+
+# 명도 대비 
+- 모든 콘텐츠는 전경색과 배경색이 구분될 수 있도록 제공돼야 한다 
+
+# 명확한 지시사항 
+- 지시사항은 모양, 크기, 위치, 방향, 색 등에 관계없이 인식돼야 한다 
+
+# 알림 기능 
+- 알림 정보는 화면 표시,  소리, 진동 등 다양한 방법으로 제공돼야 한다 
+
+# 초점 
+- 사용자 인터페이스는 초점이 적용되고 논리적인 순서로 이동돼야 한다 
+
+# 누르기 동작 지원 
+- 모든 컨트롤은 누르기 동작으로 제어할 수 있어야한다 
+
+# 응답시간 조절 
+- 시간제한이 있는 콘텐츠는 응답시간을 조절할 수 있어야 한다 
+
+# 정지기능 제공 
+자동으로 변경되는 콘텐츠는 움직임을 제어할 수 있어야 한다 
+
+# 컨트롤의 크기와 간격 
+- 컨트롤은 충분한 크기와 간격으로 제공돼야 한다 
+
+# 입력 도움 
+- 입력서식은 입력 오류를 방지하거나 정정할 수 있어야 한다 
+
+# 인터페이스의 일관성 
+- 사용자 인터페이스는 일관성 있게 배치돼야 한다 
+
+# 깜빡거림의 사용 제한 
+- 깜빡이거나 번쩍이는 콘텐츠를 사용하면 안된다 
+
+# 음성 자동재생 금지 
+- 자동으로 재생되는 배경음을 사용하면 안된다 
+
+# 예측가능성 
+- 화면전환이나 이벤트를 예측할 수 있어야 한다 
+
+# 폰트 관련 기능의 활용
+- 운영체제에서 제공하는 폰트 고나련 기능을 활용할 수 있어야 한다 
+
+# 보조기술과의 호환성 
+- 사용자 인터페이스는 보조 기술을 이용하여 사용할 수 있어야 한다
+
+
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>순차/임의 탐색</button></dt><dd>순차탐색이 가능하면 임의 탐색이 가능해야함</dd></dl><div class="code_wrap"><pre>
                         <code class="markdown">
 
 컨텐츠에 순차탐색이 가능한 경우 임의탐색도 가능하게 만들어야함. 
@@ -1098,7 +1163,8 @@ a role="button"
 한번에 쭉 읽어줌
 
 
-웹와치에선 구조2로 하라고함.
+*웹와치에선 구조2로 하라고함.
+*근데 그 전에 검사한분은 한번에 읽으면 안된다고 검사함...-_-
      
   
 # 순차탐색이 되는데 임의탐색이 되지않으면 문제
@@ -1111,6 +1177,17 @@ ex)
 
 1.컨텐츠 2.헤더  (x)
 1. 헤더 2. 컨텐츠 (o)   
+
+
+# 보이지않는 곳에 초점이동은 안되어야함 
+그럼 ir기법은?? 
+아니면 버튼같이 탭이동 초점만 해당인지 ..
+
+
+# 그냥 보조문구에 초점 안가게 작업 
+설명등은 tabindex 뺴야됨. 에러메시지는 넣어야됨
+
+
 
 
 
@@ -1154,6 +1231,13 @@ ex)
 
 ex) 탭, 팝업, 아코디언, 메뉴 등등
 
+# 아코디언
+1. 아코디언은 펼쳤다 접었다는 표시의 아이콘이 있어야함 (인터페이스 일관성)
+둘다 없으면 상관 x
+
+2. aria-expanded 속성으로 확장/축소 제공. (accessibilityHint) 
+
+
                         </code>
                     </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>대체텍스트</button></dt><dd>장식요소가 아닌 것들은 대체텍스트 필수</dd></dl><div class="code_wrap"><pre>
                         <code class="markdown">
@@ -1169,6 +1253,48 @@ ex) 탭, 팝업, 아코디언, 메뉴 등등
   none/block으로 선택됨, 해제됨을 넣으면 헷갈릴수 있기 때문에
   "후불교통 기능 신청" "라디오"를 넣으면  
   "후불교통 기능 신청 선택됨 or 선택안됨" 이렇게 읽어줌 
+
+
+# 달력 라디오 버튼
+- 대체텍스트로 충분한 설명이 안되는 경우 
+
+ex)
+문제점) 
+strong 2022년
+label 
+  input 
+    span 2월
+
+label 
+  input 
+    span 3월
+
+이 구조일 때 라디오를 이동할 때 2월 3월 이런식으로만 읽어줌 
+
+해결)
+input aria=label="2022년 2월" 이런식으로 넣어서 해결
+
+
+# 단계를 나타내는 경우 
+대체텍스트를 이해되게 적어야함. 
+ex) 
+1 - 2 - 3 (x)
+1단계 ~~ - 2단계 ~~ - 3단계~~  (o)
+
+
+# 달력 인풋 플레이스홀더나 대체텍스트는 아래형식으로 
+검색기간 시작날짜 입력: 예시) YYYY-MM-DD
+
+
+# QR이미지의 대체텍스트엔 상세히 
+어디 사이트로 이동하는지와 URL 정보 등
+
+
+# 인풋 대체텍스트 
+- 레이블에 for id 잘 연결
+- 레이블이 없으면 input title로  
+
+
 
                         </code>
                     </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>역할지정</button></dt><dd>컨트롤할 수 있는 요소에 역할 필수</dd></dl><div class="code_wrap"><pre>
@@ -1192,6 +1318,27 @@ ex)
 1. 탭안에 전체보기가 있는 경우 title속성으로 현재 활성화된 명칭 설명 권장
 2. 탭 논리적 순서 잘 지켜서 .. 
    순서) 탭1제목 - 탭2제목 - 탭1컨텐츠  
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>의도치 않은 행동</button></dt><dd>초점 이동만으로 기능이 발생하면 안됨</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+ex)
+1. 라디오로 만들어진 탭 
+2. 검색바에 접근 시 검색팝업이 뜨는 구조. (이건 구글도 그런데... 걸렸음. 구글은 팝업 다음 컨텐츠로 순차탐색이 되긴함.)
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>role="text" 조심</button></dt><dd>텍스트로 인식되면 안되는거에 쓰지말자</dd></dl><div class="code_wrap"><pre>
+                        <code class="markdown">
+일단 role="text"는 비표준이라 지양하는게 좋음 
+
+ex)
+아래 구조가 텍스트로 인식 불가하다고 걸림 (테스트해보니 인식 잘됨)
+div role="text"
+  p 내용 
+
+이게 안되면 아래도 다 안될듯  
+div role="text" 
+  span 내용 
+  strong 내용
+
                         </code>
                     </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>IOS 보조기기 오류</button></dt><dd>보이스오버 오류</dd></dl><div class="code_wrap"><pre>
                         <code class="markdown">
