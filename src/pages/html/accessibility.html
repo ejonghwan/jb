@@ -38,6 +38,12 @@
 
                     </p>
                     <p>
+                        <a href="https://tech.lezhin.com/2018/04/20/wai-aria" target="_blank"
+                            title="check">https://tech.lezhin.com/2018/04/20/wai-aria</a>
+                        <span class="seg">정찬명님 레진 가이드</span>
+
+                    </p>
+                    <p>
                         <a href="https://nuli.navercorp.com/community/article/1132671" target="_blank"
                             title="check">https://nuli.navercorp.com</a>
                         <span class="seg">널리</span>
@@ -417,7 +423,8 @@ https://learnui.design/tools/accessible-color-generator.html
 - 의견을 제공해야한다
 
 # 예)
-인풋창에 잘못입력 되었을 때 나타나는 오류메시지
+1. 인풋창에 잘못입력 되었을 때 나타나는 오류메시지
+2. 입력서식은 입력 오류를 방지하거나 정정할 수 있어야한다
 
 
                             </code>
@@ -666,6 +673,24 @@ or (의미에 따라 status 대신 output 태그 사용 가능)
 예) 긴급하거나 위험한 경고 (이종환님이 10만원 송금 실패)
 &lt;p role="alert"&gt;우편번호 입력 오류&lt;/p&gt;
 &lt;p role="alert"&gt;로그인 후 이용가능&lt;/p&gt;
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>role=</span>"alertdialog"</button></dt>
+                                <dd>
+                                    긴급한 알림
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="markdown">
+긴급 팝업일때 사용
+이것도 role="alter"처럼 보조기기 음성과 포커스가 바로 가는지는 테스트해봐야함
                             </code>
                         </pre>
                             </div>
@@ -1839,6 +1864,11 @@ ex)
 아니면 버튼같이 탭이동 초점만 해당인지 ..
 
 
+# 그냥 보조문구에 초점 안가게 작업 
+설명등은 tabindex 뺴야됨. 에러메시지는 넣어야됨
+
+
+
 
 
                         </code>
@@ -1934,6 +1964,13 @@ ex)
 
 ex) 탭, 팝업, 아코디언, 메뉴 등등
 
+# 아코디언
+1. 아코디언은 펼쳤다 접었다는 표시의 아이콘이 있어야함 (인터페이스 일관성)
+둘다 없으면 상관 x
+
+2. aria-expanded 속성으로 확장/축소 제공. (accessibilityHint) 
+
+
                         </code>
                     </pre>
                         </div>
@@ -1962,6 +1999,48 @@ ex) 탭, 팝업, 아코디언, 메뉴 등등
   none/block으로 선택됨, 해제됨을 넣으면 헷갈릴수 있기 때문에
   "후불교통 기능 신청" "라디오"를 넣으면  
   "후불교통 기능 신청 선택됨 or 선택안됨" 이렇게 읽어줌 
+
+
+# 달력 라디오 버튼
+- 대체텍스트로 충분한 설명이 안되는 경우 
+
+ex)
+문제점) 
+strong 2022년
+label 
+  input 
+    span 2월
+
+label 
+  input 
+    span 3월
+
+이 구조일 때 라디오를 이동할 때 2월 3월 이런식으로만 읽어줌 
+
+해결)
+input aria=label="2022년 2월" 이런식으로 넣어서 해결
+
+
+# 단계를 나타내는 경우 
+대체텍스트를 이해되게 적어야함. 
+ex) 
+1 - 2 - 3 (x)
+1단계 ~~ - 2단계 ~~ - 3단계~~  (o)
+
+
+# 달력 인풋 플레이스홀더나 대체텍스트는 아래형식으로 
+검색기간 시작날짜 입력: 예시) YYYY-MM-DD
+
+
+# QR이미지의 대체텍스트엔 상세히 
+어디 사이트로 이동하는지와 URL 정보 등
+
+
+# 인풋 대체텍스트 
+- 레이블에 for id 잘 연결
+- 레이블이 없으면 input title로  
+
+
 
                         </code>
                     </pre>
@@ -2016,6 +2095,54 @@ ex)
                         </div>
                     </div>
                     <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>의도치 않은 행동</button></dt>
+                            <dd>
+                               초점 이동만으로 기능이 발생하면 안됨
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+ex)
+1. 라디오로 만들어진 탭 
+2. 검색바에 접근 시 검색팝업이 뜨는 구조. (이건 구글도 그런데... 걸렸음. 구글은 팝업 다음 컨텐츠로 순차탐색이 되긴함.)
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>role="text" 조심</button></dt>
+                            <dd>
+                               텍스트로 인식되면 안되는거에 쓰지말자
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+일단 role="text"는 비표준이라 지양하는게 좋음 
+
+ex)
+아래 구조가 텍스트로 인식 불가하다고 걸림 (테스트해보니 인식 잘됨)
+div role="text"
+  p 내용 
+
+이게 안되면 아래도 다 안될듯  
+div role="text" 
+  span 내용 
+  strong 내용
+
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    
 
 
 
