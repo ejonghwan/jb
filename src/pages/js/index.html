@@ -3937,8 +3937,7 @@ asd
                         <!-- item -->
                         <div class="item_wrap">
                             <dl class="item">
-                                <dt><button><span>document</span>.<span class="seg">read</span>yState <span
-                                            class="seg">read</span></button></dt>
+                                <dt><button><span>document</span>.readyState <span class="seg">read</span></button></dt>
                                 <dd>
                                     문서의 불러오기 상태를 반환
                                 </dd>
@@ -3946,7 +3945,42 @@ asd
                             <div class="code_wrap">
                                 <pre>
                             <code class="javascript">
-asd
+
+# readyState 속성
+loading - 문서를 불러오는 중일 때
+interactive - 문서가 완전히 불러와졌을 때. DOMContentLoaded가 실행되기 바로 직전에 해당 값으로 변경됩니다.
+complete - 문서를 비롯한 이미지 등의 리소스들도 모두 불러와졌을 때. window.onload가 실행되기 바로 직전에 해당 값으로 변경됩니다
+
+
+
+js info ex)
+<script>
+log('초기 readyState:' + document.readyState);
+
+document.addEventListener('readystatechange', () => log('readyState:' + document.readyState));
+document.addEventListener('DOMContentLoaded', () => log('DOMContentLoaded'));
+
+window.onload = () => log('window onload');
+</script>
+
+<iframe src="iframe.html" onload="log('iframe onload')"></iframe>
+
+<img src="http://en.js.cx/clipart/train.gif" id="img">
+<script>
+img.onload = () => log('img onload');
+</script>
+
+
+실행 결과)
+1. [1] initial readyState:loading
+2. [2] readyState:interactive    (DCL보다 더 빠른 시점)
+3. [2] DOMContentLoaded
+4. [3] iframe onload
+5. [4] img onload                (img onload 후 complate)
+6. [4] readyState:complete
+7. [4] window onload
+
+
                             </code>
                         </pre>
                             </div>
@@ -4320,6 +4354,10 @@ wrapper.appendChild( document.createTextNode("Part 1 ") );
 제공한 CSS 선택자를 만족하는 첫 번째 Element 객체. 결과가 없다면 null.
 
 document.querySelector(selector)
+
+
+*이렇게도 가능
+document.querySelector(wrap + '> class > class')
                                 </code>
                             </pre>
                             </div>
