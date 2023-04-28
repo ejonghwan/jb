@@ -692,6 +692,24 @@ https://armadillo-dev.github.io/javascript/whit-is-lazy-evaluation/
 
 
 
+
+
+고차함수 ex 
+
+const run = (f, g) => {
+    return (x) => {
+        return f( g(x) )
+    }
+}
+
+const isZero = x => x + x === x;
+const type = bool => bool ? '0임' : '0아님'
+const test = run(isZero, type)
+
+test(1) //0아님
+test(0) //0임
+
+
 </code>
 </pre>
             </div>

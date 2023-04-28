@@ -745,6 +745,32 @@ https://codepen.io/pen/
                         <!-- item -->
                         <div class="item_wrap">
                             <dl class="item">
+                                <dt><button><span>role=</span>"progressbar"</button></dt>
+                                <dd>
+                                    프로그래스바
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="markdown">
+http://jun.hansung.ac.kr/CWP/Bootstrap/Bootstrap%20Progress%20Bars.html
+
+이건한번 들어봐야됨.
+
+&lt;div class="progress"&gt;
+    &lt;div class="progress-bar" role="progressbar" aria-valuenow="70"
+    aria-valuemin="0" aria-valuemax="100" style="width:70%"&gt;
+    &lt;span class="sr-only"&gt;70% Complete&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
                                 <dt><button><span>role=</span>"region"</button></dt>
                                 <dd>
                                     랜드마크 화
@@ -1307,6 +1333,8 @@ role="alert" 하면 자동 true 적용
                             <div class="code_wrap">
                                 <pre>
                             <code class="markdown">
+*주의: 이거 넣으면 안에 컨텐츠 안읽어줌. 아리아 레이블만 읽음
+
 # 설명
 - 간결한 설명을 직접 제공
 - 가능한 aria-labelledby 속성을 권장 
@@ -2111,9 +2139,14 @@ ex)
                         <div class="code_wrap">
                             <pre>
                         <code class="markdown">
-ex)
+ex1)
 1. 라디오로 만들어진 탭 
 2. 검색바에 접근 시 검색팝업이 뜨는 구조. (이건 구글도 그런데... 걸렸음. 구글은 팝업 다음 컨텐츠로 순차탐색이 되긴함.)
+
+ex2)
+전체동의 버튼. 
+버튼 클릭하고 전체동의 되면 포커스는 이동시키면 안됨
+근데 그렇게 따지면 더보기 리스트도 마찬가지 아닌가 ? 
                         </code>
                     </pre>
                         </div>
@@ -2141,6 +2174,28 @@ div role="text"
 div role="text" 
   span 내용 
   strong 내용
+
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>tabindex="0" 주의</button></dt>
+                            <dd>
+                               
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+tabindex="0" 은 기능이 있는 곳에만 사용
+
+*주의
+내부스크롤이 생기는 곳은 tabindex="0" 붙여줘야함. 내부스크롤 팝업인 경우 
+
 
                         </code>
                     </pre>
@@ -2184,6 +2239,136 @@ div role="text"
 내 생각으론 몇번쨰 리스트인지 알수없으니 좀 불편할거같기도 한데 ... 
 
 
+
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>달력</button></dt>
+                            <dd>
+                                대체텍스트 잘 넣기
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+
+달력이 펼쳐지는게 있다면 컨트롤 할 수 있게 해줘야하는데 
+그게 불가능하다면 숨겨야함. 
+달력을 숨기면 input에 입력할 수 있게 제공 
+title이나 label은 입력형식 다 적기. YYYY-MM-DD 형식으로 입력해주세요 등
+버튼엔 "뭐뭐 시작 달 달력열기" 등 텍스트 적어주기
+
+
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>table 캡션</button></dt>
+                            <dd>
+                                표 구분과 제목넣기 
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+
+뭐뭐 뭐뭐 뭐뭐로 구성된 표입니다 (x)
+vip 등급에 대한 뭐뭐 뭐뭐 뭐뭐로 구성된 표입니다 (o)
+
+
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>button 용도</button></dt>
+                            <dd>
+                                용도 명확하게 넣기
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+
+1. 용도 명확하게 넣기 
+검색버튼이면 검색버튼 
+이동버튼이면 어디로 이동버튼 
+aria-label
+
+2. 새창이 뜨는거면 title="새창" 넣기
+
+
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>본문 바로가기</button></dt>
+                            <dd>
+                                
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+
+너무 긴 컨텐츠엔 건너띄는 기능 넣어야함
+본문 바로가기에 포커스 이동시 보여야함. (눈은 보이지만 키보드로 이동하는 분들을 위해)
+
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                      <!-- item -->
+                      <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>보조기기 초점</button></dt>
+                            <dd>
+                                최대한 컨텐츠랑 맞게
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+
+"최대한"
+a 초점 제대로 안잡히는건 IOS버그인데 role="button"으로 해결
+
+                        </code>
+                    </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                     <!-- item -->
+                     <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button>색으로만 구분되는 컨텐츠</button></dt>
+                            <dd>
+                                기능컨텐츠인데 색으로만 구분하면 안됨
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                        <code class="markdown">
+
+토글컨텐츠인데 색으로만 구분지으면 색을 구분못하는 사람들은 알 수 없음
+해결: 기울기 밑줄 체크문양 등등
 
                         </code>
                     </pre>
@@ -2235,6 +2420,7 @@ div role="text"
                         </div>
                     </div>
                     <!-- //item -->
+                  
                 </section>
                 <!-- //ref -->
 
