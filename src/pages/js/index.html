@@ -13355,7 +13355,82 @@ asd
                             <div class="code_wrap">
                                 <pre>
                             <code class="javascript">
-asd
+//element 따라 다니는 모션
+let h1 = document.querySelector('h1')
+let info = document.querySelector('.info')
+let x = 0;
+let y = 0;
+let mouseX = 0;
+let mouseY = 0;
+let speed = 0.05;
+
+
+const mouseAction = e => {
+    x = e.pageX
+    y = e.pageY
+}
+
+const init = () => {
+    loop();
+}
+
+const loop = () => {
+    info.innerHTML = `x: ${x}, y: ${y}`
+    mouseX = mouseX + ((x - mouseX) * speed)
+    mouseY = mouseY + ((y - mouseY) * speed)
+
+    h1.style.transform = `translate(${mouseX}px, ${mouseY}px)`
+    requestAnimationFrame(loop)
+}
+
+window.addEventListener('init', init)
+window.addEventListener('mousemove', mouseAction)
+
+
+
+
+// -----------------------------------------------------------
+
+
+//박스안에서 박스 마우스무브 모션
+div .wrap 
+  div .box
+
+let ele = document.querySelector('.box');
+let x;
+let y;
+let mx;
+let my;
+let speed = .05;
+let w;
+let h;
+
+const re = e => {
+    w = window.innerWidth / 2;
+    h = window.innerHeight / 2;
+}
+
+const action = e => {
+    x = e.pageX - w;
+    y = e.pageY - h;
+    
+}
+
+const loop = () => {
+    mx = (x - mx) * speed;
+    my = (y - my) * speed;
+    ele.style.transform = `translate(${mx / 4}px, ${my / 4}px)`
+    requestAnimationFrame(loop);
+}
+
+loop();
+window.addEventListener('init', re);
+window.addEventListener('resize', re);
+window.addEventListener('mousemove', action)
+
+
+
+
                             </code>
                         </pre>
                             </div>
@@ -13566,7 +13641,95 @@ asd
                             </div>
                         </div>
                         <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>pointer</button></dt>
+                                <dd>
+                                    pointerdown | pointerup | pointermove 
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="javascript">
+//dom tree
+div .arc 
+  span .data 
+  span .face 
+  
 
+let downState = null;
+let mx = 0; 
+let offsetX = 0; 
+let dWidth = 0;
+let dHeight = 0;
+let ratio = 0;
+let cx = 0;
+
+const init = e => {
+    resize();
+    ani();
+}
+
+const down = e => {
+    downState = true; 
+    offsetX = e.pageX;
+}
+
+const up = e => {
+    downState = false;
+}
+
+const move = e => {
+    if(downState) {
+        mx += (e.pageX - offsetX) * 0.05;
+
+        if(ratio > 0.8) {
+            document.querySelector('.fase').style.background = 'red';
+            document.querySelector('.face').innterHTML = '111'
+        }
+
+        if(ratio > 0.6) {
+            document.querySelector('.fase').style.background = 'blue';
+            document.querySelector('.face').innterHTML = '222'
+        }
+
+        if(ratio > 0.8) {
+            document.querySelector('.fase').style.background = 'orenge';
+            document.querySelector('.face').innterHTML = '333'
+        }
+
+        ratio = document.querySelector('.face').getBoundingClientRect().left / dWidth;
+        document.querySelector('.data').innerHTML = `${Math.round(ratio * 100)}%`
+        document.querySelector('.data').setAttribute('data-per', ratio * 100)
+        return mx;
+    }
+}
+
+
+const resize = e => {
+    dWidth = document.body.clientWidth; 
+    dHeight = document.body.clientHeight; 
+}
+
+const ani = () => {
+    document.querySelector('.arc').style.transform = `translate(${mx}px, ${0}px)`
+    window.requestAnimationFrame(ani)
+} 
+
+window.addEventListener('pointerdown', donw)
+window.addEventListener('pointerup', up)
+window.addEventListener('pointermove', move)
+window.addEventListener('resize', resize)
+window.addEventListener('load', init)
+window.addEventListener('load', move)
+
+
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
                     </div>
                     <!-- //마우스 이벤트 -->
 
