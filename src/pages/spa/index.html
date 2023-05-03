@@ -788,6 +788,19 @@ refractor 코드와 react-dom 코드가 분리되어있음
 6. composite (레이어별로 layout와 paint가 작업된 레이어들을 합성)
 
 
+# 리플로가 발생하는 경우 
+엘리먼트의 위치나 크기가 변경했을 경우, 화면이 리사이즈 되었을 경우 
+js > style > layout > paint > composite
+
+# 페인트부터 발생하는 경우 
+엘리먼트 수치가 아닌 컬러 등이 변경 되었을 경우 
+js > style > paint > composite   (layout 단계 건너띔)
+
+# 합성 단계만 발생하는 경우 (베스트) 
+합성단계만 일으키는 css 속성들 사용했을 경우 
+js > style > composite   
+
+
 
 # 주의
 reflow가 일어나는 css를 사용하면 렌더링할 때마다 1~ 6까지의 단계가 반복됨 ... (1,2,3,4,5,6 단계) 

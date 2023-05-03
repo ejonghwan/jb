@@ -4503,6 +4503,27 @@ parentNode.querySelectorAll()
                         <!-- item -->
                         <div class="item_wrap">
                             <dl class="item">
+                                <dt><button><span>Element</span>.selectedIndex</button></dt>
+                                <dd>
+                                    셀렉박스 인덱스 찾기
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+셀렉박스 인덱스 
+
+document.querySelector('select').addEventListener('change', e => {
+    this.options[this.electedIndex].text
+})
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
                                 <dt><button><span>Element</span>.innerHTML</button></dt>
                                 <dd>
                                     안에다 마크업
@@ -5755,13 +5776,30 @@ asd
                             <dl class="item">
                                 <dt><button><span>Element</span>.closest()</button></dt>
                                 <dd>
-                                    Element매개변수에 지정된 선택자와 일치하는 현재 요소(또는 현재 요소 자체)의 가장 가까운 조상을 반환합니다 .
+                                   ele에 가장 가까운 조상 찾아줌
                                 </dd>
                             </dl>
                             <div class="code_wrap">
                                 <pre>
                             <code class="javascript">
-asd
+div.n1
+  div.n2
+    div.n3 
+
+
+
+let n1 = document.querySelector('.n1')
+let n2 = document.querySelector('.n2')
+let n3 = document.querySelector('.n3')
+
+n2.closest('div') //div.n1 // 태그만 적으면 무조건 조상 
+n2.closest('.n3') //null // 무조건 조상
+
+
+ex)
+evt 위임으로 걸때 실수로 잘못클릭할수 있거나 하위태그 클릭되는걸 방지할때 사용
+let isTarget = target => [...this.target.querySelectorAll(selector)].includes(target) || target.closest(selector)
+
                             </code>
                         </pre>
                             </div>
@@ -13158,13 +13196,43 @@ asd
                             <dl class="item">
                                 <dt><button>scroll </button></dt>
                                 <dd>
-                                    다큐먼트 뷰나 엘리먼트가 스크롤되었을 때.
+                                    document / element가 스크롤되었을 때.
                                 </dd>
                             </dl>
                             <div class="code_wrap">
                                 <pre>
                             <code class="javascript">
-asd
+
+//원 세개
+
+let body = document.querySelector('body');
+let totalHeight;
+let yOffset;
+let totalWidth;
+let cc;
+
+const init = () => {
+    cc = document.querySelctor('.cc').clientWidth;
+    totalHeight = Number(getComputedStyle(body).height.replace('px', '') - window.innerHeight);
+    totalWidth = window.innerWidth;
+}
+
+const scrollAction = () => {
+    yOffset = window.pageYOffset;
+    let ratio = YOffset / totalHeight;
+    let move = ratio * 200;
+    let move2 = ratio * 400;
+    let move3 = ratio * 600;
+    document.querySelctor('.ele1').style.transform = `translateY(${move}px)`
+    document.querySelctor('.ele2').style.transform = `translateY(${move2}px)`
+    document.querySelctor('.ele3').style.transform = `translateY(${move3}px)`
+}
+
+window.addEventListener('scroll', scrollAction)
+window.addEventListener('resize', e => { init(); scrollAction })
+window.addEventListener('load', init)
+
+
                             </code>
                         </pre>
                             </div>
