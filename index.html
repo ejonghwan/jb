@@ -508,6 +508,93 @@ media query는 조건에 맞지 않으면 그냥 지나가버림.
 
 
 </code>
+</pre></div></div><div class="item_wrap"><dl class="item"><dt><button>mousemove evt ui</button></dt><dd>class 정리</dd></dl><div class="code_wrap"><pre>
+<code class="javascript">
+
+    //element 따라 다니는 모션
+    let h1 = document.querySelector('h1')
+    let info = document.querySelector('.info')
+    let x = 0;
+    let y = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+    let speed = 0.05;
+    
+    
+    const mouseAction = e => {
+        x = e.pageX
+        y = e.pageY
+    }
+    
+    const init = () => {
+        loop();
+    }
+    
+    const loop = () => {
+        info.innerHTML = `x: ${x}, y: ${y}`
+        mouseX = mouseX + ((x - mouseX) * speed)
+        mouseY = mouseY + ((y - mouseY) * speed)
+    
+        h1.style.transform = `translate(${mouseX}px, ${mouseY}px)`
+        requestAnimationFrame(loop)
+    }
+    
+    window.addEventListener('init', init)
+    window.addEventListener('mousemove', mouseAction)
+    
+/*
+    aa = 1 은 계속 같은값 
+    aa += 1 은 더한 값에 계속 1을 더함 
+
+    mouseX는 새롭게 이동한 위치 
+    x는 이전위치 
+    x - mouseX * speed는 (새위치 - 기존위치) * 0.05인 값을 mouseX에 계속해서 더함. 
+*/    
+    
+    
+    // -----------------------------------------------------------
+    
+    
+    //박스안에서 박스 마우스무브 모션
+    div .wrap 
+      div .box
+    
+    let ele = document.querySelector('.box');
+    let x;
+    let y;
+    let mx;
+    let my;
+    let speed = .05;
+    let w;
+    let h;
+    
+    const re = e => {
+        w = window.innerWidth / 2;
+        h = window.innerHeight / 2;
+    }
+    
+    const action = e => {
+        x = e.pageX - w;
+        y = e.pageY - h;
+        
+    }
+    
+    const loop = () => {
+        mx = (x - mx) * speed;
+        my = (y - my) * speed;
+        ele.style.transform = `translate(${mx / 4}px, ${my / 4}px)`
+        requestAnimationFrame(loop);
+    }
+    
+    loop();
+    window.addEventListener('init', re);
+    window.addEventListener('resize', re);
+    window.addEventListener('mousemove', action)
+    
+    
+    
+
+</code>
 </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>JS</span> Class</button></dt><dd>class 정리</dd></dl><div class="code_wrap"><pre>
 <code class="javascript">
 

@@ -2200,7 +2200,15 @@ parentNode.querySelectorAll()
                                 <code class="javascript">
     asd
                                 </code>
-                            </pre></div></div></div></section><section class="conts"><h2>Element</h2><div class="depth_2"><strong>속성</strong><div class="item_wrap"><dl class="item"><dt><button><span>Element</span>.innerHTML</button></dt><dd>안에다 마크업</dd></dl><div class="code_wrap"><pre>
+                            </pre></div></div></div></section><section class="conts"><h2>Element</h2><div class="depth_2"><strong>속성</strong><div class="item_wrap"><dl class="item"><dt><button><span>Element</span>.selectedIndex</button></dt><dd>셀렉박스 인덱스 찾기</dd></dl><div class="code_wrap"><pre>
+                        <code class="javascript">
+셀렉박스 인덱스 
+
+document.querySelector('select').addEventListener('change', e => {
+    this.options[this.electedIndex].text
+})
+                        </code>
+                    </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Element</span>.innerHTML</button></dt><dd>안에다 마크업</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 var ul = document.querySelector('.list')
 
@@ -2554,9 +2562,26 @@ asd
                             <code class="javascript">
 asd
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Element</span>.closest()</button></dt><dd>Element매개변수에 지정된 선택자와 일치하는 현재 요소(또는 현재 요소 자체)의 가장 가까운 조상을 반환합니다 .</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Element</span>.closest()</button></dt><dd>ele에 가장 가까운 조상 찾아줌</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
-asd
+div.n1
+  div.n2
+    div.n3 
+
+
+
+let n1 = document.querySelector('.n1')
+let n2 = document.querySelector('.n2')
+let n3 = document.querySelector('.n3')
+
+n2.closest('div') //div.n1 // 태그만 적으면 무조건 조상 
+n2.closest('.n3') //null // 무조건 조상
+
+
+ex)
+evt 위임으로 걸때 실수로 잘못클릭할수 있거나 하위태그 클릭되는걸 방지할때 사용
+let isTarget = target => [...this.target.querySelectorAll(selector)].includes(target) || target.closest(selector)
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Element</span>.computedStyleMap()</button></dt><dd>StylePropertyMap<span class="seg">Read</span>Only의 대안인 CSS 선언 블록의 읽기 전용 표현을 제공 하는 인터페이스를 반환합니다 CSSStyleDeclaration.</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
@@ -5751,9 +5776,39 @@ asd
                             <code class="javascript">
 asd
                             </code>
-                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>scroll</button></dt><dd>다큐먼트 뷰나 엘리먼트가 스크롤되었을 때.</dd></dl><div class="code_wrap"><pre>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>scroll</button></dt><dd>document / element가 스크롤되었을 때.</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
-asd
+
+//원 세개
+
+let body = document.querySelector('body');
+let totalHeight;
+let yOffset;
+let totalWidth;
+let cc;
+
+const init = () => {
+    cc = document.querySelctor('.cc').clientWidth;
+    totalHeight = Number(getComputedStyle(body).height.replace('px', '') - window.innerHeight);
+    totalWidth = window.innerWidth;
+}
+
+const scrollAction = () => {
+    yOffset = window.pageYOffset;
+    let ratio = YOffset / totalHeight;
+    let move = ratio * 200;
+    let move2 = ratio * 400;
+    let move3 = ratio * 600;
+    document.querySelctor('.ele1').style.transform = `translateY(${move}px)`
+    document.querySelctor('.ele2').style.transform = `translateY(${move2}px)`
+    document.querySelctor('.ele3').style.transform = `translateY(${move3}px)`
+}
+
+window.addEventListener('scroll', scrollAction)
+window.addEventListener('resize', e => { init(); scrollAction })
+window.addEventListener('load', init)
+
+
                             </code>
                         </pre></div></div></div><div class="depth_2"><strong>클립보드 이벤트</strong><div class="item_wrap"><dl class="item"><dt><button>cut</button></dt><dd>선택이 잘라내어진 후 클립보드로 복사되었을 때</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
@@ -5793,7 +5848,82 @@ asd
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>mousemove</button></dt><dd>포인팅 장치가 엘리먼트 위에서 이동했을 때(마우스가 이동하는동안 계속 실행됨.)</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
-asd
+//element 따라 다니는 모션
+let h1 = document.querySelector('h1')
+let info = document.querySelector('.info')
+let x = 0;
+let y = 0;
+let mouseX = 0;
+let mouseY = 0;
+let speed = 0.05;
+
+
+const mouseAction = e => {
+    x = e.pageX
+    y = e.pageY
+}
+
+const init = () => {
+    loop();
+}
+
+const loop = () => {
+    info.innerHTML = `x: ${x}, y: ${y}`
+    mouseX = mouseX + ((x - mouseX) * speed)
+    mouseY = mouseY + ((y - mouseY) * speed)
+
+    h1.style.transform = `translate(${mouseX}px, ${mouseY}px)`
+    requestAnimationFrame(loop)
+}
+
+window.addEventListener('init', init)
+window.addEventListener('mousemove', mouseAction)
+
+
+
+
+// -----------------------------------------------------------
+
+
+//박스안에서 박스 마우스무브 모션
+div .wrap 
+  div .box
+
+let ele = document.querySelector('.box');
+let x;
+let y;
+let mx;
+let my;
+let speed = .05;
+let w;
+let h;
+
+const re = e => {
+    w = window.innerWidth / 2;
+    h = window.innerHeight / 2;
+}
+
+const action = e => {
+    x = e.pageX - w;
+    y = e.pageY - h;
+    
+}
+
+const loop = () => {
+    mx = (x - mx) * speed;
+    my = (y - my) * speed;
+    ele.style.transform = `translate(${mx / 4}px, ${my / 4}px)`
+    requestAnimationFrame(loop);
+}
+
+loop();
+window.addEventListener('init', re);
+window.addEventListener('resize', re);
+window.addEventListener('mousemove', action)
+
+
+
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>mousedown</button></dt><dd>포인팅 장치 버튼이 엘리먼트 위에서 눌렸을 때.</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
@@ -5842,6 +5972,82 @@ asd
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>pointerlockerror</button></dt><dd>기술적인 이유나 권한 거절을 이유로 포인터 잠금이 불가했을 때.</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 asd
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>pointer</button></dt><dd>pointerdown | pointerup | pointermove</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+//dom tree
+div .arc 
+  span .data 
+  span .face 
+  
+
+let downState = null;
+let mx = 0; 
+let offsetX = 0; 
+let dWidth = 0;
+let dHeight = 0;
+let ratio = 0;
+let cx = 0;
+
+const init = e => {
+    resize();
+    ani();
+}
+
+const down = e => {
+    downState = true; 
+    offsetX = e.pageX;
+}
+
+const up = e => {
+    downState = false;
+}
+
+const move = e => {
+    if(downState) {
+        mx += (e.pageX - offsetX) * 0.05;
+
+        if(ratio > 0.8) {
+            document.querySelector('.fase').style.background = 'red';
+            document.querySelector('.face').innterHTML = '111'
+        }
+
+        if(ratio > 0.6) {
+            document.querySelector('.fase').style.background = 'blue';
+            document.querySelector('.face').innterHTML = '222'
+        }
+
+        if(ratio > 0.8) {
+            document.querySelector('.fase').style.background = 'orenge';
+            document.querySelector('.face').innterHTML = '333'
+        }
+
+        ratio = document.querySelector('.face').getBoundingClientRect().left / dWidth;
+        document.querySelector('.data').innerHTML = `${Math.round(ratio * 100)}%`
+        document.querySelector('.data').setAttribute('data-per', ratio * 100)
+        return mx;
+    }
+}
+
+
+const resize = e => {
+    dWidth = document.body.clientWidth; 
+    dHeight = document.body.clientHeight; 
+}
+
+const ani = () => {
+    document.querySelector('.arc').style.transform = `translate(${mx}px, ${0}px)`
+    window.requestAnimationFrame(ani)
+} 
+
+window.addEventListener('pointerdown', donw)
+window.addEventListener('pointerup', up)
+window.addEventListener('pointermove', move)
+window.addEventListener('resize', resize)
+window.addEventListener('load', init)
+window.addEventListener('load', move)
+
+
                             </code>
                         </pre></div></div></div><div class="depth_2"><strong>드래그 앤 드랍 이벤트</strong><div class="item_wrap"><dl class="item"><dt><button>dragstart</button></dt><dd>사용자가 엘리먼트나 텍스트 선택을 드래그하기 시작할 때.</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
