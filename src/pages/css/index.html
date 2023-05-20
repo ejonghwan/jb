@@ -1747,6 +1747,125 @@ pre-wrap : 공백 모두 표시, 줄바꿈
                 </section>
                 <!-- //grid -->
 
+                <!-- 사스 -->
+                <section class="conts">
+                    <h2>Sass</h2>
+                    <div class="depth_2">
+                        <strong></strong>
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>sass --watch scss/style.scss:css/style.css</button></dt>
+                                <dd>
+                                    와칭
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="css">
+
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>sass --style=compressed style.scss style.css</button></dt>
+                                <dd>
+                                    압축
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="css">
+
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>#{attr} <span></span></button></dt>
+                                <dd>
+                                    보간
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="css">
+$position: top;
+$name: cart;
+$height: 200px;
+
+.class { 
+    #{$position}: 50px ;
+    background-image: url("/icons/#{$name}.png");
+    width: calc(100vh - #{$height});
+}
+
+           
+
+ex) 중요.
+아래처럼 main 처럼 넣을 시 컴파일과정에서 단위 에러를 잘못잡음 
+$size: 100;
+ 
+.main {
+    width: #{$size}rem; // 컴파일에러가 안남
+}
+ 
+.footer {
+    width: #{$size} * 1rem; //에러나서 문제찾음
+}
+                                
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>$name: <span>value</span></button></dt>
+                                <dd>
+                                    변수
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="css">
+$color: red;
+
+.class { color: $color }
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>@mixin / @include<span></span></button></dt>
+                                <dd>
+                                    기능
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="css">
+                               
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                </section>
+                <!-- //사스 -->
+
                 <!-- 다크모드 -->
                 <section class="conts">
                     <h2>Dark mode</h2>
