@@ -1845,7 +1845,7 @@ $color: red;
                             </div>
                         </div>
                         <!-- //item -->
-                          <!-- item -->
+                        <!-- item -->
                           <div class="item_wrap">
                             <dl class="item">
                                 <dt><button>@mixin / @include<span></span></button></dt>
@@ -1856,7 +1856,59 @@ $color: red;
                             <div class="code_wrap">
                                 <pre>
                             <code class="css">
-                               
+@mixin set-color($color, $bg-color) {
+    color: $color;
+    background-color: $bg-color;
+}
+    
+h1 {
+    @include set-color(#000, #f0f0f0);
+}
+    
+p {
+    @include set-color(#bada77, #234510);
+}
+                            </code>
+                        </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>@import / @use<span></span></button></dt>
+                                <dd>
+                                    호출
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                            <code class="css">
+@import 'file' 
+- 단점은 변수를 어디서 받아왔고 덮어쓴건지 알 수 없음. 같은 모듈을 여러번 컴파일 
+
+
+@use "file"
+- 중요: 멤버를 사용할 때 네임스페이스를 지정해 줘야 함
+
+ex1 )
+@use "module1";
+@use "module2";
+@use "module3";
+ 
+h1 {
+  font-weight: module1.$font-weight;
+}
+
+
+ex2) 
+@use 'mixin';
+ 
+.title {
+  @include mixin.ellipsis;
+}
+
+
                             </code>
                         </pre>
                             </div>
