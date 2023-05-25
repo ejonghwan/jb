@@ -1857,6 +1857,32 @@ iuSayNameBind()
                 <section class="conts">
                     <h2>찐으로 헷갈려</h2>
                     <div class="depth_2">
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>target</span>.addEventListener <span class="seg"></span></button></dt>
+                                <dd>
+                                    이벤트 리스너 조심할거
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+        <code class="javascript">
+// 함수를 담아야 리무브가능
+
+(o)
+window.addEventListener('click', handler) 
+window.removeEventListener('click', handler)
+
+(x) 
+window.addEventListener('click', () => handler) 
+window.removeEventListener('click', () => handler)
+        </code>
+    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <br />
                         <strong>자주 사용 element node 재정리</strong>
                         <!-- item -->
                         <div class="item_wrap">
@@ -10934,6 +10960,7 @@ const aa () => console.log('aa')
 const bb () => { return 'aa' }
 
 
+
 <span class="seg">
 new 키워드와 같이 사용될 수 없다.
 prototype 속성이 없다.
@@ -10945,6 +10972,9 @@ yield 키워드를 사용할 수 없다.
 
 
 주의점...
+
+*arrow function은 this객체를 생성하지않고 상위스코프 this를 참조함
+
 const user = {
     name: 'jonghwan',
     say() {
