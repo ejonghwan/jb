@@ -100,19 +100,29 @@ squoosh.app
 
 # intersection observer API 사용하기 
 
-import React, { useEffect, useRef } from 'react'
-const App = () => {
+import { Fragment } from 'react'
+import { useEffect, useRef } from 'react'
+
+
+const Img = ({ webpSrc, imageSrc, alt, className }) => {
 
     const imgRef = useRef(null) 
-    useEffect(() => {
 
+    useEffect(() => {
         const options = {}
-        const callback = (entries, obsever) => {
-            entries.forEach(item => {
-                if(item.isIntersecting) {
-                    item.target.src = item.target.dataset.src
-                    item.target.previousSibling.src = item.target.previousSibling.dataset.srcset //야는 ref로 안잡아놔서 옵저브안되고 있었음
-                    observer.unobserve(item.target)
+        const callback = (entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+
+                    const target = entry.target;
+                    const previousSibling = target.previousSibling;
+
+                    console.log('is inter', entry.target.dataset.src, previousSibling);
+                    
+                    target.src = target.dataset.src;
+                    previousSibling.srcset = previousSibling.dataset.srcset;
+
+                    observer.unobserve(target)
                 }
             })
         }
@@ -121,14 +131,20 @@ const App = () => {
 
     }, [])
 
-
     return (
-        &lt;ficture&gt;
-            &lt;source data-srcset={main_items} type="image/webp" /&gt;
-            &lt;img data-src={'../assets/main1.jpg'} ref={imgRef} alt&gt;
-        &lt;/ficture&gt;
+        &lt;Fragment&gt;
+            &lt;picture&gt;
+                &lt;source data-srcset={webpSrc} type="image/webp" /&gt;
+                &lt;img data-src={imageSrc} ref={imgRef} alt={alt} className={className} /&gt;
+            &lt;/picture&gt;
+        &lt;/Fragment&gt;
     )
+    
 }
+
+export default Img;
+
+
                             </code>
                         </pre>
                             </div>
