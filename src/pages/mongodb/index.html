@@ -705,6 +705,28 @@ db.articles.find( { “comments”: { $elemMatch: { “name”: “Charlie” } 
 
 
 
+----------------
+
+$elemMatch 쓸 때 조심. 
+
+db 구조
+_id: ''
+constructorUser: {}
+instanceUser: [{
+    _id: { type: mongoose.Schema.Types.ObjectId, required: true, index: true, ref: 'user'},
+    rank: { type: String, required: true, default: 'e'},
+    days: [{ 
+        date: { type: String }, 
+        count: { type: Number, default: 0, },
+    }], //days로 달력/잔디 같이씀
+},],
+
+
+위 구조에선 아래처럼 찾아야함. ( instanceUser[] 안에 days[] 안의 필드 )
+const userFindDate = await Project.findOne( { "instanceUser.days": {$elemMatch : { date: nowDate } } } )
+
+
+
 
 // 배열과 오브젝트일때 쿼리 
 https://koonsland.tistory.com/120
@@ -812,7 +834,33 @@ if(existingUser) return res.status(400).json({ message: '유저가 이미 존재
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>and</button></dt><dd>주어진 조건이 모두 맞을 때</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
--
+ex)
+
+db 구조
+_id: ''
+constructorUser: {}
+instanceUser: [{
+    _id: { type: mongoose.Schema.Types.ObjectId, required: true, index: true, ref: 'user'},
+    rank: { type: String, required: true, default: 'e'},
+    days: [{ 
+        date: { type: String }, 
+        count: { type: Number, default: 0, },
+    }], //days로 달력/잔디 같이씀
+},],
+
+위 구조에서 아래 조건을 찾아야 할 때
+1. 해당 프로젝트의 
+2. 해당 인스턴스 유저의 
+3. days 필드에 해당 값이 있는지 
+
+
+const nowDate = `${new Date().getFullYear()}` + `${new Date().getMonth() + 1}` + `${new Date().getDate()}`;
+const userFindDate = await Project.findOne({ $and: [{ _id: projectId }, { "instanceUser._id": user._id }, { "instanceUser.days": {$elemMatch : { date: nowDate } } } ] }, ) 
+
+
+후... 개고생했네. elemMatch 쓸 때 조심
+
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>not</button></dt><dd>주어진 조건이 아닐 때</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">

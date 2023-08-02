@@ -829,7 +829,7 @@ li:nth-child( -2n+5 ) {
 }
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>background</button></dt><dd>#ddd url('') no-repeat center center/100% 100%</dd></dl><div class="code_wrap"><pre>
-                            <code class="markdown">
+                         <code class="markdown">
 
 .class {background: color image repeat position/size origin clip attachment}                            
 .class {background: #ddd url('') no-repeat center center/100% 100%}
@@ -859,6 +859,8 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 5. line-height:normal;
 6. font-family: inherit;
 
+ex) font: bold 14/1 'fontname'
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>border</button></dt><dd>1px solid #000; (width style color)</dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
@@ -879,6 +881,10 @@ https://designer-ej.tistory.com/entry/CSS-background-%EC%86%8D%EC%84%B1-%EC%A0%9
 2. transition-duration 
 3. transition-timing-function 
 4. transition-delay 
+
+ex) 트랜지션 여러개 속성 이렇게 가능 
+transition: width 1s, height 2s, opacity 1s;
+
 
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>word-break, word-wrap</button></dt><dd>normal | break-all | keep-all</dd></dl><div class="code_wrap"><pre>
@@ -1174,6 +1180,90 @@ pre-wrap : 공백 모두 표시, 줄바꿈
                             customBtn.addEventListener('click', dataInit)</script></div></section><section class="conts"><h2>Grid</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span></button></dt><dd></dd></dl><div class="code_wrap"><pre>
                             <code class="markdown">
 -
+                            </code>
+                        </pre></div></div></div></section><section class="conts"><h2>Sass</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button>sass --watch scss/style.scss:css/style.css</button></dt><dd>와칭</dd></dl><div class="code_wrap"><pre>
+                            <code class="css">
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>sass --style=compressed style.scss style.css</button></dt><dd>압축</dd></dl><div class="code_wrap"><pre>
+                            <code class="css">
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>#{attr} <span></span></button></dt><dd>보간</dd></dl><div class="code_wrap"><pre>
+                            <code class="css">
+$position: top;
+$name: cart;
+$height: 200px;
+
+.class { 
+    #{$position}: 50px ;
+    background-image: url("/icons/#{$name}.png");
+    width: calc(100vh - #{$height});
+}
+
+           
+
+ex) 중요.
+아래처럼 main 처럼 넣을 시 컴파일과정에서 단위 에러를 잘못잡음 
+$size: 100;
+ 
+.main {
+    width: #{$size}rem; // 컴파일에러가 안남
+}
+ 
+.footer {
+    width: #{$size} * 1rem; //에러나서 문제찾음
+}
+                                
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>$name: <span>value</span></button></dt><dd>변수</dd></dl><div class="code_wrap"><pre>
+                            <code class="css">
+$color: red;
+
+.class { color: $color }
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>@mixin / @include<span></span></button></dt><dd>기능</dd></dl><div class="code_wrap"><pre>
+                            <code class="css">
+@mixin set-color($color, $bg-color) {
+    color: $color;
+    background-color: $bg-color;
+}
+    
+h1 {
+    @include set-color(#000, #f0f0f0);
+}
+    
+p {
+    @include set-color(#bada77, #234510);
+}
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>@import / @use<span></span></button></dt><dd>호출</dd></dl><div class="code_wrap"><pre>
+                            <code class="css">
+@import 'file' 
+- 단점은 변수를 어디서 받아왔고 덮어쓴건지 알 수 없음. 같은 모듈을 여러번 컴파일 
+
+
+@use "file"
+- 중요: 멤버를 사용할 때 네임스페이스를 지정해 줘야 함
+
+ex1 )
+@use "module1";
+@use "module2";
+@use "module3";
+ 
+h1 {
+  font-weight: module1.$font-weight;
+}
+
+
+ex2) 
+@use 'mixin';
+ 
+.title {
+  @include mixin.ellipsis;
+}
+
+
                             </code>
                         </pre></div></div></div></section><section class="conts"><h2>Dark mode</h2><div class="depth_2"><strong></strong><div class="item_wrap"><dl class="item"><dt><button><span></span>dark mode</button></dt><dd></dd></dl><div class="code_wrap"><pre>
                             <code class="css">

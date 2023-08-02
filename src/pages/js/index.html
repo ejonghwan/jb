@@ -1379,7 +1379,19 @@ iuSayNameBind()
     var n = (1 + 2) 
 
             </code>
-        </pre></div></div></div></section><section class="conts"><h2>찐으로 헷갈려</h2><div class="depth_2"><strong>자주 사용 element node 재정리</strong><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.parentNode <span class="seg">read</span></button></dt><dd>부모 찾기. 상위노드 접근 가능</dd></dl><div class="code_wrap"><pre>
+        </pre></div></div></div></section><section class="conts"><h2>찐으로 헷갈려</h2><div class="depth_2"><div class="item_wrap"><dl class="item"><dt><button><span>target</span>.addEventListener <span class="seg"></span></button></dt><dd>이벤트 리스너 조심할거</dd></dl><div class="code_wrap"><pre>
+        <code class="javascript">
+// 함수를 담아야 리무브가능
+
+(o)
+window.addEventListener('click', handler) 
+window.removeEventListener('click', handler)
+
+(x) 
+window.addEventListener('click', () => handler) 
+window.removeEventListener('click', () => handler)
+        </code>
+    </pre></div></div><br><strong>자주 사용 element node 재정리</strong><div class="item_wrap"><dl class="item"><dt><button><span>Node</span>.parentNode <span class="seg">read</span></button></dt><dd>부모 찾기. 상위노드 접근 가능</dd></dl><div class="code_wrap"><pre>
         <code class="javascript">
 부모는 하나니깐 하나의 노드 반환
 node.parentNode  -  html 상위 노드에 접근가능 node 반환
@@ -5168,6 +5180,7 @@ const aa () => console.log('aa')
 const bb () => { return 'aa' }
 
 
+
 <span class="seg">
 new 키워드와 같이 사용될 수 없다.
 prototype 속성이 없다.
@@ -5179,6 +5192,9 @@ yield 키워드를 사용할 수 없다.
 
 
 주의점...
+
+*arrow function은 this객체를 생성하지않고 상위스코프 this를 참조함
+
 const user = {
     name: 'jonghwan',
     say() {
