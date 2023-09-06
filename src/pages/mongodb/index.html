@@ -914,6 +914,28 @@ text: [{ text2: [ {  } ] }]
 위 구조일때는 
 arrayFilters 써야됨
                                 
+
+
+
+-----------------------------------------
+
+
+
+$push
+배열 필드에 값을 push합니다. 
+
+{ $push: { 필드1: 값, 필드2: 값, ... } }
+
+
+
+배열 한번에 여러개 넣기 
+
+조심해야할 것은 값이 배열일 경우 한 번에 push해버립니다. 
+만약 원래 [1, 2]라는 배열이 있다면 [3, 4, 5]를 push할 경우 [1, 2, [3, 4, 5]]가 되어버립니다. 3, 4, 5를 따로따로 push하고 싶다면
+
+{ $push: { 필드: { $each: 배열 } } }
+
+
 ----------------------------------------------
 
 
@@ -935,6 +957,26 @@ const project = await Project.findByIdAndUpdate(projectId, { $push: { "joinUser"
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
 출처: velopert.log: https://velopert.com/479
+
+                            </code>
+                        </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>$</span>pullAll</button></dt>
+                            <dd>
+                                배열 값 추가
+                        </dd>
+                        </dl>
+                        <div class="code_wrap">
+                        <pre>
+                            <code class="javascript">
+await Project.findByIdAndUpdate(projectId, { $pullAll: { categorys: deleteCategorys } }, { new: true }).exec();
+
+await Project.findByIdAndUpdate(projectId, { $pullAll: { 필드1: [값1, 값2] } }, { new: true }).exec();
 
                             </code>
                         </pre>
