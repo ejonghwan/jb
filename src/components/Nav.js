@@ -65,6 +65,12 @@ class Nav {
                 menuName: 'Canvas' ,
                 state: false,
             },
+            {
+                id: 10,
+                href: `${this.root}/typescript/index.html`, 
+                menuName: 'Typescript' ,
+                state: false,
+            },
         ]
     }
 

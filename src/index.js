@@ -14,9 +14,7 @@ import './assets/font/AritaSans-Thin.otf'
 
 
 const Index = () => {
-   
-
-    console.log(ui)
+    
     return ui
 }
 

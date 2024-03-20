@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+   
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="wrap">
+        <div><a href="https://mothereff.in/html-entities" target="_blank" title="new window">highlight js html 쉽게 변경하기</a></div>
+        <header>
+            <nav class="global_wrap sub">
+                <ul class="line"></ul>
+            </nav>
+        </header>
+        <main>
+            <div class="global_wrap">
+                
+        <!-- typescript -->
+          <section class="conts">
+            <h2>typescript</h2>
+
+            <div class="depth_2">
+            <!-- <strong>Lottie 사용방법</strong> -->
+           
+            <!-- item -->
+            <div class="item_wrap">
+                <dl class="item">
+                    <dt><button>typescript <span>설치</span></button></dt>
+                    <dd>
+                        설치 실행
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="markdown">
+
+# 설치
+
+// 글로벌(g) 설치
+npm install -g typescript
+
+// 해당 폴더(로컬) 설치
+npm install typescript
+
+
+# 체크
+
+// 글로벌
+tsc -v
+
+// 로컬
+npx tsc -v
+
+
+# config 생성
+
+// 글로벌 (글로벌의 경우 해당 폴더로 가는 거 잊지 말자)
+tsc --init
+
+// 로컬
+npx tsc --init
+
+
+config 설정은 구글보고 찾기
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+             <!-- item -->
+             <div class="item_wrap">
+                <dl class="item">
+                    <dt><button>narroing<span></span></button></dt>
+                    <dd>
+                        -
+                    </dd>
+                </dl>
+                <div class="code_wrap">
+                <pre>
+                    <code class="markdown">
+
+const title = document.querySelector('#title')
+
+// narrowing 방법1 
+if(title !== null) {
+    title.innerHTML = '방가방가'
+}
+
+
+
+// narrowing 방법2 (많이씀)
+if(title instanceof Element) {
+    title.innerHTML = '방가방가'
+}
+
+
+
+// narrowing 방법3 (자주쓰지말기) 
+const title1 = document.querySelector('#title') as Element;
+title1.innerHTML = '방가방가'
+
+
+
+// narrowing 방법4
+if(title?.innerHTML !== undefined) {
+    title.innerHTML = '방가방가'
+}
+
+
+
+
+
+// 링크는 정확하게 타입체크 
+const link = document.querySelector('.link')
+if(link instanceof HTMLAnchorElement) {
+    link.href = 'kakao.com'
+}
+
+
+
+// 이벤트 네로잉
+const clickEvt = () => {
+    ele?.classList.add('zzzz')
+}
+
+                    </code>
+                </pre>
+                </div>
+            </div>
+            <!-- //item -->
+        </div>
+      </section>
+      <!-- //typescript -->
+             
+              
+
+
+            </div>
+        </main>
+        <footer>
+            <div class="global_wrap">
+                <ul class="info">
+                    asdasdsa
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/vs2015.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
