@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.72c8c3f8ca5b43dfbb9e.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><p>query 정리 https://velopert.com/479</p><p>query 정리 https://mongoosejs.com/docs/api/model.html</p><p>params query body 차이 https://dar0m.tistory.com/m/222</p><section class="conts"><h2>MongoDB</h2><div class="depth_2"></div></section><section class="conts"><h2>Mongoose</h2><div class="depth_2"><strong>타입, 속성</strong><div class="item_wrap"><dl class="item"><dt><button><span>mongoose</span> 스키마 생성</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.ffeee00f4b53116bb3e9.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><p>query 정리 https://velopert.com/479</p><p>query 정리 https://mongoosejs.com/docs/api/model.html</p><p>params query body 차이 https://dar0m.tistory.com/m/222</p><section class="conts"><h2>Mongoose</h2><div class="depth_2"><strong>타입, 속성</strong><div class="item_wrap"><dl class="item"><dt><button><span>mongoose</span> 스키마 생성</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
 
@@ -580,6 +580,28 @@ text: [{ text2: [ {  } ] }]
 위 구조일때는 
 arrayFilters 써야됨
                                 
+
+
+
+-----------------------------------------
+
+
+
+$push
+배열 필드에 값을 push합니다. 
+
+{ $push: { 필드1: 값, 필드2: 값, ... } }
+
+
+
+배열 한번에 여러개 넣기 
+
+조심해야할 것은 값이 배열일 경우 한 번에 push해버립니다. 
+만약 원래 [1, 2]라는 배열이 있다면 [3, 4, 5]를 push할 경우 [1, 2, [3, 4, 5]]가 되어버립니다. 3, 4, 5를 따로따로 push하고 싶다면
+
+{ $push: { 필드: { $each: 배열 } } }
+
+
 ----------------------------------------------
 
 
@@ -601,6 +623,13 @@ const project = await Project.findByIdAndUpdate(projectId, { $push: { "joinUser"
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
 출처: velopert.log: https://velopert.com/479
+
+                            </code>
+                        </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>pullAll</button></dt><dd>배열 값 추가</dd></dl><div class="code_wrap"><pre>
+                            <code class="javascript">
+await Project.findByIdAndUpdate(projectId, { $pullAll: { categorys: deleteCategorys } }, { new: true }).exec();
+
+await Project.findByIdAndUpdate(projectId, { $pullAll: { 필드1: [값1, 값2] } }, { new: true }).exec();
 
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>$</span>pull</button></dt><dd>특정 배열 값 삭제</dd></dl><div class="code_wrap"><pre>

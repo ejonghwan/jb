@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.72c8c3f8ca5b43dfbb9e.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><div><a href="https://mothereff.in/html-entities" target="_blank" title="new window">highlight js html 쉽게 변경하기</a></div><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>typescript</h2><div class="depth_2"><div class="item_wrap"><dl class="item"><dt><button>typescript <span>설치</span></button></dt><dd>설치 실행</dd></dl><div class="code_wrap"><pre>
-                    <code class="markdown">
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.ffeee00f4b53116bb3e9.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap"><div><a href="https://mothereff.in/html-entities" target="_blank" title="new window">highlight js html 쉽게 변경하기</a></div><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><h2>typescript</h2><div class="depth_2"><div class="item_wrap"><dl class="item"><dt><button>typescript <span>설치</span></button></dt><dd>설치 실행</dd></dl><div class="code_wrap"><pre>
+                <code class="markdown">
 
 # 설치
 
@@ -30,22 +30,22 @@ npx tsc --init
 
 config 설정은 구글보고 찾기
 
-                    </code>
-                </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>narroing<span></span></button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
-                    <code class="markdown">
+                </code>
+            </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>narroing<span></span></button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                <code class="markdown">
 
 const title = document.querySelector('#title')
 
 // narrowing 방법1 
 if(title !== null) {
-    title.innerHTML = '방가방가'
+title.innerHTML = '방가방가'
 }
 
 
 
 // narrowing 방법2 (많이씀)
 if(title instanceof Element) {
-    title.innerHTML = '방가방가'
+title.innerHTML = '방가방가'
 }
 
 
@@ -58,7 +58,7 @@ title1.innerHTML = '방가방가'
 
 // narrowing 방법4
 if(title?.innerHTML !== undefined) {
-    title.innerHTML = '방가방가'
+title.innerHTML = '방가방가'
 }
 
 
@@ -68,18 +68,381 @@ if(title?.innerHTML !== undefined) {
 // 링크는 정확하게 타입체크 
 const link = document.querySelector('.link')
 if(link instanceof HTMLAnchorElement) {
-    link.href = 'kakao.com'
+link.href = 'kakao.com'
 }
 
 
 
 // 이벤트 네로잉
 const clickEvt = () => {
-    ele?.classList.add('zzzz')
+ele?.classList.add('zzzz')
 }
 
-                    </code>
-                </pre></div></div></div></section><section class="conts"><h2>GIT</h2><div class="depth_2"><strong>로컬 저장소에 저장하고 원격 저장소에 올리기</strong><div class="item_wrap"><dl class="item"><dt><button>git add <span>[filename | .]</span></button></dt><dd>파일 스테이징에 올리기</dd></dl><div class="code_wrap"><pre>
+                </code>
+            </pre></div></div><!-- ############################################ --><br><strong>기본타입</strong><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:string <span>= 'str'</span></button></dt><dd>문자</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:number <span>= 30</span></button></dt><dd>넘버</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:boolean <span>= true</span></button></dt><dd>불리언</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:number[] <span>= [1, 2, 3]</span></button></dt><dd>배열. 숫자 1</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:Array&lt;number&gt; <span>= [1, 2, 3]</span></button></dt><dd>배열. 숫자 2</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:string[] <span>= ['mon', 'tue', 'wed']</span></button></dt><dd>배열. 문자 1</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:Array&lt;string&gt; <span>= ['mon', 'tue', 'wed']</span></button></dt><dd>배열. 문자 2</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:[string, number] <span>= ['mon', 3]</span></button></dt><dd>배열. 숫자 + 문자 (튜플)</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:null <span>= null</span></button></dt><dd>null</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>let</span> var:undefined <span>= undefined</span></button></dt><dd>undefined</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button><span>function</span> name():void <span>{ value }</span></button></dt><dd>함수. 보이드 - 반환값 없을 때</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>function</span> name():never <span>{ value }</span></button></dt><dd>함수. 네버 - 에러를 반환하거나, 끝나지 않는 함수 while..</dd></dl><div class="code_wrap"><pre><code class="markdown"></code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span> enum Os { Window = 'win', .. } <span></span></button></dt><dd>양방향 맵핑. 특정한 객체에 특정한 값만 쓰고 싶을 때 사용</dd></dl><div class="code_wrap"><pre><code class="javascript">
+enum Os {
+    wWindow = 'win',
+    Ios = 'ios',
+    Android = 'and'
+}
+
+let myOs:Os; 
+myOs = Os.Window;
+
+
+
+위 내용이 컴파일되면
+
+var Os;
+(function (Os){
+    Os['Window'] = 'win';    
+    Os['Ios'] = 'ios';    
+    Os['Android'] = 'and';    
+})(Os || (Os = {}))
+
+let myOs;
+myOs = Os.Window;
+            </code></pre></div></div><!-- ############################################ --><br><strong>인터페이스</strong><div class="item_wrap"><dl class="item"><dt><button><span>interface User</span> { name:string, age:number }</button></dt><dd>객체 타입지정</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+let Score = 'A' | 'B' | 'C' | 'D' | 'E';
+
+// 설정
+interface User {
+    name: string,
+    age: number,
+    gender?: string //있어도 되고 없어도 되는 옵셔널은 ? 붙이면 됨
+    readonly birthYear: number, // 읽기 전용
+    [xx: number]: string //키를 number로 받고 밸류를 string으로 여러개 받겠다는 의미 
+    [xx: number]: Score //위랑 비슷하지만 특정 문자열만 받고 싶을 때
+}
+
+// 사용
+let user: User = {
+    name: 'a',
+    age: 30
+    // gender에 ? 옵셔널 지정 안해주면 여기 할당 안되어 있기 떄문에 에러남.
+    birthYear: 2000,
+    1: 'A',
+    2: 'B'
+
+    1: 'a' // 최상단 let Score에 있는 문자열만 받을 수 있음
+}
+
+user.age = 10, //여기에 number 외로 들어가면 에러
+user.birthYear = '3000' // 리드온니라서 수정 시 에러남
+ 
+
+
+
+
+잘못된 코드 
+let user: object; 
+
+user = {
+    name: 'a',
+    age: 30
+}
+console.log(user.name) //네임이 정의 되어있지 않아서 에러
+            </code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>interface Add</span> {(n1:number, n2:number): number}</button></dt><dd>함수 타입지정</dd></dl><div class="code_wrap"><pre><code class="javascript">
+ex1)
+interface Add {
+    (num1: number, num2: number): number //(인자, 인자): 리턴값
+}
+
+const add: Add = function(x, y) {
+    return x + y;
+}
+
+
+ex2)
+interface isAdult {
+    (age: number): boolean
+}
+
+const isKid: isAdult = (age) => age > 19 
+
+
+            </code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>interface Car</span> {wheels:number, color:string}</button></dt><dd>Class 타입지정</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+    interface Car {
+    color: string,
+    wheels: number,
+    start(): void
+    }
+
+
+    class Bmw implements Car {
+    color; // color는 생성자에 넣어봄
+    wheels = 4,
+
+    constructor(c: string) {
+        this.c = c;
+    }
+
+    start() {
+        console.log('start')
+    }
+
+    //인터페이스에 설정한 타입값과 다르거나 빠져있거나 더 넣으면 에러냄
+    }
+
+
+
+    // deep하게 
+    // 접근 제한자 - public, private, protected
+    public - 자식클래스, 클래스 인스턴스 모두 접근가능 (디폴트값)
+    protected - 자식 클래스에서 접근 가능. (인스턴스에선 접근불가) 
+    private - 해당 클래스 내부에서만 접근 가능. (# or private)
+
+    소스는 나중에 정리하자 ..https://www.youtube.com/watch?v=17Oh028Jpis&list=PLZKTXPmaJk8KhKQ_BILr1JKCJbR0EGlx0&index=6
+    
+
+            </code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>interface </span>extends</button></dt><dd>interface 확장</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+interface Car {
+    color: string,
+    wheels: number,
+    start(): void
+}
+
+
+// 아래처럼 Car를 상속받으면 Benz는 위 3개를 상속받기 때문에 총 5개를 모두 입력해줘야함.
+interface Benz extends Car {
+    door: number, 
+    stop(): void
+} 
+
+
+// 5개 모두 넣어야 에러나지 않음.
+class Bmw {
+    color = 'a'
+    wheels: 3
+    door: 4
+    start(){}
+    stop(){}
+}
+
+            </code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>interface</span> this</button></dt><dd>this 타입지정</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+Interface User {
+   name: string
+}
+
+const Jong: User = { name: 'jong' }
+
+function showName(this: User, age: number, gender: 'm'|'f') {
+   console.log(this.name, age, gender);
+};
+
+const a = showName.bind(Jong)
+a(30, 'm')
+
+            </code></pre></div></div><!-- ############################################ --><br><strong>함수</strong><div class="item_wrap"><dl class="item"><dt><button><span>function add</span>(n1: number, n2: number): number</button></dt><dd>함수 타입지정</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+ex1)  //아무것도 리턴하지 않는 함수는 void
+function add(n1: number, n2: number): void {
+    console.log(n1 + n2);
+}
+
+
+ex2) 
+function isAdult(age: number): boolean {
+    return 19 > age;
+}
+
+
+ex3) 옵셔널 가능
+function isAdult(age?: number): boolean {
+    return 19 > age || 30;
+}
+isAdult() 
+//?옵셔널 지정하지않으면 인자가 없을 때 에러남. 
+// 하지만 옵셔널이어도 타입은 맞춰줘야함
+
+
+ex3) // 기본문법인 디폴트값 주면 타입 지정안해도 같은 효과
+function isAdult(age = 3): boolean {
+    return 19 > age;
+}
+
+
+ex3) // 옵셔널 인자값은 기본인자보다 앞에오면 안됨
+function hi(age?: number, name: string): viod {} //에러 
+function hi(name: string, age?: number): viod {} //괜춚 
+
+//옵셔널을 앞에두고 사용하고 싶다면?
+function hi(age: number | undefined, name: string): viod {} //괜춚 
+hi(undefined, 'jonghwan')
+            </code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>interface</span> overload</button></dt><dd>함수의 리턴에 따라 여러타입이 반환될 경우</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+interface User {
+   name: string,
+   age: number
+}
+
+
+// age를 넘버 혹은 문자로 입력받고 그에 따라 객체or문자를 리턴해줄 때 
+function join(name: string, age: number | string): User | string {
+   if(typeof age === 'number') {
+       return {
+           name, age
+       }
+   } else {
+       return "나이는 숫자로 입력"
+   }
+}
+
+
+const jong: User = join("jong", 30) //숫자로 받을 때 객체가 리턴되니 에러가 나지 않아야되는데 에러남. 
+const hwan: string = join("jong", "30") //문자로 받을 때 문자가 리턴되니 에러가 나지 않아야되는데 에러남.
+
+
+//해결방법
+function join(name: string, age: number): User //반환될 타입을 함수 위에 작성  
+function join(name: string, age: string): string //반환될 타입을 함수 위에 작성
+function join(name: string, age: number | string): User | string {
+   if(typeof age === 'number') {
+       return {
+           name, age
+       }
+   } else {
+       return "나이는 숫자로 입력"
+   }
+}
+
+            </code></pre></div></div><!-- ############################################ --><br><strong>리터럴타입 | 유니온 타입 | 교차타입</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>type Job <span>= 'a' | 'b' | 'c'</span></button></dt><dd>리터럴 타입지정 / 타입추론</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+const userName1 = 'Bob'; // 변할 수 없으니 타입지정안함 
+let userName2 = 'ho' //변할 수 있으니 타입 string
+
+userName2 = 3 //처음 할당한 값이 string이기 때문에 타입추론으로 넘버 할당 시 에러남.
+
+// 만약 둘 다 넣고 싶다면? 
+let userName2: string | number = 'ho' //둘다 넣고 싶다면 타입추론하지말고 명시적으로 적어줌
+
+
+
+//타입 리터럴이란? 
+type Job = "police" | "designer" | "teacher";
+
+inerface User {
+    name: string,
+    job: Job 
+}
+
+const user: User = {
+    name: 'jong',
+    job: 'police' //위에 타입에 지정된걸 넣지않으면 에러남
+}
+
+            </code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>Union type<span> |</span></button></dt><dd>유니온 타입?</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+let a: number | string = 'a'; // 세로줄을 유니온타입이라고 부름
+
+interface Car {
+    name: 'car',
+    color: string,
+    start(): void 
+}
+
+interface Mobile {
+    name: 'mobile',
+    color: string,
+    call(): void 
+}
+
+function getGift(gift: Car | Mobile) {
+    console.log(gift.color) // 둘다 색상을 가지고 있기에 에러가 안남 
+    gift.start(); //하지만 start()는 Car에만 있기에 에러남
+
+    // 해결은 if로.. 
+    if(gift.name === 'car') gift.start();
+    if(gift.name === 'mobile') gift.call();
+}
+
+
+            </code></pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span></span>Intersection type<span> &</span></button></dt><dd>교차 타입?</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+let a: number | string = 'a'; // 세로줄을 유니온타입이라고 부름
+
+interface Car {
+    name: 'car',
+    color: string,
+    start(): void 
+}
+
+interface Mobile {
+    name: 'mobile',
+    color: string,
+    call(): void 
+}
+
+const toyCar: Car & Mobile = {
+    //위 두개의 인터페이스가 모두 들어가야 에러 안남
+}
+
+            </code></pre></div></div><!-- ############################################ --><br><strong>제네릭</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>제네릭<span></span></button></dt><dd>사용할 때 다양한 타입지정</dd></dl><div class="code_wrap"><pre><code class="javascript">
+
+ex1) 사용이유
+function getSize(arr: number[]): number {
+    return arr.length;
+}
+
+getSize([1,2,3]) //숫자로만 전달 시 에러가 나지않음
+getSize([1,2,'d']) //하지만 문자가 섞여있으면 에러 
+
+
+// 해결방법은 유니온타입 or 오버로드 사용 
+function getSize(arr: number[] | string[]): number {
+    return arr.length;
+}
+
+
+ex2) // 사용방법
+//하지만 타입이 여러개면 코드가 길고 복잡해짐. !!그때 사용하는게 제네릭 
+// T는 A,X 아무 문자로 써도됨. 이 T는 어떤걸 주입받아 실행에서 사용가능한 기능 
+function getSize&lt;T&gt;(arr: T[]): number {
+    return arr.length;
+}
+
+getSize&lt;number&gt;([1,2,3])
+getSize&lt;number | string&gt;([1,2,'d'])
+
+
+
+ex3) // 사용방법2
+
+interface Mobile&lt;T&gt; {
+    name: string;
+    option: T;
+}
+
+const m1: Mobile&lt;object&gt; = {
+    name: 'm1',
+    option: {
+        ...
+    }
+}
+
+const m1: Mobile&lt;string&gt; = {
+    name: 'm1',
+    option: 'asd'
+}
+
+
+제네릭 심화는 나중에 정리.. 끝부분 코드
+https://www.youtube.com/watch?v=pReXmUBjU3E&list=PLZKTXPmaJk8KhKQ_BILr1JKCJbR0EGlx0&index=7
+
+
+
+
+              </code></pre></div></div><!-- ############################################ --><br><strong>유틸리티 타입</strong><div class="item_wrap"><dl class="item"><dt><button><span></span>유틸리티 타입<span></span></button></dt><dd>ㅁㄴㅇ</dd></dl><div class="code_wrap"><pre><code class="javascript">
+                
+나중에 정리
+https://www.youtube.com/watch?v=IeXZo-JXJjc&list=PLZKTXPmaJk8KhKQ_BILr1JKCJbR0EGlx0&index=8
+
+
+              </code></pre></div></div></div></section><section class="conts"><h2>GIT</h2><div class="depth_2"><strong>로컬 저장소에 저장하고 원격 저장소에 올리기</strong><div class="item_wrap"><dl class="item"><dt><button>git add <span>[filename | .]</span></button></dt><dd>파일 스테이징에 올리기</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 asd
                             </code>

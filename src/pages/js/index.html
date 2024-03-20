@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="minimum-scale=1,width=device-width,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.72c8c3f8ca5b43dfbb9e.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap line"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><div class="item_wrap"><dl class="item"><dt><button><span>default</span></button></dt><dd>nodes, element, nodeList, HTML Collection, DOMTokenList</dd></dl><div class="code_wrap"><pre>
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="minimum-scale=1,width=device-width,maximum-scale=1,user-scalable=no"><title>Document</title><script defer="defer" src="../../../main.ffeee00f4b53116bb3e9.js"></script><link href="../../../main.css" rel="stylesheet"></head><body><div class="wrap line"><header><nav class="global_wrap sub"><ul class="line"></ul></nav></header><main><div class="global_wrap"><section class="conts"><div class="item_wrap"><dl class="item"><dt><button><span>default</span></button></dt><dd>nodes, element, nodeList, HTML Collection, DOMTokenList</dd></dl><div class="code_wrap"><pre>
     <code class="markdown">
 
 
@@ -238,8 +238,11 @@ iuSayNameBind()
     - 관심사의 분리해3
 
 
+</code>
+</pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>TDD</span></button></dt><dd>swiper 이슈</dd></dl><div class="code_wrap"><pre>
+<code class="markdown">
 
-    
+
 
     
 </code>
@@ -2852,7 +2855,38 @@ ul.replaceWith(...lis)
 // 걍 자리바꾸는 용도인듯 ?
 // ie x
                                 </code>
-                            </pre></div></div></div></section><section class="conts"><h2>Global_Objects</h2><span class="seg">글로벌 객체들</span><div class="item_wrap"><dl class="item"><dt><button>eval()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
+                            </pre></div></div></div></section><section class="conts"><h2>Global_Objects</h2><span class="seg">글로벌 객체들</span><div class="item_wrap"><dl class="item"><dt><button><span>new Set</span> <span class="seg"></span></button></dt><dd>중복제거, add remove has clear</dd></dl><div class="code_wrap"><pre>
+                  <code class="javascript">
+const set = new Set([1,2,3,4])
+set //1234
+
+########   기능
+add() remove() has() clear() size 
+
+      
+########    중복제거 
+const numbers = [1, 2, 2, 3, 4, 4, 5];
+const uniqueNumbers = [...new Set(numbers)];
+console.log(uniqueNumbers); // [1, 2, 3, 4, 5]
+      
+      
+#########    집합 
+const set1 = new Set([1, 2, 3, 4, 5]);
+const set2 = new Set([4, 5, 6, 7, 8]);
+
+// 합집합
+const union = new Set([...set1, ...set2]);
+console.log([...union]); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+// 교집합
+const intersection = new Set([...set1].filter((value) => set2.has(value)));
+console.log([...intersection]); // [4, 5]
+
+// 차집합
+const difference = new Set([...set1].filter((value) => !set2.has(value)));
+console.log([...difference]); // [1, 2, 3]
+  </code>
+</pre></div></div><br><div class="item_wrap"><dl class="item"><dt><button>eval()</button></dt><dd>-</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
 asd
                             </code>
@@ -3111,11 +3145,25 @@ asd
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button>Symbol</button></dt><dd>원시형 데이터 타입중 하나</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
-Symbol() 함수는 심볼(symbol) 형식의 값을 반환하는데, 이 심볼은 내장 객체(built-in objects)의 여러 멤버를 가리키는 정적 프로퍼티와 전역 심볼 레지스트리(global symbol registry)를 가리키는 정적 메서드를 가지며, "new Symbol()" 문법을 지원하지 않아 생성자 측면에서는 불완전한 내장 객체 클래스(built-in object class)와 유사합니다.
 
-Symbol()로부터 반환되는 모든 심볼 값은 고유합니다. 심볼 값은 객체 프로퍼티(object properties)에 대한 식별자로 사용될 수 있습니다; 이것이 심볼 데이터 형식의 유일한 목적입니다. 목적과 용례에 대한 더 자세한 설명은 용어집의 심볼 항목(glossary entry for Symbol)에서 볼 수 있습니다.
+/*
+    Symbol - 객체를 중간에 수정할 때 기존 로직을 건드리지 않게 ..keys, forin 심볼로 넣으면 무시함
+*/
+const id = Symbol('symbol name id')
+// console.log(id)
 
-심볼(symbol) 데이터 형은 원시 데이터 형(primitive data type)의 일종입니다.
+obj.c = id
+// console.log(obj)
+
+// for(const aa in obj) { 
+//     try {
+//         console.log(obj[aa]);
+//         // alert(obj[aa])
+//     } catch(e){
+//         console.log('error??', e)
+//     } 
+// }
+
 
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Symbol
@@ -3185,6 +3233,99 @@ obj.prop
 {prop: 30} // 불변
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+
+
+
+
+240312 새로 정리함
+ /*
+    Object method 
+*/
+const obj = { a: 1, b: 2 }
+// 1. 계산된 프로퍼티 
+// const a = (p1, p2) => ({ [p1]: 'mike', [p2]: 5 })
+// console.log( a('name', 'age') )
+
+// 2. 객체 키만 배열로  
+// Object.keys(obj) // [a, b]
+
+// 3. 객체 [키, 값] 배열로
+// const en = Object.entries(obj) //[['a': 1], ['b': 2]]
+
+// 4. 엔트리스 2차원배열 풀기 
+// Object.fromEntries(en) // {a: 1, b: 2}
+
+// 5. 
+// Object.defineProperty(this, key, {opt})
+
+const obj22 = { name: 'before' }
+
+console.dir(obj22)
+
+Object.defineProperty(obj22, 'name', {
+    // value: 'hoho',  //속성값 num, obj, fn 가능
+    // writable: true,  // 할당연산자로 변경가능여부. 기본값 false
+    enumerable: true, // 열거시 노출여부. 기본값 false
+    configurable: true, // 변경 삭제 가능여부. 기본값 false
+    
+    get () {
+        // getter는 value, writeable 있으면 안됨
+        // getter는 두번재 name값을 직접 호출했을 때 실행됨.  ex) obj22.name
+        // console.log('겟터??', 'this : ', this, 'name :', name)
+        return name + ' get'
+    },
+    set(newValue) {
+        // console.log('셋터??', 'newValue : ', newValue, 'this : ', this, 'name : ', name)
+        name = newValue;
+    }
+})
+
+
+
+// obj22.name = 'change'
+// delete obj22.name
+
+for(const p in obj22) {
+    // console.log('열거', p, obj22[p])
+}
+
+// console.log('마지막', obj22, obj22.name)        
+
+
+
+//테스트 
+function Dessert(name, sweetness) {
+    let cakePrice = '20$'
+
+    this.PriceLog = ['d'];
+    this.name = name;
+    this.sweetness = sweetness;
+
+    Object.defineProperty(this, 'price', {
+        enumerable: true,
+        get() {
+            return cakePrice;
+        },
+
+        set(newPrice) {
+            cakePrice = newPrice;
+            this.PriceLog.push(newPrice)
+        }
+    })
+}
+
+Dessert.prototype.getPriceLog = function() {
+    return this.PriceLog;
+}
+
+const lemonCake = new Dessert('lemon cake', 8)
+
+
+lemonCake.price = '100$'
+lemonCake.price = '2$'
+lemonCake.price = '5$'
+console.log( lemonCake.getPriceLog() );
+
                             </code>
                         </pre></div></div><div class="item_wrap"><dl class="item"><dt><button><span>Object</span>.defineProperties()</button></dt><dd>.defineProperty와 동일하지만 여러개 넣고 반환</dd></dl><div class="code_wrap"><pre>
                             <code class="javascript">
