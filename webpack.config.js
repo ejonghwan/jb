@@ -158,6 +158,14 @@ module.exports = {
           removeComments: true, 
         } : false,
       }),
+      new HtmlWebpackPlugin({ 
+        template:'./src/pages/ts/index.html',
+        filename:'./src/pages/ts/index.html',
+        minify: process.env.NODE_ENV === 'production' ? {
+          collapseWhitespace: true, 
+          removeComments: true, 
+        } : false,
+      }),
     new CleanWebpackPlugin(),
     new webpack.BannerPlugin({ 
       banner: `

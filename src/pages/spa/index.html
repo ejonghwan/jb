@@ -2056,6 +2056,7 @@ export default function App() {
                 <section class="conts">
                     <h2>Vue</h2>
 
+                    <!-- LifeCycle-->
                     <div class="depth_2">
                         <strong>LifeCycle</strong>
                         <!-- item -->
@@ -2394,15 +2395,218 @@ https://ko.vuejs.org/guide/essentials/lifecycle
                         </div>
                         <!-- //item -->
                     </div>
+                    <!-- //LifeCycle -->
 
+                    <!-- 선언적 렌더링 -->
                     <div class="depth_2">
-                        <strong>User Interface</strong>
+                        <strong>선언적 렌더링</strong>
                         <!-- item -->
                         <div class="item_wrap">
                             <dl class="item">
-                                <dt><button><span>v-for </span></button></dt>
+                                <dt><button><span></span>{{ value }}</button></dt>
                                 <dd>
-                                   선언적 렌더링
+                                   dom에 변수 선언 법(이중 보간법)
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+div {{ renderHTML }}
+
+export default {
+    data() {
+        return {
+            renderHTML: '이건 텍스트'
+        }
+    }
+}
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-html<span>=""</span></button></dt>
+                                <dd>
+                                   변수에 담긴 html 태그를 렌더링
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+하지만 출처가 불명확한 데이터를 사용 시 XSS 공격에 취약할 수 있음. 
+
+h1 v-html="renderHTML"
+
+export default {
+    data() {
+        return {
+            renderHTML: div 디브태그 안 텍스트 /div
+        }
+    }
+}
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    <!-- //선언적 렌더링 -->
+
+                    <!-- class | style 바인딩 -->
+                    <div class="depth_2">
+                        <strong>class | style 바인딩</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-bind:class<span>="{ active: val, }"</span></button></dt>
+                                <dd>
+                                   class 바인딩
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+태그에 특정 클래스를 추가 삭제하기 위한 기능. 
+isActive 변수가 true일때만 active가 붙음.
+
+
+h1 v-bind:class="{ active: isActive }"
+h1 :class="{ active: isActive }" //단축형
+
+button @click="change"
+
+export default {
+    data() {
+        return {
+            isActive: false
+        }
+    },
+    methods: {
+        change() {
+            this.isActive = !this.isActive
+        }
+    }
+    
+}
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-bind:style<span>="{ fontSize: val, }"</span></button></dt>
+                                <dd>
+                                   style 바인딩
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+
+
+
+h1 style="color: red; font-size: 24px" //일반적
+h1 :style="{ color: h1Color, fontSize: h2Font + 'px' }" //바인딩
+
+button @click="change"
+
+export default {
+    data() {
+        return {
+            h1Color: red,
+            h2Font: 48
+        }
+    }
+    
+    
+}
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    <!-- //class | style 바인딩 -->
+
+
+                     <!-- 조건부 렌더링 -->
+                     <div class="depth_2">
+                        <strong>조건부 렌더링</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-if<span>="조건"</span></button></dt>
+                                <dd>
+                                   조건x 시 렌더링 자체가 안됨. 전환 비용이 많이듦
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+주의. v-if="여기"  여기 안에 있는 조건이 참일 때만 돔이 보여짐.
+그리고 v-if는 초기 렌더링이 되지 않지만 조건이 맞을 때 렌더링 되기 때문에 전환 비용이 많이든다. 
+만약.. 자주 변경되는 경우 v-show를 사용하는 것이 좋다.
+
+ex1)
+h1 v-if="isVisible" class="red"
+h1 v-if="isVisible === true" class="blue"
+h1 v-else class="black"
+
+isVisible이 true일땐 red, blue 보여지고.. false일땐 black가 보여짐. 
+
+
+export default {
+    data() {
+        return {
+            isVisible: false
+        }
+    },
+}
+
+
+
+ex2)  1보다 작을땐 레드만.. 아닐땐 블루가 보임
+div v-if="count > 1" class="red"
+div v-else class="blue"
+
+button @click="count++"
+button @click="count--"
+
+export default {
+    data() {
+        return {
+            isVisible: false,
+            count: 0,
+        }
+    }
+}
+
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-else</button></dt>
+                                <dd>
+                                    v-if와 같이 사용.. true가 아닐 시 v-else쪽 실행..
                                 </dd>
                             </dl>
                             <div class="code_wrap">
@@ -2416,7 +2620,106 @@ https://ko.vuejs.org/guide/essentials/lifecycle
                             </div>
                         </div>
                         <!-- //item -->
+                          <!-- item -->
+                          <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-else-if<span>="조건"</span></button></dt>
+                                <dd>
+                                    v-else-if
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-show<span>="val"</span></button></dt>
+                                <dd>
+                                    렌더링은 됨. display: none처리. 초기렌더링 비용이 많이듦
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+초기 렌더링 비용은 많이 들지만 자주 변경될 시 스타일만 변경되기 떄문에 전환 비용이 적게 든다. 
+자주 변경되는 ui에 적합함. 
+
+div v-show="isActive" class="red" // display:none
+div v-show="!isActive" class="blue" // 초기에 false라 이거만 보임. 
+
+div v-if="isActive" class="black" // 렌더링 자체가 안됨
+
+export default {
+    data() {
+        return {
+            isVisible: false,
+        }
+    }
+}
+
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
                     </div>
+                    <!-- //조건부 렌더링 -->
+
+                     <!-- 리스트 렌더링 -->
+                     <div class="depth_2">
+                        <strong>리스트 렌더링</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-for<span>="item in items"</span></button></dt>
+                                <dd>
+                                   반복
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+- 순회순서는 해당 객체를 Object.keys() 호출한 결과에 기반
+- 고유 키값이 필요
+
+ex1) 
+const items = ref([ {msg: 'hoho'}, {msg: 'haha'} ])
+
+li v-for="(item, index) in items" :key="item.msg"
+    {{ item.msg }}
+
+
+ex2) 
+
+li v-for="(user, index) in dd" :key="user.id"
+    {{ user.name }}
+export default {
+    data() {
+        return {
+            dd: [ { name: 'a' }, { name: 'b' }, { name: 'c' } ],
+        }
+    }
+}
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    <!-- //리스트 렌더링 -->
 
 
 

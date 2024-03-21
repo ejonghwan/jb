@@ -67,7 +67,7 @@ class Nav {
             },
             {
                 id: 10,
-                href: `${this.root}/typescript/index.html`, 
+                href: `http://localhost:9000/src/pages/ts/index.html`, 
                 menuName: 'Typescript' ,
                 state: false,
             },
