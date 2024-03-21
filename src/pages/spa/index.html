@@ -2057,27 +2057,391 @@ export default function App() {
                     <h2>Vue</h2>
 
                     <div class="depth_2">
-                        <strong>Vue</strong>
-
+                        <strong>LifeCycle</strong>
                         <!-- item -->
                         <div class="item_wrap">
                             <dl class="item">
-                                <dt><button><span>vue </span>.vue</button></dt>
+                                <dt><button><span>function </span>onBeforeMount</button></dt>
                                 <dd>
-                                    vue git pages에 배포하기 참고 
+                                   돔이 마운트 되기 바로 전 
                                 </dd>
                             </dl>
                             <div class="code_wrap">
                                 <pre>
                         <code class="javascript">
-vue git pages에 배포하기 참고 
-https://velog.io/@lire_eruel/Github%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-Svelte-Vite-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0
+
+function onBeforeMount(callback: () => void): void
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onMounted <span>* 자주씀</span></button></dt>
+                                <dd>
+                                   돔이 마운트 된 후
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+function onMounted(callback: () => void): void
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onBeforeUpdate</button></dt>
+                                <dd>
+                                   데이터가 업데이트 되기 바로 전
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+function onBeforeUpdate(callback: () => void): void
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onUpdated <span>* 자주씀</span></button></dt>
+                                <dd>
+                                   데이터가 업데이트 될 때
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+function onUpdated(callback: () => void): void
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onBeforeUnmount</button></dt>
+                                <dd>
+                                   언마운트 되기 바로 전
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+function onBeforeUnmount(callback: () => void): void
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onUnmounted <span>* 자주씀</span></button></dt>
+                                <dd>
+                                   언마운트 된 후
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+function onUnmounted(callback: () => void): void
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onErrorCaptured</button></dt>
+                                <dd>
+                                    자식 컴포에서 전파된 에러가 캡쳐되었을 때
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+자식 컴포넌트에서 전파된 에러가 캡쳐되었을 때 호출될 콜백을 등록
+
+function onErrorCaptured(callback: ErrorCapturedHook): void
+
+type ErrorCapturedHook = (
+    err: unknown,
+    instance: ComponentPublicInstance | null,
+    info: string
+) => boolean | void
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onRenderTriggered</button><span>dev only</span></dt>
+                                <dd>
+                                    컴포넌트의 렌더 이펙트가 반응형 의존성에 의해 다시 실행되도록 트리거된 경우
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+컴포넌트의 렌더 이펙트가 반응형 의존성에 의해 다시 실행되도록 트리거된 경우, 호출될 디버그 콜백을 등록합니다.
+이 훅은 개발 모드 전용이며, 서버 사이드 렌더링 중에 호출되지 않습니다.
+
+
+function onRenderTriggered(callback: DebuggerHook): void
+
+type DebuggerHook = (e: DebuggerEvent) => void
+
+type DebuggerEvent = {
+  effect: ReactiveEffect
+  target: object
+  type: TriggerOpTypes /* 'set' | 'add' | 'delete' | 'clear' */
+  key: any
+  newValue?: any
+  oldValue?: any
+  oldTarget?: Map&lt;any, any&gt; | Set&lt;any&gt;
+}
+
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onRenderTracked</button><span>dev only</span></dt>
+                                <dd>
+                                    컴포의 렌더 이펙트에 의해 반응형 의존성이 추적됐을 때
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+컴포넌트의 렌더 이펙트에 의해 반응형 의존성이 추적됐을 때, 호출될 디버그 콜백을 등록합니다.
+이 훅은 개발 모드 전용이며, 서버 사이드 렌더링 중에 호출되지 않습니다.
+
+
+
+function onRenderTracked(callback: DebuggerHook): void
+
+type DebuggerHook = (e: DebuggerEvent) => void
+
+type DebuggerEvent = {
+  effect: ReactiveEffect
+  target: object
+  type: TrackOpTypes /* 'get' | 'has' | 'iterate' */
+  key: any
+}
+
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onActivated</button><span></span></dt>
+                                <dd>
+                                    KeepAlive로 캐시된 컴포 인스턴스가 DOM 트리의 일부로 삽입된 후
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+KeepAlive로 캐시된 컴포넌트 인스턴스가 DOM 트리의 일부로 삽입된 후 호출될 콜백을 등록합니다.
+이 훅은 서버 사이드 렌더링 중에 호출되지 않습니다.
+
+
+function onActivated(callback: () => void): void
+
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onDeactivated</button><span></span></dt>
+                                <dd>
+                                    KeepAlive로 캐시된 컴포 인스가 DOM 트리에서 제거된 후
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+KeepAlive로 캐시된 컴포넌트 인스턴스가 DOM 트리의 일부로 삽입된 후 호출될 콜백을 등록합니다.
+이 훅은 서버 사이드 렌더링 중에 호출되지 않습니다.
+
+
+function onDeactivated(callback: () => void): void
+
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                         <!-- item -->
+                         <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>function </span>onServerPrefetch</button><span>SSR 전용</span></dt>
+                                <dd>
+                                    컴포 인스가 서버에서 렌더링 되기 전에 완료(resolve)되어야 하는 비동기 함수를 등록
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+KeepAlive로 캐시된 컴포넌트 인스턴스가 DOM 트리의 일부로 삽입된 후 호출될 콜백을 등록합니다.
+이 훅은 서버 사이드 렌더링 중에 호출되지 않습니다.
+
+
+function onServerPrefetch(callback: () => Promise&lt;any&gt;): void
+
+
+
+ex)
+import { ref, onServerPrefetch, onMounted } from 'vue'
+
+const data = ref(null)
+
+onServerPrefetch(async () => {
+  // 서버에서 미리 데이터를 가져오는 것은
+  // 클라이언트에서 데이터를 요청하는 것보다 빠름.
+  // 최초 데이터 요청 결과로 컴포넌트의 일부가 렌더링 됨.
+  data.value = await fetchOnServer(/* ... */)
+})
+
+onMounted(async () => {
+  if (!data.value) {
+    // 마운트 시 데이터가 null일 경우,
+    // 컴포넌트가 클라이언트에서 동적으로 렌더링되도록
+    // 클라이언트 측에서 가져오기를 실행해야 함.
+    data.value = await fetchOnClient(/* ... */)
+  }
+})
+
+
+
+
+https://ko.vuejs.org/guide/essentials/lifecycle
+
                         </code>
                     </pre>
                             </div>
                         </div>
                         <!-- //item -->
                     </div>
+
+                    <div class="depth_2">
+                        <strong>User Interface</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>v-for </span></button></dt>
+                                <dd>
+                                   선언적 렌더링
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+
+
+
+
+                    
+                    <br /><br />
+
+                    <!-- item -->
+                    <div class="item_wrap">
+                        <dl class="item">
+                            <dt><button><span>vue </span>.vue</button></dt>
+                            <dd>
+                                vue git pages에 배포하기 참고 
+                            </dd>
+                        </dl>
+                        <div class="code_wrap">
+                            <pre>
+                    <code class="javascript">
+vue git pages에 배포하기 참고 
+https://velog.io/@lire_eruel/Github%ED%8E%98%EC%9D%B4%EC%A7%80%EC%97%90-Svelte-Vite-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0
+                    </code>
+                </pre>
+                        </div>
+                    </div>
+                    <!-- //item -->
                 </section>
                 <!-- Vue -->
 
