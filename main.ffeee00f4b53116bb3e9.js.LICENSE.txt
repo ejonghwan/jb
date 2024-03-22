@@ -1,9 +1,0 @@
-/*!
- * 
- *         Build Data: 2024. 3. 21.
- *         GIT Commit Ver: a14e7be
- *
- *         User Name : ejonghwan
- *
- *
- */
