@@ -2723,6 +2723,365 @@ export default {
 
 
 
+                     <!-- 이벤트 핸들러 -->
+                     <div class="depth_2">
+                        <strong>이벤트 핸들러</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>@click<span>="함수명 or 기능"</span></button></dt>
+                                <dd>
+                                   인라인 or 함수
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+
+ex1) 인라인 핸들러 
+const count = ref(0)
+
+button @click="count++"
+    {{ count }}
+
+
+ex2) 메서드 핸들러
+
+
+const name = ref('vue.js')
+
+function greet(e) {
+    alert(`안녕 ${name.value}`);
+    if(e) e.target.tagName;
+};
+
+button @click="greet"
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    <!-- //이벤트 핸들러 -->
+
+                      <!-- 컴퓨티드 -->
+                      <div class="depth_2">
+                        <strong>Computed</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>computed<span></span></button></dt>
+                                <dd>
+                                   동일한 로직을 반복적으로 활용하면 캐싱처리되어 한번만 실행함.
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+
+ex1) 그냥 메서드로 실행 시 
+세번을 실행하면 3번 모두 실행됨.
+
+h1 {{ handleComputed() }}
+h1 {{ handleComputed() }}
+h1 {{ handleComputed() }}
+
+export default {
+    data() {
+        return {
+            name: 'computed 속성 테스트입니다.'
+        }
+    },
+
+    methods: {
+        handleComputed() {
+            console.log('메서드 실행')
+            return this.name.split('').reverse().join('')
+        }
+    }
+}
+
+
+ex1) 컴퓨티드 사용 시 
+같은 로직이라면 1번만 실행되어 1번 실행함.
+
+h1 {{ handleComputed }} // 주의 실행할 때 함수 모양이지만 데이터 취급
+h1 {{ handleComputed }}
+h1 {{ handleComputed }}
+
+export default {
+    setup() {
+        return {}
+    },
+ 
+    data() {
+        return {
+            name: 'computed 속성 테스트입니다.'
+        }
+    },
+
+    computed: {
+        handleComputed() {
+            console.log('컴퓨티드 실행')
+            return this.name.split('').reverse().join('')
+        }
+    }, 
+}
+
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    <!-- //컴퓨티드 -->
+
+                    <!-- watch -->
+                    <div class="depth_2">
+                        <strong>Watch</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>Watch<span></span></button></dt>
+                                <dd>
+                                   어떤 데이터를 감시하다가 변경됐을 때 감지하여 로직실행
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+// 변수와 같은 이름으로 와치 객체에 실행함수를 넣으면 
+// 해당 변수가 변경되었을 때 감지하여 함수를 실행함
+
+h1{{ massage }} {{ watchMessage }}
+button @click="handleMsgChage" 메시지 변경
+
+
+
+export default {
+    data() {
+        return {
+            message: 'hi',
+            watchMessage: ''
+        }
+    },
+
+
+    watch: {
+        message() { // 변수와 똑같은 명칭. message 변수가 변경될 때 이 함수도 실행
+            alert('메시지 watch 감지!!')
+            this.watchMessage = '와치와치'
+        }
+    },
+
+    // 데이터 뿐만 아니라 computed로 계산된 형태의 데이터도 watch로 감지
+    // 게시판에서 한 컬럼을 선택하였을 때, 고유한 id값이 바뀜을 감지하고 
+    // 이때, 그 id 값에 따른 상세 데이터를 호출할 때, 주로 사용한다 
+    id() {
+        // id가 변경될 때 상세데이터를 호출하는 api 함수 실행
+    },
+
+    methods: {
+        handleMsgChage() {
+            console.log('메시지변경')
+            this.message = '변경된 메시지'
+        }
+    } 
+    
+}
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    <!-- //watch -->
+
+                     <!-- props emit -->
+                     <div class="depth_2">
+                        <strong>Props | Emits</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>props: {}<span> | </span>defindProps</button></dt>
+                                <dd>
+                                    위 &gt; 아래로 넘겨줌 
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+// 사용방법
+옵션즈 props: {}
+컴포지션 defindProps
+
+prop 받은 데이터의 타입 설정
+prop 받은 데이터는 변경 불가
+
+
+// ############################## 부모 컴포
+
+// 템플릿 
+&lt;Evt v-bind:prop1="hoho" :prop2="hoho2" :prop3="obj"/&gt;
+
+
+//스크립트 
+import { ref, reactive, onBeforeMount, onMounted, onUpdated, onUnmounted } from 'vue';
+import Evt from './Evt.vue';
+
+interface Obj {
+  id: number,
+  name: string, 
+}
+
+const hoho = ref&lt;string&gt;('부모컴에서 만든 데이터')
+const hoho2 = ref&lt;number&gt;(3333)
+const obj = reactive&lt;Obj&gt;({  // 객체 배열은 reactive 권장
+  id: 1,
+  name: "jong"
+})
+
+
+
+// ############################## 자식 컴포
+//템플릿
+{{ prop1 }}
+{{ prop2 }}
+{{ prop3.id }}
+{{ prop3.name }}
+
+// toRefs 전 
+// {{ props.prop1 }} 
+// {{ props.prop2 }} 
+// {{ props.prop3.id }} 
+// {{ props.prop3.name }} 
+
+
+//스크립트 
+setup lang="ts"
+
+import { toRefs } from "vue"
+
+interface Obj {
+  id: number,
+  name: string, 
+}
+
+interface Props {
+    prop1: String,
+    prop2: Number,
+    prop3: Obj
+}
+
+// toRefs 사용하면 구조분해할당 가능해서 템플릿 부분에  props.prop1 이렇게 적지 않아도됨
+const props = defineProps&lt;Props&gt;()
+const { prop1, prop2, prop3 } = toRefs(props)
+
+
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>this.$emits<span> | </span>defineEmits(name, data)</button></dt>
+                                <dd>
+                                    아래 &gt; 위로 넘겨줌
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+// 사용방법
+옵션즈 this.$emits
+컴포지션 defineEmits(evtname, data)
+
+
+// ################ 부모 컴포
+
+&lt;Evt @send-evt="parentEvt" /&gt;
+
+
+import Evt from './Evt.vue';
+
+const parentEvt = (evt: string) =&gt; {
+  console.log(evt)
+}
+
+
+
+// ################ 자식 컴포
+
+&lt;button @click="evt"&gt;부모로 보내기&lt;/button&gt;
+
+
+import { ref } from 'vue';
+
+const data = ref&lt;string&gt;('자식 컴포 데이터')
+
+const emit = defineEmits([ 'send-evt' ])
+const evt = ():void =&gt; {
+    emit('send-evt', data.value);
+}
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                    </div>
+                    <!-- //props emit -->
+
+
+                      <!-- v-model -->
+                      <div class="depth_2">
+                        <strong>v-model</strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button>v-model<span>="val"</span></button></dt>
+                                <dd>
+                                    데이터 일치.. useState기능비슷? 
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+1. 양방향 데이터 바인딩 (메모리에 담긴 데이터와 html에 보여지는 데이터, 두개의 소스를 일치)
+v-model은 Props와 Emits의 기능이 동시에 진행된다는 개념
+
+2. input의 기능에 따라 
+v-model은 input 태그의 input value의 값과 연관지어 많이 사용. 
+input의 변경을 감지하여 DOM에 뿌려진 곳이 같이 변경되게끔
+
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                     
+                    </div>
+                    <!-- //v-model -->
+
+
+
+
 
                     
                     <br /><br />
