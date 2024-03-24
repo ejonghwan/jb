@@ -2816,6 +2816,26 @@ button @click="greet"
                                 <pre>
                         <code class="javascript">
 
+// 컴포지션 
+const menu = [
+    { icon: 'Dashboard', label: 'Dashboard' },
+    { icon: 'Index', label: 'Index' },
+    { icon: 'Calender', label: 'Calender' },
+    { icon: 'Jobs', label: 'Jobs' },
+    { icon: 'Reference', label: 'Reference' },
+    { icon: 'Document', label: 'Document' },
+    { icon: 'CareerSite', label: 'CareerSite' },
+    { icon: 'Employee', label: 'Employee' },
+    { icon: 'Structure', label: 'Structure' },
+    { icon: 'Settings', label: 'Settings' },
+]
+// 콜백에 리턴은 필수
+const topMenu = computed(() => {
+    return menu.slice(0, 3)
+})
+
+
+
 
 ex1) 그냥 메서드로 실행 시 
 세번을 실행하면 3번 모두 실행됨.
