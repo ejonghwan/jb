@@ -2060,6 +2060,26 @@ button @click="greet"
                     </pre></div></div></div><div class="depth_2"><strong>Computed</strong><div class="item_wrap"><dl class="item"><dt><button>computed<span></span></button></dt><dd>동일한 로직을 반복적으로 활용하면 캐싱처리되어 한번만 실행함.</dd></dl><div class="code_wrap"><pre>
                         <code class="javascript">
 
+// 컴포지션 
+const menu = [
+    { icon: 'Dashboard', label: 'Dashboard' },
+    { icon: 'Index', label: 'Index' },
+    { icon: 'Calender', label: 'Calender' },
+    { icon: 'Jobs', label: 'Jobs' },
+    { icon: 'Reference', label: 'Reference' },
+    { icon: 'Document', label: 'Document' },
+    { icon: 'CareerSite', label: 'CareerSite' },
+    { icon: 'Employee', label: 'Employee' },
+    { icon: 'Structure', label: 'Structure' },
+    { icon: 'Settings', label: 'Settings' },
+]
+// 콜백에 리턴은 필수
+const topMenu = computed(() => {
+    return menu.slice(0, 3)
+})
+
+
+
 
 ex1) 그냥 메서드로 실행 시 
 세번을 실행하면 3번 모두 실행됨.
