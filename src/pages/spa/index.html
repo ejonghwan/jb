@@ -2537,6 +2537,35 @@ export default {
                             </div>
                         </div>
                         <!-- //item -->
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span></span>v-bind:attr<span>="val"</span></button></dt>
+                                <dd>
+                                   속성 바인딩
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+// 기본적으로 속성들을 바인딩 하는 기능임. 타이틀 data속성 등을 바인딩 할 수 있음.
+h1 :title="inputValue" //바인딩
+
+export default {
+    data() {
+        return {
+            inputValue: 'zz',
+        }
+    }
+    
+    
+}
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
                     </div>
                     <!-- //class | style 바인딩 -->
 
@@ -2738,17 +2767,23 @@ export default {
                                 <pre>
                         <code class="javascript">
 
+// v-on | @  둘중 하나 씀
 
-ex1) 인라인 핸들러 
+@click
+@input
+@change
+...
+
+
+// ex1) 인라인 핸들러 
 const count = ref(0)
 
 button @click="count++"
     {{ count }}
 
 
-ex2) 메서드 핸들러
 
-
+// ex2) 메서드 핸들러
 const name = ref('vue.js')
 
 function greet(e) {
@@ -2859,6 +2894,45 @@ export default {
 // 변수와 같은 이름으로 와치 객체에 실행함수를 넣으면 
 // 해당 변수가 변경되었을 때 감지하여 함수를 실행함
 
+
+
+//ex1) 컴포지션 
+input type="text" :value="foo"  @input="foo = $event.target.value" 
+{{ foo }}
+
+import { ref, watch } from 'vue'
+
+const foo = ref('')
+
+watch (foo, (newValue) => {
+  console.log(`foo값: ${newValue}`)
+})
+
+
+//ex1-1) props 객체 감지 
+// 부모에서 해당 컴포로 내려준 데이터를 defineProps로 받으면서 watch로 감지
+import { ref, watch } from 'vue'
+
+const props = defineProps({
+  termData: {
+    cycleNumber: 3,
+    cycleName: '개월',
+  },
+})
+
+watch (
+  () => props.termData,
+  (termData) => {
+    if (termData) {
+      console.log(`${termData.cycleNumber} ${termData.cycleName}`) 
+    }
+  }
+)
+
+
+
+
+//ex2) 옵션즈 
 h1{{ massage }} {{ watchMessage }}
 button @click="handleMsgChage" 메시지 변경
 
@@ -2926,6 +3000,65 @@ export default {
 
 prop 받은 데이터의 타입 설정
 prop 받은 데이터는 변경 불가
+
+
+// 다시정리 
+// ## 부모컴포
+&lt;Evt :firstName="first" :lastName="last" :info="obj"/&gt;
+
+
+import { reactive, ref } from 'vue';
+import Evt from './Evt.vue';
+
+interface Info {
+  address: String;
+  age: Number;
+}
+
+const first = ref&lt;string&gt;('lee')
+const last = ref&lt;string&gt;('jonghwan')
+const obj = reactive&lt;Info&gt;({ 
+  address: 'busan',
+  age: 30
+ })
+
+
+
+// ## 자식컴포 
+{{ firstName }}
+{{ lastName }}
+{{ info.address }}
+{{ info.age }}
+
+
+import { toRefs } from "vue"
+
+interface Obj {
+    firstName: String;
+    lastName: String;
+    info: Info;
+}
+
+interface Info {
+    address: String;
+    age: Number;
+}
+
+const props = defineProps&lt;Obj&gt;()
+const {firstName, lastName, info} = toRefs(props)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ############################## 부모 컴포
@@ -3011,6 +3144,83 @@ const { prop1, prop2, prop3 } = toRefs(props)
 컴포지션 defineEmits(evtname, data)
 
 
+// 다시 정리 
+// 부모 컴포 
+
+&lt;h3>부모컴포&lt;/h3&gt;
+&lt;Evt @send-evt="fn"/&gt;
+
+&lt;div v-for="(item, idx) in childData" :key="idx"&gt;
+  {{ item }}
+  {{ item?.address }}
+  {{ item?.age }}
+&lt;/div&gt;
+// 데이터안에 객체와 일반 문자가 같이 섞여있을떄는 어떡함?
+
+{{ childData[0] }}
+{{ childData[1] }}
+{{ childData[2].address }}
+{{ childData[2].age }}
+
+
+// script
+import { ref } from 'vue'
+import Evt from './Evt.vue'
+
+
+const childData = ref();
+const fn = (infos: string):void =&gt; {
+  console.log('infos?', infos)
+  childData.value = infos;
+}
+
+
+
+
+// 자식 컴포 
+&lt;h1&gt;자식컴포&lt;/h1&gt;
+&lt;button type="button" @click="loadEmit"&gt;click&lt;/button&gt;
+
+
+// script
+import { reactive, ref, onMounted } from "vue";
+
+interface Info {
+    address: String;
+    age: number;
+}
+
+// number와 Number가 타입이 다름. ++을 시켰을 때 Number는 증가가 안됨
+
+
+const firstName = ref&lt;string&gt;('lee')
+const lastName = ref&lt;string&gt;('jonghwan')
+const info = reactive&lt;Info&gt;({
+    address: 'busan',
+    age: 30
+})
+
+
+const emit = defineEmits([ 'send-evt' ])
+const loadEmit = () =&gt; {
+    emit('send-evt', [firstName.value, lastName.value, { address: info.address, age: info.age }]);
+    console.log('info?', info.age)
+    info.age++
+}
+
+onMounted(() =&gt; {
+    loadEmit()
+})
+
+
+
+
+
+
+
+
+// ############################################################################################
+
 // ################ 부모 컴포
 
 &lt;Evt @send-evt="parentEvt" /&gt;
@@ -3069,6 +3279,37 @@ v-model은 Props와 Emits의 기능이 동시에 진행된다는 개념
 v-model은 input 태그의 input value의 값과 연관지어 많이 사용. 
 input의 변경을 감지하여 DOM에 뿌려진 곳이 같이 변경되게끔
 
+
+// ex1) 컴포지션 
+input type="text" :value="firstName" v-model="firstName"
+input type="text" :value="lastName" v-model="lastName"
+{{ firstName }}
+
+//script 
+const firstName = defineModel('firstName')
+const lastName = defineModel('lastName')
+
+//## 주의점은 한글 입력시 표시가 인풋창에서 다른곳 찍어야 반영됨. 표시만.. 
+//## 해결방법
+
+input type="text" :value="firstName" @input="firstName = $event.target.value"
+{{ firstName }}
+
+
+
+
+//ex2) 옵션즈
+input type="text" v-model="inputValue"
+{{ inputValue }}
+
+
+export default {
+    data() {
+        return {
+            inputValue: ''
+        }
+    }
+}
 
                         </code>
                     </pre>
