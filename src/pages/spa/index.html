@@ -3277,8 +3277,8 @@ const evt = ():void =&gt; {
                     <!-- //props emit -->
 
 
-                      <!-- v-model -->
-                      <div class="depth_2">
+                    <!-- v-model -->
+                    <div class="depth_2">
                         <strong>v-model</strong>
                         <!-- item -->
                         <div class="item_wrap">
@@ -3341,7 +3341,62 @@ export default {
                     <!-- //v-model -->
 
 
+                    <br /><br />
 
+                    <!-- nuxt -->
+                    <div class="depth_2">
+                        <strong></strong>
+                        <!-- item -->
+                        <div class="item_wrap">
+                            <dl class="item">
+                                <dt><button><span>nuxt</span></button></dt>
+                                <dd>
+                                    nuxt
+                                </dd>
+                            </dl>
+                            <div class="code_wrap">
+                                <pre>
+                        <code class="javascript">
+
+1. 라우팅은 pages 폴더안에 만들면 자동 라우팅. 
+1-1. 폴더 만들면 폴더까지가 라우팅. 폴더 안 index.vue가 루트경로..index는 생략. lcoalhost.~/newforder/ 
+
+&lt;NuxtPage /&gt; 라고 컴포넌트를 불러오면 pages 폴더안 라우팅 페이지가 담김
+
+
+2. layout 폴더기능은  &lt;NuxtPage /&gt; 밖으로 감싸줌. 
+
+// layouts - default.vue 
+header
+&lt;slot /&gt; //슬롯은 넉스트 레이아웃안쪽 돔이 담기는 곳
+footer 
+
+
+// app.vue
+&lt;NuxtLayout /&gt;
+    &lt;NuxtPage /&gt;
+&lt;NuxtLayout /&gt;
+
+
+// 레이아웃 바꾸고 싶다면 
+definePageMeta({
+    layout: '파일명'
+})
+
+
+
+3. .env 
+vite면 앞에 VITE_NAME = 'name'
+불러올땐 import.meta.env.VITE_NAME
+
+                        </code>
+                    </pre>
+                            </div>
+                        </div>
+                        <!-- //item -->
+                     
+                    </div>
+                    <!-- //nuxt -->
 
 
                     
