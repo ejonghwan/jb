@@ -10,7 +10,6 @@ export const ui = (function(){
     const subNav = new Nav('.global_wrap.sub > .line', '..')
     const footer = new Footer('footer .global_wrap')
 
-    // console.log(subNav)
 
     mainNav.render();
     subNav.render();
@@ -33,9 +32,6 @@ export const ui = (function(){
                     eles[i].parentElement.querySelector('.code_wrap').classList.remove('active')
                     eles[i].parentElement.classList.remove('on')
                 }
-                
-                // console.log(eles[i].parentElement)
-                // console.log(this)
             })
         }
     }
@@ -57,12 +53,6 @@ export const ui = (function(){
         // console.log(links)
     }
     // cache();
-
-
-    // console.log('asdasd', SideBar.render())
-
-   
-
 
     return {
         tab,
